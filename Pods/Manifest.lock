@@ -436,11 +436,21 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
+  - RadioGroup (1.4.4):
+    - SweeterSwift
+  - SDWebImage (5.12.2):
+    - SDWebImage/Core (= 5.12.2)
+  - SDWebImage/Core (5.12.2)
+  - SDWebImageSwiftUI (2.0.2):
+    - SDWebImage (~> 5.10)
+  - SweeterSwift (1.2.0)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
   - Firebase/Storage
+  - RadioGroup
+  - SDWebImageSwiftUI
 
 SPEC REPOS:
   trunk:
@@ -460,6 +470,10 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - RadioGroup
+    - SDWebImage
+    - SDWebImageSwiftUI
+    - SweeterSwift
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -478,7 +492,11 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  RadioGroup: 8541fae4af7ee54125a9e237105982c1fbeedaa7
+  SDWebImage: 240e5c12b592fb1268c1d03b8c90d90e8c2ffe82
+  SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
+  SweeterSwift: 31fa8cfbdc094d3ae41bafbeaf4bceed467ba5c7
 
-PODFILE CHECKSUM: 2ee3f390ca2ef5eccdb133251b19ea7b2111968e
+PODFILE CHECKSUM: 1b344f22a6ec08c20e30ef2a39a4d4742c6a33d5
 
 COCOAPODS: 1.11.2
