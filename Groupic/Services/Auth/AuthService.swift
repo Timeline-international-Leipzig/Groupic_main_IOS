@@ -52,7 +52,11 @@ class AuthService {
     static func signIn(email: String, password: String, onSuccess: @escaping (_ user: UserModel) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) {
             (authData, error) in
-            guard let userId = authData?.user.uid else {return}
+            guard let userId = authData?.user.uid else {
+                onError("Das Passwort oder die E-Mail sind falsch!")
+                return
+                
+            }
             
             let firestoreUserID = getUserId(userId: userId)
             

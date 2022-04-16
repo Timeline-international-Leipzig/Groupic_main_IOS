@@ -18,7 +18,7 @@ struct FutureSearchUserPostView: View {
                 ForEach(self.profileService.posts, id: \.dateN) {
                     (post) in
                 
-                    FuturePostCardView(postModel: post)
+                   // FuturePostCardView(postModel: post)
                     //PostCardView(postModel: post)
                     //PostCardBottomView(postModel: post)
                 }

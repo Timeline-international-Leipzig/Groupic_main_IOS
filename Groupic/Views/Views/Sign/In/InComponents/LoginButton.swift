@@ -14,6 +14,8 @@ struct LoginButton: View {
     var userCollection = Firestore.firestore().collection("users")
     @State var userHasAccount = false
     
+    @State var login = false
+    
     @Binding var email: String
     @Binding var password: String
     
@@ -23,21 +25,24 @@ struct LoginButton: View {
     @Binding var viewState: Bool
     
     var body: some View {
+        NavigationLink(destination: CustomTabView(), isActive: self.$login, label: {
+            EmptyView()
+        })
+        
         VStack {
                 Button(action: {
+                    if let error = errorCheck() {
+                        self.error = error
+                        self.alert.toggle()
+                        self.clear()
+                        return
+                    }
+                    
                     checkIfEmailOfAccountExists { result in
                         if (result == true) {
-                            if Auth.auth().currentUser?.isEmailVerified != true {
-                                self.error = "Verifiziere bitte erst deine E-Mail"
-                                self.alert.toggle()
-                            } else {
-                                self.error = "Dein Passwort stimmt nicht"
-                                self.alert.toggle()
-                            }
+                            self.signIn()
                         }
                         else {
-                            self.signIn()
-                            
                             if session.session == nil {
                                 self.error = "Deine E-Mail oder Passwort stimmen nicht"
                                 self.alert.toggle()
@@ -118,7 +123,15 @@ struct LoginButton: View {
         AuthService.signIn(email: email, password: password, onSuccess: {
             (user) in
             
+            if Auth.auth().currentUser?.isEmailVerified != true {
+                self.error = "Verifiziere bitte erst deine E-Mail"
+                self.alert.toggle()
+                return
+            }
+            
+            self.login.toggle()
             self.clear()
+            return
         }) {
             (errorMessage) in
             self.error = errorMessage

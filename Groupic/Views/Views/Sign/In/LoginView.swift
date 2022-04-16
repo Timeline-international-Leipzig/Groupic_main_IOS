@@ -10,6 +10,7 @@ import Firebase
 
 struct LoginView: View {
     @State var next = false
+    @State var forgotPassword = false
     @State var visible = false
     @State var alert = false
     
@@ -22,6 +23,10 @@ struct LoginView: View {
         ZStack {
             GeometryReader {_ in
                 NavigationLink(destination: RegistrationView(back: $next), isActive: self.$next, label: {
+                    EmptyView()
+                })
+                
+                NavigationLink(destination: ForgotPasswrdView(forgotPassword: $forgotPassword), isActive: self.$forgotPassword, label: {
                     EmptyView()
                 })
                 
@@ -41,7 +46,7 @@ struct LoginView: View {
                         Spacer()
                         
                         Button(action: {
-                          
+                            self.forgotPassword.toggle()
                         }, label: {
                             Text("Passwort vergessen?")
                                 .fontWeight(.bold)

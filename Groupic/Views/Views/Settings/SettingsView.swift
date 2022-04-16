@@ -15,7 +15,7 @@ struct SettingsView: View {
     @State var nextProfile = false
 
     var body: some View {
-        NavigationLink(destination: ProfileSettingsView(session: self.session.session!, back: $nextProfile), isActive: self.$nextProfile, label: {
+        NavigationLink(destination: ProfileSettingsView(session: self.session.session, back: $nextProfile), isActive: self.$nextProfile, label: {
             EmptyView()
         })
         
@@ -138,6 +138,7 @@ struct SettingsView: View {
                             
                             Button(action: {
                                 self.session.logout()
+                                self.session.session = nil
                             }) {
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 14, weight: .semibold, design: .rounded))

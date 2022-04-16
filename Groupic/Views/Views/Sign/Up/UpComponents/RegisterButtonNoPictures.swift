@@ -24,6 +24,7 @@ struct RegisterButtonNoPictures: View {
     
     @Binding var error: String
     @Binding var alert: Bool
+    @Binding var next: Bool
     
     @Binding var viewState: Bool
     
@@ -103,9 +104,11 @@ struct RegisterButtonNoPictures: View {
             (user) in
             
             Auth.auth().currentUser?.sendEmailVerification { error in
+                self.error = "Es ist ein Fehler aufgetreten"
+                self.alert.toggle()
             }
             
-            self.clear()
+            self.next.toggle()
         }) {
             (errorMessage) in
             self.error = errorMessage
