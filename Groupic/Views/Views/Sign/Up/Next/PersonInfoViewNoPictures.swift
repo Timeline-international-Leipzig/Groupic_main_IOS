@@ -18,6 +18,7 @@ struct PersonInfoViewNoPictures: View {
     @State var visible = false
     @State var revisible = false
     @State var alert = false
+    @State var checked = false
     
     @Binding var next: Bool
     @State var nextView = false
@@ -47,7 +48,17 @@ struct PersonInfoViewNoPictures: View {
                                 
                                 TextEditField(selectedIndex: 2, header: "Nutzername", image: "mail", textField: "Dein gewünschter Nutzername", value: $username)
                                 
-                                RegisterButtonNoPictures(name: $name, username: $username, email: $email, password: $password, error: $error, alert: $alert, next: $nextView, viewState: $viewState)
+                                HStack {
+                                    CheckBoxView(checked: $checked)
+                                    
+                                    Spacer()
+                                    
+                                    Text("Ich bin mit der AGB sowie dem Datenschutz einverstanden")
+                                }
+                                .padding(.horizontal, 10)
+                                .padding()
+                                
+                                RegisterButtonNoPictures(name: $name, username: $username, email: $email, password: $password, error: $error, alert: $alert, next: $nextView, checked: $checked, viewState: $viewState)
                             }
                         }
                         .background(Color.white.opacity(0.75))

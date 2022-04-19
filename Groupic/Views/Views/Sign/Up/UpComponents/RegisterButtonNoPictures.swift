@@ -25,12 +25,20 @@ struct RegisterButtonNoPictures: View {
     @Binding var error: String
     @Binding var alert: Bool
     @Binding var next: Bool
+    @Binding var checked: Bool
     
     @Binding var viewState: Bool
     
     var body: some View {
         VStack {
             Button(action: {
+                if let error = errorCheck() {
+                    self.error = error
+                    self.alert.toggle()
+                    self.clear()
+                    return
+                }
+                
                 checkIfUsernameOfAccountExists { result in
                     if (result == true) {
                         self.userHasAccount = true
@@ -38,8 +46,14 @@ struct RegisterButtonNoPictures: View {
                         self.alert.toggle()
                     }
                     else {
+                        if checked == true {
                         self.userHasAccount = false
                         self.signUp()
+                        }
+                        else {
+                            self.error = "Du musst mit der AGB sowie dem Datenschutz einverstanden sein!"
+                            self.alert.toggle()
+                        }
                     }
                 }
             }, label: {
@@ -123,6 +137,11 @@ struct RegisterButtonNoPictures: View {
             if  name.count > 20 {
                 
                 return "Der Name ist zu lang! [Unter 20 Zeichen]"
+            }
+            
+            if  checked == false {
+                
+                return "Du musst mit dem Datenschutz sowie unserer AGB einverstanden sein!"
             }
             
             if  username.count > 8 {

@@ -72,6 +72,7 @@
 		87CAF00527FE0FDC002B4073 /* PersonInfoViewNoPictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CAF00427FE0FDC002B4073 /* PersonInfoViewNoPictures.swift */; };
 		87CAF00727FE110F002B4073 /* RegisterButtonNoPictures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CAF00627FE110F002B4073 /* RegisterButtonNoPictures.swift */; };
 		87F905DD280B612400993128 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F905DC280B612400993128 /* ForgotPasswordView.swift */; };
+		87F905DF280E04B400993128 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F905DE280E04B400993128 /* CheckBoxView.swift */; };
 		87FA47532767F28800D0703D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87FA47522767F28800D0703D /* GoogleService-Info.plist */; };
 		87FFFCD627EE00D100E64F1D /* EventFollowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FFFCD527EE00D100E64F1D /* EventFollowService.swift */; };
 		87FFFCD827EE026600E64F1D /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FFFCD727EE026600E64F1D /* EventService.swift */; };
@@ -191,6 +192,7 @@
 		87CAF00427FE0FDC002B4073 /* PersonInfoViewNoPictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonInfoViewNoPictures.swift; sourceTree = "<group>"; };
 		87CAF00627FE110F002B4073 /* RegisterButtonNoPictures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButtonNoPictures.swift; sourceTree = "<group>"; };
 		87F905DC280B612400993128 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		87F905DE280E04B400993128 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		87FA47522767F28800D0703D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		87FFFCD527EE00D100E64F1D /* EventFollowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFollowService.swift; sourceTree = "<group>"; };
 		87FFFCD727EE026600E64F1D /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
@@ -649,6 +651,7 @@
 		87C2ADE028048DDB0031D5D9 /* NextComponents */ = {
 			isa = PBXGroup;
 			children = (
+				87F905DE280E04B400993128 /* CheckBoxView.swift */,
 				DC3AA78A27234D27002B2649 /* NextButton.swift */,
 			);
 			path = NextComponents;
@@ -1116,6 +1119,7 @@
 				87C2ADCF2801D54B0031D5D9 /* HighlightButtonSwitched.swift in Sources */,
 				87FFFCE327EE66AB00E64F1D /* ContactsView.swift in Sources */,
 				8760E57027FB6B3200A7D240 /* ProfileSettingsViewTabView.swift in Sources */,
+				87F905DF280E04B400993128 /* CheckBoxView.swift in Sources */,
 				DC3AA6E7270B0CFD002B2649 /* AppDelegate.swift in Sources */,
 				87C2ADD1280350DB0031D5D9 /* SocialUserPostView.swift in Sources */,
 				8726C8E1274BE9BB006AF1DB /* ImagePicker.swift in Sources */,
