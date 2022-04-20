@@ -26,6 +26,7 @@ struct RegisterButtonNoPictures: View {
     @Binding var alert: Bool
     @Binding var next: Bool
     @Binding var checked: Bool
+    @Binding var checkedSecond: Bool
     
     @Binding var viewState: Bool
     
@@ -46,7 +47,7 @@ struct RegisterButtonNoPictures: View {
                         self.alert.toggle()
                     }
                     else {
-                        if checked == true {
+                        if checked == true && checkedSecond == true {
                         self.userHasAccount = false
                         self.signUp()
                         }
@@ -131,23 +132,23 @@ struct RegisterButtonNoPictures: View {
     }
     
     func errorCheck() -> String? {
+        if  name.count > 20 {
+            
+            return "Der Name ist zu lang! [Unter 20 Zeichen]"
+        }
+        
+        if  username.count > 15 {
+            
+            return "Der Username ist zu lang! [Unter 15 Zeichen]"
+        }
+        
+        if  username.count < 4 {
+            
+            return "Der Username ist zu kurz! [Über 4 Zeichen]"
+        }
+        
         if  name.trimmingCharacters(in: .whitespaces).isEmpty ||
             username.trimmingCharacters(in: .whitespaces).isEmpty {
-            
-            if  name.count > 20 {
-                
-                return "Der Name ist zu lang! [Unter 20 Zeichen]"
-            }
-            
-            if  checked == false {
-                
-                return "Du musst mit dem Datenschutz sowie unserer AGB einverstanden sein!"
-            }
-            
-            if  username.count > 8 {
-                
-                return "Der Username ist zu lang! [Unter 8 Zeichen]"
-            }
             
             return "Fülle bitte alle Felder aus"
         }

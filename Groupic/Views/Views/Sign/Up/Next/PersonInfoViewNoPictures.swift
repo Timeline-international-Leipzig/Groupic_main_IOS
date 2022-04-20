@@ -19,10 +19,14 @@ struct PersonInfoViewNoPictures: View {
     @State var revisible = false
     @State var alert = false
     @State var checked = false
+    @State var checkedSecond = false
     
     @Binding var next: Bool
     @State var nextView = false
     @Binding var viewState: Bool
+    
+    @State var nextAGB = false
+    @State var nextDatenschutz = false
     
     @Binding var email: String
     @Binding var password: String
@@ -30,6 +34,14 @@ struct PersonInfoViewNoPictures: View {
     
     var body: some View {
         NavigationLink(destination: VerificationView(), isActive: self.$nextView, label: {
+            EmptyView()
+        })
+        
+        NavigationLink(destination: AGBView(back: $nextAGB), isActive: self.$nextAGB, label: {
+            EmptyView()
+        })
+        
+        NavigationLink(destination: DatenschutzView(back: $nextDatenschutz), isActive: self.$nextDatenschutz, label: {
             EmptyView()
         })
         
@@ -48,17 +60,45 @@ struct PersonInfoViewNoPictures: View {
                                 
                                 TextEditField(selectedIndex: 2, header: "Nutzername", image: "mail", textField: "Dein gewünschter Nutzername", value: $username)
                                 
-                                HStack {
-                                    CheckBoxView(checked: $checked)
+                                VStack {
+                                    HStack {
+                                        CheckBoxView(checked: $checked)
+                                        
+                                        Text("Ich bin mit der")
+                                        
+                                        Button(action: {
+                                            self.nextAGB.toggle()
+                                        }, label: {
+                                            Text("AGB")
+                                                .foregroundColor(Color("AccentColor"))
+                                        })
+                                        
+                                        Text(" einverstanden")
+                                        
+                                        Spacer()
+                                    }
+                                    .padding(.horizontal, 4)
                                     
-                                    Spacer()
-                                    
-                                    Text("Ich bin mit der AGB sowie dem Datenschutz einverstanden")
+                                    HStack {
+                                        CheckBoxView(checked: $checkedSecond)
+                                        
+                                        Text("Ich bin mit dem")
+                                        
+                                        Button(action: {
+                                            self.nextDatenschutz.toggle()
+                                        }, label: {
+                                            Text("Datenschutz")
+                                                .foregroundColor(Color("AccentColor"))
+                                        })
+                                        
+                                        Text(" einverstanden")
+                                    }
+                                    .padding(.top, 2)
                                 }
                                 .padding(.horizontal, 10)
-                                .padding()
+                                .padding(.top, 5)
                                 
-                                RegisterButtonNoPictures(name: $name, username: $username, email: $email, password: $password, error: $error, alert: $alert, next: $nextView, checked: $checked, viewState: $viewState)
+                                RegisterButtonNoPictures(name: $name, username: $username, email: $email, password: $password, error: $error, alert: $alert, next: $nextView, checked: $checked, checkedSecond: $checkedSecond, viewState: $viewState)
                             }
                         }
                         .background(Color.white.opacity(0.75))

@@ -73,7 +73,7 @@ struct TextEditField: View {
                             if selectedIndex == 2 {
                                 value = String(value.prefix(limit).unicodeScalars.filter(allowedAlpha.contains))
                                 
-                                if value.count > 15 {
+                                if isValidUsername(value) == false {
                                     self.errorCheckBool = true
                                 }
                                 
@@ -113,7 +113,7 @@ struct TextEditField: View {
                     
                 case 2:
                     Text(
-                        self.errorCheckBool ? "Der Name darf nicht länger als 10 Zeichen sein!" : ""
+                        self.errorCheckBool ? "Der Nutzername muss zwischen 4 und 10 Zeichen sein!" : ""
                     )
                     .foregroundColor(.red)
                     .fontWeight(.light)
@@ -136,6 +136,13 @@ struct TextEditField: View {
 
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
+    }
+    
+    func isValidUsername(_ username: String) -> Bool {
+        let emailRegEx = "\\w{7,18}"
+
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: username)
     }
 }
 
