@@ -42,7 +42,7 @@ struct RegisterButtonNoPictures: View {
                 checkIfUsernameOfAccountExists { result in
                     if (result == true) {
                         self.userHasAccount = true
-                        self.error = "Dieser Username existiert bereits! \n Bitte wähle einen neuen Username"
+                        self.error = "Dieser Username existiert bereits! \n Bitte wähle einen neuen Usernamen"
                         self.alert.toggle()
                     }
                     else {
