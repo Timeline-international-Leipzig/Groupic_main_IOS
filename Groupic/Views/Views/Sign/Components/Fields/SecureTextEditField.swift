@@ -41,6 +41,7 @@ struct SecureTextEditField: View {
                             if self.visible {
                                 TextField(textField, text: $value)
                                     .foregroundColor(.white)
+                                    .accentColor(.white)
                                     .autocapitalization(.none)
                                     .padding(.horizontal, 10)
                                     .font(.system(size: 15, weight: .bold))
@@ -71,6 +72,8 @@ struct SecureTextEditField: View {
                             }
                             else {
                                 SecureField(textField, text: $value)
+                                    .foregroundColor(.white)
+                                    .accentColor(.white)
                                     .autocapitalization(.none)
                                     .padding(.horizontal, 10)
                                     .font(.system(size: 15, weight: .bold))

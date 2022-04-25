@@ -96,13 +96,14 @@ struct PersonInfoViewNoPictures: View {
                                         
                                         VStack {
                                         
-                                            CheckBoxView(checked: $checked).background(Color(.white))
+                                            CheckBoxView(checked: $checked)
                                         
-                                        CheckBoxView(checked: $checkedSecond).background(Color(.white))
+                                            CheckBoxView(checked: $checkedSecond)
+                                                .padding(.top, 30)
                                             
                                         }
                                         
-                                        VStack {
+                                        VStack(alignment: .leading) {
                                             
                                             HStack {
                                         
@@ -134,12 +135,12 @@ struct PersonInfoViewNoPictures: View {
                                                 .foregroundColor(.white)
                                                 .font(.system(size: 15, weight: .bold))
                                         })
+                                            }.padding(.top, 20)
                                             
-                                        
-                                        Text(" einverstanden")
-                                            .foregroundColor(.white)
-                                        }
-                                        }
+                                            Text("einverstanden.")
+                                                .foregroundColor(.white)
+                                            
+                                        }.padding(.top, 20)
                                     }
                                 }
                                    
