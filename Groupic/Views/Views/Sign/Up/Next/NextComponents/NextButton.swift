@@ -37,6 +37,7 @@ struct NextButton: View {
             }, label: {
                 Text("Weiter")
                     .foregroundColor(.white)
+                    .font(.system(size: 20, weight: .bold))
                     .padding(.vertical)
                     .frame(width: UIScreen.main.bounds.width - 50)
             })
@@ -46,16 +47,16 @@ struct NextButton: View {
             .padding(.horizontal, 10)
             
             HStack {
-                Text("Bereits Nutzer?")
+                Text("account bereits vorhanden?")
                     .fontWeight(.bold)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.white)
                 
                 Button(action: {
                     self.viewState.toggle()
                 }, label: {
-                    Text("Einloggen")
+                    Text("hier anmelden")
                         .fontWeight(.bold)
-                        .foregroundColor(Color("AccentColor"))
+                        .foregroundColor(.white)
                 })
             }
             .padding(.bottom, 20)
