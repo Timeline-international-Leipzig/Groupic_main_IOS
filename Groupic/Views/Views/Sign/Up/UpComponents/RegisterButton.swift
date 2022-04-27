@@ -9,6 +9,8 @@ import SwiftUI
 import Firebase
 
 struct RegisterButton: View {
+    @EnvironmentObject var session: SessionStore
+    
     @State var errortitle = ""
     @State var closetitle = ""
     

@@ -1,20 +1,21 @@
 //
-//  VerificationView.swift
+//  VerificationReauthetificationView.swift
 //  Groupic
 //
-//  Created by Anatolij Travkin on 14.04.22.
+//  Created by Anatolij Travkin on 27.04.22.
 //
 
 import SwiftUI
 import Firebase
 
-struct VerificationView: View {
+struct VerificationReauthetificationView: View {
     @EnvironmentObject var session: SessionStore
     
     @State var alert = false
     @State var error = "Die E-Mail wurde noch nicht verfiziert!"
     
     @State var login = false
+    @State var email = false
     
     var body: some View {
         NavigationLink(destination: CustomTabView(), isActive: self.$login, label: {
@@ -25,14 +26,14 @@ struct VerificationView: View {
                 ZStack (alignment: .topLeading) {
                     GeometryReader {_ in
                         VStack {
-                            Text("Fast geschafft!")
+                            Text("Deine Identität bestätigen")
                                 .foregroundColor(Color("AccentColor"))
                                 .font(.title)
                                 .fontWeight(.bold)
                                 .padding(.top, 25)
                             
                
-                            Text("Verifiziere bitte deine E-Mail!")
+                            Text("Verifiziere bitte deine neue E-Mail! Sonst müssen wir dich leider ausloggen")
                                 .padding()
                                 .padding(.horizontal, 25)
                             
@@ -60,11 +61,21 @@ struct VerificationView: View {
                             }
                             
                             HStack {
+                                Button(action: {
+                                    self.email.toggle()
+                                }, label: {
+                                    Text("Neue E-Mail wählen")
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color("AccentColor"))
+                                })
+                                
                                 Spacer()
                                 
                                 Button(action: {
-                                    Auth.auth().currentUser?.sendEmailVerification { error in
-                                    }
+                                    Auth.auth().currentUser?.reload(completion: { (err) in
+                                        Auth.auth().currentUser?.sendEmailVerification { error in
+                                        }
+                                    })
                                 }, label: {
                                     Text("E-Mail erneut senden")
                                         .fontWeight(.bold)
@@ -90,12 +101,18 @@ struct VerificationView: View {
                 if self.alert {
                     ErrorView(alert: self.$alert, error: self.$error)
                 }
+                
+                if self.email {
+                    ReEmailView(back: self.$email)
+                }
             }
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
     }
 }
+
+
 
 
 

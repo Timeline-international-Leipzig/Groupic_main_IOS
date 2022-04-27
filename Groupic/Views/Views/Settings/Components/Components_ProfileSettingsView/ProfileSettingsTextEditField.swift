@@ -15,7 +15,7 @@
 import SwiftUI
 import Firebase
 
-struct TextEditField: View {
+struct ProfilesettingsTextEditField: View {
     @State var errorCheckBool = false
     @State var selectedIndex: Int
     
@@ -29,6 +29,7 @@ struct TextEditField: View {
     var limit = 50
     
     @Binding var value: String
+    @Binding var change: Bool
     
     var body: some View {
         VStack {
@@ -39,8 +40,6 @@ struct TextEditField: View {
             
             VStack {
                 HStack {
-                    Image(systemName: image).padding(.horizontal, 10)
-
                     TextField(textField, text: $value)
                         .autocapitalization(.none)
                         .padding(.horizontal, 10)
@@ -48,6 +47,8 @@ struct TextEditField: View {
                         .onChange(of: value) {_ in
                             if selectedIndex == 0 {
                                 value = String(value.prefix(limit).unicodeScalars.filter(allowed.contains))
+                                
+                                self.change = true
                                 
                                 if isValidEmail(value) == false {
                                     self.errorCheckBool = true
@@ -61,6 +62,8 @@ struct TextEditField: View {
                             if selectedIndex == 1 {
                                 value = String(value.prefix(limit).unicodeScalars.filter(allowedBeta.contains))
                                 
+                                self.change = true
+                                
                                 if value.count > 20 {
                                     self.errorCheckBool = true
                                 }
@@ -73,6 +76,8 @@ struct TextEditField: View {
                             if selectedIndex == 2 {
                                 value = String(value.prefix(limit).unicodeScalars.filter(allowedAlpha.contains))
                                 
+                                self.change = true
+                                
                                 if isValidUsername(value) == false {
                                     self.errorCheckBool = true
                                 }
@@ -80,10 +85,6 @@ struct TextEditField: View {
                                 else {
                                     self.errorCheckBool = false
                                 }
-                            }
-                            
-                            if selectedIndex == 2 {
-                                value = String(value.prefix(limit).unicodeScalars.filter(allowed.contains))
                             }
                         }
                 }
