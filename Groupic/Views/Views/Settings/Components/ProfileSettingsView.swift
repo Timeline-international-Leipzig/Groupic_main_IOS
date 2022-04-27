@@ -48,6 +48,7 @@ struct ProfileSettingsView: View {
     
     @State var alert = false
     @State var alertEmailReauthentication = false
+    @State var alertPasswordReauthentication = false
     
     
     init(session: UserModel?, back: Binding<Bool>) {
@@ -111,6 +112,20 @@ struct ProfileSettingsView: View {
 
                             ProfilesettingsTextEditField(selectedIndex: 0, header: "", image: "", textField: "email", value: $email, change: $changeTextEmail)
                         }
+                        
+                        HStack {
+                            Button(action: {
+                                self.alertPasswordReauthentication.toggle()
+                            }, label: {
+                                Text("Ändere dein Passwort")
+                                    .background(Color.gray)
+                                    .foregroundColor(.black)
+                            })
+                            .padding()
+                            
+                            Spacer()
+                        }
+                        .padding()
                        
                         
                         if Auth.auth().currentUser?.isEmailVerified == false {
@@ -265,6 +280,10 @@ struct ProfileSettingsView: View {
             
             if self.alertEmailReauthentication {
                 ReautheticationView(back: self.$alertEmailReauthentication, email: self.$email)
+            }
+            
+            if self.alertPasswordReauthentication {
+                ReautheticationPasswordView(back: self.$alertPasswordReauthentication)
             }
         }
         .navigationBarTitle("")
