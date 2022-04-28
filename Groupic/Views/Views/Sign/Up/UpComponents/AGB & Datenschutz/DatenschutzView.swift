@@ -11,7 +11,6 @@ struct DatenschutzView: View {
     @Binding var back: Bool
     
     var body: some View {
-            
             VStack(alignment: .center, spacing: 0) {
                 
                 ZStack {

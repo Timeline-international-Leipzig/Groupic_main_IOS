@@ -87,7 +87,7 @@ struct ForgotPasswrdView: View {
                                         }
                                     }
                                 }, label: {
-                                    Text("Passwort ändern")
+                                    Text("E-Mail versenden")
                                         .foregroundColor(.white)
                                         .padding(.vertical)
                                         .frame(width: UIScreen.main.bounds.width - 50)

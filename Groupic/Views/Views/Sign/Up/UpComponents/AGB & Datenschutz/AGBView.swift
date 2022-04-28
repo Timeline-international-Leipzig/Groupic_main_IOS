@@ -11,7 +11,7 @@ struct AGBView: View {
     @Binding var back: Bool
     
     var body: some View {
-        VStack(alignment: .center, spacing: 0){
+        VStack(alignment: .center, spacing: 0) {
             
             ZStack {
                 HStack(spacing: 15) {
