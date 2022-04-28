@@ -48,60 +48,107 @@ struct PersonInfoViewNoPictures: View {
             ZStack {
                 ZStack (alignment: .topLeading) {
                     GeometryReader {_ in
+                        
                         VStack {
-                            Text("Willkommen!")
+                        
+                            ZStack {
+                                
+                                Text("Registrierung")
+                                    .padding(.top, 10)
+                                    .font(.system(size: 26, weight: .bold))
+                                    .foregroundColor(.white)
+                                    .hCenter()
+                                    .zIndex(1)
+                                
+                                HStack {
+                                    Rectangle().frame(width: getRectView().width, height: 100)
+                                }.background(Color(.black))
+                                    .mask(
+                                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                                    )
+                            }
+                            
+                            Spacer()
+                            
+                            HStack {
+                                Rectangle().frame(width: getRectView().width, height: 100)
+                            }.background(Color(.black))
+                                .mask(
+                                    LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                                )
+                            
+                        }.zIndex(1)
+                        
+                        VStack {
+                            /*Text("Willkommen!")
                                 .foregroundColor(Color("AccentColor"))
                                 .font(.title)
                                 .fontWeight(.bold)
-                                .padding(.top, 25)
+                                .padding(.top, 25)*/
                             
                             Group {
-                                TextEditField(selectedIndex: 1, header: "Name", image: "mail", textField: "Dein persönlicher Name", value: $name)
+                                TextEditField(selectedIndex: 1, header: "Name", image: "mail", textField: "", value: $name)
                                 
-                                TextEditField(selectedIndex: 2, header: "Nutzername", image: "mail", textField: "Dein gewünschter Nutzername", value: $username)
+                                TextEditField(selectedIndex: 2, header: "Nutzername", image: "mail", textField: "", value: $username)
                                 
-                                VStack {
+                                VStack (alignment: .leading) {
                                     HStack {
-                                        CheckBoxView(checked: $checked)
+                                        
+                                        VStack {
+                                        
+                                            CheckBoxView(checked: $checked)
+                                        
+                                            CheckBoxView(checked: $checkedSecond)
+                                                .padding(.top, 30)
+                                            
+                                        }
+                                        
+                                        VStack(alignment: .leading) {
+                                            
+                                            HStack {
                                         
                                         Text("Ich bin mit der")
+                                            .foregroundColor(.white)
                                         
                                         Button(action: {
                                             self.nextAGB.toggle()
                                         }, label: {
                                             Text("AGB")
-                                                .foregroundColor(Color("AccentColor"))
+                                                .foregroundColor(.white)
+                                                .font(.system(size: 15, weight: .bold))
                                         })
                                         
                                         Text(" einverstanden")
+                                            .foregroundColor(.white)
                                         
-                                        Spacer()
-                                    }
-                                    .padding(.horizontal, 4)
-                                    
-                                    HStack {
-                                        CheckBoxView(checked: $checkedSecond)
+                                            }
+                                            
+                                            HStack {
                                         
                                         Text("Ich bin mit dem")
+                                            .foregroundColor(.white)
                                         
                                         Button(action: {
                                             self.nextDatenschutz.toggle()
                                         }, label: {
                                             Text("Datenschutz")
-                                                .foregroundColor(Color("AccentColor"))
+                                                .foregroundColor(.white)
+                                                .font(.system(size: 15, weight: .bold))
                                         })
-                                        
-                                        Text(" einverstanden")
+                                            }.padding(.top, 20)
+                                            
+                                            Text("einverstanden.")
+                                                .foregroundColor(.white)
+                                            
+                                        }.padding(.top, 20)
                                     }
-                                    .padding(.top, 2)
                                 }
-                                .padding(.horizontal, 10)
-                                .padding(.top, 5)
+                                   
                                 
                                 RegisterButtonNoPictures(name: $name, username: $username, email: $email, password: $password, error: $error, alert: $alert, next: $nextView, checked: $checked, checkedSecond: $checkedSecond, viewState: $viewState)
                             }
                         }
-                        .background(Color.white.opacity(0.75))
+                        .background(Color.black.opacity(0.5))
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                         .frame(height: UIScreen.main.bounds.height - 50)
                         .padding()
@@ -121,6 +168,7 @@ struct PersonInfoViewNoPictures: View {
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
+            .ignoresSafeArea()
     }
 }
 

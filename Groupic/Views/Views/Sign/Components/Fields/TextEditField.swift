@@ -34,14 +34,18 @@ struct TextEditField: View {
         VStack {
             Text(header)
                 .fontWeight(.bold)
-                .foregroundColor(Color("AccentColor"))
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity, alignment: .center)
             
             VStack {
                 HStack {
-                    Image(systemName: image).padding(.horizontal, 10)
+                    Image(systemName: image)
+                        .padding(.horizontal, 10)
+                        .foregroundColor(.white)
 
                     TextField(textField, text: $value)
+                        .foregroundColor(.white)
+                        .accentColor(.white)
                         .autocapitalization(.none)
                         .padding(.horizontal, 10)
                         .font(.system(size: 15, weight: .bold))
@@ -85,11 +89,11 @@ struct TextEditField: View {
                             if selectedIndex == 2 {
                                 value = String(value.prefix(limit).unicodeScalars.filter(allowed.contains))
                             }
-                        }
+                        }                    
                 }
                 
                 Divider()
-                    .background(Color("AccentColor"))
+                    .background(Color(.white))
                     .padding(.top, 7.5)
             }
             .padding(.top, 7.5)

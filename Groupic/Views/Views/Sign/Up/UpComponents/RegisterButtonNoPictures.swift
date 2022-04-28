@@ -69,16 +69,16 @@ struct RegisterButtonNoPictures: View {
             .padding(.horizontal, 10)
         
             HStack {
-                Text("Bereits Nutzer?")
+                Text("account schon vorhanden?")
                     .fontWeight(.bold)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.white)
                 
                 Button(action: {
                     self.viewState.toggle()
                 }, label: {
-                    Text("Einloggen")
+                    Text("anmelden.")
                         .fontWeight(.bold)
-                        .foregroundColor(Color("AccentColor"))
+                        .foregroundColor(.white)
                 })
             }
             .padding(.bottom, 20)

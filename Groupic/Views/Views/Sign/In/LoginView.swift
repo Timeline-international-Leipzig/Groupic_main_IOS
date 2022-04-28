@@ -32,16 +32,46 @@ struct LoginView: View {
                 })
                 
                 VStack {
-                    Image("glogo-nb")
+                
+                    ZStack {
+                        
+                        Text("Anmeldung")
+                            .padding(.top, 10)
+                            .font(.system(size: 26, weight: .bold))
+                            .foregroundColor(.white)
+                            .hCenter()
+                            .zIndex(1)
+                        
+                        HStack {
+                            Rectangle().frame(width: getRectView().width, height: 100)
+                        }.background(Color(.black))
+                            .mask(
+                                LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                            )
+                    }
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Rectangle().frame(width: getRectView().width, height: 100)
+                    }.background(Color(.black))
+                        .mask(
+                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                        )
+                    
+                }.zIndex(1)
+                
+                VStack {
+                    /*Image("glogo-nb")
                         .resizable()
                         .scaledToFill()
                         .padding(.horizontal, 25)
                         .padding(.top, 25)
-                        .frame(width: 80, height: 80)
+                        .frame(width: 80, height: 80)*/
                 
-                    TextEditField(selectedIndex: 3, header: "E-Mail", image: "mail", textField: "Deine E-Mail", value: $email)
+                    TextEditField(selectedIndex: 3, header: "E-Mail", image: "mail", textField: "", value: $email)
                     
-                    SecureTextEditField(selectedIndex: 2, password: "", header: "Passwort", image: "lock", textField: "Dein Passwort", visible: visible, value: $password)
+                    SecureTextEditField(selectedIndex: 2, password: "", header: "Passwort", image: "lock", textField: "", visible: visible, value: $password)
                     
                     HStack {
                         Spacer()
@@ -51,15 +81,17 @@ struct LoginView: View {
                         }, label: {
                             Text("Passwort vergessen?")
                                 .fontWeight(.bold)
-                                .foregroundColor(Color("AccentColor"))
+                                .foregroundColor(Color(.white))
                         })
+                        
+                        Spacer()
                     }
                     .padding(.horizontal, 10)
                     .padding(.top, 5)
                     
                     LoginButton(email: $email, password: $password, error: $error, alert: $alert, alertEmailVerification: $alertEmailVerification, viewState: $next)
                 }
-                .background(Color.white.opacity(0.75))
+                .background(Color.black.opacity(0.5))
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                 .frame(height: UIScreen.main.bounds.height - 50)
                 .padding()
@@ -82,6 +114,12 @@ struct LoginView: View {
         .navigationBarTitle("")
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
+        .ignoresSafeArea()
     }
 }
 
+struct LoginView_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginView()
+    }
+}

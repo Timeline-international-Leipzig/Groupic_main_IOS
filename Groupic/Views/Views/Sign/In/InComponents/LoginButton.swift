@@ -51,8 +51,9 @@ struct LoginButton: View {
                         }
                     }
                 }, label: {
-                    Text("Einloggen")
+                    Text("anmelden.")
                         .foregroundColor(.white)
+                        .font(.system(size: 20, weight: .bold))
                         .padding(.vertical)
                         .frame(width: UIScreen.main.bounds.width - 50)
                 })
@@ -62,16 +63,16 @@ struct LoginButton: View {
                 .padding(.horizontal, 10)
                 
                 HStack {
-                    Text("Neuer Nutzer?")
+                    Text("kein account vorhanden?")
                         .fontWeight(.bold)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.white)
                     
                     Button(action: {
                         self.viewState.toggle()
                     }, label: {
-                        Text("Registrierung")
+                        Text("hier registrieren")
                             .fontWeight(.bold)
-                            .foregroundColor(Color("AccentColor"))
+                            .foregroundColor(.white)
                     })
                 }
                 .padding(.bottom, 20)

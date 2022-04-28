@@ -42,12 +42,43 @@ struct PersonInfoView: View {
             ZStack {
                 ZStack (alignment: .topLeading) {
                     GeometryReader {_ in
+                        
                         VStack {
-                            Text("Willkommen!")
+                        
+                            ZStack {
+                                
+                                Text("Registrierung")
+                                    .padding(.top, 10)
+                                    .font(.system(size: 26, weight: .bold))
+                                    .foregroundColor(.white)
+                                    .hCenter()
+                                    .zIndex(1)
+                                
+                                HStack {
+                                    Rectangle().frame(width: getRectView().width, height: 100)
+                                }.background(Color(.black))
+                                    .mask(
+                                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                                    )
+                            }
+                            
+                            Spacer()
+                            
+                            HStack {
+                                Rectangle().frame(width: getRectView().width, height: 100)
+                            }.background(Color(.black))
+                                .mask(
+                                    LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                                )
+                            
+                        }.zIndex(1)
+                        
+                        VStack {
+                            /*Text("Willkommen!")
                                 .foregroundColor(Color("AccentColor"))
                                 .font(.title)
                                 .fontWeight(.bold)
-                                .padding(.top, 25)
+                                .padding(.top, 25)*/
                             
                             VStack {
                                 Group {
@@ -75,14 +106,14 @@ struct PersonInfoView: View {
                             }
                             
                             Group {
-                                TextEditField(selectedIndex: 0, header: "Name", image: "mail", textField: "Dein persönlicher Name", value: $name)
+                                TextEditField(selectedIndex: 0, header: "Name", image: "mail", textField: "", value: $name)
                                 
-                                TextEditField(selectedIndex: 0, header: "Nutzername", image: "mail", textField: "Dein gewünschter Nutzername", value: $username)
+                                TextEditField(selectedIndex: 0, header: "Nutzername", image: "mail", textField: "", value: $username)
                                 
                                 RegisterButton(name: $name, username: $username, email: $email, password: $password, profileImage: $profileImage, imageData: $imageData, error: $error, alert: $alert, viewState: $viewState)
                             }
                         }
-                        .background(Color.white.opacity(0.75))
+                        .background(Color.black.opacity(0.5))
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                         .frame(height: UIScreen.main.bounds.height - 50)
                         .padding()
@@ -117,6 +148,7 @@ struct PersonInfoView: View {
                     .cancel()
                 ])
             }
+            .ignoresSafeArea()
     }
 /// Functions
     func loadImage() {

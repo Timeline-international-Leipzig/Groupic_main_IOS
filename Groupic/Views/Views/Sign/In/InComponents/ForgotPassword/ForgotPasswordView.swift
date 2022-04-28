@@ -28,15 +28,46 @@ struct ForgotPasswrdView: View {
             ZStack {
                 ZStack (alignment: .topLeading) {
                     GeometryReader {_ in
+                        
+                        VStack {
+                        
+                            ZStack {
+                                
+                                Text("Passwort")
+                                    .padding(.top, 10)
+                                    .font(.system(size: 26, weight: .bold))
+                                    .foregroundColor(.white)
+                                    .hCenter()
+                                    .zIndex(1)
+                                
+                                HStack {
+                                    Rectangle().frame(width: getRectView().width, height: 100)
+                                }.background(Color(.black))
+                                    .mask(
+                                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                                    )
+                            }
+                            
+                            Spacer()
+                            
+                            HStack {
+                                Rectangle().frame(width: getRectView().width, height: 100)
+                            }.background(Color(.black))
+                                .mask(
+                                    LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                                )
+                            
+                        }.zIndex(1)
+                        
                         VStack {
                             Text("Ändere dein Passwort")
-                                .foregroundColor(Color("AccentColor"))
+                                .foregroundColor(.white)
                                 .font(.title)
                                 .fontWeight(.bold)
                                 .padding(.top, 25)
                             
                
-                            TextEditField(selectedIndex: 3, header: "E-Mail", image: "mail", textField: "Deine E-Mail zum ändern des Passworts", value: $email)
+                            TextEditField(selectedIndex: 3, header: "E-Mail", image: "mail", textField: "", value: $email)
                             
                             Group {
                                 Button(action: {
@@ -73,7 +104,7 @@ struct ForgotPasswrdView: View {
                                 }, label: {
                                     Text("Zurück")
                                         .fontWeight(.bold)
-                                        .foregroundColor(Color("AccentColor"))
+                                        .foregroundColor(.white)
                                 })
                                 
                                 Spacer()
@@ -81,7 +112,7 @@ struct ForgotPasswrdView: View {
                             .padding()
                             .padding(.bottom, 20)
                         }
-                        .background(Color.white.opacity(0.75))
+                        .background(Color.black.opacity(0.5))
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                         .frame(height: UIScreen.main.bounds.height - 50)
                         .padding()
@@ -101,6 +132,7 @@ struct ForgotPasswrdView: View {
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
+            .ignoresSafeArea()
     }
     
     func checkIfEmailOfAccountExists(completion: @escaping ((Bool) -> () )) {

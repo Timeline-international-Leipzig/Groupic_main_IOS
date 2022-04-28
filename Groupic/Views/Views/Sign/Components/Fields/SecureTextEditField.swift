@@ -27,17 +27,21 @@ struct SecureTextEditField: View {
         VStack {
             Text(header)
                 .fontWeight(.bold)
-                .foregroundColor(Color("AccentColor"))
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity, alignment: .center)
             
             VStack {
                 HStack {
-                    Image(systemName: image).padding(.horizontal, 10)
+                    Image(systemName: image)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 10)
                 
                     HStack() {
                         VStack {
                             if self.visible {
                                 TextField(textField, text: $value)
+                                    .foregroundColor(.white)
+                                    .accentColor(.white)
                                     .autocapitalization(.none)
                                     .padding(.horizontal, 10)
                                     .font(.system(size: 15, weight: .bold))
@@ -68,6 +72,8 @@ struct SecureTextEditField: View {
                             }
                             else {
                                 SecureField(textField, text: $value)
+                                    .foregroundColor(.white)
+                                    .accentColor(.white)
                                     .autocapitalization(.none)
                                     .padding(.horizontal, 10)
                                     .font(.system(size: 15, weight: .bold))
@@ -102,14 +108,14 @@ struct SecureTextEditField: View {
                             self.visible.toggle()
                         }, label: {
                             Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
-                                .foregroundColor(.black)
+                                .foregroundColor(.white)
                         })
                         .padding(.horizontal, 10)
                     }
                 }
                 
                 Divider()
-                    .background(Color("AccentColor"))
+                    .background(Color(.white))
                     .padding(.top, 7.5)
             }
             .padding(.top, 7.5)
