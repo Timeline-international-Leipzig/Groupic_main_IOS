@@ -13,6 +13,7 @@ struct LoginView: View {
     @State var forgotPassword = false
     @State var visible = false
     @State var alert = false
+    @State var alertEmailVerification = false
     
     @State private var email = ""
     @State private var password = ""
@@ -88,7 +89,7 @@ struct LoginView: View {
                     .padding(.horizontal, 10)
                     .padding(.top, 5)
                     
-                    LoginButton(email: $email, password: $password, error: $error, alert: $alert, viewState: $next)
+                    LoginButton(email: $email, password: $password, error: $error, alert: $alert, alertEmailVerification: $alertEmailVerification, viewState: $next)
                 }
                 .background(Color.black.opacity(0.5))
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
@@ -104,6 +105,10 @@ struct LoginView: View {
             
             if self.alert {
                 ErrorView(alert: self.$alert, error: self.$error)
+            }
+            
+            if self.alertEmailVerification {
+                ErrorSendEmailView(back: self.$alertEmailVerification, email: self.$email)
             }
         }
         .navigationBarTitle("")

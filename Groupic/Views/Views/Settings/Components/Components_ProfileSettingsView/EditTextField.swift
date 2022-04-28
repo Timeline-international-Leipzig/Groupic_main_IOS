@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditTextField: View {
+    
     var textField: String
     
     @Binding var value: String

@@ -21,6 +21,7 @@ struct LoginButton: View {
     
     @Binding var error: String
     @Binding var alert: Bool
+    @Binding var alertEmailVerification: Bool
     
     @Binding var viewState: Bool
     
@@ -125,8 +126,7 @@ struct LoginButton: View {
             (user) in
             
             if Auth.auth().currentUser?.isEmailVerified != true {
-                self.error = "Verifiziere bitte erst deine E-Mail"
-                self.alert.toggle()
+                self.alertEmailVerification.toggle()
                 return
             }
             

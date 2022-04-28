@@ -118,10 +118,10 @@ struct RegisterButtonNoPictures: View {
         AuthService.signUpNoPictures(name: name, username: username, email: email, password: password, onSuccess: {
             (user) in
             
-            Auth.auth().currentUser?.sendEmailVerification { error in
-                self.error = "Es ist ein Fehler aufgetreten"
-                self.alert.toggle()
-            }
+            Auth.auth().currentUser?.reload(completion: { (err) in
+                Auth.auth().currentUser?.sendEmailVerification { error in
+                }
+            })
             
             self.next.toggle()
         }) {
@@ -132,6 +132,12 @@ struct RegisterButtonNoPictures: View {
     }
     
     func errorCheck() -> String? {
+        if  name.trimmingCharacters(in: .whitespaces).isEmpty ||
+            username.trimmingCharacters(in: .whitespaces).isEmpty {
+            
+            return "Fülle bitte alle Felder aus"
+        }
+        
         if  name.count > 20 {
             
             return "Der Name ist zu lang! [Unter 20 Zeichen]"
@@ -145,12 +151,6 @@ struct RegisterButtonNoPictures: View {
         if  username.count < 4 {
             
             return "Der Username ist zu kurz! [Über 4 Zeichen]"
-        }
-        
-        if  name.trimmingCharacters(in: .whitespaces).isEmpty ||
-            username.trimmingCharacters(in: .whitespaces).isEmpty {
-            
-            return "Fülle bitte alle Felder aus"
         }
         
         return nil

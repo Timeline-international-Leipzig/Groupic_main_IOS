@@ -1,20 +1,21 @@
 //
-//  VerificationView.swift
+//  VerificationReauthetificationView.swift
 //  Groupic
 //
-//  Created by Anatolij Travkin on 14.04.22.
+//  Created by Anatolij Travkin on 27.04.22.
 //
 
 import SwiftUI
 import Firebase
 
-struct VerificationView: View {
+struct VerificationReauthetificationView: View {
     @EnvironmentObject var session: SessionStore
     
     @State var alert = false
     @State var error = "Die E-Mail wurde noch nicht verfiziert!"
     
     @State var login = false
+    @State var email = false
     
     var body: some View {
         NavigationLink(destination: CustomTabView(), isActive: self.$login, label: {
@@ -24,47 +25,15 @@ struct VerificationView: View {
             ZStack {
                 ZStack (alignment: .topLeading) {
                     GeometryReader {_ in
-                        
                         VStack {
-                        
-                            ZStack {
-                                
-                                Text("Verifizierung")
-                                    .padding(.top, 10)
-                                    .font(.system(size: 26, weight: .bold))
-                                    .foregroundColor(.white)
-                                    .hCenter()
-                                    .zIndex(1)
-                                
-                                HStack {
-                                    Rectangle().frame(width: getRectView().width, height: 100)
-                                }.background(Color(.black))
-                                    .mask(
-                                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
-                                    )
-                            }
-                            
-                            Spacer()
-                            
-                            HStack {
-                                Rectangle().frame(width: getRectView().width, height: 100)
-                            }.background(Color(.black))
-                                .mask(
-                                    LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
-                                )
-                            
-                        }.zIndex(1)
-                        
-                        VStack {
-                            Text("Fast geschafft!")
-                                .foregroundColor(.white)
+                            Text("Deine Identität bestätigen")
+                                .foregroundColor(Color("AccentColor"))
                                 .font(.title)
                                 .fontWeight(.bold)
                                 .padding(.top, 25)
                             
                
-                            Text("Verifiziere bitte deine E-Mail!")
-                                .foregroundColor(.white)
+                            Text("Verifiziere bitte deine neue E-Mail! Sonst müssen wir dich leider ausloggen")
                                 .padding()
                                 .padding(.horizontal, 25)
                             
@@ -92,21 +61,31 @@ struct VerificationView: View {
                             }
                             
                             HStack {
+                                Button(action: {
+                                    self.email.toggle()
+                                }, label: {
+                                    Text("Neue E-Mail wählen")
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color("AccentColor"))
+                                })
+                                
                                 Spacer()
                                 
                                 Button(action: {
-                                    Auth.auth().currentUser?.sendEmailVerification { error in
-                                    }
+                                    Auth.auth().currentUser?.reload(completion: { (err) in
+                                        Auth.auth().currentUser?.sendEmailVerification { error in
+                                        }
+                                    })
                                 }, label: {
                                     Text("E-Mail erneut senden")
                                         .fontWeight(.bold)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(Color("AccentColor"))
                                 })
                             }
                             .padding()
                             .padding(.bottom, 20)
                         }
-                        .background(Color.black.opacity(0.5))
+                        .background(Color.white.opacity(0.75))
                         .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                         .frame(height: UIScreen.main.bounds.height - 50)
                         .padding()
@@ -122,13 +101,18 @@ struct VerificationView: View {
                 if self.alert {
                     ErrorView(alert: self.$alert, error: self.$error)
                 }
+                
+                if self.email {
+                    ReEmailView(back: self.$email)
+                }
             }
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-            .ignoresSafeArea()
     }
 }
+
+
 
 
 

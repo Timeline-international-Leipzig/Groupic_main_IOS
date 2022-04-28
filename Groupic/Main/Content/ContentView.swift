@@ -16,7 +16,7 @@ struct ContentView: View {
         NavigationView {
             Group {
                 if (session.session != nil && Auth.auth().currentUser?.isEmailVerified == true) {
-                    CustomTabView()
+                        CustomTabView()
                 }
                 else {
                     LoginView()

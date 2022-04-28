@@ -12,12 +12,30 @@ struct SettingsView: View {
     
     @Binding var next: Bool
     
+    @State var nextAGB = false
+    @State var nextDatenschutz = false
+    @State var nextSupport = false
+    
     @State var nextProfile = false
 
     var body: some View {
         NavigationLink(destination: ProfileSettingsView(session: self.session.session, back: $nextProfile), isActive: self.$nextProfile, label: {
             EmptyView()
         })
+        
+        NavigationLink(destination: AGBView(back: $nextAGB), isActive: self.$nextAGB, label: {
+            EmptyView()
+        })
+        
+        NavigationLink(destination: DatenschutzView(back: $nextDatenschutz), isActive: self.$nextDatenschutz, label: {
+            EmptyView()
+        })
+        
+        /*
+        NavigationLink(destination: SupportView(back: $nextSupport), isActive: self.$nextSupport, label: {
+            EmptyView()
+        })
+        */
         
         ZStack {
             Color("AccentColor").ignoresSafeArea(.all, edges: .top)
@@ -100,6 +118,7 @@ struct SettingsView: View {
                         }
                         */
                          
+                        /*
                         HStack {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8, style: .continuous)
@@ -115,13 +134,15 @@ struct SettingsView: View {
                             Spacer()
                             
                             Button(action: {
-                                
+                                self.nextSupport.toggle()
                             }) {
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 14, weight: .semibold, design: .rounded))
                             }
                             .accentColor(Color(.systemGray2))
                         }
+                        */
+                        
                         HStack {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8, style: .continuous)
@@ -165,7 +186,7 @@ struct SettingsView: View {
                             Spacer()
                             
                             Button(action: {
-                                
+                                self.nextDatenschutz.toggle()
                             }) {
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 14, weight: .semibold, design: .rounded))
@@ -187,7 +208,7 @@ struct SettingsView: View {
                             Spacer()
                             
                             Button(action: {
-                                
+                                self.nextAGB.toggle()
                             }) {
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 14, weight: .semibold, design: .rounded))
