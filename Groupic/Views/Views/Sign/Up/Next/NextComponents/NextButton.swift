@@ -46,9 +46,9 @@ struct NextButton: View {
             .padding(.bottom, 25)
             .padding(.horizontal, 10)
             
-            HStack {
+            VStack {
                 Text("account bereits vorhanden?")
-                    .fontWeight(.bold)
+                    .fontWeight(.semibold)
                     .foregroundColor(.white)
                 
                 Button(action: {

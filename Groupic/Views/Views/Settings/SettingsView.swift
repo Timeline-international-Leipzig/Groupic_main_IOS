@@ -40,8 +40,6 @@ struct SettingsView: View {
         
         ZStack {
             
-            
-            
             VStack {
                 
                 ZStack {

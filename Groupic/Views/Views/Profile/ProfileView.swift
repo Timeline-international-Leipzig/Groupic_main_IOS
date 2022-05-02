@@ -29,7 +29,8 @@ struct ProfileView: View {
                     }
                     .offset(y: -10)
                 }
-                .background(Color.white)
+                .background(Color("background"))
+                .ignoresSafeArea()
                 .coordinateSpace(name: "pullToRefresh")
             }
         }

@@ -41,6 +41,9 @@ struct ProfilesettingsTextEditField: View {
             VStack {
                 HStack {
                     TextField(textField, text: $value)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
+                        .accentColor(.white)
                         .autocapitalization(.none)
                         .padding(.horizontal, 10)
                         .font(.system(size: 15, weight: .bold))
@@ -90,10 +93,9 @@ struct ProfilesettingsTextEditField: View {
                 }
                 
                 Divider()
-                    .background(Color("AccentColor"))
-                    .padding(.top, 7.5)
+                    .background(Color(.white))
+                    .padding(.top, 2)
             }
-            .padding(.top, 7.5)
             
             switch selectedIndex {
                 case 0:
@@ -127,9 +129,8 @@ struct ProfilesettingsTextEditField: View {
                 default:
                     Text("Remaining tabs")
                 }
-        }
-        .padding(.horizontal, 10)
-        .padding(.top, 20)
+        }.padding()
+
     }
     
     func isValidEmail(_ email: String) -> Bool {
