@@ -12,10 +12,10 @@ struct ProfileView: View {
     
     var body: some View {
         ZStack {
-            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
-        
+ 
+            TabView(user: self.session.session).zIndex(1)
+            
             VStack {
-                TabView(user: self.session.session)
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
@@ -27,7 +27,7 @@ struct ProfileView: View {
                         
                         MidTabBarView()
                     }
-                    .offset(y: -10)
+                    //.offset(y: -10)
                 }
                 .background(Color("background"))
                 .ignoresSafeArea()

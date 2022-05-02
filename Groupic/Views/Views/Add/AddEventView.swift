@@ -38,40 +38,46 @@ struct AddEventView: View {
             ZStack {
                 VStack {
                     Text("Erstelle ein Ereignis")
-                        .foregroundColor(Color("AccentColor"))
+                        .foregroundColor(Color("lightBlue"))
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.top, 20)
+                        .padding(.top, 80)
                     
                     TextField("Titel", text: $caption)
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                                    .font(Font.system(size: 40, weight: .bold, design: .default))
-                                    .padding(.horizontal)
+                        .padding(.all, 5)
+                        .multilineTextAlignment(.center)
+                        .font(Font.system(size: 40, weight: .bold, design: .default))
+                        .accentColor(.white)
+                        .background(Color("background"))
+                        .foregroundColor(Color.white)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
                     
                     VStack(spacing: 10) {
                         HStack {
                             Image(systemName: "arrow.forward.square")
-                                .foregroundColor(Color("darkBlue"))
+                                .foregroundColor(Color(.white))
                                 .font(.system(size: 20))
                             
-                            DatePicker("Startdatum", selection: $startDate, displayedComponents: .date)
+                            DatePicker("Startdatum", selection: $startDate, displayedComponents: .date).foregroundColor(.white)
                         }.padding(.horizontal, 20)
                         
                         HStack {
                             Image(systemName: "arrow.backward.square")
-                                .foregroundColor(Color("darkBlue"))
+                                .foregroundColor(Color(.white))
                                 .font(.system(size: 20))
                             
-                            DatePicker("Enddatum", selection: $endDate, displayedComponents: .date)
+                            DatePicker("Enddatum", selection: $endDate, displayedComponents: .date).foregroundColor(.white)
                         }.padding(.horizontal, 20)
                     }
                     .padding(.top, 10)
+                    .padding(.horizontal, 60)
                     
-                    Text("Wähle ein Titelbild aus:")
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("AccentColor"))
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text("Wähle ein Titelbild aus")
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(Color(.white))
+                        .hCenter()
                         .padding()
                         .padding(.top, 10)
                     
@@ -85,8 +91,10 @@ struct AddEventView: View {
                                     self.showingActionsSheet = true
                                 }
                         } else {
-                            Image(systemName: "photo.circle").resizable()
+                            Image(systemName: "photo.circle")
+                                .resizable()
                                 .frame(width: 100, height: 100, alignment: .center)
+                                .foregroundColor(.gray)
                                 .onTapGesture {
                                     self.showingActionsSheet = true
                                 }
@@ -97,7 +105,8 @@ struct AddEventView: View {
                     
                     VStack {
                         Text("Wer darf das Ereignis anschauen?")
-                            .foregroundColor(Color("AccentColor"))
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(Color(.white))
                         
                         Divider()
                         
@@ -116,25 +125,30 @@ struct AddEventView: View {
                     HStack {
                         Button (
                             action: {shouldShowModel.toggle()},
-                            label: {Text("Abbrechen")
-                                    .foregroundColor(.red)
+                            label: {
+                                Image(systemName: "multiply")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 25, weight: .bold))
                             }
                         )
                         .foregroundColor(.red)
-                        .padding()
+                        .padding(.horizontal, 40)
                     
                         Button (
                             action: {self.uploadPost()
                                 self.clear()
                             },
-                            label: {Text("Bestätigen")
-                                    .foregroundColor(Color("AccentColor"))
+                            label: {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 25, weight: .bold))
                             }
                         )
                         .foregroundColor(.green)
-                        .padding()
+                        .padding(.horizontal, 40)
                     }
-                    .padding(.top, 30)
+                    .padding(.top, 50)
+                    .padding(.bottom, 60)
                 }
                 
                 if self.alert {
@@ -158,10 +172,11 @@ struct AddEventView: View {
                 ])
             }
         }
+        .background(Color("background"))
         .navigationBarTitle("")
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-        }
+        }.ignoresSafeArea()
     }
     
 /// Functions

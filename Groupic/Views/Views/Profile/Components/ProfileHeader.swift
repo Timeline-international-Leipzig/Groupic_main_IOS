@@ -39,20 +39,27 @@ struct ProfileHeader: View {
                     
                     
                     HStack {
-                        Text(user!.userName).bold()
+                        Text(user!.userName)
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
                         
                         Spacer()
                         
                         Button(action: {
                             self.nextProfile.toggle()
                         }, label: {
-                            Text("Bearbeiten")
-                                .background(Color.gray)
-                                .foregroundColor(.black)
+                            Text("Profil bearbeiten")
+                                .font(.system(size: 12, weight: .bold))
+                                .foregroundColor(Color(.white))
+                                .font(.headline)
+                                .padding(5)
+                                .background(
+                                    Color(.gray)
+                                        .cornerRadius(5)
+                                )
                         })
-                        .padding()
-                    }
-                    .padding()
+                    }.padding(.horizontal, 8)
+                        .padding(.vertical, 20)
                 }
                 
                 ZStack {

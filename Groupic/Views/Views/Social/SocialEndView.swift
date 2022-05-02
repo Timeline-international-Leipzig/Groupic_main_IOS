@@ -47,30 +47,53 @@ struct SocialEndView: View {
     
     var body: some View {
         ZStack {
-            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
             
-            VStack {
-                ZStack {
+                VStack {
+                
+                    HStack {
+                        Rectangle().frame(width: getRectView().width, height: 100)
+                    }.background(Color(.black))
+                        .mask(
+                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                        )
+                    
+                    Spacer()
+                }.zIndex(1)
+                    
+                VStack {
                     HStack(spacing: 15) {
                         Spacer()
                         
-                        Text("Social")
+                        Button(action: {},
+                               label: {
+                            Image(systemName: "envelope.fill")
+                                .foregroundColor(.white)
+                                .font(.system(size: 20))
+                            
+                        }).padding(.horizontal, 20)
+                        
+                        Text("username")
                             .font(.title3)
                             .foregroundColor(.white)
                             .frame(alignment: .center)
                         
+                        Button(action: {},
+                               label: {
+                            Image(systemName: "line.horizontal.3")
+                                .foregroundColor(.white)
+                                .font(.system(size: 20))
+                            
+                        }).padding(.horizontal, 20)
+                        
                         Spacer()
                     }
-                    .padding()
-                    .background(Color("AccentColor"))
-                    
-                    HStack() {
-                        Spacer()
-                        
-                        
-                    }
-                    .padding()
-                }
+                    .padding(.top, 50)
+                    .padding(.bottom, 10)
+                 
+                    Spacer()
+                }.zIndex(1)
+            
+            VStack {
                 
                 ScrollView {
                     
@@ -81,7 +104,7 @@ struct SocialEndView: View {
                             
                             searchUsers()
                         })
-                    }
+                    }.padding(.top, 80)
                     
                     ZStack {
                         SocialFriendsEventsView()
@@ -145,11 +168,11 @@ struct SocialEndView: View {
                         
                     }
                 }
-                .background(Color.white)
+                .background(Color("background"))
                 .navigationBarTitle("")
                 .navigationBarBackButtonHidden(true)
                 .navigationBarHidden(true)
             }
-        }
+        }.ignoresSafeArea()
     }
 }
