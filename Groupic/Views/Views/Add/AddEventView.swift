@@ -44,7 +44,9 @@ struct AddEventView: View {
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 80)
                     
-                    TextField("Titel", text: $caption)
+                    TextField("", text: $caption)
+                        .placeholder(when: caption.isEmpty) {
+                                Text("Titel").foregroundColor(.white)}
                         .padding(.all, 5)
                         .multilineTextAlignment(.center)
                         .font(Font.system(size: 40, weight: .bold, design: .default))
@@ -60,7 +62,10 @@ struct AddEventView: View {
                                 .foregroundColor(Color(.white))
                                 .font(.system(size: 20))
                             
-                            DatePicker("Startdatum", selection: $startDate, displayedComponents: .date).foregroundColor(.white)
+                            DatePicker("Startdatum", selection: $startDate, displayedComponents: .date)
+                                .colorInvert()
+                                .colorMultiply(Color.white)
+                            
                         }.padding(.horizontal, 20)
                         
                         HStack {
@@ -68,7 +73,10 @@ struct AddEventView: View {
                                 .foregroundColor(Color(.white))
                                 .font(.system(size: 20))
                             
-                            DatePicker("Enddatum", selection: $endDate, displayedComponents: .date).foregroundColor(.white)
+                            DatePicker("Enddatum", selection: $endDate, displayedComponents: .date)
+                                .colorInvert()
+                                .colorMultiply(Color.white)
+                            
                         }.padding(.horizontal, 20)
                     }
                     .padding(.top, 10)
@@ -115,6 +123,11 @@ struct AddEventView: View {
                             selectedIndex: $selection,
                             titles: ["Jeder", "Teilnehmer", "Teilnehmer und deren Kontakte"])
                                 .spacing(20)
+                                .colorInvert()
+                                .colorMultiply(Color.white)
+                                /*.titleColor(.white)
+                                .selectedColor(.white)*/
+                            
                         }
                         .padding(.horizontal, 60)
                     }
