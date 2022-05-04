@@ -125,8 +125,6 @@ struct AddEventView: View {
                                 .spacing(20)
                                 .colorInvert()
                                 .colorMultiply(Color.white)
-                                /*.titleColor(.white)
-                                .selectedColor(.white)*/
                             
                         }
                         .padding(.horizontal, 60)

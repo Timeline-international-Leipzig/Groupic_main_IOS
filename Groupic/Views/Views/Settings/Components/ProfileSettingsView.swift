@@ -189,137 +189,171 @@ struct ProfileSettingsView: View {
                             .padding()
                         }
                     }.padding(.top, 200)
+                        .sheet(isPresented: $showingImagePickerBackProfile, onDismiss: loadBackProfileImage) {
+                            backImagePicker(pickedImage: self.$pickedBackImage, showImagePicker: self.$showingImagePickerBackProfile, imageData: self.$backImageData)
+                        }
+                        .actionSheet(isPresented: $showingActionsBackSheet) {
+                            ActionSheet(title: Text(""), buttons: [
+                                .default(Text("Wähle ein Bild")){
+                                    self.sourceType = .photoLibrary
+                                    self.showingImagePickerBackProfile = true
+                                },
+                                .default(Text("Mach ein Bild")){
+                                    self.sourceType = .camera
+                                    self.showingImagePickerBackProfile = true
+                                },
+                                .cancel()
+                            ])
+                        }
+                        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+                            ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)
+                        }
+                        .actionSheet(isPresented: $showingActionsSheet) {
+                            ActionSheet(title: Text(""), buttons: [
+                                .default(Text("Wähle ein Bild")){
+                                    self.sourceType = .photoLibrary
+                                    self.showingImagePicker = true
+                                },
+                                .default(Text("Mach ein Bild")){
+                                    self.sourceType = .camera
+                                    self.showingImagePicker = true
+                                },
+                                .cancel()
+                            ])
+                        }
                     
                     VStack {
-                    
-                    if changeProfileImage == true || changeBackProfileImage == true || changeTextName == true || changeTextEmail == true ||
-                        changeTextUsername == true {
                         
-                        Button(action: {
-                            if changeBackProfileImage == true {
-                                self.editBackImage()
-                                
-                                if alert == false {
-                                    self.error = "Dein Profile wurde bearbeitet"
-                                    self.alert = true
-                                }
-                            }
+                        if changeProfileImage == true || changeBackProfileImage == true || changeTextName == true || changeTextEmail == true ||
+                            changeTextUsername == true {
                             
-                            if changeProfileImage == true {
-                                self.editProfileImage()
-                                
-                                if alert == false {
-                                    self.error = "Dein Profile wurde bearbeitet"
-                                    self.alert = true
-                                }
-                            }
-                            
-                            if changeTextEmail == true {
-                                if isValidEmail(email) == false {
-                                    self.error = "Keine valide E-Mail-Form"
+                            Button(action: {
+                                if changeBackProfileImage == true {
+                                    self.editBackImage()
                                     
                                     if alert == false {
+                                        self.error = "Dein Profile wurde bearbeitet"
                                         self.alert = true
                                     }
                                 }
-                                else {
-                                    checkIfEmailOfAccountExists { result in
+                                
+                                if changeProfileImage == true {
+                                    self.editProfileImage()
+                                    
+                                    if alert == false {
+                                        self.error = "Dein Profile wurde bearbeitet"
+                                        self.alert = true
+                                    }
+                                }
+                                
+                                if changeTextEmail == true {
+                                    if isValidEmail(email) == false {
+                                        self.error = "Keine valide E-Mail-Form"
+                                        
+                                        if alert == false {
+                                            self.alert = true
+                                        }
+                                    }
+                                    else {
+                                        checkIfEmailOfAccountExists { result in
+                                            if (result == true) {
+                                                self.error = "Diese E-Mail existiert bereits! \n Wähle bitte eine neue E-Mail"
+                                                if alert == false {
+                                                    self.alert = true
+                                                }
+                                            }
+                                            
+                                            else {
+                                                if let error = errorCheck() {
+                                                    self.error = error
+                                                    if alert == false {
+                                                        self.alert = true
+                                                    }
+                                                    
+                                                }
+                                                else {
+                                                    self.alertEmailReauthentication.toggle()
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                
+                                
+                                if changeTextUsername == true {
+                                    checkIfUsernameOfAccountExists { result in
                                         if (result == true) {
-                                            self.error = "Diese E-Mail existiert bereits! \n Wähle bitte eine neue E-Mail"
+                                            self.error = "Diese Nutzername existiert bereits! \n Wähle bitte eine neue Nutzernamen"
                                             if alert == false {
-                                                self.alert = true
+                                                self.alert.toggle()
                                             }
                                         }
                                         
                                         else {
-                                            if let error = errorCheck() {
-                                                self.error = error
-                                                if alert == false {
-                                                    self.alert = true
-                                                }
-                                                
-                                            }
-                                            else {
-                                                self.alertEmailReauthentication.toggle()
+                                            self.editUsername()
+                                            
+                                            if alert == false {
+                                                self.error = "Dein Profile wurde bearbeitet"
+                                                self.alert = true
                                             }
                                         }
                                     }
                                 }
-                            }
-                            
-                            
-                            if changeTextUsername == true {
-                                checkIfUsernameOfAccountExists { result in
-                                    if (result == true) {
-                                        self.error = "Diese Nutzername existiert bereits! \n Wähle bitte eine neue Nutzernamen"
-                                        if alert == false {
-                                            self.alert.toggle()
-                                        }
-                                    }
-                                    
-                                    else {
-                                        self.editUsername()
-                                        
-                                        if alert == false {
-                                            self.error = "Dein Profile wurde bearbeitet"
-                                            self.alert = true
-                                        }
-                                    }
-                                }
-                            }
-                            
-                            if changeTextName == true {
-                                self.editName()
                                 
-                                if alert == false {
-                                    self.error = "Dein Profile wurde bearbeitet"
-                                    self.alert = true
+                                if changeTextName == true {
+                                    self.editName()
+                                    
+                                    if alert == false {
+                                        self.error = "Dein Profile wurde bearbeitet"
+                                        self.alert = true
+                                    }
                                 }
-                            }
-                            
-                            Auth.auth().currentUser?.reload()
-                            
-                        }, label: {
-                            Text("Bearbeiten")
-                                .foregroundColor(.white)
-                                .padding(.vertical)
-                                .frame(width: UIScreen.main.bounds.width - 50)
-                        })
-                        .background(
-                            Color("AccentColor"))
-                        .cornerRadius(10)
-                        .padding(.bottom, 25)
-                        .padding(.horizontal, 10)
-                    }
-                    else {
-                        Button(action: {
-                        }, label: {
-                            Text("Bearbeiten")
-                                .foregroundColor(.white)
-                                .padding(.vertical)
-                                .frame(width: UIScreen.main.bounds.width - 50)
-                        })
-                        .disabled(true)
-                        .background(Color.gray)
-                        .cornerRadius(10)
-                        .padding(.bottom, 25)
-                        .padding(.horizontal, 10)
-                    }
+                                
+                                Auth.auth().currentUser?.reload()
+                                
+                            }, label: {
+                                Text("Bearbeiten")
+                                    .foregroundColor(.white)
+                                    .padding(.vertical)
+                                    .frame(width: UIScreen.main.bounds.width - 50)
+                            })
+                            .background(
+                                Color("AccentColor"))
+                            .cornerRadius(10)
+                            .padding(.bottom, 25)
+                            .padding(.horizontal, 10)
+                        }
+                        else {
+                            Button(action: {
+                            }, label: {
+                                Text("Bearbeiten")
+                                    .foregroundColor(.white)
+                                    .padding(.vertical)
+                                    .frame(width: UIScreen.main.bounds.width - 50)
+                            })
+                            .disabled(true)
+                            .background(Color.gray)
+                            .cornerRadius(10)
+                            .padding(.bottom, 25)
+                            .padding(.horizontal, 10)
+                        }
                     }.padding(.vertical, 30)
-                }
-                
-                //ProfileSettingsViewTabView(back: $back)
-                
-                if self.alert {
-                    ErrorView(alert: self.$alert, error: self.$error)
-                }
-                
-                if self.alertEmailReauthentication {
-                    ReautheticationView(back: self.$alertEmailReauthentication, email: self.$email)
-                }
-                
-                if self.alertPasswordReauthentication {
-                    ReautheticationPasswordView(back: self.$alertPasswordReauthentication)
+                        
+
+                    //ProfileSettingsViewTabView(back: $back)
+                    
+                    if self.alert {
+                        ErrorView(alert: self.$alert, error: self.$error)
+                    }
+                    
+                    if self.alertEmailReauthentication {
+                        ReautheticationView(back: self.$alertEmailReauthentication, email: self.$email)
+                    }
+                    
+                    if self.alertPasswordReauthentication {
+                        ReautheticationPasswordView(back: self.$alertPasswordReauthentication)
+                    }
                 }
             }
         }.navigationBarTitle("")
@@ -327,39 +361,6 @@ struct ProfileSettingsView: View {
             .navigationBarHidden(true)
             .background(Color("background"))
             .ignoresSafeArea()
-            .sheet(isPresented: $showingImagePickerBackProfile, onDismiss: loadBackProfileImage) {
-                backImagePicker(pickedImage: self.$pickedBackImage, showImagePicker: self.$showingImagePickerBackProfile, imageData: self.$backImageData)
-            }
-            .actionSheet(isPresented: $showingActionsBackSheet) {
-                ActionSheet(title: Text(""), buttons: [
-                    .default(Text("Wähle ein Bild")){
-                        self.sourceType = .photoLibrary
-                        self.showingImagePickerBackProfile = true
-                    },
-                    .default(Text("Mach ein Bild")){
-                        self.sourceType = .camera
-                        self.showingImagePickerBackProfile = true
-                    },
-                    .cancel()
-                ])
-            }
-        
-            .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)
-            }
-            .actionSheet(isPresented: $showingActionsSheet) {
-                ActionSheet(title: Text(""), buttons: [
-                    .default(Text("Wähle ein Bild")){
-                        self.sourceType = .photoLibrary
-                        self.showingImagePicker = true
-                    },
-                    .default(Text("Mach ein Bild")){
-                        self.sourceType = .camera
-                        self.showingImagePicker = true
-                    },
-                    .cancel()
-                ])
-            }
     }
     
     /// Functions:
