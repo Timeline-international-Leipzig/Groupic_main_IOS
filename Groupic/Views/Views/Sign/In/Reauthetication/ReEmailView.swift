@@ -66,7 +66,7 @@ struct ReEmailView: View {
                             else {
                                 checkIfEmailOfAccountExists { result in
                                     if (result == true) {
-                                        self.error = "Diese E-Mail existiert bereits! \n Wähle bitte eine neue E-Mail"
+                                        self.error = "Diese E-Mail existiert bereits! \nWähle bitte eine neue E-Mail"
                                         if alert == false {
                                         self.alert = true
                                         }

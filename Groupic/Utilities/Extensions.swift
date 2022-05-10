@@ -90,3 +90,16 @@ extension View {
             .frame(maxWidth: .infinity, alignment: .center)
     }
 }
+
+extension View {
+    func placeholder<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content) -> some View {
+
+            ZStack(alignment: .center) {
+            placeholder().opacity(shouldShow ? 1 : 0)
+            self
+        }
+    }
+}

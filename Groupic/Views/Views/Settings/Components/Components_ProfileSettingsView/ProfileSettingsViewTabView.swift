@@ -12,33 +12,53 @@ struct ProfileSettingsViewTabView: View {
     
     var body: some View {
         ZStack {
-            HStack(spacing: 15) {
-                Spacer()
-                
-                Text("Profil bearbeiten")
-                    .font(.title3)
-                    .foregroundColor(.white)
-                    .frame(alignment: .center)
-                
-                Spacer()
-            }
-            .padding()
-            .background(Color("AccentColor"))
             
-            HStack {
-                Button(action: {
-                    self.back.toggle()
-                },
-                label: {
-                    Image(systemName: "chevron.left")
+            VStack {
+                
+                ZStack {
+                    
+                    HStack {
+                        
+                        Button(action: {
+                            self.back.toggle()
+                        },
+                        label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.white)
+                                .font(.system(size: 20))
+                        })
+                        .padding()
+                        
+                        Spacer()
+                        
+                    }.zIndex(1)
+                    
+                    Text("Profil bearbeiten")
+                        .padding(.top, 10)
+                        .font(.system(size: 26, weight: .bold))
                         .foregroundColor(.white)
-                        .font(.system(size: 20))
-                })
+                        .hCenter()
+                        .zIndex(1)
+                    
+                    HStack {
+                        Rectangle().frame(width: getRectView().width, height: 100)
+                    }.background(Color(.black))
+                        .mask(
+                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                        )
+                }
                 
                 Spacer()
-            }
-            .padding()
-        }
+                
+                HStack {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }.background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                    )
+            }.zIndex(1)
+        }.background(Color("background"))
+        .ignoresSafeArea()
     }
 }
 

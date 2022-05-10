@@ -16,6 +16,8 @@ struct ProfileSettingsViewProfileHeader: View {
     
     var body: some View {
         ZStack {
+            
+            VStack {
             if backProfileImage != nil {
                 backProfileImage!
                     .resizable()
@@ -38,6 +40,7 @@ struct ProfileSettingsViewProfileHeader: View {
                         .frame(width: getRectView().width, height: 180, alignment: .center)
                         .cornerRadius(0)
                 }
+            }
             }
             
             VStack {
@@ -67,9 +70,8 @@ struct ProfileSettingsViewProfileHeader: View {
                             .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                     }
                 }
-            }
-            .padding(.bottom, -160)
-        }
+            }.offset(y: 80)
+        }.offset(y: 130)
     }
 }
 

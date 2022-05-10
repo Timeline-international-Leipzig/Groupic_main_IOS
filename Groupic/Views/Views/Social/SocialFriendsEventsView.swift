@@ -16,7 +16,7 @@ struct SocialFriendsEventsView: View {
     var body: some View {
         VStack {
             Text("Freunde")
-                .foregroundColor(Color("AccentColor"))
+                .foregroundColor(Color(.white))
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .frame(maxWidth: .infinity, alignment: .leading)

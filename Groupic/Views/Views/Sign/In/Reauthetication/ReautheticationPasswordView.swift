@@ -29,14 +29,12 @@ struct ReautheticationPasswordView: View {
         NavigationLink(destination: VerificationReauthetificationView(), isActive: self.$nextView, label: {
             EmptyView()
         })
-        
-        GeometryReader{_ in
             HStack {
                 Spacer()
                 
                 VStack {
                     Text(self.error)
-                        .foregroundColor(self.color)
+                        .foregroundColor(.white)
                         .padding(.top)
                         .padding(.horizontal, 25)
                     
@@ -114,13 +112,12 @@ struct ReautheticationPasswordView: View {
                 }
                 .padding(.all, 25)
                 .frame(width: UIScreen.main.bounds.width - 90)
-                .background(Color.white.opacity(0.85))
+                .background(Color.black.opacity(0.5))
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                 .frame(height: UIScreen.main.bounds.height - 50)
                 
                 Spacer()
             }
-        }
         .background(Color.black.opacity(0.10).edgesIgnoringSafeArea(.all))
     }
 }
