@@ -24,8 +24,8 @@ struct TabView: View {
                     Rectangle().frame(width: getRectView().width, height: 100)
                 }.background(Color(.black))
                     .mask(
-                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
-                    )
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom))
+                    .colorInvert()
                 
                 Spacer()
             }.zIndex(1)

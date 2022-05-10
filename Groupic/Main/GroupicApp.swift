@@ -14,7 +14,9 @@ struct GroupicApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(SessionStore())
+            ContentView()
+                .environmentObject(SessionStore())
+                .preferredColorScheme(.dark)
         }
     }
 }

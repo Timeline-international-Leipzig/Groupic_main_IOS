@@ -71,6 +71,7 @@ struct SettingsView: View {
                         .mask(
                             LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
                         )
+                        .colorInvert()
                 }
                 
                 Spacer()
@@ -79,8 +80,8 @@ struct SettingsView: View {
                     Rectangle().frame(width: getRectView().width, height: 100)
                 }.background(Color(.black))
                     .mask(
-                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
-                    )
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top))
+                    .colorInvert()
             }.zIndex(1)
             
             VStack(alignment: .center, spacing: 0) {

@@ -63,7 +63,6 @@ struct AddEventView: View {
                                 .font(.system(size: 20))
                             
                             DatePicker("Startdatum", selection: $startDate, displayedComponents: .date)
-                                .colorInvert()
                                 .colorMultiply(Color.white)
                             
                         }.padding(.horizontal, 20)
@@ -74,7 +73,6 @@ struct AddEventView: View {
                                 .font(.system(size: 20))
                             
                             DatePicker("Enddatum", selection: $endDate, displayedComponents: .date)
-                                .colorInvert()
                                 .colorMultiply(Color.white)
                             
                         }.padding(.horizontal, 20)
@@ -123,7 +121,6 @@ struct AddEventView: View {
                             selectedIndex: $selection,
                             titles: ["Jeder", "Teilnehmer", "Teilnehmer und deren Kontakte"])
                                 .spacing(20)
-                                .colorInvert()
                                 .colorMultiply(Color.white)
                             
                         }
@@ -159,7 +156,7 @@ struct AddEventView: View {
                         .padding(.horizontal, 40)
                     }
                     .padding(.top, 50)
-                    .padding(.bottom, 60)
+                    .padding(.bottom, 200)
                 }
                 
                 if self.alert {
