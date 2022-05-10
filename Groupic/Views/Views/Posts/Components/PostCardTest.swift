@@ -14,7 +14,7 @@ struct PostCardTest: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                WebImage(url: URL(string: postModel.profile)!)
+                WebImage(url: URL(string: postModel.mediaUrl)!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .scaledToFit()

@@ -59,9 +59,11 @@ struct UserContactsView: View {
                 }
                 }
                 
-                NavigationLink(destination: UserProfileView(user: $currentUser, next: $next), isActive: self.$next, label: {
+                /*
+                NavigationLink(destination: UserProfileView(user: user, next: $next), isActive: self.$next, label: {
                     EmptyView()
                 })
+                */
             }
         }
         .navigationTitle("")

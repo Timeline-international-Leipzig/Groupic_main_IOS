@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct CustomTabView: View {
+    @EnvironmentObject var session: SessionStore
+    
     init() {
         UITabBar.appearance().barTintColor = .systemBackground
         UINavigationBar.appearance().barTintColor = .systemBackground
@@ -25,7 +28,7 @@ struct CustomTabView: View {
                 Spacer()
                     .fullScreenCover(isPresented: $shouldShowModel, content: {
                                         
-                    AddEventView(shouldShowModel: $shouldShowModel)
+                        AddEventView(user: self.session.session!, shouldShowModel: $shouldShowModel)
                 
                     })
                 
@@ -34,7 +37,7 @@ struct CustomTabView: View {
                     SocialEndView()
                 
                 case 1:
-                    AddEventView(shouldShowModel: $shouldShowModel)
+                    AddEventView(user: self.session.session!, shouldShowModel: $shouldShowModel)
                     
                 default:
                     ProfileView()

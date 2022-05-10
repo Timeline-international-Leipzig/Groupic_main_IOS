@@ -8,8 +8,11 @@
 import SwiftUI
 import Photos
 import RadioGroup
+import Firebase
 
 struct AddEventView: View {
+    @State var user: UserModel
+    
     @State private var imageData: Data = Data()
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var startDate = Date()
@@ -181,7 +184,10 @@ struct AddEventView: View {
             return
         }
         //firebase
-        PostService.uploadPost(caption: caption, startDate: startDate, endDate: endDate, index: selection, imageData: imageData, onSuccess: {
+        
+        Auth.auth().currentUser?.reload()
+        PostService.uploadPost(caption: caption, username: user.userName, startDate: startDate, endDate: endDate, index: selection, imageData: imageData, onSuccess: {
+            
             self.shouldShowModel.toggle()
         }) {
             (errorMessage) in

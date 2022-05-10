@@ -30,18 +30,18 @@ class FollowService: ObservableObject {
         }
     }
         
-    func manageFollow(userId: String, currentUserUid: String, followCheck: Bool, followingCount: @escaping (_
+    func manageFollow(userId: String, profileImageUrl: String, currentUserUid: String, followCheck: Bool, followingCount: @escaping (_
             followingCount: Int) -> Void, followersCount: @escaping (_
             followersCount: Int) -> Void) {
         
         if !followCheck {
-            follow(userId: userId, currentUserUid: currentUserUid, followingCount: followingCount, followersCount: followersCount)
+            follow(userId: userId, profileImageUrl: profileImageUrl, currentUserUid: currentUserUid, followingCount: followingCount, followersCount: followersCount)
         } else {
             unfollow(userId: userId, followingCount: followingCount, followersCount: followersCount)
         }
     }
         
-    func follow(userId: String, currentUserUid: String, followingCount: @escaping (_
+    func follow(userId: String, profileImageUrl: String, currentUserUid: String, followingCount: @escaping (_
             followingCount: Int) -> Void, followersCount: @escaping (_
             followersCount: Int) -> Void) {
         

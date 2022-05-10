@@ -25,8 +25,7 @@ struct UserProfileView: View {
                     }
                 
                 VStack {
-                    UserProfileHeader(user: user!)
-
+                    UserProfileHeader(user: user)
                     
                     UserMidTabBarView(user: user!)
                 }

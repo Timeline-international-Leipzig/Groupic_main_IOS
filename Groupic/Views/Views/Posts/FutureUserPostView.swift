@@ -10,22 +10,30 @@ import Firebase
 
 struct FutureUserPostView: View {
     @StateObject var profileService = ProfileService()
+    @EnvironmentObject var session: SessionStore
+    
+    @State var date = Date()
     
     var body: some View {
         ScrollView {
             VStack {
-                ForEach(self.profileService.posts, id: \.dateN) {
-                    (post) in
-                
-                   // FuturePostCardView(postModel: post)
-                    //PostCardView(postModel: post)
-                    //PostCardBottomView(postModel: post)
+                ForEach(profileService.postsUid, id: \.postId) {
+                    (postUid) in
+                    
+                    ForEach(self.profileService.posts, id: \.postId) {
+                        (post) in
+                        
+                        if (postUid.postId == post.postId) && post.startDate > date {
+                           PostCardView(postModel: post, userModel: self.session.session!)
+                        }
+                    }
                 }
             }
         }
         .navigationTitle("")
         .navigationBarHidden(true)
         .onAppear {
+            self.profileService.allPosts(userId: Auth.auth().currentUser!.uid)
             self.profileService.loadUserPosts(userId: Auth.auth().currentUser!.uid)
         }
     }

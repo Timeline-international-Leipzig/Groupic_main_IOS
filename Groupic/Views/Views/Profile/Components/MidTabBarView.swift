@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
+import Firebase
 
-struct MidTabBarView: View {
-    
+struct MidTabBarView: View {    
     @State var selectedIndex = 0
     let tabBarImageName = ["Highlights","Ereignisse","Anstehend","Kontakte"]
     

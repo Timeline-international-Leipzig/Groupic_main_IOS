@@ -7,11 +7,16 @@
 
 import Foundation
 import Firebase
+import Combine
 
-class ProfileService: ObservableObject {
+class ProfileService: ObservableObject {    
     @Published var posts: [PostModel] = []
+    @Published var postsUid: [PostUidModel] = []
     @Published var users: [UserModel] = []
+    @Published var usersUid: [UidUserModel] = []
     @Published var followUsers: [UidUserModel] = []
+    @Published var followPosts: [PostUidModel] = []
+    @Published var eventElements: [EventContentModel] = []
     @Published var following = 0
     @Published var follower = 0
     
@@ -19,7 +24,7 @@ class ProfileService: ObservableObject {
     
     static var follow = AuthService.storeRoot.collection("users")
     
-    static var followEvent = AuthService.storeRoot.collection("allPosts")
+    static var followEvent = AuthService.storeRoot.collection("events")
     
     static func followingCollection(userId: String) -> CollectionReference {
         return follow.document(userId).collection("following")
@@ -34,26 +39,39 @@ class ProfileService: ObservableObject {
     }
     
     static func followingEventId(postId: String) -> DocumentReference {
-        return follow.document(Auth.auth().currentUser!.uid).collection("followingEvents").document(postId)
+        return follow.document(Auth.auth().currentUser!.uid).collection("events").document(postId)
     }
     
     static func followersEventId(postId: String) -> DocumentReference {
-        return followEvent.document(postId).collection("followers").document(Auth.auth().currentUser!.uid)
+        return followEvent.document(postId).collection("participants").document(Auth.auth().currentUser!.uid)
     }
     
     static func followersId(userId: String) -> DocumentReference {
-        return follow.document(userId).collection("followers").document(Auth.auth().currentUser!.uid)
+        return follow.document(userId).collection("participants").document(Auth.auth().currentUser!.uid)
     }
     
     func loadUserPosts(userId: String) {
         PostService.loadUserPosts(userId: userId) {
             (posts) in
             
+            self.postsUid = posts
+        }
+    }
+    
+    func allPosts(userId: String) {
+        PostService.loadAllPosts() {
+            (posts) in
+            
             self.posts = posts
         }
-        
-        follows(userId: userId)
-        followsm(userId: userId)
+    }
+    
+    func loadAllEventElements(postId: String) {
+        PostService.loadAllEventElements(postId: postId) {
+            (elements) in
+            
+            self.eventElements = elements
+        }
     }
     
     func loadUser(userId: String) {
@@ -72,11 +90,11 @@ class ProfileService: ObservableObject {
         }
     }
     
-    func loadAllPost(userId: String) {
-        PostService.loadAllUser(userId: userId) {
+    func loadAllEventUsers(postId: String) {
+        PostService.loadAllEventUserUid(postId: postId) {
             (users) in
             
-            self.users = users
+            self.usersUid = users
         }
     }
     

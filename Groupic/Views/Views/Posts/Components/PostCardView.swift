@@ -10,15 +10,13 @@ import SDWebImageSwiftUI
 
 struct PostCardView: View {
     @State var postModel: PostModel
+    @State var userModel: UserModel
     @State var next = false
-    @State var date = Date()
     
        var body: some View {
-           if date > postModel.startDate {
-           
-           NavigationLink(destination: EventView(postModel: $postModel, next: $next), isActive: self.$next, label: {
-               EmptyView()
-           })
+            NavigationLink(destination: EventView(postModel: $postModel, userModel: $userModel, next: $next), isActive: self.$next, label: {
+                EmptyView()
+            })
            
            VStack {
                HStack {
@@ -108,9 +106,6 @@ struct PostCardView: View {
                    .padding(.horizontal)
                }
                .offset(y: -10)
-           }
-       }
-           else {
            }
     }
 }

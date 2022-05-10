@@ -12,12 +12,7 @@ import FirebaseFirestore
 class PostService {
     static var posts = AuthService.storeRoot.collection("users")
     static var users = AuthService.storeRoot.collection("users")
-    static var allPosts = AuthService.storeRoot.collection("allPosts")
-    static var timeline = AuthService.storeRoot.collection("timeline")
-    
-    static func postsCollection(userId: String) -> CollectionReference {
-        return users.document(userId).collection("posts")
-    }
+    static var allPosts = AuthService.storeRoot.collection("events")
     
     static func postUserId(userId: String) -> DocumentReference {
         return posts.document(userId)
@@ -35,28 +30,51 @@ class PostService {
         return allPosts.document(postId)
     }
     
-    static func timelineUserId(userId: String) -> DocumentReference {
-        return timeline.document(userId)
-    }
-    
-    static func uploadPost(caption: String, startDate: Date, endDate: Date, index: Int, imageData: Data, onSuccess: @escaping() -> Void, onError: @escaping(_
+    static func uploadPost(caption: String, username: String, startDate: Date, endDate: Date, index: Int, imageData: Data, onSuccess: @escaping() -> Void, onError: @escaping(_
         errorMessage: String) -> Void) {
         
         guard let userId = Auth.auth().currentUser?.uid else {
             return
         }
         
-        let postId = PostService.postUserId(userId: userId).collection("posts").document().documentID
+        let postId = PostService.postUserId(userId: userId).collection("events").document().documentID
         let storagePostRef = StorageService.storagePostId(postId: postId)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
     
-        StorageService.savePostPhoto(userId: userId, caption: caption, index: index, startDate: startDate, endDate: endDate, postId: postId, imageData: imageData, metadata: metadata, storagePostRef: storagePostRef, onSuccess: onSuccess, onError: onError)
+        StorageService.savePostPhoto(userId: userId, username: username, caption: caption, index: index, startDate: startDate, endDate: endDate, postId: postId, imageData: imageData, metadata: metadata, storagePostRef: storagePostRef, onSuccess: onSuccess, onError: onError)
+    }
+        
+    static func loadUserPosts(userId: String, onSuccess: @escaping(_
+      posts: [PostUidModel]) -> Void) {
+        PostService.postUserId(userId: userId).collection("events").getDocuments {
+            (snapShot, error) in
+            
+            guard let snap = snapShot else {
+                print("Error")
+                return
+            }
+            
+            var posts = [PostUidModel]()
+            
+            for doc in snap.documents {
+                let dict = doc.data()
+                guard let decoder = try? PostUidModel.init(fromDictionary: dict)
+                        
+                else {
+                    return
+                }
+                
+                posts.append(decoder)
+            }
+            
+            onSuccess(posts)
+        }
     }
     
-    static func loadUserPosts(userId: String, onSuccess: @escaping(_
+    static func loadAllPosts(onSuccess: @escaping(_
       posts: [PostModel]) -> Void) {
-        PostService.postUserId(userId: userId).collection("posts").order(by: "dateN", descending: true).getDocuments {
+        PostService.allPosts.order(by: "dateN", descending: true).getDocuments {
             (snapShot, error) in
             
             guard let snap = snapShot else {
@@ -69,6 +87,60 @@ class PostService {
             for doc in snap.documents {
                 let dict = doc.data()
                 guard let decoder = try? PostModel.init(fromDictionary: dict)
+                        
+                else {
+                    return
+                }
+                
+                posts.append(decoder)
+            }
+            
+            onSuccess(posts)
+        }
+    }
+    
+    static func loadAllEventElements(postId: String, onSuccess: @escaping(_
+      posts: [EventContentModel]) -> Void) {
+        PostService.allPosts.document(postId).collection("elements").order(by: "stamp", descending: true).getDocuments {
+            (snapShot, error) in
+            
+            guard let snap = snapShot else {
+                print("Error")
+                return
+            }
+            
+            var posts = [EventContentModel]()
+            
+            for doc in snap.documents {
+                let dict = doc.data()
+                guard let decoder = try? EventContentModel.init(fromDictionary: dict)
+                        
+                else {
+                    return
+                }
+                
+                posts.append(decoder)
+            }
+            
+            onSuccess(posts)
+        }
+    }
+    
+    static func loadPictureEventElements(postId: String, onSuccess: @escaping(_
+      posts: [EventContentModel]) -> Void) {
+        PostService.allPosts.document(postId).collection("elements").order(by: "stamp", descending: true).getDocuments {
+            (snapShot, error) in
+            
+            guard let snap = snapShot else {
+                print("Error")
+                return
+            }
+            
+            var posts = [EventContentModel]()
+            
+            for doc in snap.documents {
+                let dict = doc.data()
+                guard let decoder = try? EventContentModel.init(fromDictionary: dict)
                         
                 else {
                     return
@@ -135,9 +207,9 @@ class PostService {
         }
     }
     
-    static func loadEventPosts(postId: String, onSuccess: @escaping(_
-      posts: [EventPostModel]) -> Void) {
-        PostService.postEventId(postId: postId).collection("posts").order(by: "dateN", descending: true).getDocuments {
+    static func loadAllEventUserUid(postId: String, onSuccess: @escaping(_
+      users: [UidUserModel]) -> Void) {
+        PostService.allPosts.document(postId).collection("participants").getDocuments {
             (snapShot, error) in
             
             guard let snap = snapShot else {
@@ -145,33 +217,27 @@ class PostService {
                 return
             }
             
-            var posts = [EventPostModel]()
+            var users = [UidUserModel]()
             
             for doc in snap.documents {
                 let dict = doc.data()
-                guard let decoder = try? EventPostModel.init(fromDictionary: dict)
+                guard let decoder = try? UidUserModel.init(fromDictionary: dict)
                         
                 else {
                     return
                 }
                 
-                posts.append(decoder)
+                users.append(decoder)
             }
             
-            onSuccess(posts)
+            onSuccess(users)
         }
     }
     
     static func highlightPost(userId: String, postId: String, highlight: Bool, onSuccess: @escaping() -> Void) {
         let firestorePostId = PostService.getPostId(postId: postId)
-        let j = PostService.postsCollection(userId: userId)
-        let path = j.document(postId)
         
         firestorePostId.updateData([
-            "highlighted": highlight,
-        ])
-        
-        path.updateData([
             "highlighted": highlight,
         ])
     }

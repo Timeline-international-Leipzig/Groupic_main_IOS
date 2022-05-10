@@ -11,9 +11,10 @@ import SDWebImageSwiftUI
 
 struct ContactsView: View {
     @StateObject var profileService = ProfileService()
+    @EnvironmentObject var session: SessionStore
     
+    @State var userSelected: UserModel?
     @State var users: [UserModel] = []
-    @State var currentUser: UserModel?
     
     @State var next = false
     
@@ -28,7 +29,7 @@ struct ContactsView: View {
                         
                         if user.uid == users.uid {
                             Button(action: {
-                                self.currentUser = user
+                                self.userSelected = user
                                 
                                 next.toggle()
                             }, label: {
@@ -58,7 +59,7 @@ struct ContactsView: View {
                 }
                 }
                 
-                NavigationLink(destination: UserProfileView(user: $currentUser, next: $next), isActive: self.$next, label: {
+                NavigationLink(destination: UserProfileView(user: $userSelected, next: $next), isActive: self.$next, label: {
                     EmptyView()
                 })
             }

@@ -15,7 +15,7 @@ struct SocialPostCardView: View {
     @State var date = Date()
     
        var body: some View {
-           NavigationLink(destination: EventView(postModel: $postModel, next: $next), isActive: self.$next, label: {
+           NavigationLink(destination: EventView(postModel: $postModel, userModel: $user, next: $next), isActive: self.$next, label: {
                EmptyView()
            })
            

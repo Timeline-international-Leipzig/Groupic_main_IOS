@@ -305,7 +305,6 @@ struct ProfileSettingsView: View {
                 .cancel()
             ])
         }
-        
         .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
             ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)
         }

@@ -9,8 +9,6 @@ import Foundation
 import Firebase
 
 class EventService: ObservableObject {
-    @Published var posts: [EventPostModel] = []
-    
     @Published var following = 0
     @Published var follower = 0
     
@@ -48,18 +46,7 @@ class EventService: ObservableObject {
             }
         }
     }
-    
-    /// Load the posts of the event
-    func loadEventPosts(postId: String) {
-        PostService.loadEventPosts(postId: postId) {
-            (posts) in
-            
-            self.posts = posts
-        }
-        
-        follows(postId: postId)
-        followsm(postId: postId)
-    }
+
     
     /// Count of following
     func follows(postId: String) {
