@@ -101,7 +101,7 @@ class PostService {
     
     static func loadAllEventElements(postId: String, onSuccess: @escaping(_
       posts: [EventContentModel]) -> Void) {
-        PostService.allPosts.document(postId).collection("elements").order(by: "stamp", descending: true).getDocuments {
+        PostService.allPosts.document(postId).collection("elements").order(by: "stamp").getDocuments {
             (snapShot, error) in
             
             guard let snap = snapShot else {

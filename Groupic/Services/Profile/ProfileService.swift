@@ -16,7 +16,10 @@ class ProfileService: ObservableObject {
     @Published var usersUid: [UidUserModel] = []
     @Published var followUsers: [UidUserModel] = []
     @Published var followPosts: [PostUidModel] = []
+    
     @Published var eventElements: [EventContentModel] = []
+    @Published var compositionElements: [[EventContentModel]] = []
+    
     @Published var following = 0
     @Published var follower = 0
     
@@ -71,6 +74,31 @@ class ProfileService: ObservableObject {
             (elements) in
             
             self.eventElements = elements
+            
+            self.loadCompositionElements(postId: postId)
+        }
+    }
+    
+    func loadCompositionElements(postId: String) {
+        var currentEventElements: [EventContentModel] = []
+        
+        eventElements.forEach { (card) in
+            currentEventElements.append(card)
+            
+            if card.type == "IMAGE" && currentEventElements.count == 3  {
+                self.compositionElements.append(currentEventElements)
+                currentEventElements.removeAll()
+            }
+            
+            if  card.id == eventElements.last!.id && currentEventElements.count != 3 {
+                self.compositionElements.append(currentEventElements)
+                currentEventElements.removeAll()
+            }
+            
+            if card.type == "TEXT" {
+                self.compositionElements.append(currentEventElements)
+                currentEventElements.removeAll()
+            }
         }
     }
     

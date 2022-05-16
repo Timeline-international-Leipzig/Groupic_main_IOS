@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct EventContentModel: Encodable, Decodable {
+struct EventContentModel: Encodable, Decodable, Hashable {
     var id: String
     var stamp = Date()
     var text: String
