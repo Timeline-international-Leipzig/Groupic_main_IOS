@@ -329,7 +329,7 @@ static func editProfileTextUsername(userId: String, username: String, onSuccess:
     }
     
     /// Event-Functions
-    static func saveEventPhoto(userId: String, username: String, stamp: Date, postId: String, eventId: String, imageData: Data, metadata: StorageMetadata, storagePostRef: StorageReference, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+    static func saveEventPhoto(userId: String, username: String, userPicture: String, stamp: Date, postId: String, eventId: String, imageData: Data, metadata: StorageMetadata, storagePostRef: StorageReference, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         
         storagePostRef.putData(imageData, metadata: metadata) {
             (StorageMetadata, error) in
@@ -363,10 +363,10 @@ static func editProfileTextUsername(userId: String, username: String, onSuccess:
         }
     }
     
-    static func saveEventQuote(userId: String, text: String, username: String, stamp: Date, postId: String, eventId: String, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+    static func saveEventQuote(userId: String, text: String, username: String, userPicture: String, stamp: Date, postId: String, eventId: String, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         
                     let firestorePostRef =  PostService.allPosts.document(postId).collection("elements").document(eventId)
-                    let post = EventContentModel.init(id: eventId, stamp: stamp, text: text, type: "TEXT", uriOrUid: "", userUid: userId)
+        let post = EventContentModel.init(id: eventId, stamp: stamp, text: text, type: "TEXT", uriOrUid: "", userUid: userId)
                     
                     guard let dict = try? post.asDictionary() else {
                         return

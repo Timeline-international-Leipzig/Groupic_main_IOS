@@ -18,12 +18,22 @@ struct EventContentView: View {
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-
+            ForEach(self.profileService.usersUid, id: \.uid) {
+                (userUid) in
+                
+                ForEach(profileService.users, id: \.uid) {
+                    (user) in
+                    
+                    if user.uid == userUid.uid {
+            
             ForEach(profileService.compositionElements, id: \.self) {
                     elements in
-                    
-                        LayoutImages(eventElements: elements).rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+                
+                    LayoutImages(eventElements: elements, user: user).rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
+            }
+            }
                 }
+            }
         }
         .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
         .padding(.top)
@@ -32,6 +42,8 @@ struct EventContentView: View {
         .onAppear {
             self.profileService.loadAllEventElements(postId: postModel.postId)
             self.profileService.loadCompositionElements(postId: postModel.postId)
+            self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
+            self.profileService.loadAllEventUsers(postId: postModel.postId)
             }
         }
     }

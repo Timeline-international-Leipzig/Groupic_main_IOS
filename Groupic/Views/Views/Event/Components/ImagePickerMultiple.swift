@@ -63,7 +63,7 @@ struct ImagePickerMultiple: UIViewControllerRepresentable {
                                         
                                         // You NEED to make sure you somehow change the name of each picture that you upload which is why I am using the variable "count".
                                         // If you do not change the filename for each picture you upload, it will try to upload the file to the same file and it will give you an error.
-                    StorageService.saveEventPhoto(userId: parent.userModel.uid, username: parent.userModel.userName, stamp: parent.date, postId: parent.postModel.postId, eventId: eventId, imageData: imageData!, metadata: metadata, storagePostRef: storagePostRef, onSuccess: {}, onError: {errorMessage in })
+                    StorageService.saveEventPhoto(userId: parent.userModel.uid, username: parent.userModel.userName, userPicture: parent.userModel.profileImageUrl, stamp: parent.date, postId: parent.postModel.postId, eventId: eventId, imageData: imageData!, metadata: metadata, storagePostRef: storagePostRef, onSuccess: {}, onError: {errorMessage in })
                                         
                     print("Uploaded to firebase")
                     } else {
