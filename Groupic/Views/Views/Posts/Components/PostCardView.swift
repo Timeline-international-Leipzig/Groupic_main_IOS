@@ -25,16 +25,16 @@ struct PostCardView: View {
                            //Kreis
                            VStack {
                                Image(systemName: "circle")
-                                   .foregroundColor(.gray)
+                                   .foregroundColor(.white)
                                    .font(.system(size: 10))
                                
-                               Color.gray.frame(width: CGFloat(2) / UIScreen.main.scale)
+                               Color.white.frame(width: CGFloat(2) / UIScreen.main.scale)
                            }
                            
                            Text((Date(timeIntervalSince1970: postModel.dateN))
                                    .timeAgo())
                                .font(.subheadline)
-                               .foregroundColor(.gray)
+                               .foregroundColor(.white)
                                .frame(alignment: .topLeading)
                                .offset(y: -5)
                        }
@@ -46,7 +46,7 @@ struct PostCardView: View {
                    
                    Spacer()
                    
-                   HighlightButton(post: postModel, highlightCheck: $postModel.highlighted)
+                   HighlightButton(post: postModel, highlightCheck: $postModel.highlighted).padding(.trailing, 10)
                }
               
                VStack {
@@ -64,7 +64,7 @@ struct PostCardView: View {
                    )
                    
                    HStack {
-                       Color.gray.frame(width:CGFloat(2) / UIScreen.main.scale)
+                       Color.white.frame(width:CGFloat(2) / UIScreen.main.scale)
                            .offset(y: -8)
                        
                        
@@ -74,20 +74,20 @@ struct PostCardView: View {
                                
                                Text(postModel.startDate, style: .date)
                                    .font(.subheadline)
-                                   .foregroundColor(.gray)
+                                   .foregroundColor(.white)
                                    .frame(alignment: .topLeading)
                                    .offset(y: -10)  
                                
                                Text(" - ")
                                    .font(.subheadline)
-                                   .foregroundColor(.gray)
+                                   .foregroundColor(.white)
                                    .frame(alignment: .topLeading)
                                    .offset(y: -10)
 
                                
                                Text(postModel.endDate, style: .date)
                                    .font(.subheadline)
-                                   .foregroundColor(.gray)
+                                   .foregroundColor(.white)
                                    .frame(alignment: .topLeading)
                                    .offset(y: -10)
                            }
@@ -98,6 +98,7 @@ struct PostCardView: View {
                            Text(postModel.caption)
                                .font(.title3)
                                .frame(width: 320, height: 40, alignment: .topLeading)
+                               .foregroundColor(.white)
                            
                            Spacer()
                            }

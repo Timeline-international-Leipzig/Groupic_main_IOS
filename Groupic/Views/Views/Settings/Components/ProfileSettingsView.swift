@@ -96,7 +96,7 @@ struct ProfileSettingsView: View {
                     }.background(Color(.black))
                         .mask(
                             LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
-                        )
+                        ).colorInvert()
                 }
                 
                 Spacer()
@@ -106,7 +106,7 @@ struct ProfileSettingsView: View {
                 }.background(Color(.black))
                     .mask(
                         LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
-                    )
+                    ).colorInvert()
             }.zIndex(1)
             
             ScrollView {
@@ -357,6 +357,8 @@ struct ProfileSettingsView: View {
                 }
             }
         }
+        .background(Color("background"))
+        .ignoresSafeArea()
         .navigationBarTitle("")
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)

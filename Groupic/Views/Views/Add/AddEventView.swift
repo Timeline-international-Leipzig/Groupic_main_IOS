@@ -49,7 +49,7 @@ struct AddEventView: View {
                     
                     TextField("", text: $caption)
                         .placeholder(when: caption.isEmpty) {
-                                Text("Titel").foregroundColor(.white)}
+                                Text("Titel").foregroundColor(.gray)}
                         .padding(.all, 5)
                         .multilineTextAlignment(.center)
                         .font(Font.system(size: 40, weight: .bold, design: .default))
@@ -66,7 +66,6 @@ struct AddEventView: View {
                                 .font(.system(size: 20))
                             
                             DatePicker("Startdatum", selection: $startDate, displayedComponents: .date)
-                                .colorInvert()
                                 .colorMultiply(Color.white)
                             
                         }.padding(.horizontal, 20)
@@ -77,7 +76,6 @@ struct AddEventView: View {
                                 .font(.system(size: 20))
                             
                             DatePicker("Enddatum", selection: $endDate, displayedComponents: .date)
-                                .colorInvert()
                                 .colorMultiply(Color.white)
                             
                         }.padding(.horizontal, 20)
@@ -118,15 +116,18 @@ struct AddEventView: View {
                         Text("Wer darf das Ereignis anschauen?")
                             .font(.system(size: 20, weight: .bold))
                             .foregroundColor(Color(.white))
-                        
-                        Divider()
+
+                            Rectangle()
+                                .frame(height: 1)
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 20)
+
                         
                         VStack(alignment: .leading) {
                         RadioGroupPicker(
                             selectedIndex: $selection,
                             titles: ["Jeder", "Teilnehmer", "Teilnehmer und deren Kontakte"])
                                 .spacing(20)
-                                .colorInvert()
                                 .colorMultiply(Color.white)
                             
                         }
@@ -162,7 +163,7 @@ struct AddEventView: View {
                         .padding(.horizontal, 40)
                     }
                     .padding(.top, 50)
-                    .padding(.bottom, 60)
+                    .padding(.bottom, 200)
                 }
                 
                 if self.alert {

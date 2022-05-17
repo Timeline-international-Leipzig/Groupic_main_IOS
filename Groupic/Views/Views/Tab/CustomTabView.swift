@@ -92,7 +92,7 @@ struct CustomTabView: View {
                 }.background(Color(.black))
                 .mask(
                         LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
-                    )
+                    ).colorInvert()
             }
             }
         }.ignoresSafeArea()

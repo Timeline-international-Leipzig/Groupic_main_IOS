@@ -53,8 +53,14 @@ struct FollowEventButton: View {
             self.follow()
         }, label: {
             Text((self.followEventState(postId: post.postId)) ? "Verlassen": "Beitreten")
-                .background(Color.gray)
-                .foregroundColor(.black)
+                .font(.system(size: 12, weight: .bold))
+                .foregroundColor(Color(.white))
+                .font(.headline)
+                .padding(5)
+                .background(
+                    Color(.gray)
+                        .cornerRadius(5)
+                )
         })
     }
 }
