@@ -12,7 +12,7 @@ struct ChangeEventModeView: View {
     
     @Binding var back: Bool
     
-    @State var error = "Aktueller Mode [Wer kann das Ereignis sehen]"
+    @State var error = "Wer kann das Ereignis sehen?"
     @State var mode = ""
     
     @State var visible = false
@@ -29,9 +29,8 @@ struct ChangeEventModeView: View {
                 
                 VStack {
                     Text(self.error)
-                        .foregroundColor(Color.black)
-                        .padding(.top)
-                        .padding(.horizontal, 25)
+                        .foregroundColor(Color.white)
+                        .padding(.vertical)
                         .frame(alignment: .center)
                     
                     Menu {
@@ -40,42 +39,49 @@ struct ChangeEventModeView: View {
                             self.mode = "Alle"
                         } label: {
                             Text("Alle")
+                                .foregroundColor(Color(.white))
+                                .font(.system(size: 20, weight: .bold))
                         }
                         Button {
                             //StorageService.editPostMode(userId: userModel.uid, postId: postModel.postId, index: 1, onSuccess: {})
                             self.mode = "Teilnehmer"
                         } label: {
                             Text("Teilnehmer")
+                                .foregroundColor(Color(.white))
+                                .font(.system(size: 20, weight: .bold))
                         }
                         Button {
                             //StorageService.editPostMode(userId: userModel.uid, postId: postModel.postId, index: 2, onSuccess: {})
                             self.mode = "Teilnehmer und Kontakte"
                         } label: {
                             Text("Teilnehmer und Kontakte")
+                                .foregroundColor(Color(.white))
+                                .font(.system(size: 20, weight: .bold))
                         }
                     } label: {
                         if mode != "" {
                             Text(mode)
-                                .foregroundColor(Color("AccentColor"))
-                                .font(.system(size: 20))
+                                .foregroundColor(Color(.white))
+                                .font(.system(size: 20, weight: .bold))
+                                
                         }
                         else {
                             if postModel.index == 0 {
                             Text("Alle")
-                                .foregroundColor(Color("AccentColor"))
-                                .font(.system(size: 20))
+                                .foregroundColor(Color(.white))
+                                .font(.system(size: 20, weight: .bold))
                             }
                             
                             if postModel.index == 1 {
                             Text("Teilnehmer")
-                                .foregroundColor(Color("AccentColor"))
-                                .font(.system(size: 20))
+                                .foregroundColor(Color(.white))
+                                .font(.system(size: 20, weight: .bold))
                             }
                             
                             if postModel.index == 2 {
                             Text("Teilnehmer und Kontakte")
-                                .foregroundColor(Color("AccentColor"))
-                                .font(.system(size: 20))
+                                .foregroundColor(Color(.white))
+                                .font(.system(size: 20, weight: .bold))
                         }
                         }
                     }
@@ -118,7 +124,7 @@ struct ChangeEventModeView: View {
                 }
                 .padding(.all, 25)
                 .frame(width: UIScreen.main.bounds.width - 90)
-                .background(Color.white.opacity(0.85))
+                .background(Color.black.opacity(0.85))
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                 .frame(height: UIScreen.main.bounds.height - 50)
                 

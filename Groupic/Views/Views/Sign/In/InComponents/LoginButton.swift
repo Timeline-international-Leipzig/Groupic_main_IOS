@@ -62,9 +62,9 @@ struct LoginButton: View {
                 .padding(.bottom, 25)
                 .padding(.horizontal, 10)
                 
-                HStack {
+                VStack {
                     Text("kein account vorhanden?")
-                        .fontWeight(.bold)
+                        .fontWeight(.semibold)
                         .foregroundColor(.white)
                     
                     Button(action: {

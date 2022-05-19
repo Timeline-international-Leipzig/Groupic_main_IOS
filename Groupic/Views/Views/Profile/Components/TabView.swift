@@ -25,26 +25,33 @@ struct TabView: View {
         })
         
         ZStack {
-            HStack(spacing: 15) {
-                Spacer()
-                
-                Text(user!.name)
-                    .font(.title3)
-                    .foregroundColor(.white)
-                    .frame(alignment: .center)
-                
-                Spacer()
-            }
-            .padding()
-            .background(Color("AccentColor"))
             
-            HStack() {
-                Spacer()
+            VStack {
                 
-                Button(action: {
-                    self.next.toggle()
-                }, label: {
-                    Image(systemName: "line.horizontal.3")
+                HStack {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }.background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                    ).colorInvert()
+                
+                Spacer()
+            }.zIndex(1)
+            
+            VStack {
+                HStack(spacing: 15) {
+                    Spacer()
+                    
+                    Button(action: {},
+                           label: {
+                        Image(systemName: "envelope.fill")
+                            .foregroundColor(.white)
+                            .font(.system(size: 20))
+                        
+                    }).padding(.horizontal, 20)
+                    
+                    Text(user!.name)
+                        .font(.title3)
                         .foregroundColor(.white)
                 })
             }

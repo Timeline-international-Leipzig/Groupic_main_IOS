@@ -27,7 +27,7 @@ struct PostCardTest: View {
                     Text((Date(timeIntervalSince1970: postModel.dateN))
                             .timeAgo())
                         .font(.subheadline)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.white)
                 }
                 .padding(.leading, 10)
             }

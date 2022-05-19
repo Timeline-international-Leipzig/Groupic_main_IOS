@@ -45,7 +45,7 @@ struct DropDownMenu: View {
             
         } label: {
             Image(systemName: "line.horizontal.3")
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .font(.system(size: 20))
         }
     }

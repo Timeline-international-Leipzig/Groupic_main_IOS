@@ -68,7 +68,7 @@ struct RegisterButtonNoPictures: View {
             .padding(.bottom, 25)
             .padding(.horizontal, 10)
         
-            HStack {
+            VStack {
                 Text("account schon vorhanden?")
                     .fontWeight(.bold)
                     .foregroundColor(.white)

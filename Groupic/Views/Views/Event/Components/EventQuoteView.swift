@@ -34,7 +34,7 @@ struct EventQuoteView: View {
                 
                 VStack {
                     Text(self.error)
-                        .foregroundColor(self.color)
+                        .foregroundColor(.white)
                         .padding(.top)
                         .padding(.horizontal, 25)
                     
@@ -66,7 +66,7 @@ struct EventQuoteView: View {
                 }
                 .padding(.all, 25)
                 .frame(width: UIScreen.main.bounds.width - 90)
-                .background(Color.white.opacity(0.85))
+                .background(Color.black.opacity(0.85))
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                 .frame(height: UIScreen.main.bounds.height - 50)
                 

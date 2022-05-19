@@ -60,56 +60,103 @@ struct ProfileSettingsView: View {
     }
     
     var body: some View {
+        
         ZStack {
-            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
             
-            VStack(alignment: .center, spacing: 0) {
+            VStack {
                 
-                ProfileSettingsViewProfileHeader(profileImage: $profileImage, backProfileImage: $backProfileImage, user: self.session.session!)
+                ZStack {
+                    
+                    HStack {
+                        
+                        Button(action: {
+                            self.back.toggle()
+                        },
+                               label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.white)
+                                .font(.system(size: 20))
+                        })
+                        .padding(.leading, 10)
+                        .padding(.top, 10)
+                        
+                        Spacer()
+                        
+                    }.zIndex(1)
+                    
+                    Text("Profil bearbeiten")
+                        .padding(.top, 10)
+                        .font(.system(size: 26, weight: .bold))
+                        .foregroundColor(.white)
+                        .hCenter()
+                        .zIndex(1)
+                    
+                    HStack {
+                        Rectangle().frame(width: getRectView().width, height: 100)
+                    }.background(Color(.black))
+                        .mask(
+                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                        ).colorInvert()
+                }
+                
+                Spacer()
                 
                 HStack {
-                    VStack(spacing: 10) {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }.background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                    ).colorInvert()
+            }.zIndex(1)
+            
+            ScrollView {
+                
+                VStack(alignment: .center) {
+                    
+                    ProfileSettingsViewProfileHeader(profileImage: $profileImage, backProfileImage: $backProfileImage, user: self.session.session!)
+                    
+                    VStack(spacing: 15) {
+                        
                         Button(action: {
                             self.showingActionsSheet.toggle()
                         },
-                            label: {
+                               label: {
                             Text("Profilbild ändern")
-                                .foregroundColor(Color("AccentColor"))
+                                .font(.system(size: 20, weight: .medium))
+                                .foregroundColor(Color("lightBlue"))
                         })
-                        .cornerRadius(20)
-                        .padding(.horizontal)
                         
                         Button(action: {
                             self.showingImagePickerBackProfile.toggle()
                         },
-                            label: {
-                                Text("Titelbild ändern")
-                                .foregroundColor(Color("AccentColor"))
+                               label: {
+                            Text("Hintergrundbild ändern")
+                                .font(.system(size: 20, weight: .medium))
+                                .foregroundColor(Color("lightBlue"))
                         })
-                        .cornerRadius(20)
-                        .padding(.horizontal)
-                    }
-                }
-                .padding(40)
-                
-                HStack {
-                    VStack (alignment: .leading, spacing: 10) {
                         
-                        HStack(spacing: 20) {
-                            Text("Benutzername:")
-    
+                        
+                        VStack(spacing: -15) {
+                            Text("Benutzernamen ändern")
+                                .font(.system(size: 20, weight: .medium))
+                                .foregroundColor(.white)
+                            
                             ProfilesettingsTextEditField(selectedIndex: 2, header: "", image: "", textField: "username", value: $username, change: $changeTextUsername)
                         }
                         
-                        HStack(spacing: 83) {
-                            Text("Name:")
+                        VStack(spacing: -15) {
+                            Text("vollständigen Namen ändern")
+                                .font(.system(size: 20, weight: .medium))
+                                .foregroundColor(.white)
                             
                             ProfilesettingsTextEditField(selectedIndex: 1, header: "", image: "", textField: "name", value: $name, change: $changeTextName)
                         }
                         
-                        HStack(spacing: 80) {
-                            Text("E-Mail:")
-
+                        VStack(spacing: -15) {
+                            Text("E-Mail ändern")
+                                .font(.system(size: 20, weight: .medium))
+                                .foregroundColor(.white)
+                            
                             ProfilesettingsTextEditField(selectedIndex: 0, header: "", image: "", textField: "email", value: $email, change: $changeTextEmail)
                         }
                         
@@ -118,174 +165,200 @@ struct ProfileSettingsView: View {
                                 self.alertPasswordReauthentication.toggle()
                             }, label: {
                                 Text("Ändere dein Passwort")
-                                    .background(Color.gray)
-                                    .foregroundColor(.black)
+                                    .font(.system(size: 20, weight: .medium))
+                                    .foregroundColor(Color("lightBlue"))
                             })
-                            .padding()
-                            
-                            Spacer()
                         }
-                        .padding()
-                       
                         
                         if Auth.auth().currentUser?.isEmailVerified == false {
-                        HStack {
-                            Button(action: {
-                                Auth.auth().currentUser?.sendEmailVerification { error in
-                                    self.error = "Es ist ein Fehler aufgetreten"
-                                    self.alert.toggle()
-                                }
-                            }, label: {
-                                Text("Bestätige deine E-Mail")
-                                    .background(Color.gray)
-                                    .foregroundColor(.black)
-                            })
-                            .padding()
-                            
-                            Spacer()
-                        }
-                        .padding()
-                        }
-                    }
-                    .padding()
-                }
-                
-                Spacer()
-                
-                if changeProfileImage == true || changeBackProfileImage == true || changeTextName == true || changeTextEmail == true ||
-                    changeTextUsername == true {
-                    
-                    Button(action: {
-                        if changeBackProfileImage == true {
-                            self.editBackImage()
-                            
-                            if alert == false {
-                                self.error = "Dein Profile wurde bearbeitet"
-                                self.alert = true
-                            }
-                        }
-                        
-                        if changeProfileImage == true {
-                            self.editProfileImage()
-                            
-                            if alert == false {
-                                self.error = "Dein Profile wurde bearbeitet"
-                                self.alert = true
-                            }
-                        }
-                        
-                        if changeTextEmail == true {
-                            if isValidEmail(email) == false {
-                                self.error = "Keine valide E-Mail-Form"
-                              
-                                if alert == false {
-                                self.alert = true
-                                }
-                            }
-                            else {
-                                checkIfEmailOfAccountExists { result in
-                                    if (result == true) {
-                                        self.error = "Diese E-Mail existiert bereits! \n Wähle bitte eine neue E-Mail"
-                                        if alert == false {
-                                        self.alert = true
-                                        }
+                            HStack {
+                                Button(action: {
+                                    Auth.auth().currentUser?.sendEmailVerification { error in
+                                        self.error = "Es ist ein Fehler aufgetreten"
+                                        self.alert.toggle()
                                     }
-                                    
-                                    else {
-                                        if let error = errorCheck() {
-                                            self.error = error
-                                            if alert == false {
-                                            self.alert = true
-                                            }
-
-                                        }
-                                        else {
-                                            self.alertEmailReauthentication.toggle()
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        
-                        
-                        if changeTextUsername == true {
-                            checkIfUsernameOfAccountExists { result in
-                                if (result == true) {
-                                    self.error = "Diese Nutzername existiert bereits! \n Wähle bitte eine neue Nutzernamen"
-                                    if alert == false {
-                                    self.alert.toggle()
-                                    }
-                                }
+                                }, label: {
+                                    Text("Bestätige deine E-Mail")
+                                        .background(Color.gray)
+                                        .foregroundColor(.black)
+                                })
+                                .padding()
                                 
-                                else {
-                                    self.editUsername()
+                                Spacer()
+                            }
+                            .padding()
+                        }
+                    }.padding(.top, 200)
+                        .sheet(isPresented: $showingImagePickerBackProfile, onDismiss: loadBackProfileImage) {
+                            backImagePicker(pickedImage: self.$pickedBackImage, showImagePicker: self.$showingImagePickerBackProfile, imageData: self.$backImageData)
+                        }
+                        .actionSheet(isPresented: $showingActionsBackSheet) {
+                            ActionSheet(title: Text(""), buttons: [
+                                .default(Text("Wähle ein Bild")){
+                                    self.sourceType = .photoLibrary
+                                    self.showingImagePickerBackProfile = true
+                                },
+                                .default(Text("Mach ein Bild")){
+                                    self.sourceType = .camera
+                                    self.showingImagePickerBackProfile = true
+                                },
+                                .cancel()
+                            ])
+                        }
+                        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+                            ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)
+                        }
+                        .actionSheet(isPresented: $showingActionsSheet) {
+                            ActionSheet(title: Text(""), buttons: [
+                                .default(Text("Wähle ein Bild")){
+                                    self.sourceType = .photoLibrary
+                                    self.showingImagePicker = true
+                                },
+                                .default(Text("Mach ein Bild")){
+                                    self.sourceType = .camera
+                                    self.showingImagePicker = true
+                                },
+                                .cancel()
+                            ])
+                        }
+                    
+                    VStack {
+                        
+                        if changeProfileImage == true || changeBackProfileImage == true || changeTextName == true || changeTextEmail == true ||
+                            changeTextUsername == true {
+                            
+                            Button(action: {
+                                if changeBackProfileImage == true {
+                                    self.editBackImage()
                                     
                                     if alert == false {
                                         self.error = "Dein Profile wurde bearbeitet"
-                                    self.alert = true
+                                        self.alert = true
                                     }
                                 }
-                            }
+                                
+                                if changeProfileImage == true {
+                                    self.editProfileImage()
+                                    
+                                    if alert == false {
+                                        self.error = "Dein Profile wurde bearbeitet"
+                                        self.alert = true
+                                    }
+                                }
+                                
+                                if changeTextEmail == true {
+                                    if isValidEmail(email) == false {
+                                        self.error = "Keine valide E-Mail-Form"
+                                        
+                                        if alert == false {
+                                            self.alert = true
+                                        }
+                                    }
+                                    else {
+                                        checkIfEmailOfAccountExists { result in
+                                            if (result == true) {
+                                                self.error = "Diese E-Mail existiert bereits! \n Wähle bitte eine neue E-Mail"
+                                                if alert == false {
+                                                    self.alert = true
+                                                }
+                                            }
+                                            
+                                            else {
+                                                if let error = errorCheck() {
+                                                    self.error = error
+                                                    if alert == false {
+                                                        self.alert = true
+                                                    }
+                                                    
+                                                }
+                                                else {
+                                                    self.alertEmailReauthentication.toggle()
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                
+                                
+                                if changeTextUsername == true {
+                                    checkIfUsernameOfAccountExists { result in
+                                        if (result == true) {
+                                            self.error = "Diese Nutzername existiert bereits! \n Wähle bitte eine neue Nutzernamen"
+                                            if alert == false {
+                                                self.alert.toggle()
+                                            }
+                                        }
+                                        
+                                        else {
+                                            self.editUsername()
+                                            
+                                            if alert == false {
+                                                self.error = "Dein Profile wurde bearbeitet"
+                                                self.alert = true
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                if changeTextName == true {
+                                    self.editName()
+                                    
+                                    if alert == false {
+                                        self.error = "Dein Profile wurde bearbeitet"
+                                        self.alert = true
+                                    }
+                                }
+                                
+                                Auth.auth().currentUser?.reload()
+                                
+                            }, label: {
+                                Text("Bearbeiten")
+                                    .foregroundColor(.white)
+                                    .padding(.vertical)
+                                    .frame(width: UIScreen.main.bounds.width - 50)
+                            })
+                            .background(
+                                Color("AccentColor"))
+                            .cornerRadius(10)
+                            .padding(.bottom, 25)
+                            .padding(.horizontal, 10)
                         }
-                        
-                        if changeTextName == true {
-                            self.editName()
-                            
-                            if alert == false {
-                                self.error = "Dein Profile wurde bearbeitet"
-                                self.alert = true
-                            }
+                        else {
+                            Button(action: {
+                            }, label: {
+                                Text("Bearbeiten")
+                                    .foregroundColor(.white)
+                                    .padding(.vertical)
+                                    .frame(width: UIScreen.main.bounds.width - 50)
+                            })
+                            .disabled(true)
+                            .background(Color.gray)
+                            .cornerRadius(10)
+                            .padding(.bottom, 25)
+                            .padding(.horizontal, 10)
                         }
+                    }.padding(.vertical, 30)
                         
-                        Auth.auth().currentUser?.reload()
-                        
-                    }, label: {
-                        Text("Bearbeiten")
-                            .foregroundColor(.white)
-                            .padding(.vertical)
-                            .frame(width: UIScreen.main.bounds.width - 50)
-                    })
-                    .background(
-                        Color("AccentColor"))
-                    .cornerRadius(10)
-                    .padding(.bottom, 25)
-                    .padding(.horizontal, 10)
+
+                    //ProfileSettingsViewTabView(back: $back)
+                    
+                    if self.alert {
+                        ErrorView(alert: self.$alert, error: self.$error)
+                    }
+                    
+                    if self.alertEmailReauthentication {
+                        ReautheticationView(back: self.$alertEmailReauthentication, email: self.$email)
+                    }
+                    
+                    if self.alertPasswordReauthentication {
+                        ReautheticationPasswordView(back: self.$alertPasswordReauthentication)
+                    }
                 }
-                else {
-                    Button(action: {
-                    }, label: {
-                        Text("Bearbeiten")
-                            .foregroundColor(.white)
-                            .padding(.vertical)
-                            .frame(width: UIScreen.main.bounds.width - 50)
-                    })
-                    .disabled(true)
-                    .background(Color.gray)
-                    .cornerRadius(10)
-                    .padding(.bottom, 25)
-                    .padding(.horizontal, 10)
-                }
-            }
-            .background(Color.white)
-            
-            VStack {
-                ProfileSettingsViewTabView(back: $back)
-            
-                Spacer()
-            }
-            
-            if self.alert {
-                ErrorView(alert: self.$alert, error: self.$error)
-            }
-            
-            if self.alertEmailReauthentication {
-                ReautheticationView(back: self.$alertEmailReauthentication, email: self.$email)
-            }
-            
-            if self.alertPasswordReauthentication {
-                ReautheticationPasswordView(back: self.$alertPasswordReauthentication)
             }
         }
+        .background(Color("background"))
+        .ignoresSafeArea()
         .navigationBarTitle("")
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
@@ -366,21 +439,21 @@ struct ProfileSettingsView: View {
     
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-
+        
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
     
     /*
-    func clear() {
-        self.email = ""
-        self.name = ""
-        self.username = ""
-        self.imageData = Data()
-        self.backProfileImage = Image(systemName: "person.circle.fill")
-        self.profileImage = Image(systemName: "person.circle")
-    }
-    */
+     func clear() {
+     self.email = ""
+     self.name = ""
+     self.username = ""
+     self.imageData = Data()
+     self.backProfileImage = Image(systemName: "person.circle.fill")
+     self.profileImage = Image(systemName: "person.circle")
+     }
+     */
     
     
     func loadImage() {
@@ -397,9 +470,9 @@ struct ProfileSettingsView: View {
     
     func errorCheck() -> String? {
         if  email.trimmingCharacters(in: .whitespaces).isEmpty ||
-            name.trimmingCharacters(in: .whitespaces).isEmpty ||
-            username.trimmingCharacters(in: .whitespaces).isEmpty {
-
+                name.trimmingCharacters(in: .whitespaces).isEmpty ||
+                username.trimmingCharacters(in: .whitespaces).isEmpty {
+            
             return "Fülle bitte alle Felder aus"
         }
         
@@ -407,77 +480,77 @@ struct ProfileSettingsView: View {
     }
     
     /*
-    func edit() {
-        if let error = errorCheck() {
-            self.error = error
-            self.alert.toggle()
-            self.clear()
-            return
-        }
-        
-        guard let userId = Auth.auth().currentUser?.uid
-        else {
-            return
-        }
-        
-        let storageProfileUserId = StorageService.storageProfileId(userId: userId)
-        let storageProfileBackUserId = StorageService.storageBackProfileId(userId: userId)
-        let metaData = StorageMetadata()
-            metaData.contentType = "image/jpg"
-        
-        if changeprofileImage == true {
-            StorageService.editProfile(userId: userId, name: name, username: username, email: email, imageData: imageData, metaData: metaData,        storageProfileImageRef: storageProfileUserId) {
-                self.clear()
-            } onError: { errorMessage in
-                self.error = errorMessage
-                self.alert.toggle()
-                return
-            }
-        }
-        else {
-            StorageService.editProfileText(userId: userId, name: name, username: username, email: email) {}
-        }
-        
-        if changeBackProfileImage == true {
-            StorageService.editBackProfile(userId: userId, name: name, username: username, email: email, imageData: backImageData, metaData: metaData,        storageProfileImageRef: storageProfileBackUserId) {
-                self.clear()
-            } onError: { errorMessage in
-                self.error = errorMessage
-                self.alert.toggle()
-                return
-            }
-        }
-        else {
-            StorageService.editProfileText(userId: userId, name: name, username: username, email: email) {}
-        }
-        
-        if changeBackProfileImage && changeprofileImage == true {
-            StorageService.editBackProfile(userId: userId, name: name, username: username, email: email, imageData: backImageData, metaData: metaData, storageProfileImageRef: storageProfileBackUserId) {
-        
-                StorageService.editProfile(userId: userId, name: name, username: username, email: email, imageData: imageData, metaData: metaData,        storageProfileImageRef: storageProfileUserId) {
-                    self.clear()
-                } onError: { errorMessage in
-                    self.error = errorMessage
-                    self.alert.toggle()
-                    return
-                }
-            } onError: { errorMessage in
-                self.error = errorMessage
-                self.alert.toggle()
-                return
-            }
-        }
-        else {
-            StorageService.editProfileText(userId: userId, name: name, username: username, email: email) {}
-        }
-    }
-    */
+     func edit() {
+     if let error = errorCheck() {
+     self.error = error
+     self.alert.toggle()
+     self.clear()
+     return
+     }
+     
+     guard let userId = Auth.auth().currentUser?.uid
+     else {
+     return
+     }
+     
+     let storageProfileUserId = StorageService.storageProfileId(userId: userId)
+     let storageProfileBackUserId = StorageService.storageBackProfileId(userId: userId)
+     let metaData = StorageMetadata()
+     metaData.contentType = "image/jpg"
+     
+     if changeprofileImage == true {
+     StorageService.editProfile(userId: userId, name: name, username: username, email: email, imageData: imageData, metaData: metaData,        storageProfileImageRef: storageProfileUserId) {
+     self.clear()
+     } onError: { errorMessage in
+     self.error = errorMessage
+     self.alert.toggle()
+     return
+     }
+     }
+     else {
+     StorageService.editProfileText(userId: userId, name: name, username: username, email: email) {}
+     }
+     
+     if changeBackProfileImage == true {
+     StorageService.editBackProfile(userId: userId, name: name, username: username, email: email, imageData: backImageData, metaData: metaData,        storageProfileImageRef: storageProfileBackUserId) {
+     self.clear()
+     } onError: { errorMessage in
+     self.error = errorMessage
+     self.alert.toggle()
+     return
+     }
+     }
+     else {
+     StorageService.editProfileText(userId: userId, name: name, username: username, email: email) {}
+     }
+     
+     if changeBackProfileImage && changeprofileImage == true {
+     StorageService.editBackProfile(userId: userId, name: name, username: username, email: email, imageData: backImageData, metaData: metaData, storageProfileImageRef: storageProfileBackUserId) {
+     
+     StorageService.editProfile(userId: userId, name: name, username: username, email: email, imageData: imageData, metaData: metaData,        storageProfileImageRef: storageProfileUserId) {
+     self.clear()
+     } onError: { errorMessage in
+     self.error = errorMessage
+     self.alert.toggle()
+     return
+     }
+     } onError: { errorMessage in
+     self.error = errorMessage
+     self.alert.toggle()
+     return
+     }
+     }
+     else {
+     StorageService.editProfileText(userId: userId, name: name, username: username, email: email) {}
+     }
+     }
+     */
     
     func editProfileImage() {
         if let error = errorCheck() {
             self.error = error
             if alert == false {
-            self.alert.toggle()
+                self.alert.toggle()
             }
         }
         
@@ -488,13 +561,13 @@ struct ProfileSettingsView: View {
         
         let storageProfileUserId = StorageService.storageProfileId(userId: userId)
         let metaData = StorageMetadata()
-            metaData.contentType = "image/jpg"
+        metaData.contentType = "image/jpg"
         
         StorageService.editProfile(userId: userId, name: name, username: username, email: email, imageData: imageData, metaData: metaData,        storageProfileImageRef: storageProfileUserId) {
         } onError: { errorMessage in
             self.error = errorMessage
             if alert == false {
-            self.alert.toggle()
+                self.alert.toggle()
             }
             return
         }
@@ -504,7 +577,7 @@ struct ProfileSettingsView: View {
         if let error = errorCheck() {
             self.error = error
             if alert == false {
-            self.alert.toggle()
+                self.alert.toggle()
             }
         }
         
@@ -512,16 +585,16 @@ struct ProfileSettingsView: View {
         else {
             return
         }
-
+        
         let storageProfileBackUserId = StorageService.storageBackProfileId(userId: userId)
         let metaData = StorageMetadata()
-            metaData.contentType = "image/jpg"
+        metaData.contentType = "image/jpg"
         
         StorageService.editBackProfile(userId: userId, name: name, username: username, email: email, imageData: backImageData, metaData: metaData, storageProfileImageRef: storageProfileBackUserId) {
         } onError: { errorMessage in
             self.error = errorMessage
             if alert == false {
-            self.alert.toggle()
+                self.alert.toggle()
             }
             return
         }
@@ -531,7 +604,7 @@ struct ProfileSettingsView: View {
         if let error = errorCheck() {
             self.error = error
             if alert == false {
-            self.alert.toggle()
+                self.alert.toggle()
             }
         }
         
@@ -547,7 +620,7 @@ struct ProfileSettingsView: View {
         if let error = errorCheck() {
             self.error = error
             if alert == false {
-            self.alert.toggle()
+                self.alert.toggle()
             }
         }
         

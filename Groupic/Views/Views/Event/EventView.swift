@@ -45,70 +45,92 @@ struct EventView: View {
     
     var body: some View {
         ZStack {
-            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
             
             VStack {
-                HStack() {
-                    Button(action: {
-                        self.next.toggle()
-                    }, label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.white)
-                    })
+                
+                ZStack {
                     
-                    Spacer()
+                    HStack {
+                        
+                        Button(action: {
+                            self.next.toggle()
+                        }, label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.white)
+                        })
+                        .padding()
+                        
+                        Spacer()
+                        
+                    }.zIndex(1)
+                                        
+                    HStack {
+                        Rectangle().frame(width: getRectView().width, height: 100)
+                    }.background(Color(.black))
+                        .mask(
+                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                        ).colorInvert()
                 }
-                .padding()
-                .background(Color("AccentColor"))
+                
+                Spacer()
+                
+                HStack {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }.background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                    ).colorInvert()
+            }.zIndex(1)
+            
+            VStack {
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
-                            // do your stuff when pulled
-                        }
-                        
+                        // do your stuff when pulled
+                    }
+                    
                     VStack {
                         EventViewHeader(eventImage: $eventImage, post: postModel)
                         
-                        HStack {
-                            Image(systemName: "line.horizontal.3")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20))
-                            
-                            Spacer()
+                        ZStack {
                             
                             Text(postModel.caption)
                                 .font(.system(size: 26, weight: .bold, design: .default))
+                                .foregroundColor(.white)
                             
-                            Spacer()
-                            
-                            DropDownMenu(showingActionsSheet: $showingActionsSheet, showingActionsSheetEventNameChange: $alertEventName, changeEventMode: $changeEventMode, deleteEvent: $deleteEvent)
-                        }.padding(.horizontal)
+                            HStack {
+                                
+                                Spacer()
+                                
+                                DropDownMenu(showingActionsSheet: $showingActionsSheet, showingActionsSheetEventNameChange: $alertEventName, changeEventMode: $changeEventMode, deleteEvent: $deleteEvent)
+                                
+                            }.padding(.horizontal)
+                        }
                         
                         HStack {
                             Text(postModel.startDate, style: .date)
                                 .font(.subheadline)
-                                .foregroundColor(.gray)
+                                .foregroundColor(.white)
                                 .frame(alignment: .topLeading)
                             
                             Text(" - ")
                                 .font(.subheadline)
-                                .foregroundColor(.gray)
+                                .foregroundColor(.white)
                                 .frame(alignment: .topLeading)
                             
                             Text(postModel.endDate, style: .date)
                                 .font(.subheadline)
-                                .foregroundColor(.gray)
+                                .foregroundColor(.white)
                                 .frame(alignment: .topLeading)
                             
                         }
-                        .foregroundColor(.secondary)
-                        .padding(-10)
+                        .foregroundColor(.white)
+                        .padding(.vertical, 10)
                         
                         FollowEventButton(post: postModel, followCheck: $profileService.followCheck)
-                            .padding()
                         
                         Text("Mit:")
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.white)
                             .padding(10)
                         
                         ZStack {
@@ -121,7 +143,7 @@ struct EventView: View {
                                     alertAdd.toggle()
                                 }, label: {
                                     Image(systemName: "person.crop.circle.badge.plus")
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.white)
                                         .font(.system(size: 20))
                                 })
                             }
@@ -135,7 +157,7 @@ struct EventView: View {
                                 self.picker.toggle()
                             }, label: {
                                 Image(systemName: "photo.fill.on.rectangle.fill")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
                                     .font(.system(size: 20))
                             })
                             
@@ -153,7 +175,7 @@ struct EventView: View {
                                 self.textQuote.toggle()
                             }, label: {
                                 Image(systemName: "text.bubble")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
                                     .font(.system(size: 20))
                             })
                             
@@ -165,7 +187,6 @@ struct EventView: View {
                     }
                 }.offset(y: -17)
             }
-            .background(Color.white)
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
@@ -190,6 +211,8 @@ struct EventView: View {
                 EventQuoteView(back: $textQuote, userModel: $userModel, postModel: $postModel, quote: $quote)
             }
         }
+        .background(Color("background"))
+        .ignoresSafeArea()
         .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
             ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)
         }
