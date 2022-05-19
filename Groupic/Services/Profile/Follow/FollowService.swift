@@ -46,7 +46,7 @@ class FollowService: ObservableObject {
             followersCount: Int) -> Void) {
         
         let user = UidUserModel.init(uid: userId)
-        let AuthUser = UidUserModel.init(uid: currentUserUid)
+        let AuthUser = UidCheckUserModel.init(uid: Auth.auth().currentUser!.uid, globalCheck: false, localCheck: false)
      
         guard let dict = try? user.asDictionary() else {
             return
@@ -94,6 +94,76 @@ class FollowService: ObservableObject {
                 doc.reference.delete()
                 
                 self.updateFollowCount(userId: userId, followingCount: followingCount, followersCount: followersCount)
+            }
+        }
+    }
+    
+    func acceptFollow(userId: String) {
+        
+        let user = UidUserModel.init(uid: userId)
+        let AuthUser = UidUserModel.init(uid: Auth.auth().currentUser!.uid)
+     
+        guard let dict = try? user.asDictionary() else {
+            return
+        }
+        
+        guard let authDict = try? AuthUser.asDictionary() else {
+            return
+        }
+        
+        ProfileService.acceptFollowingId(userId: userId).setData(dict) {_ in }
+            
+        ProfileService.acceptFollowersId(userId: userId).setData(authDict) {_ in }
+        
+        ProfileService.delfollowingId(userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+            
+        ProfileService.delfollowersId(userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+    }
+    
+    func declineFollow(userId: String) {
+        ProfileService.delfollowingId(userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+            
+        ProfileService.delfollowersId(userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+    }
+    
+    func deleteContact(userId: String) {
+        ProfileService.delcontactId(userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+            
+        ProfileService.delcontactfollowersId(userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
             }
         }
     }

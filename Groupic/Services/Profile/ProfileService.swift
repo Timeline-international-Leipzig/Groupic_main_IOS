@@ -15,6 +15,7 @@ class ProfileService: ObservableObject {
     @Published var users: [UserModel] = []
     @Published var usersUid: [UidUserModel] = []
     @Published var followUsers: [UidUserModel] = []
+    @Published var requestsUser: [UidCheckUserModel] = []
     @Published var followPosts: [PostUidModel] = []
     
     @Published var eventElements: [EventContentModel] = []
@@ -30,15 +31,27 @@ class ProfileService: ObservableObject {
     static var followEvent = AuthService.storeRoot.collection("events")
     
     static func followingCollection(userId: String) -> CollectionReference {
-        return follow.document(userId).collection("following")
+        return follow.document(userId).collection("contactRequest")
     }
     
     static func followersCollection(userId: String) -> CollectionReference {
-        return follow.document(userId).collection("followers")
+        return follow.document(userId).collection("contact")
     }
     
     static func followingId(userId: String) -> DocumentReference {
-        return follow.document(Auth.auth().currentUser!.uid).collection("following").document(userId)
+        return follow.document(Auth.auth().currentUser!.uid).collection("contactRequest").document(userId)
+    }
+    
+    static func delfollowingId(userId: String) -> DocumentReference {
+        return follow.document(Auth.auth().currentUser!.uid).collection("requestsForContact").document(userId)
+    }
+    
+    static func delcontactId(userId: String) -> DocumentReference {
+        return follow.document(Auth.auth().currentUser!.uid).collection("contact").document(userId)
+    }
+    
+    static func acceptFollowingId(userId: String) -> DocumentReference {
+        return follow.document(Auth.auth().currentUser!.uid).collection("contact").document(userId)
     }
     
     static func followingEventId(postId: String) -> DocumentReference {
@@ -50,7 +63,40 @@ class ProfileService: ObservableObject {
     }
     
     static func followersId(userId: String) -> DocumentReference {
-        return follow.document(userId).collection("participants").document(Auth.auth().currentUser!.uid)
+        return follow.document(userId).collection("requestsForContact").document(Auth.auth().currentUser!.uid)
+    }
+    
+    static func delfollowersId(userId: String) -> DocumentReference {
+        return follow.document(userId).collection("contactRequest").document(Auth.auth().currentUser!.uid)
+    }
+    
+    static func delcontactfollowersId(userId: String) -> DocumentReference {
+        return follow.document(userId).collection("contact").document(Auth.auth().currentUser!.uid)
+    }
+    
+    static func acceptFollowersId(userId: String) -> DocumentReference {
+        return follow.document(userId).collection("contact").document(Auth.auth().currentUser!.uid)
+    }
+    
+    static func followersCheck(userId: String) -> CollectionReference {
+        return follow.document(userId).collection("requestsForContact")
+    }
+    
+    static func contactCheck(userId: String) -> CollectionReference {
+        return follow.document(userId).collection("contact")
+    }
+    
+    func followStateUser(userId: String) {
+        ProfileService.followingId(userId: userId).getDocument {
+            (document, error) in
+            
+            if let doc = document, doc.exists {
+                self.followCheck = true
+                }
+            else {
+                self.followCheck = false
+            }
+        }
     }
     
     func loadUserPosts(userId: String) {
@@ -107,6 +153,14 @@ class ProfileService: ObservableObject {
             (users) in
             
             self.followUsers = users
+        }
+    }
+    
+    func loadRequestUser(userId: String) {
+        PostService.loadRequestUser(userId: userId) {
+            (users) in
+            
+            self.requestsUser = users
         }
     }
     

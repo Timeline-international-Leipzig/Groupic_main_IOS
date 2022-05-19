@@ -11,6 +11,7 @@ import SDWebImageSwiftUI
 
 struct ContactsView: View {
     @StateObject var profileService = ProfileService()
+    @ObservedObject var followService = FollowService()
     @EnvironmentObject var session: SessionStore
     
     @State var userSelected: UserModel?
@@ -20,7 +21,12 @@ struct ContactsView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
+            ZStack {
+                VStack {
+                    Text("Noch keine Kontakte")
+                }
+            
+                VStack {
                 ForEach(profileService.users, id: \.uid) {
                     (user) in
                     
@@ -34,23 +40,35 @@ struct ContactsView: View {
                                 next.toggle()
                             }, label: {
                                 HStack {
-                                    WebImage(url: URL(string: user.profileImageUrl))
-                                        .resizable()
-                                        .scaledToFit()
-                                        .clipShape(Circle())
-                                        .frame(width: 60, height: 60, alignment: .trailing)
-                                        .padding()
-                     
+                                    if user.profileImageUrl == "" {
+                                        Image("profileImage")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 60, height: 60, alignment: .center)
+                                            .clipShape(Circle())
+                                            .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
+                                    }
+                                    else {
+                                        WebImage(url: URL(string: user.profileImageUrl))
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 60, height: 60, alignment: .center)
+                                            .clipShape(Circle())
+                                            .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
+                                    }
+              
                                     Text(user.userName)
                                         .font(.subheadline)
                                         .bold()
-                                    
+              
                                     Spacer()
                                     
-                                    if (user.uid == Auth.auth().currentUser!.uid) {
-                                    } else {
-                                        FollowButton(user: user, followCheck: $profileService.followCheck, followingCount: $profileService.following, followersCount: $profileService.follower)
-                                        .padding(.horizontal)
+                                    VStack {
+                                    Button(action: {
+                                        followService.deleteContact(userId: user.uid)
+                                    }, label: {
+                                        Text("Entfernen")
+                                    })
                                     }
                                 }
                                 .padding()
@@ -62,6 +80,8 @@ struct ContactsView: View {
                 NavigationLink(destination: UserProfileView(user: $userSelected, next: $next), isActive: self.$next, label: {
                     EmptyView()
                 })
+                }
+                .background(Color(.systemGray6))
             }
         }
         .navigationTitle("")

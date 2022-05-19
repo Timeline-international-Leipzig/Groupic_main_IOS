@@ -34,6 +34,7 @@ struct EventView: View {
     @State var deleteEvent = false
     @State var picker = false
     @State var textQuote = false
+    @State var alertAdd = false
     
     @State var eventName = ""
     @State var quote = ""
@@ -117,7 +118,7 @@ struct EventView: View {
                                 Spacer()
                                 
                                 Button(action: {
-                                    
+                                    alertAdd.toggle()
                                 }, label: {
                                     Image(systemName: "person.crop.circle.badge.plus")
                                         .foregroundColor(.black)
@@ -171,6 +172,10 @@ struct EventView: View {
             
             if self.alertEventName {
                 EventNameView(back: $alertEventName, userModel: $userModel, postModel: $postModel, eventName: $eventName)
+            }
+            
+            if self.alertAdd {
+               AddContactsView(back: $alertAdd)
             }
             
             if self.changeEventMode {

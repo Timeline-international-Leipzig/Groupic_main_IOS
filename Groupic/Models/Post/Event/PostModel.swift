@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PostModel: Encodable, Decodable {    
+struct PostModel: Encodable, Decodable, Equatable {    
     var highlighted: Bool
     var dateN: Double
     var caption: String

@@ -9,6 +9,8 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct SocialPostCardView: View {
+    @StateObject var profileService = ProfileService()
+    
     @State var postModel: PostModel
     @State var user: UserModel
     @State var next = false
@@ -68,6 +70,19 @@ struct SocialPostCardView: View {
                    )
                    
                    HStack {
+                       ForEach(profileService.eventElements.prefix(4), id: \.id){ item in
+                           if item.type == "IMAGE" {
+                               WebImage(url: URL(string: item.uriOrUid)!)
+                                   .resizable()
+                                   .frame(width: getRectView().width / 4, height: getRectView().width / 4, alignment: .center)
+                                   .clipped()
+                           }
+                           else {
+                           }
+                       }
+                   }
+                   
+                   HStack {
                        Color.gray.frame(width:CGFloat(2) / UIScreen.main.scale)
                            .offset(y: -8)
                        
@@ -110,6 +125,9 @@ struct SocialPostCardView: View {
                    .padding(.horizontal)
                }
                .offset(y: -10)
+           }
+           .onAppear {
+               self.profileService.loadAllEventElements(postId: postModel.postId)
            }
     }
 }

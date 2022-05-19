@@ -14,10 +14,16 @@ struct FutureSearchUserPostView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
-                ForEach(self.profileService.posts, id: \.dateN) {
-                    (post) in
-
+            ZStack {
+                VStack {
+                    Text("Es gibt aktuell noch keine zukünftigen Ereignisse")
+                }
+            
+                VStack {
+                    ForEach(self.profileService.posts, id: \.dateN) {
+                        (post) in
+                        
+                    }
                 }
             }
         }

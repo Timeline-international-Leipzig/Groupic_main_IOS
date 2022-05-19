@@ -32,19 +32,6 @@ struct SocialEndView: View {
         }
     }
     
-    func followState(userId: String) {
-        ProfileService.followingId(userId: userId).getDocument {
-            (document, error) in
-            
-            if let doc = document, doc.exists {
-                self.followCheck = true
-                }
-            else {
-                self.followCheck = false
-            }
-        }
-    }
-    
     var body: some View {
         ZStack {
             Color("AccentColor").ignoresSafeArea(.all, edges: .top)
@@ -87,11 +74,11 @@ struct SocialEndView: View {
                         SocialFriendsEventsView()
                         
                         VStack {
-                       if !isLoading {
+                        if !isLoading || self.value != "" {
                            ForEach(users, id: \.uid) {
-                    
                                user in
                                
+                               HStack {
                                Button(action: {
                                    self.currentUser = user
                                    
@@ -124,14 +111,23 @@ struct SocialEndView: View {
                                        
                                        Spacer()
                                        
+                                       /*
                                        if (user.uid == Auth.auth().currentUser!.uid) {
                                        } else {
-                                           FollowButton(user: user, followCheck: $profileService.followCheck, followingCount: $profileService.following, followersCount: $profileService.follower)
-                                           .padding(.horizontal)
+                                           HStack {
+                                              FollowButton(user: user, followCheck: $profileService.followCheck, followingCount:    $profileService.following, followersCount: $profileService.follower)
+                                              .padding(.horizontal)
+                                           }
+                                           .onAppear {
+                                               self.profileService.followStateUser(userId: user.uid)
+                                           }
                                        }
+                                        */
                                    }
                                    .padding()
                                })
+                               }
+
                                
                                Divider().background(Color("AccentColor"))
                            }

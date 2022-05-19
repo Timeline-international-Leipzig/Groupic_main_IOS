@@ -1,16 +1,16 @@
 //
-//  UserPostView.swift
+//  ProfileUserPostView.swift
 //  Groupic
 //
-//  Created by Anatolij Travkin on 12.01.22.
+//  Created by Anatolij Travkin on 19.03.22.
 //
-
 import SwiftUI
 import Firebase
 
-struct UserPostView: View {
+struct SearchUserPostView: View {
     @StateObject var profileService = ProfileService()
-    @EnvironmentObject var session: SessionStore
+
+    @State var user: UserModel
     
     var body: some View {
         ScrollView {
@@ -27,7 +27,7 @@ struct UserPostView: View {
                             (post) in
                             
                             if postUid.postId == post.postId {
-                                PostCardView(postModel: post, userModel: self.session.session!)
+                                PostCardView(postModel: post, userModel: user)
                             }
                         }
                     }
@@ -35,8 +35,8 @@ struct UserPostView: View {
                 .navigationTitle("")
                 .navigationBarHidden(true)
                 .onAppear {
-                    self.profileService.allPosts(userId: Auth.auth().currentUser!.uid)
-                    self.profileService.loadUserPosts(userId: Auth.auth().currentUser!.uid)
+                    self.profileService.allPosts(userId: user.uid)
+                    self.profileService.loadUserPosts(userId: user.uid)
                 }
             }
         }

@@ -16,10 +16,16 @@ struct SocialUserPostView: View {
             VStack {
                 ForEach(self.profileService.posts, id: \.dateN) {
                     (post) in
+                    
+                    ForEach(self.profileService.postsUid, id: \.postId) {
+                        (posts) in
                 
+                        if post.postId == posts.postId {
                     SocialPostCardView(postModel: post, user: user)
                     //PostCardView(postModel: post)
                     //PostCardBottomView(postModel: post)
+                        }
+                }
                 }
             }
         }
@@ -27,6 +33,7 @@ struct SocialUserPostView: View {
         .navigationBarHidden(true)
         .onAppear {
             self.profileService.loadUserPosts(userId: user.uid)
+            self.profileService.allPosts(userId: user.uid)
         }
  
     }

@@ -155,7 +155,7 @@ class PostService {
     
     static func loadUser(userId: String, onSuccess: @escaping(_
       users: [UidUserModel]) -> Void) {
-        PostService.userId(userId: userId).collection("following").getDocuments {
+        PostService.userId(userId: userId).collection("contact").getDocuments {
             (snapShot, error) in
             
             guard let snap = snapShot else {
@@ -168,6 +168,33 @@ class PostService {
             for doc in snap.documents {
                 let dict = doc.data()
                 guard let decoder = try? UidUserModel.init(fromDictionary: dict)
+                        
+                else {
+                    return
+                }
+                
+                followUsers.append(decoder)
+            }
+            
+            onSuccess(followUsers)
+        }
+    }
+    
+    static func loadRequestUser(userId: String, onSuccess: @escaping(_
+      users: [UidCheckUserModel]) -> Void) {
+        PostService.userId(userId: userId).collection("requestsForContact").getDocuments {
+            (snapShot, error) in
+            
+            guard let snap = snapShot else {
+                print("Error")
+                return
+            }
+            
+            var followUsers = [UidCheckUserModel]()
+            
+            for doc in snap.documents {
+                let dict = doc.data()
+                guard let decoder = try? UidCheckUserModel.init(fromDictionary: dict)
                         
                 else {
                     return

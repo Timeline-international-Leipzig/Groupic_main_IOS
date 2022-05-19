@@ -50,11 +50,11 @@ struct UserMidTabBarView: View {
             ZStack{
                 switch selectedIndex {
                 case 0:
-                    HighlightPostView()
+                    UserHighlightPostView(user: user)
                         .padding(.top)
                     
                 case 1:
-                    ProfileUserPostView(user: user)
+                    SearchUserPostView(user: user)
                         .padding(.top)
 
                 case 2:
@@ -62,7 +62,7 @@ struct UserMidTabBarView: View {
                         .padding(.top)
 
                 case 3:
-                    ProfileUserPostView(user: user)
+                    UserContactsView(user: user)
                         .padding(.top)
 
                 default:

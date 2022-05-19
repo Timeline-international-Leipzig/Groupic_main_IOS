@@ -16,15 +16,21 @@ struct FutureUserPostView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
-                ForEach(profileService.postsUid, id: \.postId) {
-                    (postUid) in
-                    
-                    ForEach(self.profileService.posts, id: \.postId) {
-                        (post) in
+            ZStack {
+                VStack {
+                    Text("Es gibt aktuell noch keine zukünftigen Ereignisse")
+                }
+            
+                VStack {
+                    ForEach(profileService.postsUid, id: \.postId) {
+                        (postUid) in
                         
-                        if (postUid.postId == post.postId) && post.startDate > date {
-                           PostCardView(postModel: post, userModel: self.session.session!)
+                        ForEach(self.profileService.posts, id: \.postId) {
+                            (post) in
+                            
+                            if (postUid.postId == post.postId) && post.startDate > date {
+                                PostCardView(postModel: post, userModel: self.session.session!)
+                            }
                         }
                     }
                 }

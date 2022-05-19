@@ -66,11 +66,9 @@ struct FollowButton: View {
     
     var body: some View {
         Button(action: {
-            
-            
             self.follow()
         }, label: {
-            Text((self.followState(userId: user.uid)) ? "Entfernen": "Hinzufügen")
+            Text((self.followState(userId: user.uid)) ? "Anfrage gesendet": "Anfrage senden")
                 .background(Color.gray)
                 .foregroundColor(.black)
         })

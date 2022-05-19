@@ -6,10 +6,136 @@
 //
 
 import SwiftUI
+import Firebase
+import SDWebImageSwiftUI
 
 struct NotificationsView: View {
+    @ObservedObject var followService = FollowService()
+    @StateObject var profileService = ProfileService()
+    @Binding var back: Bool
+    
+    @State var next = false
+    
+    @State var userSelected: UserModel?
+    @State var users: [UserModel] = []
+    
     var body: some View {
-        Text("Notifications")
+        ZStack {
+            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
+            
+            VStack(alignment: .center, spacing: 0) {
+                ZStack {
+                    HStack(spacing: 15) {
+                        Spacer()
+                        
+                        Text("Nachrichten")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                            .frame(alignment: .center)
+                        
+                        Spacer()
+                    }
+                    .padding()
+                    .background(Color("AccentColor"))
+                    
+                    HStack() {
+                        Button(action: {
+                            self.back.toggle()
+                        }, label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.white)
+                        })
+                        
+                        Spacer()
+                    }
+                    .padding()
+                }
+                
+                ScrollView {
+                ZStack {
+                    VStack {
+                        Text("Keine neuen Nachrichten")
+                            .padding(.top)
+                        
+                        Spacer()
+                    }
+                
+                    VStack {
+                      ForEach(profileService.users, id: \.uid) {
+                          (user) in
+                    
+                          ForEach(profileService.requestsUser, id: \.uid) {
+                              (users) in
+                    
+                              if user.uid == users.uid {
+                                  Button(action: {
+                                      self.userSelected = user
+                    
+                                      next.toggle()
+                                  }, label: {
+                                      HStack {
+                                          if user.profileImageUrl == "" {
+                                              Image("profileImage")
+                                                  .resizable()
+                                                  .aspectRatio(contentMode: .fill)
+                                                  .frame(width: 60, height: 60, alignment: .center)
+                                                  .clipShape(Circle())
+                                                  .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
+                                          }
+                                          else {
+                                              WebImage(url: URL(string: user.profileImageUrl))
+                                                  .resizable()
+                                                  .aspectRatio(contentMode: .fill)
+                                                  .frame(width: 60, height: 60, alignment: .center)
+                                                  .clipShape(Circle())
+                                                  .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
+                                          }
+                    
+                                          Text(user.userName)
+                                              .font(.subheadline)
+                                              .bold()
+                    
+                                          Spacer()
+                    
+                                          VStack {
+                                              Button(action: {
+                                                  followService.acceptFollow(userId: user.uid)
+                                              }, label: {
+                                                  Text("Annehmen")
+                                              })
+                                              
+                                              Button(action: {
+                                                  followService.declineFollow(userId: user.uid)
+                                              }, label: {
+                                                  Text("Ablehnen")
+                                              })
+                                          }
+                                      }
+                                      .padding()
+                                  })
+                              }
+                      }
+                    }
+                        
+                    Spacer()
+                    
+                    NavigationLink(destination: UserProfileView(user: $userSelected, next: $next), isActive: self.$next, label: {
+                        EmptyView()
+                    })
+                    }
+                    .background(Color(.systemGray6))
+                }
+                }
+            }
+            .background(Color(.systemGray6))
+            .navigationBarTitle("")
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+        }
+        .onAppear {
+            self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
+            self.profileService.loadRequestUser(userId: Auth.auth().currentUser!.uid)
+        }
     }
 }
 
