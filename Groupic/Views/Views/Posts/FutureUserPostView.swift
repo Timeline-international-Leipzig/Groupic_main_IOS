@@ -21,7 +21,7 @@ struct FutureUserPostView: View {
                     Text("Es gibt aktuell noch keine zukünftigen Ereignisse")
                 }
             
-                VStack {
+                VStack(spacing: -6) {
                     ForEach(profileService.postsUid, id: \.postId) {
                         (postUid) in
                         
@@ -33,7 +33,7 @@ struct FutureUserPostView: View {
                             }
                         }
                     }
-                }
+                }.padding(.top, 5)
             }
         }
         .navigationTitle("")

@@ -59,6 +59,11 @@ struct AddEventView: View {
                         .cornerRadius(10)
                         .padding(.horizontal)
                     
+                    Divider()
+                        .background(Color.white)
+                        .padding(.horizontal, 18)
+                        .offset(y: -12)
+                    
                     VStack(spacing: 10) {
                         HStack {
                             Image(systemName: "arrow.forward.square")

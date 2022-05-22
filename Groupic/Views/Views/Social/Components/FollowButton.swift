@@ -69,9 +69,13 @@ struct FollowButton: View {
             self.follow()
         }, label: {
             Text((self.followState(userId: user.uid)) ? "Anfrage gesendet": "Anfrage senden")
-                .background(Color.gray)
-                .foregroundColor(.black)
-        })
+                .foregroundColor(.white)
+                .font(.system(size: 10, weight: .bold))
+                .padding(5)
+                .background(
+                    Color("lightBlue")
+                        .cornerRadius(5)
+                )        })
     }
 }
 

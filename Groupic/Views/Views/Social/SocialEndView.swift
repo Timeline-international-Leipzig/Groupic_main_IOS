@@ -75,7 +75,6 @@ struct SocialEndView: View {
                         Spacer()
                     }
                     .padding(.top, 50)
-                    .padding(.bottom, 10)
                  
                     Spacer()
                 }.zIndex(1)
@@ -96,72 +95,71 @@ struct SocialEndView: View {
                     ZStack {
                         SocialFriendsEventsView()
                         
-                        VStack {
-                        if !isLoading || self.value != "" {
-                           ForEach(users, id: \.uid) {
-                               user in
-                               
-                               HStack {
-                               Button(action: {
-                                   self.currentUser = user
-                                   
-                                   next.toggle()
-                               }, label: {
-                                   HStack {
-                                       if user.profileImageUrl == "" {
-                                           Image("profileImage")
-                                               .resizable()
-                                               .aspectRatio(contentMode: .fill)
-                                               .frame(width: 60, height: 60, alignment: .center)
-                                               .clipShape(Circle())
-                                               .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
-                                               .padding()
-                                       }
-                                       else {
-                                           WebImage(url: URL(string: user.profileImageUrl))
-                                               .resizable()
-                                               .aspectRatio(contentMode: .fill)
-                                               .frame(width: 60, height: 60, alignment: .center)
-                                               .clipShape(Circle())
-                                               .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
-                                               .background(Color.white)
-                                               .padding()
-                                       }
-                        
-                                       Text(user.userName)
-                                           .font(.subheadline)
-                                           .bold()
-                                       
-                                       Spacer()
-                                       
-                                       /*
-                                       if (user.uid == Auth.auth().currentUser!.uid) {
-                                       } else {
-                                           HStack {
-                                              FollowButton(user: user, followCheck: $profileService.followCheck, followingCount:    $profileService.following, followersCount: $profileService.follower)
-                                              .padding(.horizontal)
-                                           }
-                                           .onAppear {
-                                               self.profileService.followStateUser(userId: user.uid)
-                                           }
-                                       }
-                                        */
-                                   }
-                                   .padding()
-                               })
-                               }
-
-                               
-                               Divider().background(Color("AccentColor"))
-                           }
-                           
-                           NavigationLink(destination: UserProfileView(user: $currentUser, next: $next), isActive: self.$next, label: {
-                               EmptyView()
-                           })
-                       }
+                        VStack(spacing: 0) {
+                            if !isLoading || self.value != "" {
+                                ForEach(users, id: \.uid) {
+                                    user in
+                                    
+                                    VStack(spacing: 0) {
+                                    HStack {
+                                        Button(action: {
+                                            self.currentUser = user
+                                            
+                                            next.toggle()
+                                        }, label: {
+                                            HStack {
+                                                if user.profileImageUrl == "" {
+                                                    Image("profileImage")
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fill)
+                                                        .frame(width: 60, height: 60, alignment: .center)
+                                                        .clipShape(Circle())
+                                                        .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
+                                                        .padding()
+                                                }
+                                                else {
+                                                    WebImage(url: URL(string: user.profileImageUrl))
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fill)
+                                                        .frame(width: 60, height: 60, alignment: .center)
+                                                        .clipShape(Circle())
+                                                        .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
+                                                        .padding()
+                                                }
+                                                
+                                                Text(user.userName)
+                                                    .foregroundColor(.white)
+                                                    .font(.subheadline)
+                                                    .bold()
+                                                
+                                                Spacer()
+                                                
+                                                /*
+                                                 if (user.uid == Auth.auth().currentUser!.uid) {
+                                                 } else {
+                                                 HStack {
+                                                 FollowButton(user: user, followCheck: $profileService.followCheck, followingCount:    $profileService.following, followersCount: $profileService.follower)
+                                                 .padding(.horizontal)
+                                                 }
+                                                 .onAppear {
+                                                 self.profileService.followStateUser(userId: user.uid)
+                                                 }
+                                                 }
+                                                 */
+                                            }
+                                            .background(Color("lightDark"))
+                                        })
+                                    }
+                                        Divider().background(Color(.white))
+                                    }
+                                }
+                                
+                                NavigationLink(destination: UserProfileView(user: $currentUser, next: $next), isActive: self.$next, label: {
+                                    EmptyView()
+                                })
+                            }
+                        Spacer()
                         }
-                        .background(Color.white)
-                        
                     }
                 }
                 .background(Color("background"))

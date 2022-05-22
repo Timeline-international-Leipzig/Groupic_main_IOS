@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 
 struct TabView: View {
+    
     @State var next = false
     @State var nextNotifications = false
     @State var new = false
@@ -16,6 +17,7 @@ struct TabView: View {
     var user: UserModel?
     
     var body: some View {
+        
         NavigationLink(destination: SettingsView(next: $next), isActive: self.$next, label: {
             EmptyView()
         })
@@ -27,6 +29,56 @@ struct TabView: View {
         ZStack {
             
             VStack {
+                HStack(spacing: 15) {
+                    Spacer()
+                    
+                    HStack {
+                        
+                        Button(action: {
+                            self.nextNotifications.toggle()
+                        }, label: {
+                            if new == true {
+                                Image(systemName: "paperplane.circle.fill")
+                                    .foregroundColor(.white)
+                            }
+                            else {
+                                Image(systemName: "paperplane.circle")
+                                    .foregroundColor(.white)
+                            }
+                        })
+                    }
+                    .padding(.horizontal)
+                    .onAppear{
+                        checkIfChecked { result in
+                            if (result == true) {
+                                self.new = true
+                            }
+                            else {
+                                self.new = false
+                            }
+                        }
+                    }
+                    
+                    Text(user!.name)
+                        .font(.title3)
+                        .foregroundColor(.white)
+                    
+                    Button(action: {
+                        self.next.toggle()
+                    },
+                           label: {
+                        Image(systemName: "line.horizontal.3")
+                            .foregroundColor(.white)
+                            .font(.system(size: 20))
+                    }).padding(.horizontal)
+                    
+                    Spacer()
+                }.padding(.top, 50)
+                
+                Spacer()
+            }.zIndex(1)
+            
+            VStack {
                 
                 HStack {
                     Rectangle().frame(width: getRectView().width, height: 100)
@@ -36,55 +88,8 @@ struct TabView: View {
                     ).colorInvert()
                 
                 Spacer()
-            }.zIndex(1)
-            
-            VStack {
-                HStack(spacing: 15) {
-                    Spacer()
-                    
-                    Button(action: {},
-                           label: {
-                        Image(systemName: "envelope.fill")
-                            .foregroundColor(.white)
-                            .font(.system(size: 20))
-                        
-                    }).padding(.horizontal, 20)
-                    
-                    Text(user!.name)
-                        .font(.title3)
-                        .foregroundColor(.white)
-                })
-            }
-            .padding()
-            
-            HStack() {
-                Button(action: {
-                    self.nextNotifications.toggle()
-                }, label: {
-                    if new == true {
-                        Image(systemName: "paperplane.circle.fill")
-                            .foregroundColor(.white)
-                    }
-                    else {
-                        Image(systemName: "paperplane.circle")
-                            .foregroundColor(.white)
-                    }
-                })
-                
-                Spacer()
-            }
-            .padding()
-            .onAppear{
-                checkIfChecked { result in
-                    if (result == true) {
-                        self.new = true
-                    }
-                    else {
-                        self.new = false
-                    }
             }
         }
-    }
     }
     
     func checkIfChecked(completion: @escaping ((Bool) -> () )) {

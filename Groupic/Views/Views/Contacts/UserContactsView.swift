@@ -39,7 +39,7 @@ struct UserContactsView: View {
                                         Image("profileImage")
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
-                                            .frame(width: 60, height: 60, alignment: .center)
+                                            .frame(width: 50, height: 50, alignment: .center)
                                             .clipShape(Circle())
                                             .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                                     }
@@ -47,18 +47,19 @@ struct UserContactsView: View {
                                         WebImage(url: URL(string: user.profileImageUrl))
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
-                                            .frame(width: 60, height: 60, alignment: .center)
+                                            .frame(width: 50, height: 50, alignment: .center)
                                             .clipShape(Circle())
                                             .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                                     }
               
                                     Text(user.userName)
-                                        .font(.subheadline)
-                                        .bold()
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 18, weight: .bold))
+                                        .padding(.horizontal)
               
                                     Spacer()
                                 }
-                                .padding()
+                                .padding(10)
                             })
                         }
                 }

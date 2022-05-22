@@ -22,6 +22,7 @@ struct UserProfileHeader: View {
     
     var body: some View {
         ZStack {
+            
             VStack {
                 if user!.backgroundImageUrl == "" {
                     Image("grey")
@@ -62,6 +63,14 @@ struct UserProfileHeader: View {
                                     followService.deleteContact(userId: user!.uid)
                                 }, label: {
                                     Text("Entfernen")
+                                        .font(.system(size: 12, weight: .bold))
+                                        .foregroundColor(Color(.white))
+                                        .font(.headline)
+                                        .padding(5)
+                                        .background(
+                                            Color("lightBlue")
+                                                .cornerRadius(5)
+                                        )
                                 })
                             }
                             else {

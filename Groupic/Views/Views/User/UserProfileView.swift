@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UserProfileView: View {
+    
     @Binding var user: UserModel?
 
     @StateObject var profileService = ProfileService()
@@ -16,10 +17,8 @@ struct UserProfileView: View {
     
     var body: some View {
         ZStack {
-            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
             
-            VStack {
-                UserTabView(user: user!, next: $next)
+            UserTabView(user: user!, next: $next).zIndex(1)
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {}
@@ -29,11 +28,10 @@ struct UserProfileView: View {
                         
                         UserMidTabBarView(user: user!)
                     }
-                    .offset(y: -10)
                 }
-                .background(Color.white)
+                .background(Color("background"))
+                .ignoresSafeArea()
                 .coordinateSpace(name: "pullToRefresh")
-            }
         }
     }
 }

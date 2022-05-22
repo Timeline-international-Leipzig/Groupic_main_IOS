@@ -21,7 +21,7 @@ struct AddContactsView: View {
     
     @Binding var back: Bool
     
-    @State var error = "Hinzufügen deiner Kontakte"
+    @State var error = "Teilnehmer hinzufügen"
 
     @State var alert = false
     
@@ -32,7 +32,8 @@ struct AddContactsView: View {
                 
                 VStack {
                     Text(self.error)
-                        .foregroundColor(Color.black)
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 20, weight: .bold))
                         .padding(.top)
                         .padding(.horizontal, 25)
                         .frame(alignment: .center)
@@ -61,7 +62,7 @@ struct AddContactsView: View {
                                                     Image("profileImage")
                                                         .resizable()
                                                         .aspectRatio(contentMode: .fill)
-                                                        .frame(width: 60, height: 60, alignment: .center)
+                                                        .frame(width: 30, height: 30, alignment: .center)
                                                         .clipShape(Circle())
                                                         .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                                                 }
@@ -69,12 +70,13 @@ struct AddContactsView: View {
                                                     WebImage(url: URL(string: user.profileImageUrl))
                                                         .resizable()
                                                         .aspectRatio(contentMode: .fill)
-                                                        .frame(width: 60, height: 60, alignment: .center)
+                                                        .frame(width: 30, height: 30, alignment: .center)
                                                         .clipShape(Circle())
                                                         .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                                                 }
                           
                                                 Text(user.userName)
+                                                    .foregroundColor(.white)
                                                     .font(.subheadline)
                                                     .bold()
                           
@@ -84,7 +86,15 @@ struct AddContactsView: View {
                                                 Button(action: {
                                                     
                                                 }, label: {
-                                                    Text("Zum Event einladen")
+                                                    Text("Einladen")
+                                                        .foregroundColor(.black)
+                                                        .font(.system(size: 14, weight: .bold))
+                                                        //.font(.headline)
+                                                        .padding(5)
+                                                        .background(
+                                                            Color("lightBlue")
+                                                                .cornerRadius(5)
+                                                        )
                                                 })
                                                 }
                                             }
@@ -98,7 +108,8 @@ struct AddContactsView: View {
                                 EmptyView()
                             })
                             }
-                            .background(Color(.systemGray6))
+                            .background(Color(.systemGray6).cornerRadius(5))
+                            
                         }
                     }
                     .navigationTitle("")
@@ -120,8 +131,9 @@ struct AddContactsView: View {
                     .cornerRadius(10)
                 }
                 .padding(.all, 25)
-                .frame(width: UIScreen.main.bounds.width - 90)
-                .background(Color.white.opacity(0.85))
+                .padding(.top, 50)
+                .frame(width: UIScreen.main.bounds.width - 50)
+                .background(Color.black.opacity(0.85))
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                 .frame(height: UIScreen.main.bounds.height - 50)
                 

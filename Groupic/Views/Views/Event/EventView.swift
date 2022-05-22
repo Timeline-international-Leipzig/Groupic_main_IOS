@@ -58,7 +58,8 @@ struct EventView: View {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(.white)
                         })
-                        .padding()
+                        .padding(.leading, 20)
+                        .padding(.top, 10)
                         
                         Spacer()
                         

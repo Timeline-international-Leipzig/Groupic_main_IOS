@@ -15,12 +15,6 @@ struct SocialFriendsEventsView: View {
     
     var body: some View {
         VStack {
-            Text("Freunde")
-                .foregroundColor(Color(.white))
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
             
             ForEach(profileService.users, id: \.uid) {
                 (user) in

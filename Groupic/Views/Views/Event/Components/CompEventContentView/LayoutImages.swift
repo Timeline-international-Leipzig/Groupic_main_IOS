@@ -18,18 +18,21 @@ struct LayoutImages: View {
         HStack(spacing: 4) {
             if eventElements.count == 1 {
                 if eventElements[0].type == "TEXT" {
-                    HStack {
+                    HStack(spacing: 0) {
                         WebImage(url: URL(string: user.profileImageUrl))
                             .resizable()
                             .scaledToFit()
                             .clipShape(Circle())
                             .frame(width: 60, height: 60, alignment: .trailing)
-                            .padding()
+                            //.padding()
                         
-                        Text(user.userName + ":")
-                        Text(eventElements[0].text)
-                    }
-                    .frame(width: (UIScreen.main.bounds.width) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
+                        Text("\"" + eventElements[0].text + "\"")
+                        
+                        Text(" - " + user.userName)
+                        
+                        Spacer()
+                    }.padding(.leading, 5)
+                    //.frame(width: (UIScreen.main.bounds.width) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
                 }
                 
                 if eventElements[0].type == "IMAGE" {

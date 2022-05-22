@@ -54,7 +54,7 @@ struct ProfileHeader: View {
                                 .font(.headline)
                                 .padding(5)
                                 .background(
-                                    Color(.gray)
+                                    Color("lightBlue")
                                         .cornerRadius(5)
                                 )
                         })
@@ -68,7 +68,7 @@ struct ProfileHeader: View {
                             Image("profileImage")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 125, height: 125, alignment: .center)
+                                .frame(width: 100, height: 100, alignment: .center)
                                 .clipShape(Circle())
                                 .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                         }
@@ -76,13 +76,13 @@ struct ProfileHeader: View {
                             WebImage(url: URL(string: user!.profileImageUrl))
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 125, height: 125, alignment: .center)
+                                .frame(width: 100, height: 100, alignment: .center)
                                 .clipShape(Circle())
                                 .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                         }
                     }
                 }
-                .offset(y: 60)
+                .offset(y: 50)
             }
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)

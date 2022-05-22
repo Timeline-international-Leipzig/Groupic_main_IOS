@@ -19,7 +19,7 @@ struct HighlightPostView: View {
                     Text("Es gibt aktuell noch keine Highlights")
                 }
                 
-                VStack {
+                VStack(spacing: -6) {
                     ForEach(profileService.postsUid, id: \.postId) {
                         (postUid) in
                         
@@ -31,7 +31,7 @@ struct HighlightPostView: View {
                             }
                         }
                     }
-                }
+                }.padding(.top, 5)
             }
         }
         .navigationTitle("")

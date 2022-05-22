@@ -13,21 +13,21 @@ struct SocialUserPostView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(spacing: -6) {
                 ForEach(self.profileService.posts, id: \.dateN) {
                     (post) in
                     
                     ForEach(self.profileService.postsUid, id: \.postId) {
                         (posts) in
-                
+                        
                         if post.postId == posts.postId {
-                    SocialPostCardView(postModel: post, user: user)
-                    //PostCardView(postModel: post)
-                    //PostCardBottomView(postModel: post)
+                            SocialPostCardView(postModel: post, user: user)
+                            //PostCardView(postModel: post)
+                            //PostCardBottomView(postModel: post)
                         }
+                    }
                 }
-                }
-            }
+            }.padding(.top, 5)
         }
         .navigationTitle("")
         .navigationBarHidden(true)

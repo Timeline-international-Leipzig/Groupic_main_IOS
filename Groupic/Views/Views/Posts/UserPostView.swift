@@ -19,7 +19,7 @@ struct UserPostView: View {
                     Text("Es gibt aktuell noch keine Ereignisse")
                 }
             
-                VStack {
+                VStack(spacing: -6) {
                     ForEach(profileService.postsUid, id: \.postId) {
                         (postUid) in
                         
@@ -32,6 +32,7 @@ struct UserPostView: View {
                         }
                     }
                 }
+                .padding(.top, 5)
                 .navigationTitle("")
                 .navigationBarHidden(true)
                 .onAppear {
