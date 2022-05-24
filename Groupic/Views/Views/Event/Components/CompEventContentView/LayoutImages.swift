@@ -39,6 +39,7 @@ struct LayoutImages: View {
                         }
                         
                         Text(user.userName + ":")
+                        
                         Text(eventElements[0].text)
                     }
                     .frame(width: (UIScreen.main.bounds.width) - 1, height: (UIScreen.main.bounds.width / 3) - 1)

@@ -32,7 +32,7 @@ struct RegistrationView: View {
                     })
                     
                     VStack {
-                    
+                        
                         ZStack {
                             
                             Text("Registrierung")
@@ -63,11 +63,11 @@ struct RegistrationView: View {
                     
                     VStack {
                         /*Image("glogo-nb")
-                            .resizable()
-                            .scaledToFill()
-                            .padding(.horizontal, 25)
-                            .padding(.top, 25)
-                            .frame(width: 80, height: 80)*/
+                         .resizable()
+                         .scaledToFill()
+                         .padding(.horizontal, 25)
+                         .padding(.top, 25)
+                         .frame(width: 80, height: 80)*/
                         
                         TextEditField(selectedIndex: 0, header: "E-Mail", image: "mail", textField: "", value: $email)
                         

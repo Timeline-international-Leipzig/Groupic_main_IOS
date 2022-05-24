@@ -19,13 +19,13 @@ struct SocialUserPostView: View {
                     
                     ForEach(self.profileService.postsUid, id: \.postId) {
                         (posts) in
-                
+                        
                         if post.postId == posts.postId {
-                    SocialPostCardView(postModel: post, user: user)
-                    //PostCardView(postModel: post)
-                    //PostCardBottomView(postModel: post)
+                            SocialPostCardView(postModel: post, user: user)
+                            //PostCardView(postModel: post)
+                            //PostCardBottomView(postModel: post)
                         }
-                }
+                    }
                 }
             }
         }
@@ -35,7 +35,7 @@ struct SocialUserPostView: View {
             self.profileService.loadUserPosts(userId: user.uid)
             self.profileService.allPosts(userId: user.uid)
         }
- 
+        
     }
 }
 

@@ -17,6 +17,7 @@
 		87123DA9283BCA0A0071F563 /* EventCardNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DA8283BCA0A0071F563 /* EventCardNotificationView.swift */; };
 		87123DAB283BD3BE0071F563 /* EventCardEventUserPicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DAA283BD3BE0071F563 /* EventCardEventUserPicsView.swift */; };
 		87123DAD283BD43D0071F563 /* EventCardEventContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DAC283BD43D0071F563 /* EventCardEventContent.swift */; };
+		87123DAF283D827D0071F563 /* EventViewNoContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DAE283D827D0071F563 /* EventViewNoContactView.swift */; };
 		872119D0283AD847005F760A /* AddShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872119CF283AD847005F760A /* AddShow.swift */; };
 		8726C8E1274BE9BB006AF1DB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726C8E0274BE9BB006AF1DB /* ImagePicker.swift */; };
 		8738ECB827A1EEB0009A575A /* SocialEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8738ECB727A1EEB0009A575A /* SocialEndView.swift */; };
@@ -169,6 +170,7 @@
 		87123DA8283BCA0A0071F563 /* EventCardNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardNotificationView.swift; sourceTree = "<group>"; };
 		87123DAA283BD3BE0071F563 /* EventCardEventUserPicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardEventUserPicsView.swift; sourceTree = "<group>"; };
 		87123DAC283BD43D0071F563 /* EventCardEventContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardEventContent.swift; sourceTree = "<group>"; };
+		87123DAE283D827D0071F563 /* EventViewNoContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewNoContactView.swift; sourceTree = "<group>"; };
 		872119CF283AD847005F760A /* AddShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShow.swift; sourceTree = "<group>"; };
 		8726C8E0274BE9BB006AF1DB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		8738ECB727A1EEB0009A575A /* SocialEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialEndView.swift; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 			isa = PBXGroup;
 			children = (
 				8767DDF827846FC3008E4B55 /* EventView.swift */,
+				87123DAE283D827D0071F563 /* EventViewNoContactView.swift */,
 				876585D9279F2257005A3EFD /* Components */,
 			);
 			path = Event;
@@ -1270,6 +1273,7 @@
 				8755694C279F4D48002605FA /* MidTabBarView.swift in Sources */,
 				879A9D022835E40900F7E98A /* AddContactsView.swift in Sources */,
 				87F905E228107C4F00993128 /* AGBView.swift in Sources */,
+				87123DAF283D827D0071F563 /* EventViewNoContactView.swift in Sources */,
 				87B205FD281DBDB70072B7CF /* TextEditFieldBlack.swift in Sources */,
 				87FFFCD627EE00D100E64F1D /* EventFollowService.swift in Sources */,
 				87C2ADCD2801C48F0031D5D9 /* HighlightPostCardView.swift in Sources */,

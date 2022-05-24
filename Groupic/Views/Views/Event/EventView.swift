@@ -238,8 +238,6 @@ struct EventView: View {
         self.editProfileImage()
     }
     
-    
-    
     func editProfileImage() {
         let storagePostId = StorageService.storagePostId(postId: postModel.postId)
         let metaData = StorageMetadata()

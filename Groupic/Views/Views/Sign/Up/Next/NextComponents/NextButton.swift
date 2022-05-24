@@ -63,7 +63,7 @@ struct NextButton: View {
         }
         .padding(.top, 45)
     }
-
+    
     //Next View & Error Check
     func checkIfEmailOfAccountExists(completion: @escaping ((Bool) -> () )) {
         self.userCollection.whereField("email", isEqualTo: self.email).getDocuments() {

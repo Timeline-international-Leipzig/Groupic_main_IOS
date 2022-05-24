@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct UserMidTabBarView: View {
-    
     var user: UserModel
     
     @State var selectedIndex = 0
@@ -22,22 +22,22 @@ struct UserMidTabBarView: View {
                     
                     Button(action: {
                         withAnimation(.easeInOut) {
-                        
-                        selectedIndex = num
+                            
+                            selectedIndex = num
                         }
                     }, label: {
                         if num == selectedIndex {
                             ZStack {
                                 Text(tabBarImageName[num])
-                                .foregroundColor(Color("AccentColor"))
-                            
+                                    .foregroundColor(Color("AccentColor"))
+                                
                                 Rectangle()
                                     .fill(Color("AccentColor"))
                                     .frame(width: 68, height: 1, alignment: .center)
                                     .offset(y: 15)
                             }
                         }
-
+                        
                         else {
                             Text(tabBarImageName[num])
                                 .foregroundColor(.black)
@@ -56,15 +56,15 @@ struct UserMidTabBarView: View {
                 case 1:
                     SearchUserPostView(user: user)
                         .padding(.top)
-
+                    
                 case 2:
                     FutureSearchUserPostView(user: user)
                         .padding(.top)
-
+                    
                 case 3:
                     UserContactsView(user: user)
                         .padding(.top)
-
+                    
                 default:
                     Text("Remaining tabs")
                 }

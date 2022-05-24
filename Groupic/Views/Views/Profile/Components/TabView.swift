@@ -12,6 +12,7 @@ struct TabView: View {
     @State var next = false
     @State var nextNotifications = false
     @State var new = false
+    @State var eventNew = false
     
     var user: UserModel?
     
@@ -54,7 +55,7 @@ struct TabView: View {
                 Button(action: {
                     self.nextNotifications.toggle()
                 }, label: {
-                    if new == true {
+                    if new == true || eventNew == true {
                         Image(systemName: "paperplane.circle.fill")
                             .foregroundColor(.white)
                     }
@@ -78,10 +79,10 @@ struct TabView: View {
                     
                     checkIfCheckedEvent { result in
                         if (result == true) {
-                            self.new = true
+                            self.eventNew = true
                         }
                         else {
-                            self.new = false
+                            self.eventNew = false
                         }
                     }
                 }
