@@ -77,16 +77,16 @@ struct TabView: View {
                     }
                     
                     checkIfCheckedEvent { result in
-                    if (result == true) {
-                        self.new = true
-                    }
-                    else {
-                        self.new = false
+                        if (result == true) {
+                            self.new = true
+                        }
+                        else {
+                            self.new = false
+                        }
                     }
                 }
             }
         }
-    }
     }
     
     func checkIfChecked(completion: @escaping ((Bool) -> () )) {

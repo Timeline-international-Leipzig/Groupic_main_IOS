@@ -21,11 +21,11 @@ struct UserNotificationView: View {
         VStack {
             ForEach(profileService.requestsUser, id: \.uid) {
                 (users) in
-      
+                
                 if user.uid == users.uid {
                     Button(action: {
                         self.userSelected = user
-      
+                        
                         next.toggle()
                     }, label: {
                         HStack {
@@ -45,13 +45,13 @@ struct UserNotificationView: View {
                                     .clipShape(Circle())
                                     .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                             }
-      
+                            
                             Text(user.userName)
                                 .font(.subheadline)
                                 .bold()
-      
+                            
                             Spacer()
-      
+                            
                             VStack {
                                 Button(action: {
                                     followService.acceptFollow(userId: user.uid)

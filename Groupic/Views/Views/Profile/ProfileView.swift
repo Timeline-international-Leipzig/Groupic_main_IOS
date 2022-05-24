@@ -14,14 +14,14 @@ struct ProfileView: View {
     var body: some View {
         ZStack {
             Color("AccentColor").ignoresSafeArea(.all, edges: .top)
-        
+            
             VStack {
                 TabView(user: self.session.session)
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
-                            // do your stuff when pulled
-                        }
+                        // do your stuff when pulled
+                    }
                     
                     VStack {
                         ProfileHeader(user: self.session.session!)

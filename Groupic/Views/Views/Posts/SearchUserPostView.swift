@@ -9,7 +9,7 @@ import Firebase
 
 struct SearchUserPostView: View {
     @StateObject var profileService = ProfileService()
-
+    
     @State var user: UserModel
     
     var body: some View {
@@ -18,13 +18,13 @@ struct SearchUserPostView: View {
                 VStack {
                     Text("Es gibt aktuell noch keine Ereignisse")
                 }
-            
+                
                 VStack {
-                    ForEach(profileService.postsUid, id: \.postId) {
-                        (postUid) in
+                    ForEach(self.profileService.posts, id: \.postId) {
+                        (post) in
                         
-                        ForEach(self.profileService.posts, id: \.postId) {
-                            (post) in
+                        ForEach(profileService.postsUid, id: \.postId) {
+                            (postUid) in
                             
                             if postUid.postId == post.postId {
                                 PostCardView(postModel: post, userModel: user)
@@ -32,13 +32,14 @@ struct SearchUserPostView: View {
                         }
                     }
                 }
-                .navigationTitle("")
-                .navigationBarHidden(true)
-                .onAppear {
-                    self.profileService.allPosts(userId: user.uid)
-                    self.profileService.loadUserPosts(userId: user.uid)
-                }
+                .background(Color(.white))
             }
+        }
+        .navigationTitle("")
+        .navigationBarHidden(true)
+        .onAppear {
+            self.profileService.allPosts(userId: user.uid)
+            self.profileService.loadUserPosts(userId: user.uid)
         }
     }
 }

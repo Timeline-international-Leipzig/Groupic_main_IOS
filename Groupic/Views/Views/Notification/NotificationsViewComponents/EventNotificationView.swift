@@ -26,7 +26,7 @@ struct EventNotificationView: View {
                     
                     Button(action: {
                         self.userSelected = user
-      
+                        
                         self.next.toggle()
                     }, label: {
                         HStack {
@@ -46,15 +46,15 @@ struct EventNotificationView: View {
                                     .clipShape(Circle())
                                     .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                             }
-      
+                            
                             Text(user.userName)
                                 .font(.subheadline)
                                 .bold()
                             
                             EventCard(user: user, event: users)
-      
+                            
                             Spacer()
-      
+                            
                             VStack {
                                 Button(action: {
                                     followService.acceptInvite(userId: Auth.auth().currentUser!.uid, postId: users.postId)

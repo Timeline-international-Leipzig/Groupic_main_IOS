@@ -19,12 +19,24 @@ struct LayoutImages: View {
             if eventElements.count == 1 {
                 if eventElements[0].type == "TEXT" {
                     HStack {
-                        WebImage(url: URL(string: user.profileImageUrl))
-                            .resizable()
-                            .scaledToFit()
-                            .clipShape(Circle())
-                            .frame(width: 60, height: 60, alignment: .trailing)
-                            .padding()
+                        VStack {
+                            if user.profileImageUrl == "" {
+                                Image("profileImage")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 25, height: 25, alignment: .center)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
+                            }
+                            else {
+                                WebImage(url: URL(string: user.profileImageUrl))
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 25, height: 25, alignment: .center)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
+                            }
+                        }
                         
                         Text(user.userName + ":")
                         Text(eventElements[0].text)
@@ -33,13 +45,13 @@ struct LayoutImages: View {
                 }
                 
                 if eventElements[0].type == "IMAGE" {
-                WebImage(url: URL(string: eventElements[0].uriOrUid))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: (UIScreen.main.bounds.width / 3) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
-                    .clipped()
-                
-                Spacer()
+                    WebImage(url: URL(string: eventElements[0].uriOrUid))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: (UIScreen.main.bounds.width / 3) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
+                        .clipped()
+                    
+                    Spacer()
                 }
             }
             
@@ -65,16 +77,16 @@ struct LayoutImages: View {
                         Text(eventElements[1].text)
                     }
                     .frame(width: (UIScreen.main.bounds.width) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
-                
-                HStack {
-                WebImage(url: URL(string: eventElements[0].uriOrUid))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: (UIScreen.main.bounds.width / 3) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
-                    .clipped()
-                
-                Spacer()
-                }
+                    
+                    HStack {
+                        WebImage(url: URL(string: eventElements[0].uriOrUid))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: (UIScreen.main.bounds.width / 3) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
+                            .clipped()
+                        
+                        Spacer()
+                    }
                 }
             }
             
@@ -84,22 +96,22 @@ struct LayoutImages: View {
                         Text(eventElements[2].text)
                     }
                     .frame(width: (UIScreen.main.bounds.width) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
-                
-                HStack {
-                WebImage(url: URL(string: eventElements[1].uriOrUid))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: (UIScreen.main.bounds.width / 3) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
-                    .clipped()
                     
-                WebImage(url: URL(string: eventElements[0].uriOrUid))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: (UIScreen.main.bounds.width / 3) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
-                    .clipped()
-                
-                Spacer()
-                }
+                    HStack {
+                        WebImage(url: URL(string: eventElements[1].uriOrUid))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: (UIScreen.main.bounds.width / 3) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
+                            .clipped()
+                        
+                        WebImage(url: URL(string: eventElements[0].uriOrUid))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: (UIScreen.main.bounds.width / 3) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
+                            .clipped()
+                        
+                        Spacer()
+                    }
                 }
             }
             

@@ -23,33 +23,25 @@ struct EventCard: View {
         VStack {
             ForEach(profileService.posts, id: \.postId) {
                 (post) in
-            
-                if post.postId == event.postId {
-            
-            Button(action: {
-                self.post = post
                 
-                self.next.toggle()
-            }, label: {
-                HStack {
-
-                            
+                if post.postId == event.postId {
+                    Button(action: {
+                        self.post = post
+                        self.next.toggle()
+                    }, label: {
+                        HStack {
                             VStack {
                                 Text("Zum Event:")
                                     .font(.subheadline)
                                     .bold()
                                 
-                                
-                            Text(post.caption)
-                                .font(.subheadline)
-                                .bold()
+                                Text(post.caption)
+                                    .font(.subheadline)
+                                    .bold()
                             }
-
-
-                    }
-                .padding()
-                
-        })
+                        }
+                        .padding()
+                    })
                 }
             }
         }

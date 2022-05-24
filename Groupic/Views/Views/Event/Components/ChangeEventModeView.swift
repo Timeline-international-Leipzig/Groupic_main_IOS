@@ -61,22 +61,22 @@ struct ChangeEventModeView: View {
                         }
                         else {
                             if postModel.index == 0 {
-                            Text("Alle")
-                                .foregroundColor(Color("AccentColor"))
-                                .font(.system(size: 20))
+                                Text("Alle")
+                                    .foregroundColor(Color("AccentColor"))
+                                    .font(.system(size: 20))
                             }
                             
                             if postModel.index == 1 {
-                            Text("Teilnehmer")
-                                .foregroundColor(Color("AccentColor"))
-                                .font(.system(size: 20))
+                                Text("Teilnehmer")
+                                    .foregroundColor(Color("AccentColor"))
+                                    .font(.system(size: 20))
                             }
                             
                             if postModel.index == 2 {
-                            Text("Teilnehmer und Kontakte")
-                                .foregroundColor(Color("AccentColor"))
-                                .font(.system(size: 20))
-                        }
+                                Text("Teilnehmer und Kontakte")
+                                    .foregroundColor(Color("AccentColor"))
+                                    .font(.system(size: 20))
+                            }
                         }
                     }
                     

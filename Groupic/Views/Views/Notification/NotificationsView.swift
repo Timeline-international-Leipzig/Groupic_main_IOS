@@ -52,28 +52,27 @@ struct NotificationsView: View {
                 }
                 
                 ScrollView {
-                ZStack {
-                    VStack {
-                        Text("Keine neuen Nachrichten")
-                            .padding(.top)
+                    ZStack {
+                        VStack {
+                            Text("Keine neuen Nachrichten")
+                                .padding(.top)
+                            
+                            Spacer()
+                        }
                         
-                        Spacer()
+                        VStack {
+                            ForEach(profileService.users, id: \.uid) {
+                                (user) in
+                                
+                                UserNotificationView(user: user)
+                                
+                                EventNotificationView(user: user)
+                            }
+                            
+                            Spacer()
+                        }
+                        .background(Color(.systemGray6))
                     }
-                
-                    VStack {
-                      ForEach(profileService.users, id: \.uid) {
-                          (user) in
-                    
-                          UserNotificationView(user: user)
-                          
-                          EventNotificationView(user: user)
-                    }
-                        
-                    Spacer()
-                    
-                    }
-                    .background(Color(.systemGray6))
-                }
                 }
             }
             .background(Color(.systemGray6))
