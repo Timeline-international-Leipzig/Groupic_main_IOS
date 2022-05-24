@@ -14,18 +14,17 @@ struct AddContactsView: View {
     @ObservedObject var followService = FollowService()
     @EnvironmentObject var session: SessionStore
     
-    @State var userSelected: UserModel?
-    @State var users: [UserModel] = []
-    
-    @State var next = false
+    var userCollection = Firestore.firestore().collection("events")
     
     @Binding var back: Bool
+    @Binding var post: PostModel
     
     @State var error = "Hinzufügen deiner Kontakte"
 
     @State var alert = false
     
     var body: some View {
+        
         GeometryReader{_ in
             HStack {
                 Spacer()
@@ -43,7 +42,7 @@ struct AddContactsView: View {
                                 Text("Noch keine Kontakte")
                             }
                         
-                            VStack {
+                        VStack {
                             ForEach(profileService.users, id: \.uid) {
                                 (user) in
                                 
@@ -51,52 +50,12 @@ struct AddContactsView: View {
                                     (users) in
                                     
                                     if user.uid == users.uid {
-                                        Button(action: {
-                                            self.userSelected = user
-                                            
-                                            next.toggle()
-                                        }, label: {
-                                            HStack {
-                                                if user.profileImageUrl == "" {
-                                                    Image("profileImage")
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fill)
-                                                        .frame(width: 60, height: 60, alignment: .center)
-                                                        .clipShape(Circle())
-                                                        .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
-                                                }
-                                                else {
-                                                    WebImage(url: URL(string: user.profileImageUrl))
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fill)
-                                                        .frame(width: 60, height: 60, alignment: .center)
-                                                        .clipShape(Circle())
-                                                        .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
-                                                }
-                          
-                                                Text(user.userName)
-                                                    .font(.subheadline)
-                                                    .bold()
-                          
-                                                Spacer()
-                                                
-                                                VStack {
-                                                Button(action: {
-                                                    
-                                                }, label: {
-                                                    Text("Zum Event einladen")
-                                                })
-                                                }
+                                            VStack {
+                                                AddShow(user: user, post: post)
                                             }
-                                            .padding()
-                                        })
+                                        }
                                     }
-                            }
-                            }
-                            
-                            NavigationLink(destination: UserProfileView(user: $userSelected, next: $next), isActive: self.$next, label: {
-                                EmptyView()
-                            })
+                                }
                             }
                             .background(Color(.systemGray6))
                         }
@@ -106,6 +65,7 @@ struct AddContactsView: View {
                     .onAppear {
                         self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
                         self.profileService.loadUser(userId: Auth.auth().currentUser!.uid)
+                        self.profileService.loadAllEventUsers(postId: post.postId)
                     }
                     
                     Button(action: {
@@ -129,6 +89,27 @@ struct AddContactsView: View {
             }
         }
         .background(Color.black.opacity(0.10).edgesIgnoringSafeArea(.all))
+    }
+    
+    //Next View & Error Check
+    func checkIfEmailOfAccountExists(postId: String, uid: String, completion: @escaping ((Bool) -> () )) {
+        self.userCollection.document(postId).collection("participants").whereField("uid", isEqualTo: uid).getDocuments() {
+            (QuerySnapshot, Error) in
+            if let error = Error {
+                print("Unable to query" + error.localizedDescription)
+                completion(false)
+            }
+            else {
+                if (QuerySnapshot!.count > 0) {
+                    print("There is already a user with this email")
+                    completion(true)
+                }
+                else {
+                    print("There is no user")
+                    completion(false)
+                }
+            }
+        }
     }
 }
 

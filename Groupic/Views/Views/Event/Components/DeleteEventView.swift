@@ -11,11 +11,12 @@ import SwiftUI
 import Firebase
 
 struct DeleteEventView: View {
+    @ObservedObject var followService = FollowService()
     
     @Binding var back: Bool
     @Binding var backCompleteDelete: Bool
     
-    @State var error = "Willst du das Ereignis wirklich löschen?"
+    @State var error = "Willst du das Ereignis wirklich verlassen?"
 
     @State var alert = false
     
@@ -35,10 +36,18 @@ struct DeleteEventView: View {
                         .frame(alignment: .center)
                     
                     Button(action: {
-                        StorageService.deletePost(userId: userModel.uid, postId: postModel.postId, onSuccess: {})
-                        self.backCompleteDelete.toggle()
+                        checkIfCheckedEvent { result in
+                            if (result == true) {
+                                StorageService.deletePost(userId: userModel.uid, postId: postModel.postId, onSuccess: {})
+                                self.backCompleteDelete.toggle()
+                            }
+                            else {
+                                followService.deInvite(userId: Auth.auth().currentUser!.uid, postId: postModel.postId)
+                                self.backCompleteDelete.toggle()
+                            }
+                        }
                     }, label: {
-                        Text("Löschen")
+                        Text("Verlassen")
                             .foregroundColor(.white)
                             .padding(.vertical)
                             .frame(width: UIScreen.main.bounds.width - 120)
@@ -68,6 +77,26 @@ struct DeleteEventView: View {
             }
         }
         .background(Color.black.opacity(0.10).edgesIgnoringSafeArea(.all))
+    }
+    
+    func checkIfCheckedEvent(completion: @escaping ((Bool) -> () )) {
+        ProfileService.followersPostEventCheck(postId: postModel.postId).getDocuments() {
+            (QuerySnapshot, Error) in
+            if let error = Error {
+                print("Unable to query" + error.localizedDescription)
+                completion(false)
+            }
+            else {
+                if (QuerySnapshot!.count > 0) {
+                    print("new message")
+                    completion(true)
+                }
+                else {
+                    print("no new message")
+                    completion(false)
+                }
+            }
+        }
     }
 }
 

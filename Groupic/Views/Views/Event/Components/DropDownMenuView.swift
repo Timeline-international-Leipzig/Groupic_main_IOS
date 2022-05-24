@@ -33,7 +33,7 @@ struct DropDownMenu: View {
             Button {
                 self.deleteEvent.toggle()
             } label: {
-                Text("Ereignis löschen")
+                Text("Ereignis verlassen")
             }
             
             /*

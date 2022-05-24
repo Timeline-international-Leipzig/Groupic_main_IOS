@@ -75,6 +75,15 @@ struct TabView: View {
                     else {
                         self.new = false
                     }
+                    
+                    checkIfCheckedEvent { result in
+                    if (result == true) {
+                        self.new = true
+                    }
+                    else {
+                        self.new = false
+                    }
+                }
             }
         }
     }
@@ -82,6 +91,26 @@ struct TabView: View {
     
     func checkIfChecked(completion: @escaping ((Bool) -> () )) {
         ProfileService.followersCheck(userId: user!.uid).whereField("globalCheck", isEqualTo: false).getDocuments() {
+            (QuerySnapshot, Error) in
+            if let error = Error {
+                print("Unable to query" + error.localizedDescription)
+                completion(false)
+            }
+            else {
+                if (QuerySnapshot!.count > 0) {
+                    print("new message")
+                    completion(true)
+                }
+                else {
+                    print("no new message")
+                    completion(false)
+                }
+            }
+        }
+    }
+    
+    func checkIfCheckedEvent(completion: @escaping ((Bool) -> () )) {
+        ProfileService.followersEventCheck(userId: user!.uid).getDocuments() {
             (QuerySnapshot, Error) in
             if let error = Error {
                 print("Unable to query" + error.localizedDescription)

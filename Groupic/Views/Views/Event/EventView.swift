@@ -104,8 +104,10 @@ struct EventView: View {
                         .foregroundColor(.secondary)
                         .padding(-10)
                         
+                        /*
                         FollowEventButton(post: postModel, followCheck: $profileService.followCheck)
                             .padding()
+                        */
                         
                         Text("Mit:")
                             .foregroundColor(.secondary)
@@ -175,7 +177,7 @@ struct EventView: View {
             }
             
             if self.alertAdd {
-               AddContactsView(back: $alertAdd)
+                AddContactsView(back: $alertAdd, post: $postModel)
             }
             
             if self.changeEventMode {

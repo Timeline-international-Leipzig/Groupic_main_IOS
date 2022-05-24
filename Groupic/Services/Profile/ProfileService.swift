@@ -15,7 +15,9 @@ class ProfileService: ObservableObject {
     @Published var users: [UserModel] = []
     @Published var usersUid: [UidUserModel] = []
     @Published var followUsers: [UidUserModel] = []
+    @Published var eventUsers: [UidUserModel] = []
     @Published var requestsUser: [UidCheckUserModel] = []
+    @Published var requestsEventUser: [InviteUidModel] = []
     @Published var followPosts: [PostUidModel] = []
     
     @Published var eventElements: [EventContentModel] = []
@@ -42,6 +44,22 @@ class ProfileService: ObservableObject {
         return follow.document(Auth.auth().currentUser!.uid).collection("contactRequest").document(userId)
     }
     
+    static func checkfollowingEventId(postId: String, userId: String) -> DocumentReference {
+        return follow.document(postId).collection("requestedParticipants").document(userId)
+    }
+    
+    static func followingEventId(postId: String) -> DocumentReference {
+        return follow.document(Auth.auth().currentUser!.uid).collection("eventRequest").document(postId)
+    }
+    
+    static func InviteIntoEventId(postId: String, userId: String) -> DocumentReference {
+        return follow.document(userId).collection("eventRequest").document(postId)
+    }
+    
+    static func acceptInviteIntoEventId(postId: String, userId: String) -> DocumentReference {
+        return follow.document(userId).collection("events").document(postId)
+    }
+    
     static func delfollowingId(userId: String) -> DocumentReference {
         return follow.document(Auth.auth().currentUser!.uid).collection("requestsForContact").document(userId)
     }
@@ -54,12 +72,16 @@ class ProfileService: ObservableObject {
         return follow.document(Auth.auth().currentUser!.uid).collection("contact").document(userId)
     }
     
-    static func followingEventId(postId: String) -> DocumentReference {
-        return follow.document(Auth.auth().currentUser!.uid).collection("events").document(postId)
-    }
-    
     static func followersEventId(postId: String) -> DocumentReference {
         return followEvent.document(postId).collection("participants").document(Auth.auth().currentUser!.uid)
+    }
+    
+    static func followersInviteEventId(postId: String, userId: String) -> DocumentReference {
+        return followEvent.document(postId).collection("requestedParticipants").document(userId)
+    }
+    
+    static func acceptFollowersInviteEventId(postId: String, userId: String) -> DocumentReference {
+        return followEvent.document(postId).collection("participants").document(userId)
     }
     
     static func followersId(userId: String) -> DocumentReference {
@@ -80,6 +102,14 @@ class ProfileService: ObservableObject {
     
     static func followersCheck(userId: String) -> CollectionReference {
         return follow.document(userId).collection("requestsForContact")
+    }
+    
+    static func followersEventCheck(userId: String) -> CollectionReference {
+        return follow.document(userId).collection("eventRequest")
+    }
+    
+    static func followersPostEventCheck(postId: String) -> CollectionReference {
+        return follow.document(postId).collection("participants")
     }
     
     static func contactCheck(userId: String) -> CollectionReference {
@@ -152,7 +182,24 @@ class ProfileService: ObservableObject {
         PostService.loadUser(userId: userId) {
             (users) in
             
+            
             self.followUsers = users
+        }
+    }
+    
+    func loadtUser(userId: String, postId: String) {
+        PostService.loadUser(userId: userId) {
+            (users) in
+            
+            PostService.loadAllEventUserUid(postId: postId) {
+                (usersEvent) in
+            
+                if users == usersEvent {
+                }
+                else {
+                    self.eventUsers = users
+                }
+            }
         }
     }
     
@@ -161,6 +208,14 @@ class ProfileService: ObservableObject {
             (users) in
             
             self.requestsUser = users
+        }
+    }
+    
+    func loadRequestEvent(userId: String) {
+        PostService.loadRequestEvent(userId: userId) {
+            (users) in
+            
+            self.requestsEventUser = users
         }
     }
     

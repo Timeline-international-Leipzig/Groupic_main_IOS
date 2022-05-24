@@ -20,13 +20,13 @@ struct FutureUserPostView: View {
                 VStack {
                     Text("Es gibt aktuell noch keine zukünftigen Ereignisse")
                 }
-            
+                
                 VStack {
-                    ForEach(profileService.postsUid, id: \.postId) {
-                        (postUid) in
+                    ForEach(self.profileService.posts, id: \.postId) {
+                        (post) in
                         
-                        ForEach(self.profileService.posts, id: \.postId) {
-                            (post) in
+                        ForEach(profileService.postsUid, id: \.postId) {
+                            (postUid) in
                             
                             if (postUid.postId == post.postId) && post.startDate > date {
                                 PostCardView(postModel: post, userModel: self.session.session!)
@@ -34,6 +34,7 @@ struct FutureUserPostView: View {
                         }
                     }
                 }
+                .background(Color(.white))
             }
         }
         .navigationTitle("")

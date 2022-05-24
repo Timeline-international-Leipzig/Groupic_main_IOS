@@ -180,6 +180,34 @@ class PostService {
         }
     }
     
+    static func loadEventUser(userId: String, onSuccess: @escaping(_
+      users: [UidUserModel]) -> Void) {
+        PostService.userId(userId: userId).collection("contact").getDocuments {
+            (snapShot, error) in
+            
+            guard let snap = snapShot else {
+                print("Error")
+                return
+            }
+            
+            var followUsers = [UidUserModel]()
+            
+            for doc in snap.documents {
+                let dict = doc.data()
+                guard let decoder = try? UidUserModel.init(fromDictionary: dict)
+                        
+                else {
+                    return
+                }
+                
+                followUsers.append(decoder)
+            }
+            
+            onSuccess(followUsers)
+        }
+    }
+    
+    
     static func loadRequestUser(userId: String, onSuccess: @escaping(_
       users: [UidCheckUserModel]) -> Void) {
         PostService.userId(userId: userId).collection("requestsForContact").getDocuments {
@@ -204,6 +232,33 @@ class PostService {
             }
             
             onSuccess(followUsers)
+        }
+    }
+    
+    static func loadRequestEvent(userId: String, onSuccess: @escaping(_
+      users: [InviteUidModel]) -> Void) {
+        PostService.userId(userId: userId).collection("eventRequest").getDocuments {
+            (snapShot, error) in
+            
+            guard let snap = snapShot else {
+                print("Error")
+                return
+            }
+            
+            var eventUsers = [InviteUidModel]()
+            
+            for doc in snap.documents {
+                let dict = doc.data()
+                guard let decoder = try? InviteUidModel.init(fromDictionary: dict)
+                        
+                else {
+                    return
+                }
+                
+                eventUsers.append(decoder)
+            }
+            
+            onSuccess(eventUsers)
         }
     }
     

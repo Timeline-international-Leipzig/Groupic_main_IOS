@@ -18,13 +18,13 @@ struct UserPostView: View {
                 VStack {
                     Text("Es gibt aktuell noch keine Ereignisse")
                 }
-            
+                
                 VStack {
-                    ForEach(profileService.postsUid, id: \.postId) {
-                        (postUid) in
+                    ForEach(self.profileService.posts, id: \.postId) {
+                        (post) in
                         
-                        ForEach(self.profileService.posts, id: \.postId) {
-                            (post) in
+                        ForEach(profileService.postsUid, id: \.postId) {
+                            (postUid) in
                             
                             if postUid.postId == post.postId {
                                 PostCardView(postModel: post, userModel: self.session.session!)
@@ -32,13 +32,14 @@ struct UserPostView: View {
                         }
                     }
                 }
-                .navigationTitle("")
-                .navigationBarHidden(true)
-                .onAppear {
-                    self.profileService.allPosts(userId: Auth.auth().currentUser!.uid)
-                    self.profileService.loadUserPosts(userId: Auth.auth().currentUser!.uid)
-                }
+                .background(Color(.white))
             }
+        }
+        .navigationTitle("")
+        .navigationBarHidden(true)
+        .onAppear {
+            self.profileService.allPosts(userId: Auth.auth().currentUser!.uid)
+            self.profileService.loadUserPosts(userId: Auth.auth().currentUser!.uid)
         }
     }
 }

@@ -27,59 +27,59 @@ struct ContactsView: View {
                 }
             
                 VStack {
-                ForEach(profileService.users, id: \.uid) {
-                    (user) in
-                    
-                    ForEach(profileService.followUsers, id: \.uid) {
-                        (users) in
+                    ForEach(profileService.users, id: \.uid) {
+                        (user) in
                         
-                        if user.uid == users.uid {
-                            Button(action: {
-                                self.userSelected = user
-                                
-                                next.toggle()
-                            }, label: {
-                                HStack {
-                                    if user.profileImageUrl == "" {
-                                        Image("profileImage")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 60, height: 60, alignment: .center)
-                                            .clipShape(Circle())
-                                            .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
-                                    }
-                                    else {
-                                        WebImage(url: URL(string: user.profileImageUrl))
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 60, height: 60, alignment: .center)
-                                            .clipShape(Circle())
-                                            .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
-                                    }
-              
-                                    Text(user.userName)
-                                        .font(.subheadline)
-                                        .bold()
-              
-                                    Spacer()
+                        ForEach(profileService.followUsers, id: \.uid) {
+                            (users) in
+                            
+                            if user.uid == users.uid {
+                                Button(action: {
+                                    self.userSelected = user
                                     
-                                    VStack {
-                                    Button(action: {
-                                        followService.deleteContact(userId: user.uid)
-                                    }, label: {
-                                        Text("Entfernen")
-                                    })
+                                    next.toggle()
+                                }, label: {
+                                    HStack {
+                                        if user.profileImageUrl == "" {
+                                            Image("profileImage")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 60, height: 60, alignment: .center)
+                                                .clipShape(Circle())
+                                                .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
+                                        }
+                                        else {
+                                            WebImage(url: URL(string: user.profileImageUrl))
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 60, height: 60, alignment: .center)
+                                                .clipShape(Circle())
+                                                .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
+                                        }
+                                        
+                                        Text(user.userName)
+                                            .font(.subheadline)
+                                            .bold()
+                                        
+                                        Spacer()
+                                        
+                                        VStack {
+                                            Button(action: {
+                                                followService.deleteContact(userId: user.uid)
+                                            }, label: {
+                                                Text("Entfernen")
+                                            })
+                                        }
                                     }
-                                }
-                                .padding()
-                            })
+                                    .padding()
+                                })
+                            }
                         }
-                }
-                }
-                
-                NavigationLink(destination: UserProfileView(user: $userSelected, next: $next), isActive: self.$next, label: {
-                    EmptyView()
-                })
+                    }
+                    
+                    NavigationLink(destination: UserProfileView(user: $userSelected, next: $next), isActive: self.$next, label: {
+                        EmptyView()
+                    })
                 }
                 .background(Color(.systemGray6))
             }

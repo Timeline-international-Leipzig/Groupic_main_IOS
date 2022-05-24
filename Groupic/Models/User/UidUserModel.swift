@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UidUserModel: Encodable, Decodable {
+struct UidUserModel: Encodable, Decodable, Equatable {
     var uid: String
 }
 

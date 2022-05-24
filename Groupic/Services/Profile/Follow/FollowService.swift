@@ -168,6 +168,92 @@ class FollowService: ObservableObject {
         }
     }
     
+    func inviteIntoEvent(userId: String, postId: String) {
+        let user = InviteUidModel.init(userId: Auth.auth().currentUser!.uid, postId: postId)
+        let userUid = UidUserModel.init(uid: userId)
+
+        guard let dict = try? user.asDictionary() else {
+            return
+        }
+        
+        guard let dictUid = try? userUid.asDictionary() else {
+            return
+        }
+        
+        ProfileService.InviteIntoEventId(postId: postId, userId: userId).setData(dict) {_ in}
+            
+        ProfileService.followersInviteEventId(postId: postId, userId: userId).setData(dictUid) {_ in}
+    }
+    
+    func delInviteIntoEvent(userId: String, postId: String) {
+        ProfileService.InviteIntoEventId(postId: postId, userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+        
+        ProfileService.followersInviteEventId(postId: postId, userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+    }
+    
+    func acceptInvite(userId: String, postId: String) {
+        let user = InviteUidModel.init(userId: Auth.auth().currentUser!.uid, postId: postId)
+        let userUid = UidUserModel.init(uid: userId)
+
+        guard let dict = try? user.asDictionary() else {
+            return
+        }
+        
+        guard let dictUid = try? userUid.asDictionary() else {
+            return
+        }
+        
+        ProfileService.acceptInviteIntoEventId(postId: postId, userId: userId).setData(dict) {_ in}
+            
+        ProfileService.acceptFollowersInviteEventId(postId: postId, userId: userId).setData(dictUid) {_ in}
+        
+        ProfileService.InviteIntoEventId(postId: postId, userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+        
+        ProfileService.followersInviteEventId(postId: postId, userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+    }
+    
+    func deInvite(userId: String, postId: String) {
+        ProfileService.acceptInviteIntoEventId(postId: postId, userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+        
+        ProfileService.acceptFollowersInviteEventId(postId: postId, userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+    }
+    
     func followEvent(postId: String, currentUserUid: String) {
         
         let post = PostUidModel.init(postId: postId)

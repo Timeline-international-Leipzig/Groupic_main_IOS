@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		1C3A339A011E4335FC3CC3D2 /* Pods_Groupic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF5DFF72B84D272415E73451 /* Pods_Groupic.framework */; };
 		52C9769C7D19BB641E003CB1 /* Pods_GroupicTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42FF11F326DF1A7F7141191B /* Pods_GroupicTests.framework */; };
+		87123D9D283B69780071F563 /* EventInviteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123D9C283B69780071F563 /* EventInviteButton.swift */; };
+		87123D9F283B737B0071F563 /* InviteUidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123D9E283B737B0071F563 /* InviteUidModel.swift */; };
+		87123DA2283BAD5A0071F563 /* EventNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DA1283BAD5A0071F563 /* EventNotificationView.swift */; };
+		87123DA4283BAD750071F563 /* UserNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DA3283BAD750071F563 /* UserNotificationView.swift */; };
+		87123DA7283BBA4A0071F563 /* EventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DA6283BBA4A0071F563 /* EventCard.swift */; };
+		87123DA9283BCA0A0071F563 /* EventCardNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DA8283BCA0A0071F563 /* EventCardNotificationView.swift */; };
+		87123DAB283BD3BE0071F563 /* EventCardEventUserPicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DAA283BD3BE0071F563 /* EventCardEventUserPicsView.swift */; };
+		87123DAD283BD43D0071F563 /* EventCardEventContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DAC283BD43D0071F563 /* EventCardEventContent.swift */; };
+		872119D0283AD847005F760A /* AddShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872119CF283AD847005F760A /* AddShow.swift */; };
 		8726C8E1274BE9BB006AF1DB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726C8E0274BE9BB006AF1DB /* ImagePicker.swift */; };
 		8738ECB827A1EEB0009A575A /* SocialEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8738ECB727A1EEB0009A575A /* SocialEndView.swift */; };
 		87391072276792A400D6D090 /* SocialFriendsEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87391071276792A400D6D090 /* SocialFriendsEventsView.swift */; };
@@ -152,6 +161,15 @@
 		7E392645728E5A3FF674CDD4 /* Pods-Groupic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Groupic.debug.xcconfig"; path = "Target Support Files/Pods-Groupic/Pods-Groupic.debug.xcconfig"; sourceTree = "<group>"; };
 		7EAD4F782C79F5C9AAF96B86 /* Pods_Groupic_GroupicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Groupic_GroupicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		814CEF92704BB099A4DCD1B5 /* Pods-Groupic-GroupicUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Groupic-GroupicUITests.debug.xcconfig"; path = "Target Support Files/Pods-Groupic-GroupicUITests/Pods-Groupic-GroupicUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		87123D9C283B69780071F563 /* EventInviteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInviteButton.swift; sourceTree = "<group>"; };
+		87123D9E283B737B0071F563 /* InviteUidModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteUidModel.swift; sourceTree = "<group>"; };
+		87123DA1283BAD5A0071F563 /* EventNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNotificationView.swift; sourceTree = "<group>"; };
+		87123DA3283BAD750071F563 /* UserNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationView.swift; sourceTree = "<group>"; };
+		87123DA6283BBA4A0071F563 /* EventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCard.swift; sourceTree = "<group>"; };
+		87123DA8283BCA0A0071F563 /* EventCardNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardNotificationView.swift; sourceTree = "<group>"; };
+		87123DAA283BD3BE0071F563 /* EventCardEventUserPicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardEventUserPicsView.swift; sourceTree = "<group>"; };
+		87123DAC283BD43D0071F563 /* EventCardEventContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardEventContent.swift; sourceTree = "<group>"; };
+		872119CF283AD847005F760A /* AddShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShow.swift; sourceTree = "<group>"; };
 		8726C8E0274BE9BB006AF1DB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		8738ECB727A1EEB0009A575A /* SocialEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialEndView.swift; sourceTree = "<group>"; };
 		87391071276792A400D6D090 /* SocialFriendsEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFriendsEventsView.swift; sourceTree = "<group>"; };
@@ -326,6 +344,27 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		87123DA0283B955D0071F563 /* NotificationsViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				87123DA1283BAD5A0071F563 /* EventNotificationView.swift */,
+				87123DA5283BBA240071F563 /* ComponentsEventNotificationView */,
+				87123DA3283BAD750071F563 /* UserNotificationView.swift */,
+			);
+			path = NotificationsViewComponents;
+			sourceTree = "<group>";
+		};
+		87123DA5283BBA240071F563 /* ComponentsEventNotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				87123DA6283BBA4A0071F563 /* EventCard.swift */,
+				87123DA8283BCA0A0071F563 /* EventCardNotificationView.swift */,
+				87123DAA283BD3BE0071F563 /* EventCardEventUserPicsView.swift */,
+				87123DAC283BD43D0071F563 /* EventCardEventContent.swift */,
+			);
+			path = ComponentsEventNotificationView;
+			sourceTree = "<group>";
+		};
 		8726C8DF274BE955006AF1DB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +527,7 @@
 				87B2060828205FD40072B7CF /* ComponentsEventUserPicsView */,
 				87B2061128235FA20072B7CF /* EventQuoteView.swift */,
 				879A9D012835E40900F7E98A /* AddContactsView.swift */,
+				872119CF283AD847005F760A /* AddShow.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -583,6 +623,7 @@
 		877C3CC0278EEAAA00D59EEC /* Notification */ = {
 			isa = PBXGroup;
 			children = (
+				87123DA0283B955D0071F563 /* NotificationsViewComponents */,
 				878EC9C927614F6300639884 /* NotificationsView.swift */,
 			);
 			path = Notification;
@@ -667,6 +708,7 @@
 			isa = PBXGroup;
 			children = (
 				87B20609282060020072B7CF /* HorizontalPicView.swift */,
+				87123D9C283B69780071F563 /* EventInviteButton.swift */,
 			);
 			path = ComponentsEventUserPicsView;
 			sourceTree = "<group>";
@@ -800,6 +842,7 @@
 				87C2ADD628035F4D0031D5D9 /* PostUidModel.swift */,
 				87B20604282019E80072B7CF /* PostPicturesViewModel.swift */,
 				87B2060F2822021B0072B7CF /* EventContentModel.swift */,
+				87123D9E283B737B0071F563 /* InviteUidModel.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -1238,6 +1281,7 @@
 				DC3AA6E7270B0CFD002B2649 /* AppDelegate.swift in Sources */,
 				87C2ADD1280350DB0031D5D9 /* SocialUserPostView.swift in Sources */,
 				8726C8E1274BE9BB006AF1DB /* ImagePicker.swift in Sources */,
+				87123DA4283BAD750071F563 /* UserNotificationView.swift in Sources */,
 				8738ECB827A1EEB0009A575A /* SocialEndView.swift in Sources */,
 				873E23CC277A210500CAE2E1 /* PopUpButtonView.swift in Sources */,
 				87700E1D27E668BF00841E5B /* UserMidTabBar.swift in Sources */,
@@ -1249,6 +1293,7 @@
 				875A74AB277E1F0E00F6B59D /* PostModel.swift in Sources */,
 				87FFFCDA27EE118D00E64F1D /* SaveFile.swift in Sources */,
 				87B205FB281DB2270072B7CF /* EventNameView.swift in Sources */,
+				87123DA2283BAD5A0071F563 /* EventNotificationView.swift in Sources */,
 				877C3CC5278EF74100D59EEC /* UserPostView.swift in Sources */,
 				878EC9CA27614F6300639884 /* NotificationsView.swift in Sources */,
 				87B45EDF28089BF0001F1FEA /* VerificationView.swift in Sources */,
@@ -1261,11 +1306,13 @@
 				8767DDF927846FC3008E4B55 /* EventView.swift in Sources */,
 				876AF08C27E3804F00FEF21A /* FollowService.swift in Sources */,
 				876585E1279F22FF005A3EFD /* Pictures.swift in Sources */,
+				87123DAD283BD43D0071F563 /* EventCardEventContent.swift in Sources */,
 				87700E1B27E6680A00841E5B /* SearchUserPostView.swift in Sources */,
 				87700E2127E8D17C00841E5B /* UserPostCardView.swift in Sources */,
 				8792909A274D097600B534C9 /* StorageService.swift in Sources */,
 				DC3AA6A82701F6EB002B2649 /* LoginView.swift in Sources */,
 				87929096274D08C000B534C9 /* AuthService.swift in Sources */,
+				87123DA7283BBA4A0071F563 /* EventCard.swift in Sources */,
 				87535A0A2791ED6F0064EB0C /* TabView.swift in Sources */,
 				876585DF279F22E7005A3EFD /* Picture.swift in Sources */,
 				87FFFCE527F0E3DB00E64F1D /* UidUserModel.swift in Sources */,
@@ -1276,6 +1323,7 @@
 				87535A062791E3210064EB0C /* PulltoRefreshAnimationView.swift in Sources */,
 				8742C0E4274EC91C008A3AAB /* FormViewModel.swift in Sources */,
 				87B205F9281AE79C0072B7CF /* EventViewHeader.swift in Sources */,
+				87123DA9283BCA0A0071F563 /* EventCardNotificationView.swift in Sources */,
 				876AF08327DF7C4800FEF21A /* SearchService.swift in Sources */,
 				87B2060728205B810072B7CF /* EventUserPicsView.swift in Sources */,
 				87B205FF281F08A20072B7CF /* ChangeEventModeView.swift in Sources */,
@@ -1290,6 +1338,7 @@
 				87C2ADC92801B41B0031D5D9 /* HighlightButton.swift in Sources */,
 				DC3AA751270CA480002B2649 /* UserModel.swift in Sources */,
 				87F905E82811B6E100993128 /* SupportView.swift in Sources */,
+				87123D9F283B737B0071F563 /* InviteUidModel.swift in Sources */,
 				875A11C427930D00000E181F /* PostCardView.swift in Sources */,
 				DC3AA6F2270B1E49002B2649 /* PersonInfoView.swift in Sources */,
 				878655A6278383E700246351 /* PostService.swift in Sources */,
@@ -1312,15 +1361,18 @@
 				87B206102822021B0072B7CF /* EventContentModel.swift in Sources */,
 				87B205F4281982EC0072B7CF /* ReEmailView.swift in Sources */,
 				87B20601281F279F0072B7CF /* DeleteEventView.swift in Sources */,
+				872119D0283AD847005F760A /* AddShow.swift in Sources */,
 				874C956E274FAE6700466D22 /* PasswordStatus.swift in Sources */,
 				879A9CFE28350E2F00F7E98A /* UserFutureUserPostView.swift in Sources */,
 				87CAF00527FE0FDC002B4073 /* PersonInfoViewNoPictures.swift in Sources */,
 				876AF08627DF80DF00FEF21A /* UserProfile.swift in Sources */,
 				87B205EE28186F1D0072B7CF /* ReautheticationView.swift in Sources */,
 				876585DD279F22C0005A3EFD /* HorizontalView.swift in Sources */,
+				87123D9D283B69780071F563 /* EventInviteButton.swift in Sources */,
 				87C2ADD528035E130031D5D9 /* FollowEventButton.swift in Sources */,
 				87700E1F27E67FC000841E5B /* UserTabView.swift in Sources */,
 				87C2ADC72800B2760031D5D9 /* UserContactsView.swift in Sources */,
+				87123DAB283BD3BE0071F563 /* EventCardEventUserPicsView.swift in Sources */,
 				87700E1927E5324000841E5B /* UserProfileHeader.swift in Sources */,
 				DC3AA703270BA182002B2649 /* SecureTextEditField.swift in Sources */,
 			);
