@@ -19,20 +19,20 @@ struct UserHighlightPostView: View {
                 VStack {
                     Text("Es gibt aktuell noch keine Highlights")
                 }
-            
-             VStack {
-                 ForEach(profileService.postsUid, id: \.postId) {
-                     (postUid) in
-            
-                     ForEach(self.profileService.posts, id: \.postId) {
-                         (post) in
-            
-                         if (postUid.postId == post.postId) && post.highlighted == true {
-                            PostCardView(postModel: post, userModel: user)
-                         }
-                     }
-                 }
-             }
+                
+                VStack(spacing: -6) {
+                    ForEach(profileService.postsUid, id: \.postId) {
+                        (postUid) in
+                        
+                        ForEach(self.profileService.posts, id: \.postId) {
+                            (post) in
+                            
+                            if (postUid.postId == post.postId) && post.highlighted == true {
+                                PostCardView(postModel: post, userModel: user)
+                            }
+                        }
+                    }
+                }.padding(.top, 5)
             }
         }
         .navigationTitle("")

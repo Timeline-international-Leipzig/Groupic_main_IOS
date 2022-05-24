@@ -42,6 +42,7 @@ struct ProfileHeader: View {
                         Text(user!.userName)
                             .font(.system(size: 20, weight: .bold))
                             .foregroundColor(.white)
+                            .padding(.leading, 10)
                         
                         Spacer()
                         
@@ -54,7 +55,7 @@ struct ProfileHeader: View {
                                 .font(.headline)
                                 .padding(5)
                                 .background(
-                                    Color("lightBlue")
+                                    Color("buttonColor")
                                         .cornerRadius(5)
                                 )
                         })

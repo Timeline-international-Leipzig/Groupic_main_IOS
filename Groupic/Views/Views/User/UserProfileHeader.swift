@@ -41,7 +41,10 @@ struct UserProfileHeader: View {
                 
                 
                 HStack {
-                    Text(user!.userName).bold()
+                    Text(user!.userName)
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.leading, 10)
                     
                     Spacer()
                     
@@ -49,11 +52,16 @@ struct UserProfileHeader: View {
                         Button(action: {
                             self.nextProfile.toggle()
                         }, label: {
-                            Text("Bearbeiten")
-                                .background(Color.gray)
-                                .foregroundColor(.black)
+                            Text("Profil Bearbeiten")
+                                .font(.system(size: 12, weight: .bold))
+                                .foregroundColor(Color(.white))
+                                .font(.headline)
+                                .padding(5)
+                                .background(
+                                    Color("buttonColor")
+                                        .cornerRadius(5)
+                                )
                         })
-                        .padding()
                     }
                     
                     else {
@@ -68,7 +76,7 @@ struct UserProfileHeader: View {
                                         .font(.headline)
                                         .padding(5)
                                         .background(
-                                            Color("lightBlue")
+                                            Color("buttonColor")
                                                 .cornerRadius(5)
                                         )
                                 })
@@ -91,7 +99,8 @@ struct UserProfileHeader: View {
                         }
                     }
                 }
-                .padding()
+                .padding(.horizontal, 8)
+                    .padding(.vertical, 20)
             }
             
             ZStack {

@@ -41,7 +41,7 @@ struct AddEventView: View {
             ZStack {
                 VStack {
                     Text("Erstelle ein Ereignis")
-                        .foregroundColor(Color("lightBlue"))
+                        .foregroundColor(Color("themeColor2"))
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -133,7 +133,7 @@ struct AddEventView: View {
                             selectedIndex: $selection,
                             titles: ["Jeder", "Teilnehmer", "Teilnehmer und deren Kontakte"])
                                 .spacing(20)
-                                .colorMultiply(Color.white)
+                                .accentColor(.white)
                             
                         }
                         .padding(.horizontal, 60)

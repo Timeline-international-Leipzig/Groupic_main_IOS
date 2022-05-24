@@ -15,7 +15,7 @@ struct DeleteEventView: View {
     @Binding var back: Bool
     @Binding var backCompleteDelete: Bool
     
-    @State var error = "Willst du das Ereignis wirklich löschen?"
+    @State var error = "Das Ereignis löschen?"
 
     @State var alert = false
     
@@ -32,7 +32,7 @@ struct DeleteEventView: View {
                         .foregroundColor(Color.white)
                         .padding(.top)
                         .padding(.horizontal, 25)
-                        .frame(alignment: .center)
+                        .hCenter()
                     
                     Button(action: {
                         StorageService.deletePost(userId: userModel.uid, postId: postModel.postId, onSuccess: {})
@@ -60,7 +60,7 @@ struct DeleteEventView: View {
                 }
                 .padding(.all, 25)
                 .frame(width: UIScreen.main.bounds.width - 90)
-                .background(Color.black.opacity(0.85))
+                .background(Color.black.opacity(0.95))
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                 .frame(height: UIScreen.main.bounds.height - 50)
                 

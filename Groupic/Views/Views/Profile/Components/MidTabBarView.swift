@@ -33,7 +33,7 @@ struct MidTabBarView: View {
                             Spacer()
                             
                             Text(tabBarImageName[num])
-                                .foregroundColor(Color("lightBlue"))
+                                .foregroundColor(Color(.white))
                                 .scaledToFill()
                                 .minimumScaleFactor(0.5)
                                 .lineLimit(1)
@@ -74,7 +74,7 @@ struct MidTabBarView: View {
                             Spacer()
                         }
                         Rectangle()
-                            .fill(Color("lightBlue"))
+                            .fill(Color("themeColor2"))
                             .frame(width: UIScreen.main.bounds.width * 0.25, height: 3, alignment: .leading)
                         if selectedIndex == 0 { Spacer() }
                         if selectedIndex == 1 {
@@ -97,7 +97,7 @@ struct MidTabBarView: View {
                 TextField(" ", text: $textFieldText)
                     .padding(.all, 5)
                     .accentColor(.white)
-                    .background(Color("background"))
+                    .background(Color("mainColor"))
                     .foregroundColor(Color.white)
                     .cornerRadius(10)
                     .padding()

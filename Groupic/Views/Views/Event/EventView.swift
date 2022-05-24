@@ -212,7 +212,7 @@ struct EventView: View {
                 EventQuoteView(back: $textQuote, userModel: $userModel, postModel: $postModel, quote: $quote)
             }
         }
-        .background(Color("background"))
+        .background(Color("mainColor"))
         .ignoresSafeArea()
         .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
             ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)

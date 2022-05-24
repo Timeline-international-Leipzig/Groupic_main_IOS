@@ -23,7 +23,7 @@ struct SearchBar: View {
                 TextField("", text: $value)
                     .padding(.all, 5)
                     .accentColor(.white)
-                    .background(Color("background"))
+                    .background(Color("mainColor"))
                     .foregroundColor(Color.white)
                     .cornerRadius(10)
                     .padding()

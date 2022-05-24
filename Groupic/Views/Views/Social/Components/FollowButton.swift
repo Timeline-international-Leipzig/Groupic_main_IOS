@@ -73,7 +73,7 @@ struct FollowButton: View {
                 .font(.system(size: 10, weight: .bold))
                 .padding(5)
                 .background(
-                    Color("lightBlue")
+                    Color("buttonColor")
                         .cornerRadius(5)
                 )        })
     }

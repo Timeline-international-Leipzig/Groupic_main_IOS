@@ -21,7 +21,7 @@ struct UserContactsView: View {
                     Text("Noch keine Kontakte")
                 }
             
-            VStack {
+                VStack {
                 ForEach(profileService.users, id: \.uid) {
                     (user) in
                     
@@ -58,8 +58,7 @@ struct UserContactsView: View {
                                         .padding(.horizontal)
               
                                     Spacer()
-                                }
-                                .padding(10)
+                                }.padding(.horizontal)
                             })
                         }
                 }

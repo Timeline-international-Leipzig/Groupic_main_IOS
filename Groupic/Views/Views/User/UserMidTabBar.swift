@@ -34,7 +34,7 @@ struct UserMidTabBarView: View {
                             Spacer()
                             
                             Text(tabBarImageName[num])
-                                .foregroundColor(Color("lightBlue"))
+                                .foregroundColor(Color(.white))
                                 .scaledToFill()
                                 .minimumScaleFactor(0.5)
                                 .lineLimit(1)
@@ -75,7 +75,7 @@ struct UserMidTabBarView: View {
                             Spacer()
                         }
                         Rectangle()
-                            .fill(Color("lightBlue"))
+                            .fill(Color("themeColor2"))
                             .frame(width: UIScreen.main.bounds.width * 0.25, height: 3, alignment: .leading)
                         if selectedIndex == 0 { Spacer() }
                         if selectedIndex == 1 {

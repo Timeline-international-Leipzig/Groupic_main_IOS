@@ -17,7 +17,7 @@ struct UserFutureUserPostView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(spacing: -6) {
                 ForEach(profileService.postsUid, id: \.postId) {
                     (postUid) in
                     
@@ -29,7 +29,7 @@ struct UserFutureUserPostView: View {
                         }
                     }
                 }
-            }
+            }.padding(.top, 5)
         }
         .navigationTitle("")
         .navigationBarHidden(true)

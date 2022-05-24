@@ -30,7 +30,7 @@ struct ProfileView: View {
                     }
                     //.offset(y: -10)
                 }
-                .background(Color("background"))
+                .background(Color("mainColor"))
                 .ignoresSafeArea()
                 .coordinateSpace(name: "pullToRefresh")
             }

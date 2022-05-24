@@ -162,7 +162,7 @@ struct SocialEndView: View {
                         }
                     }
                 }
-                .background(Color("background"))
+                .background(Color("mainColor"))
                 .navigationBarTitle("")
                 .navigationBarBackButtonHidden(true)
                 .navigationBarHidden(true)

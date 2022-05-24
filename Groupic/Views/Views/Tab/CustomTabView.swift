@@ -72,7 +72,7 @@ struct CustomTabView: View {
                             else {
                                 Image(systemName: tabBarImageNames[num])
                                     .font(.system(size: 22, weight: .bold))
-                                    .foregroundColor(selectedIndex == num ? Color(.white) : .white)
+                                    .foregroundColor(selectedIndex == num ? Color(.white) : .gray)
                             }
                             Spacer()
                             

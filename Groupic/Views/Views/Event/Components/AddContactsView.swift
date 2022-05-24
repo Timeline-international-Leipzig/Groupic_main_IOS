@@ -131,11 +131,12 @@ struct AddContactsView: View {
                     .cornerRadius(10)
                 }
                 .padding(.all, 25)
-                .padding(.top, 50)
+                .padding(.top, 10)
                 .frame(width: UIScreen.main.bounds.width - 50)
-                .background(Color.black.opacity(0.85))
+                .background(Color.black.opacity(0.95))
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
-                .frame(height: UIScreen.main.bounds.height - 50)
+                .frame(height: UIScreen.main.bounds.height - 200)
+                .padding(.top, 100)
                 
                 Spacer()
             }

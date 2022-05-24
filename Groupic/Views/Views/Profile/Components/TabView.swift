@@ -38,12 +38,14 @@ struct TabView: View {
                             self.nextNotifications.toggle()
                         }, label: {
                             if new == true {
-                                Image(systemName: "paperplane.circle.fill")
+                                Image(systemName: "envelope.badge.fill")
                                     .foregroundColor(.white)
+                                    .font(.system(size: 20))
                             }
                             else {
-                                Image(systemName: "paperplane.circle")
+                                Image(systemName: "envelope.fill")
                                     .foregroundColor(.white)
+                                    .font(.system(size: 20))
                             }
                         })
                     }

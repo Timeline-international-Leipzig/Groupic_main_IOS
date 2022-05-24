@@ -79,7 +79,7 @@ struct ContactsView: View {
                                     })
                                     }
                                 }
-                                .padding()
+                                .padding(.horizontal)
                             })
                         }
                 }
