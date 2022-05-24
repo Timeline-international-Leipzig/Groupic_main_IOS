@@ -58,7 +58,7 @@ struct FollowEventButton: View {
                 .font(.headline)
                 .padding(5)
                 .background(
-                    Color(.gray)
+                    Color("buttonColor")
                         .cornerRadius(5)
                 )
         })
