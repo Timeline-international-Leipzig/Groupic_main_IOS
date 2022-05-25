@@ -185,6 +185,26 @@ class FollowService: ObservableObject {
         ProfileService.followersInviteEventId(postId: postId, userId: userId).setData(dictUid) {_ in}
     }
     
+    func makeAdminEvent(userId: String, postId: String) {
+        let userUid = UidUserModel.init(uid: userId)
+        
+        guard let dictUid = try? userUid.asDictionary() else {
+            return
+        }
+            
+        ProfileService.adminEventId(postId: postId, userId: userId).setData(dictUid) {_ in}
+    }
+    
+    func deMakeAdminEvent(userId: String, postId: String) {
+        ProfileService.adminEventId(postId: postId, userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+    }
+    
     func delInviteIntoEvent(userId: String, postId: String) {
         ProfileService.InviteIntoEventId(postId: postId, userId: userId).getDocument {
             (document, err) in

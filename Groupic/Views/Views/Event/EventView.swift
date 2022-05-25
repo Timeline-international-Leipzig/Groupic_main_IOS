@@ -35,6 +35,7 @@ struct EventView: View {
     @State var picker = false
     @State var textQuote = false
     @State var alertAdd = false
+    @State var showparticipants = false
     
     @State var eventName = ""
     @State var quote = ""
@@ -63,9 +64,9 @@ struct EventView: View {
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
-                            // do your stuff when pulled
-                        }
-                        
+                        // do your stuff when pulled
+                    }
+                    
                     VStack {
                         EventViewHeader(eventImage: $eventImage, post: postModel)
                         
@@ -105,17 +106,17 @@ struct EventView: View {
                         .padding(-10)
                         
                         /*
-                        FollowEventButton(post: postModel, followCheck: $profileService.followCheck)
-                            .padding()
-                        */
+                         FollowEventButton(post: postModel, followCheck: $profileService.followCheck)
+                         .padding()
+                         */
                         
                         Text("Mit:")
                             .foregroundColor(.secondary)
                             .padding(10)
                         
                         ZStack {
-                            EventUserPicsView(post: $postModel)
-
+                            EventUserPicsView(post: $postModel, showparticipants: $showparticipants)
+                            
                             HStack {
                                 Spacer()
                                 
@@ -142,15 +143,15 @@ struct EventView: View {
                             })
                             
                             /*
-                            Button(action: {
-                                self.showingActionsSheetCamera.toggle()
-                            }, label: {
-                                Image(systemName: "camera.fill")
-                                    .foregroundColor(.black)
-                                    .font(.system(size: 20))
-                            })
-                            */
-                             
+                             Button(action: {
+                             self.showingActionsSheetCamera.toggle()
+                             }, label: {
+                             Image(systemName: "camera.fill")
+                             .foregroundColor(.black)
+                             .font(.system(size: 20))
+                             })
+                             */
+                            
                             Button(action: {
                                 self.textQuote.toggle()
                             }, label: {
@@ -178,6 +179,10 @@ struct EventView: View {
             
             if self.alertAdd {
                 AddContactsView(back: $alertAdd, post: $postModel)
+            }
+            
+            if self.showparticipants {
+                ParticipantsView(back: $showparticipants, post: $postModel)
             }
             
             if self.changeEventMode {
@@ -210,19 +215,19 @@ struct EventView: View {
         }
         
         /*
-        .sheet(isPresented: $showingImagePickerCamera, onDismiss: loadImage) {
-            ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)
-        }
-        .actionSheet(isPresented: $showingActionsSheetCamera) {
-            ActionSheet(title: Text(""), buttons: [
-                .default(Text("Mach ein Bild")){
-                    self.sourceType = .camera
-                    self.showingImagePicker = true
-                },
-                .cancel()
-            ])
-        }
-        */
+         .sheet(isPresented: $showingImagePickerCamera, onDismiss: loadImage) {
+         ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)
+         }
+         .actionSheet(isPresented: $showingActionsSheetCamera) {
+         ActionSheet(title: Text(""), buttons: [
+         .default(Text("Mach ein Bild")){
+         self.sourceType = .camera
+         self.showingImagePicker = true
+         },
+         .cancel()
+         ])
+         }
+         */
         
         .sheet(isPresented: $picker) {
             ImagePickerMultiple(postModel: $postModel, userModel: $userModel, images: self.$images, picker: $picker)
@@ -241,7 +246,7 @@ struct EventView: View {
     func editProfileImage() {
         let storagePostId = StorageService.storagePostId(postId: postModel.postId)
         let metaData = StorageMetadata()
-            metaData.contentType = "image/jpg"
+        metaData.contentType = "image/jpg"
         
         StorageService.editPost(postId: postModel.postId, userId: userModel.uid, imageData: imageData, metaData: metaData, storagePostRef: storagePostId, onSuccess: {}, onError: {errorMessage in })
     }

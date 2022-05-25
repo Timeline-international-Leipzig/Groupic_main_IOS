@@ -17,6 +17,8 @@ struct EventViewNoContactView: View {
     @Binding var userModel: UserModel
     @Binding var next: Bool
     
+    @State var showparticipants = false
+    
     var body: some View {
         ZStack {
             Color("AccentColor").ignoresSafeArea(.all, edges: .top)
@@ -96,7 +98,7 @@ struct EventViewNoContactView: View {
                             .padding(10)
                         
                         ZStack {
-                            EventUserPicsView(post: $postModel)
+                            EventUserPicsView(post: $postModel, showparticipants: $showparticipants)
                         }
                         
                         .padding(.top)

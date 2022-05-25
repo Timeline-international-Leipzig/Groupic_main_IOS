@@ -80,6 +80,10 @@ class ProfileService: ObservableObject {
         return followEvent.document(postId).collection("requestedParticipants").document(userId)
     }
     
+    static func adminEventId(postId: String, userId: String) -> DocumentReference {
+        return followEvent.document(postId).collection("admins").document(userId)
+    }
+    
     static func acceptFollowersInviteEventId(postId: String, userId: String) -> DocumentReference {
         return followEvent.document(postId).collection("participants").document(userId)
     }

@@ -124,6 +124,8 @@ struct SocialEndView: View {
                                     Divider().background(Color("AccentColor"))
                                 }
                                 
+                                Spacer()
+                                
                                 NavigationLink(destination: UserProfileView(user: $currentUser, next: $next), isActive: self.$next, label: {
                                     EmptyView()
                                 })

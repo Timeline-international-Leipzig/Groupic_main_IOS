@@ -18,6 +18,9 @@
 		87123DAB283BD3BE0071F563 /* EventCardEventUserPicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DAA283BD3BE0071F563 /* EventCardEventUserPicsView.swift */; };
 		87123DAD283BD43D0071F563 /* EventCardEventContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DAC283BD43D0071F563 /* EventCardEventContent.swift */; };
 		87123DAF283D827D0071F563 /* EventViewNoContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DAE283D827D0071F563 /* EventViewNoContactView.swift */; };
+		87123DB1283E48D10071F563 /* ParticipantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DB0283E48D10071F563 /* ParticipantsView.swift */; };
+		87123DB3283E4C520071F563 /* ShowParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DB2283E4C520071F563 /* ShowParticipantView.swift */; };
+		87123DB5283E4FF40071F563 /* ShowAdminsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87123DB4283E4FF40071F563 /* ShowAdminsView.swift */; };
 		872119D0283AD847005F760A /* AddShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872119CF283AD847005F760A /* AddShow.swift */; };
 		8726C8E1274BE9BB006AF1DB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726C8E0274BE9BB006AF1DB /* ImagePicker.swift */; };
 		8738ECB827A1EEB0009A575A /* SocialEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8738ECB727A1EEB0009A575A /* SocialEndView.swift */; };
@@ -171,6 +174,9 @@
 		87123DAA283BD3BE0071F563 /* EventCardEventUserPicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardEventUserPicsView.swift; sourceTree = "<group>"; };
 		87123DAC283BD43D0071F563 /* EventCardEventContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardEventContent.swift; sourceTree = "<group>"; };
 		87123DAE283D827D0071F563 /* EventViewNoContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewNoContactView.swift; sourceTree = "<group>"; };
+		87123DB0283E48D10071F563 /* ParticipantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsView.swift; sourceTree = "<group>"; };
+		87123DB2283E4C520071F563 /* ShowParticipantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowParticipantView.swift; sourceTree = "<group>"; };
+		87123DB4283E4FF40071F563 /* ShowAdminsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAdminsView.swift; sourceTree = "<group>"; };
 		872119CF283AD847005F760A /* AddShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShow.swift; sourceTree = "<group>"; };
 		8726C8E0274BE9BB006AF1DB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		8738ECB727A1EEB0009A575A /* SocialEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialEndView.swift; sourceTree = "<group>"; };
@@ -525,11 +531,15 @@
 				87B2060628205B810072B7CF /* EventUserPicsView.swift */,
 				87B2060B282142450072B7CF /* ImagePickerMultiple.swift */,
 				87B2060D2821E3090072B7CF /* EventContentView.swift */,
-				876A84A6282ACCAC007786A3 /* CompEventContentView */,
-				87B2060828205FD40072B7CF /* ComponentsEventUserPicsView */,
 				87B2061128235FA20072B7CF /* EventQuoteView.swift */,
 				879A9D012835E40900F7E98A /* AddContactsView.swift */,
+				87123D9C283B69780071F563 /* EventInviteButton.swift */,
+				87123DB0283E48D10071F563 /* ParticipantsView.swift */,
+				876A84A6282ACCAC007786A3 /* CompEventContentView */,
+				87B2060828205FD40072B7CF /* ComponentsEventUserPicsView */,
 				872119CF283AD847005F760A /* AddShow.swift */,
+				87123DB2283E4C520071F563 /* ShowParticipantView.swift */,
+				87123DB4283E4FF40071F563 /* ShowAdminsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -711,7 +721,6 @@
 			isa = PBXGroup;
 			children = (
 				87B20609282060020072B7CF /* HorizontalPicView.swift */,
-				87123D9C283B69780071F563 /* EventInviteButton.swift */,
 			);
 			path = ComponentsEventUserPicsView;
 			sourceTree = "<group>";
@@ -1285,6 +1294,7 @@
 				DC3AA6E7270B0CFD002B2649 /* AppDelegate.swift in Sources */,
 				87C2ADD1280350DB0031D5D9 /* SocialUserPostView.swift in Sources */,
 				8726C8E1274BE9BB006AF1DB /* ImagePicker.swift in Sources */,
+				87123DB5283E4FF40071F563 /* ShowAdminsView.swift in Sources */,
 				87123DA4283BAD750071F563 /* UserNotificationView.swift in Sources */,
 				8738ECB827A1EEB0009A575A /* SocialEndView.swift in Sources */,
 				873E23CC277A210500CAE2E1 /* PopUpButtonView.swift in Sources */,
@@ -1310,6 +1320,7 @@
 				8767DDF927846FC3008E4B55 /* EventView.swift in Sources */,
 				876AF08C27E3804F00FEF21A /* FollowService.swift in Sources */,
 				876585E1279F22FF005A3EFD /* Pictures.swift in Sources */,
+				87123DB3283E4C520071F563 /* ShowParticipantView.swift in Sources */,
 				87123DAD283BD43D0071F563 /* EventCardEventContent.swift in Sources */,
 				87700E1B27E6680A00841E5B /* SearchUserPostView.swift in Sources */,
 				87700E2127E8D17C00841E5B /* UserPostCardView.swift in Sources */,
@@ -1346,6 +1357,7 @@
 				875A11C427930D00000E181F /* PostCardView.swift in Sources */,
 				DC3AA6F2270B1E49002B2649 /* PersonInfoView.swift in Sources */,
 				878655A6278383E700246351 /* PostService.swift in Sources */,
+				87123DB1283E48D10071F563 /* ParticipantsView.swift in Sources */,
 				DC3AA7802714D3A5002B2649 /* ProfileView.swift in Sources */,
 				DCE6058C2701D9C600D6ADB8 /* GroupicApp.swift in Sources */,
 				87C2ADD728035F4D0031D5D9 /* PostUidModel.swift in Sources */,
