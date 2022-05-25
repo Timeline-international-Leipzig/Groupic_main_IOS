@@ -13,7 +13,6 @@ struct UserHighlightPostView: View {
     
     @State var user: UserModel
     @State var exists = false
-
     
     var userCollection = Firestore.firestore().collection("events")
     

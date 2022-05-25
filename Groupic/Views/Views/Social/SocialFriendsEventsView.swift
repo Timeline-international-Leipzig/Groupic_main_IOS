@@ -15,28 +15,24 @@ struct SocialFriendsEventsView: View {
     
     var body: some View {
         VStack {
-            Text("Freunde")
-                .foregroundColor(Color("AccentColor"))
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-            
-            ForEach(profileService.users, id: \.uid) {
-                (user) in
+            ForEach(self.profileService.posts, id: \.postId) {
+                (post) in
                 
-                ForEach(profileService.followUsers, id: \.uid) {
-                    (users) in
+                ForEach(profileService.users, id: \.uid) {
+                    (user) in
                     
-                    if user.uid == users.uid {
-                        SocialUserPostView(user: user)
+                    if post.ownerId == user.uid {
+                        SocialUserPostView(user: user, posts: post)
                     }
                 }
             }
         }
+        .background(Color.white)
+        .navigationTitle("")
+        .navigationBarHidden(true)
         .onAppear {
             self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
-            self.profileService.loadUser(userId: Auth.auth().currentUser!.uid)
+            self.profileService.allPosts(userId: Auth.auth().currentUser!.uid)
         }
     }
 }

@@ -503,6 +503,7 @@ struct UserPostCardView: View {
             }
             else {}
         }
+        
         else {}
     }
     

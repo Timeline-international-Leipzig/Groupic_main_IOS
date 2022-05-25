@@ -1,8 +1,8 @@
 //
-//  FutureSearchUserPostView.swift
+//  HighlightPostView.swift
 //  Groupic
 //
-//  Created by Anatolij Travkin on 08.04.22.
+//  Created by Anatolij Travkin on 09.04.22.
 //
 
 import SwiftUI
@@ -10,9 +10,13 @@ import Firebase
 
 struct FutureSearchUserPostView: View {
     @StateObject var profileService = ProfileService()
-    @State var user: UserModel
     
+    @State var user: UserModel
+    @State var exists = false
+
     @State var date = Date()
+    
+    var userCollection = Firestore.firestore().collection("events")
     
     var body: some View {
         ScrollView {
@@ -20,16 +24,28 @@ struct FutureSearchUserPostView: View {
                 VStack {
                     Text("Es gibt aktuell noch keine zukünftigen Ereignisse")
                 }
-            
+                
                 VStack {
-                    ForEach(self.profileService.posts, id: \.dateN) {
+                    ForEach(self.profileService.posts, id: \.postId) {
                         (post) in
                         
                         ForEach(profileService.postsUid, id: \.postId) {
                             (postUid) in
                             
-                            if (postUid.postId == post.postId) && post.startDate > date {
-                                PostCardView(postModel: post, userModel: user)
+                            if (postUid.postId == post.postId)  && post.startDate > date {
+                                VStack {
+                                    UserPostCardView(postModel: post, userModel: user, exist: $exists)
+                                }
+                                .onAppear {
+                                    checkIfUserExists(userId: Auth.auth().currentUser!.uid, postId: post.postId) { result in
+                                        if (result == true) {
+                                            self.exists = true
+                                        }
+                                        else {
+                                            self.exists = false
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -42,6 +58,26 @@ struct FutureSearchUserPostView: View {
         .onAppear {
             self.profileService.allPosts(userId: user.uid)
             self.profileService.loadUserPosts(userId: user.uid)
+        }
+    }
+    
+    func checkIfUserExists(userId: String, postId: String, completion: @escaping ((Bool) -> () )) {
+        self.userCollection.document(postId).collection("participants").whereField("uid", isEqualTo: userId).getDocuments() {
+            (QuerySnapshot, Error) in
+            if let error = Error {
+                print("Unable to query" + error.localizedDescription)
+                completion(false)
+            }
+            else {
+                if (QuerySnapshot!.count > 0) {
+                    print("There is a user")
+                    completion(true)
+                }
+                else {
+                    print("There is no user")
+                    completion(false)
+                }
+            }
         }
     }
 }
