@@ -38,11 +38,11 @@ struct LeaveEventView: View {
                     Button(action: {
                         checkIfCheckedEvent { result in
                             if (result == true) {
-                                StorageService.deletePost(userId: userModel.uid, postId: postModel.postId, onSuccess: {})
+                                followService.deInvite(userId: Auth.auth().currentUser!.uid, postId: postModel.postId)
                                 self.backCompleteDelete.toggle()
                             }
                             else {
-                                followService.deInvite(userId: Auth.auth().currentUser!.uid, postId: postModel.postId)
+                                followService.delete(userId: userModel.uid, postId: postModel.postId)
                                 self.backCompleteDelete.toggle()
                             }
                         }
@@ -87,12 +87,12 @@ struct LeaveEventView: View {
                 completion(false)
             }
             else {
-                if (QuerySnapshot!.count > 0) {
-                    print("new message")
+                if (QuerySnapshot!.count >= 2) {
+                    print(QuerySnapshot!.count)
                     completion(true)
                 }
                 else {
-                    print("no new message")
+                    print(QuerySnapshot!.count)
                     completion(false)
                 }
             }

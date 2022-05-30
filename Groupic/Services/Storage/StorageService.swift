@@ -323,6 +323,30 @@ static func editProfileTextUsername(userId: String, username: String, onSuccess:
         let firestorePostRef = PostService.allPosts.document(postId)
         let storagePostRef = StorageService.storagePostId(postId: postId)
         
+        ProfileService.acceptInviteIntoEventId(postId: postId, userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+        
+        firestorePostRef.getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+        
+        ProfileService.acceptFollowersInviteEventId(postId: postId, userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+        
         firestorePostRef.delete()
         
         storagePostRef.delete()

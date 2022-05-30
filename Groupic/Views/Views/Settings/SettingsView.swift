@@ -187,7 +187,7 @@ struct SettingsView: View {
                             
                             Button(action: {
                                 self.nextDatenschutz.toggle()
-                            }) {
+                            }) { 
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 14, weight: .semibold, design: .rounded))
                             }

@@ -26,6 +26,7 @@ struct TextEditField: View {
     var allowed = CharacterSet(charactersIn: "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ._-+$!~&=#[]@")
     var allowedBeta = CharacterSet(charactersIn: "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ")
     var allowedAlpha = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyz")
+    var allowedBetaZero = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
     var limit = 50
     
     @Binding var value: String

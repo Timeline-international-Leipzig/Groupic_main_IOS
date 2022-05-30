@@ -32,6 +32,12 @@ struct AddEventView: View {
     @State var visible = false
     @State var revisible = false
     @State var alert = false
+    @State var errorCheckBool = false
+    @State var upload = false
+    
+    var limit = 15
+    
+    var allowedBetaZero = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
     
     @Binding var shouldShowModel: Bool
     
@@ -51,6 +57,10 @@ struct AddEventView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .font(Font.system(size: 40, weight: .bold, design: .default))
                             .padding(.horizontal)
+                            .autocapitalization(.none)
+                            .onChange(of: caption) {_ in
+                                caption = String(caption.prefix(limit).unicodeScalars.filter(allowedBetaZero.contains))
+                            }
                         
                         VStack(spacing: 10) {
                             HStack {
@@ -126,10 +136,10 @@ struct AddEventView: View {
                             .foregroundColor(.red)
                             .padding()
                             
+                            if upload == false {
                             Button (
                                 action: {
                                     self.uploadPost()
-                                    self.clear()
                                 },
                                 label: {Text("Bestätigen")
                                         .foregroundColor(Color("AccentColor"))
@@ -137,6 +147,19 @@ struct AddEventView: View {
                             )
                             .foregroundColor(.green)
                             .padding()
+                            }
+                            else {
+                                Button (
+                                    action: {
+                                        
+                                    },
+                                    label: {Text("Bestätigen")
+                                            .foregroundColor(Color.gray)
+                                    }
+                                )
+                                .foregroundColor(.green)
+                                .padding()
+                            }
                         }
                         .padding(.top, 30)
                     }
@@ -170,10 +193,18 @@ struct AddEventView: View {
     
     /// Functions
     func errorCheck() -> String? {
-        if  caption.trimmingCharacters(in: .whitespaces).isEmpty ||
-                imageData.isEmpty {
-            return "Fülle bitte alle Felder aus"
+        if  caption.trimmingCharacters(in: .whitespaces).isEmpty {
+            return "Wähle ein Titel für das Ereignis"
         }
+        
+        if  imageData.isEmpty {
+            return "Wähle ein Coverbild für das Ereignis"
+        }
+        
+        if  Calendar.current.component(.day, from: startDate) > Calendar.current.component(.day, from: endDate) {
+            return "Das Enddatum kann nicht vor dem Startdatum liegen"
+        }
+        
         return nil
     }
     
@@ -181,15 +212,17 @@ struct AddEventView: View {
         if let error = errorCheck() {
             self.error = error
             self.alert.toggle()
-            self.clear()
             return
         }
         //firebase
         
+        self.upload = true
+  
         Auth.auth().currentUser?.reload()
         PostService.uploadPost(caption: caption, username: user.userName, startDate: startDate, endDate: endDate, index: selection, imageData: imageData, onSuccess: {
-            
+
             self.shouldShowModel.toggle()
+            return
         }) {
             (errorMessage) in
             self.error = errorMessage

@@ -274,6 +274,32 @@ class FollowService: ObservableObject {
         }
     }
     
+    func delete(userId: String, postId: String) {
+        ProfileService.acceptInviteIntoEventId(postId: postId, userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+        
+        ProfileService.acceptFollowersInviteEventId(postId: postId, userId: userId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+        
+        ProfileService.deleteEventId(postId: postId).getDocument {
+            (document, err) in
+            
+            if let doc = document, doc.exists {
+                doc.reference.delete()
+            }
+        }
+    }
+    
     func followEvent(postId: String, currentUserUid: String) {
         
         let post = PostUidModel.init(postId: postId)
