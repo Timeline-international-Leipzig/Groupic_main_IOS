@@ -69,10 +69,6 @@ struct ProfileSettingsView: View {
                 }
                 
                 ScrollView {
-                    PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
-                        // do your stuff when pulled
-                    }
-                    
                     ProfileSettingsViewProfileHeader(profileImage: $profileImage, backProfileImage: $backProfileImage, user: self.session.session!)
                     
                     HStack {
@@ -273,9 +269,7 @@ struct ProfileSettingsView: View {
                         .padding(.bottom, 25)
                         .padding(.horizontal, 10)
                     }
-                    
                 }
-                .offset(y: -10)
             }
             .background(Color.white)
             
