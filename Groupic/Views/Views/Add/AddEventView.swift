@@ -56,6 +56,7 @@ struct AddEventView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .font(Font.system(size: 40, weight: .bold, design: .default))
                             .padding(.horizontal)
+                            .autocapitalization(.none)
                             .onChange(of: caption) {_ in
                                 caption = String(caption.prefix(limit).unicodeScalars.filter(allowedBetaZero.contains))
                             }
@@ -137,7 +138,6 @@ struct AddEventView: View {
                             Button (
                                 action: {
                                     self.uploadPost()
-                                    self.clear()
                                 },
                                 label: {Text("Bestätigen")
                                         .foregroundColor(Color("AccentColor"))
@@ -178,10 +178,18 @@ struct AddEventView: View {
     
     /// Functions
     func errorCheck() -> String? {
-        if  caption.trimmingCharacters(in: .whitespaces).isEmpty ||
-                imageData.isEmpty {
-            return "Fülle bitte alle Felder aus"
+        if  caption.trimmingCharacters(in: .whitespaces).isEmpty {
+            return "Wähle ein Titel für das Ereignis"
         }
+        
+        if  imageData.isEmpty {
+            return "Wähle ein Coverbild für das Ereignis"
+        }
+        
+        if  startDate > endDate {
+            return "Das Enddatum kann nicht vor dem Startdatum liegen"
+        }
+        
         return nil
     }
     
@@ -189,7 +197,6 @@ struct AddEventView: View {
         if let error = errorCheck() {
             self.error = error
             self.alert.toggle()
-            self.clear()
             return
         }
         //firebase
