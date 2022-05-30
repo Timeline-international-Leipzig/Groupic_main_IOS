@@ -88,6 +88,10 @@ class ProfileService: ObservableObject {
         return followEvent.document(postId).collection("participants").document(userId)
     }
     
+    static func deleteEventId(postId: String) -> DocumentReference {
+        return followEvent.document(postId)
+    }
+    
     static func followersId(userId: String) -> DocumentReference {
         return follow.document(userId).collection("requestsForContact").document(Auth.auth().currentUser!.uid)
     }
@@ -113,7 +117,7 @@ class ProfileService: ObservableObject {
     }
     
     static func followersPostEventCheck(postId: String) -> CollectionReference {
-        return follow.document(postId).collection("participants")
+        return followEvent.document(postId).collection("participants")
     }
     
     static func contactCheck(userId: String) -> CollectionReference {

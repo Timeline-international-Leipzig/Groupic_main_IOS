@@ -186,7 +186,7 @@ struct AddEventView: View {
             return "Wähle ein Coverbild für das Ereignis"
         }
         
-        if  startDate > endDate {
+        if  Calendar.current.component(.day, from: startDate) > Calendar.current.component(.day, from: endDate) {
             return "Das Enddatum kann nicht vor dem Startdatum liegen"
         }
         
@@ -201,10 +201,12 @@ struct AddEventView: View {
         }
         //firebase
         
+        self.shouldShowModel.toggle()
+        
         Auth.auth().currentUser?.reload()
         PostService.uploadPost(caption: caption, username: user.userName, startDate: startDate, endDate: endDate, index: selection, imageData: imageData, onSuccess: {
-            
-            self.shouldShowModel.toggle()
+
+            return
         }) {
             (errorMessage) in
             self.error = errorMessage

@@ -73,25 +73,36 @@ struct EventViewOnlyContactView: View {
                         }.padding(.horizontal)
                         
                         HStack {
-                            Text(postModel.startDate, style: .date)
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                                .frame(alignment: .topLeading)
+                            if Calendar.current.component(.day, from: postModel.startDate) == Calendar.current.component(.day, from: postModel.endDate) {
+                                Spacer()
+                                
+                                Text(postModel.startDate, style: .date)
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                                    .frame(alignment: .topLeading)
+                                
+                                Spacer()
+                            }
                             
-                            Text(" - ")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                                .frame(alignment: .topLeading)
-                            
-                            Text(postModel.endDate, style: .date)
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                                .frame(alignment: .topLeading)
-                            
+                            else {
+                                Text(postModel.startDate, style: .date)
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                                    .frame(alignment: .topLeading)
+                                
+                                Text(" - ")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                                    .frame(alignment: .topLeading)
+                                
+                                Text(postModel.endDate, style: .date)
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                                    .frame(alignment: .topLeading)
+                            }
                         }
                         .foregroundColor(.secondary)
                         .padding(-10)
-                        
                         
                         Text("Mit:")
                             .foregroundColor(.secondary)
