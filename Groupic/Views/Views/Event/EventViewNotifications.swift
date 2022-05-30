@@ -39,9 +39,9 @@ struct EventViewNotifications: View {
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
-                            // do your stuff when pulled
-                        }
-                        
+                        // do your stuff when pulled
+                    }
+                    
                     VStack {
                         if postModel!.mediaUrl == "" {
                             Image("grey")
@@ -69,7 +69,7 @@ struct EventViewNotifications: View {
                                 .font(.system(size: 26, weight: .bold, design: .default))
                             
                             Spacer()
-
+                            
                         }.padding(.horizontal)
                         
                         HStack {

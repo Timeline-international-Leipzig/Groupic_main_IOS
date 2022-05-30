@@ -10,8 +10,8 @@ import Foundation
 
 class EventFollowService: ObservableObject {
     func updateFollowCount(postId: String, followingCount: @escaping (_
-            followingCount: Int) -> Void, followersCount: @escaping (_
-            followersCount: Int) -> Void) {
+                                                                      followingCount: Int) -> Void, followersCount: @escaping (_
+                                                                                                                               followersCount: Int) -> Void) {
         
         EventService.followingCollection(postId: postId).getDocuments {
             (snap, error) in
@@ -31,8 +31,8 @@ class EventFollowService: ObservableObject {
     }
     
     func manageFollow(postId: String, followCheck: Bool, followingCount: @escaping (_
-            followingCount: Int) -> Void, followersCount: @escaping (_
-            followersCount: Int) -> Void) {
+                                                                                    followingCount: Int) -> Void, followersCount: @escaping (_
+                                                                                                                                             followersCount: Int) -> Void) {
         
         if !followCheck {
             follow(postId: postId, followingCount: followingCount, followersCount: followersCount)
@@ -42,8 +42,8 @@ class EventFollowService: ObservableObject {
     }
     
     func follow(postId: String, followingCount: @escaping (_
-            followingCount: Int) -> Void, followersCount: @escaping (_
-            followersCount: Int) -> Void) {
+                                                           followingCount: Int) -> Void, followersCount: @escaping (_
+                                                                                                                    followersCount: Int) -> Void) {
         
         EventService.followingId(postId: postId).setData([:]) {
             (err) in
@@ -52,7 +52,7 @@ class EventFollowService: ObservableObject {
                 self.updateFollowCount(postId: postId, followingCount: followingCount, followersCount: followersCount)
             }
         }
-            
+        
         EventService.followersId(postId: postId).setData([:]) {
             (err) in
             
@@ -61,10 +61,10 @@ class EventFollowService: ObservableObject {
             }
         }
     }
-        
+    
     func unfollow(postId: String, followingCount: @escaping (_
-            followingCount: Int) -> Void, followersCount: @escaping (_
-            followersCount: Int) -> Void) {
+                                                             followingCount: Int) -> Void, followersCount: @escaping (_
+                                                                                                                      followersCount: Int) -> Void) {
         
         EventService.followingId(postId: postId).getDocument {
             (document, err) in
@@ -75,7 +75,7 @@ class EventFollowService: ObservableObject {
                 self.updateFollowCount(postId: postId, followingCount: followingCount, followersCount: followersCount)
             }
         }
-            
+        
         EventService.followersId(postId: postId).getDocument {
             (document, err) in
             

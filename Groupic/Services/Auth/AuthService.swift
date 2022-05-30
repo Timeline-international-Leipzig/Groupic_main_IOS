@@ -38,7 +38,7 @@ class AuthService {
         Auth.auth().createUser(withEmail: email, password: password) {
             (authData, error) in
             guard let userId = authData?.user.uid
-                else {return}
+            else {return}
             
             StorageService.saveProfile(userId: userId, name: name, username: username, email: email, onSuccess: onSuccess, onError: onError)
             

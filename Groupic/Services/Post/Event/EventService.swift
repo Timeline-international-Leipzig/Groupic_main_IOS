@@ -40,13 +40,13 @@ class EventService: ObservableObject {
             
             if let doc = document, doc.exists {
                 self.followCheck = true
-                }
+            }
             else {
                 self.followCheck = false
             }
         }
     }
-
+    
     
     /// Count of following
     func follows(postId: String) {

@@ -8,7 +8,7 @@
 import SwiftUI
 import Firebase
 
-struct UserFutureUserPostView: View {
+struct UserFutureUsrPostView: View {
     @StateObject var profileService = ProfileService()
     
     @State var user: UserModel

@@ -164,7 +164,7 @@ struct EventView: View {
                         }
                         .padding(.top)
                         
-                        EventContentView(postModel: $postModel, userModel: $userModel)
+                        EventsContentView(postModel: $postModel, userModel: $userModel)
                     }
                 }.offset(y: -17)
             }
@@ -190,7 +190,7 @@ struct EventView: View {
             }
             
             if self.deleteEvent {
-                DeleteEventView(back: $deleteEvent, backCompleteDelete: $next, userModel: $userModel, postModel: $postModel)
+                LeaveEventView(back: $deleteEvent, backCompleteDelete: $next, userModel: $userModel, postModel: $postModel)
             }
             
             if self.textQuote {

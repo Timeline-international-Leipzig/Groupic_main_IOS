@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 import Firebase
 
-struct EventViewNoContactView: View {
+struct EventViewOnlyContactView: View {
     @StateObject var profileService = ProfileService()
     @EnvironmentObject var session: SessionStore
     
@@ -39,9 +39,9 @@ struct EventViewNoContactView: View {
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
-                            // do your stuff when pulled
-                        }
-                        
+                        // do your stuff when pulled
+                    }
+                    
                     VStack {
                         if postModel.mediaUrl == "" {
                             Image("grey")
@@ -69,7 +69,7 @@ struct EventViewNoContactView: View {
                                 .font(.system(size: 26, weight: .bold, design: .default))
                             
                             Spacer()
-
+                            
                         }.padding(.horizontal)
                         
                         HStack {
@@ -106,7 +106,7 @@ struct EventViewNoContactView: View {
                         Divider()
                             .padding(.top)
                         
-                        EventContentView(postModel: $postModel, userModel: $userModel)
+                        EventsContentView(postModel: $postModel, userModel: $userModel)
                     }
                 }.offset(y: -17)
             }
@@ -114,7 +114,7 @@ struct EventViewNoContactView: View {
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-        
+            
             if self.showparticipants {
                 ParticipantsView(back: $showparticipants, post: $postModel)
             }

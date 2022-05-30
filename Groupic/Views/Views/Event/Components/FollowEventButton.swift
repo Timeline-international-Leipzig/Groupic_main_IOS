@@ -13,14 +13,14 @@ struct FollowEventButton: View {
     @EnvironmentObject var session: SessionStore
     
     var post: PostModel
-
+    
     @Binding var followCheck: Bool
     
     init(post: PostModel, followCheck: Binding<Bool>) {
         self.post = post
         self._followCheck = followCheck
     }
-
+    
     func follow() {
         if !self.followCheck {
             followService.followEvent(postId: post.postId, currentUserUid: Auth.auth().currentUser!.uid)
@@ -39,7 +39,7 @@ struct FollowEventButton: View {
             
             if let doc = document, doc.exists {
                 self.followCheck = true
-                }
+            }
             else {
                 self.followCheck = false
             }

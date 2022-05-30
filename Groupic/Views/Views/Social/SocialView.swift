@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 import Firebase
 
-struct SocialEndView: View {
+struct SocialView: View {
     @StateObject var profileService = ProfileService()
     
     @State var isLoading = false

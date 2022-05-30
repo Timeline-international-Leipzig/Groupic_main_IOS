@@ -10,8 +10,8 @@ import Firebase
 
 class FollowService: ObservableObject {
     func updateFollowCount(userId: String, followingCount: @escaping (_
-            followingCount: Int) -> Void, followersCount: @escaping (_
-            followersCount: Int) -> Void) {
+                                                                      followingCount: Int) -> Void, followersCount: @escaping (_
+                                                                                                                               followersCount: Int) -> Void) {
         
         ProfileService.followingCollection(userId: userId).getDocuments {
             (snap, error) in
@@ -29,10 +29,10 @@ class FollowService: ObservableObject {
             }
         }
     }
-        
+    
     func manageFollow(userId: String, profileImageUrl: String, currentUserUid: String, followCheck: Bool, followingCount: @escaping (_
-            followingCount: Int) -> Void, followersCount: @escaping (_
-            followersCount: Int) -> Void) {
+                                                                                                                                     followingCount: Int) -> Void, followersCount: @escaping (_
+                                                                                                                                                                                              followersCount: Int) -> Void) {
         
         if !followCheck {
             follow(userId: userId, profileImageUrl: profileImageUrl, currentUserUid: currentUserUid, followingCount: followingCount, followersCount: followersCount)
@@ -40,14 +40,14 @@ class FollowService: ObservableObject {
             unfollow(userId: userId, followingCount: followingCount, followersCount: followersCount)
         }
     }
-        
+    
     func follow(userId: String, profileImageUrl: String, currentUserUid: String, followingCount: @escaping (_
-            followingCount: Int) -> Void, followersCount: @escaping (_
-            followersCount: Int) -> Void) {
+                                                                                                            followingCount: Int) -> Void, followersCount: @escaping (_
+                                                                                                                                                                     followersCount: Int) -> Void) {
         
         let user = UidUserModel.init(uid: userId)
         let AuthUser = UidCheckUserModel.init(uid: Auth.auth().currentUser!.uid, globalCheck: false, localCheck: false)
-     
+        
         guard let dict = try? user.asDictionary() else {
             return
         }
@@ -63,7 +63,7 @@ class FollowService: ObservableObject {
                 self.updateFollowCount(userId: userId, followingCount: followingCount, followersCount: followersCount)
             }
         }
-            
+        
         ProfileService.followersId(userId: userId).setData(authDict) {
             (err) in
             
@@ -72,10 +72,10 @@ class FollowService: ObservableObject {
             }
         }
     }
-        
+    
     func unfollow(userId: String, followingCount: @escaping (_
-            followingCount: Int) -> Void, followersCount: @escaping (_
-            followersCount: Int) -> Void) {
+                                                             followingCount: Int) -> Void, followersCount: @escaping (_
+                                                                                                                      followersCount: Int) -> Void) {
         
         ProfileService.followingId(userId: userId).getDocument {
             (document, err) in
@@ -86,7 +86,7 @@ class FollowService: ObservableObject {
                 self.updateFollowCount(userId: userId, followingCount: followingCount, followersCount: followersCount)
             }
         }
-            
+        
         ProfileService.followersId(userId: userId).getDocument {
             (document, err) in
             
@@ -102,7 +102,7 @@ class FollowService: ObservableObject {
         
         let user = UidUserModel.init(uid: userId)
         let AuthUser = UidUserModel.init(uid: Auth.auth().currentUser!.uid)
-     
+        
         guard let dict = try? user.asDictionary() else {
             return
         }
@@ -112,7 +112,7 @@ class FollowService: ObservableObject {
         }
         
         ProfileService.acceptFollowingId(userId: userId).setData(dict) {_ in }
-            
+        
         ProfileService.acceptFollowersId(userId: userId).setData(authDict) {_ in }
         
         ProfileService.delfollowingId(userId: userId).getDocument {
@@ -122,7 +122,7 @@ class FollowService: ObservableObject {
                 doc.reference.delete()
             }
         }
-            
+        
         ProfileService.delfollowersId(userId: userId).getDocument {
             (document, err) in
             
@@ -140,7 +140,7 @@ class FollowService: ObservableObject {
                 doc.reference.delete()
             }
         }
-            
+        
         ProfileService.delfollowersId(userId: userId).getDocument {
             (document, err) in
             
@@ -158,7 +158,7 @@ class FollowService: ObservableObject {
                 doc.reference.delete()
             }
         }
-            
+        
         ProfileService.delcontactfollowersId(userId: userId).getDocument {
             (document, err) in
             
@@ -171,7 +171,7 @@ class FollowService: ObservableObject {
     func inviteIntoEvent(userId: String, postId: String) {
         let user = InviteUidModel.init(userId: Auth.auth().currentUser!.uid, postId: postId)
         let userUid = UidUserModel.init(uid: userId)
-
+        
         guard let dict = try? user.asDictionary() else {
             return
         }
@@ -181,7 +181,7 @@ class FollowService: ObservableObject {
         }
         
         ProfileService.InviteIntoEventId(postId: postId, userId: userId).setData(dict) {_ in}
-            
+        
         ProfileService.followersInviteEventId(postId: postId, userId: userId).setData(dictUid) {_ in}
     }
     
@@ -191,7 +191,7 @@ class FollowService: ObservableObject {
         guard let dictUid = try? userUid.asDictionary() else {
             return
         }
-            
+        
         ProfileService.adminEventId(postId: postId, userId: userId).setData(dictUid) {_ in}
     }
     
@@ -226,7 +226,7 @@ class FollowService: ObservableObject {
     func acceptInvite(userId: String, postId: String) {
         let user = InviteUidModel.init(userId: Auth.auth().currentUser!.uid, postId: postId)
         let userUid = UidUserModel.init(uid: userId)
-
+        
         guard let dict = try? user.asDictionary() else {
             return
         }
@@ -236,7 +236,7 @@ class FollowService: ObservableObject {
         }
         
         ProfileService.acceptInviteIntoEventId(postId: postId, userId: userId).setData(dict) {_ in}
-            
+        
         ProfileService.acceptFollowersInviteEventId(postId: postId, userId: userId).setData(dictUid) {_ in}
         
         ProfileService.InviteIntoEventId(postId: postId, userId: userId).getDocument {
@@ -278,7 +278,7 @@ class FollowService: ObservableObject {
         
         let post = PostUidModel.init(postId: postId)
         let AuthUser = UidUserModel.init(uid: currentUserUid)
-     
+        
         guard let dict = try? post.asDictionary() else {
             return
         }
@@ -288,7 +288,7 @@ class FollowService: ObservableObject {
         }
         
         ProfileService.followingEventId(postId: postId).setData(dict) {_ in}
-            
+        
         ProfileService.followersEventId(postId: postId).setData(authDict) {_ in}
     }
     
@@ -301,7 +301,7 @@ class FollowService: ObservableObject {
                 doc.reference.delete()
             }
         }
-            
+        
         ProfileService.followersEventId(postId: postId).getDocument {
             (document, err) in
             

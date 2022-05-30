@@ -79,7 +79,7 @@ struct EventNameView: View {
         if let error = errorCheck() {
             self.error = error
             if alert == false {
-            self.alert.toggle()
+                self.alert.toggle()
             }
         }
         
@@ -88,7 +88,7 @@ struct EventNameView: View {
     
     func errorCheck() -> String? {
         if  eventName.trimmingCharacters(in: .whitespaces).isEmpty {
-
+            
             return "Fülle das Feld aus"
         }
         

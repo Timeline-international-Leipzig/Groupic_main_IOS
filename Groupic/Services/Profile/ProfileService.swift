@@ -126,7 +126,7 @@ class ProfileService: ObservableObject {
             
             if let doc = document, doc.exists {
                 self.followCheck = true
-                }
+            }
             else {
                 self.followCheck = false
             }
@@ -197,7 +197,7 @@ class ProfileService: ObservableObject {
             
             PostService.loadAllEventUserUid(postId: postId) {
                 (usersEvent) in
-            
+                
                 if users == usersEvent {
                 }
                 else {

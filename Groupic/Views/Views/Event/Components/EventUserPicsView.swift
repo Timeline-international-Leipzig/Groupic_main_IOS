@@ -25,7 +25,7 @@ struct EventUserPicsView: View {
                     
                     ForEach(profileService.users, id: \.uid) {
                         (user) in
-                    
+                        
                         if user.uid == userUid.uid {
                             HorizontalPicView(userModel: user)
                         }

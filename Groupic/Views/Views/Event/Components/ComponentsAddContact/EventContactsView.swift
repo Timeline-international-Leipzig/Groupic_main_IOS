@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 import Firebase
 
-struct AddShow: View {
+struct EventContactsView: View {
     var userCollection = Firestore.firestore().collection("events")
     
     @State var userSelected: UserModel?

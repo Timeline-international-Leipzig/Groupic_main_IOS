@@ -10,14 +10,14 @@ import SwiftUI
 import SwiftUI
 import Firebase
 
-struct DeleteEventView: View {
+struct LeaveEventView: View {
     @ObservedObject var followService = FollowService()
     
     @Binding var back: Bool
     @Binding var backCompleteDelete: Bool
     
     @State var error = "Willst du das Ereignis wirklich verlassen?"
-
+    
     @State var alert = false
     
     @Binding var userModel: UserModel

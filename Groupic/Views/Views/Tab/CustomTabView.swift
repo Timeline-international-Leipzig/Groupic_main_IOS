@@ -27,15 +27,15 @@ struct CustomTabView: View {
             ZStack {
                 Spacer()
                     .fullScreenCover(isPresented: $shouldShowModel, content: {
-                                        
+                        
                         AddEventView(user: self.session.session!, shouldShowModel: $shouldShowModel)
-                
+                        
                     })
                 
                 switch selectedIndex {
                 case 0:
-                    SocialEndView()
-                
+                    SocialView()
+                    
                 case 1:
                     AddEventView(user: self.session.session!, shouldShowModel: $shouldShowModel)
                     

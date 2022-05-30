@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UserProfile: View {
+struct UserProfie: View {
     @State private var value: String = ""
     @State var users: [UserModel] = []
     @State var isLoading = false

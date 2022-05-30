@@ -65,6 +65,10 @@ struct NotificationsView: View {
                                 (user) in
                                 
                                 UserNotificationView(user: user)
+                            }
+                            
+                            ForEach(profileService.users, id: \.uid) {
+                                (user) in
                                 
                                 EventNotificationView(user: user)
                             }

@@ -81,7 +81,7 @@ struct EventQuoteView: View {
         if let error = errorCheck() {
             self.error = error
             if alert == false {
-            self.alert.toggle()
+                self.alert.toggle()
             }
         }
         
@@ -92,7 +92,7 @@ struct EventQuoteView: View {
     
     func errorCheck() -> String? {
         if  quote.trimmingCharacters(in: .whitespaces).isEmpty {
-
+            
             return "Fülle das Feld aus"
         }
         

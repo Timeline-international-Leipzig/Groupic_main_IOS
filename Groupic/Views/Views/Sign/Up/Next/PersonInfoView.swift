@@ -9,8 +9,6 @@ import SwiftUI
 import Firebase
 
 struct PersonInfoView: View {
-    @StateObject private var formViewModel = FormViewModel()
-    
     @State private var imageData: Data = Data()
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     

@@ -10,7 +10,7 @@ import Firebase
 
 class SearchService {
     static func searchUser(input: String, onSuccess: @escaping (_
-        user: [UserModel]) -> Void) {
+                                                                user: [UserModel]) -> Void) {
         
         AuthService.storeRoot.collection("users").whereField("searchName", arrayContains: input.lowercased().removeWhiteSpace())
             .getDocuments {
@@ -26,7 +26,7 @@ class SearchService {
                     let dict = document.data()
                     
                     guard let decoded = try? UserModel.init(fromDictionary: dict)
-                        else {return}
+                    else {return}
                     
                     users.append(decoded)
                     

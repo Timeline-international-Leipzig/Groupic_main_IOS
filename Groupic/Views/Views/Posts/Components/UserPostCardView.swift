@@ -115,7 +115,7 @@ struct UserPostCardView: View {
         }
         
         if exist == false && postModel.index == 0 {
-            NavigationLink(destination: EventViewNoContactView(postModel: postModel, userModel: $userModel, next: $next), isActive: self.$next, label: {
+            NavigationLink(destination: EventViewOnlyContactView(postModel: postModel, userModel: $userModel, next: $next), isActive: self.$next, label: {
                 EmptyView()
             })
             
@@ -321,7 +321,7 @@ struct UserPostCardView: View {
             }
             
             if postModel.index == 2 && existsAcc == true {
-                NavigationLink(destination: EventViewNoContactView(postModel: postModel, userModel: $userModel, next: $next), isActive: self.$next, label: {
+                NavigationLink(destination: EventViewOnlyContactView(postModel: postModel, userModel: $userModel, next: $next), isActive: self.$next, label: {
                     EmptyView()
                 })
                 

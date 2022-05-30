@@ -20,7 +20,7 @@ struct HighlightButton: View {
         self.post = post
         self._highlightCheck = highlightCheck
     }
-
+    
     func highlight() {
         if !post.highlighted {
             self.highlightCheck = true

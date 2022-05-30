@@ -31,7 +31,7 @@ class PostService {
     }
     
     static func uploadPost(caption: String, username: String, startDate: Date, endDate: Date, index: Int, imageData: Data, onSuccess: @escaping() -> Void, onError: @escaping(_
-        errorMessage: String) -> Void) {
+                                                                                                                                                                              errorMessage: String) -> Void) {
         
         guard let userId = Auth.auth().currentUser?.uid else {
             return
@@ -41,12 +41,12 @@ class PostService {
         let storagePostRef = StorageService.storagePostId(postId: postId)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
-    
+        
         StorageService.savePostPhoto(userId: userId, username: username, caption: caption, index: index, startDate: startDate, endDate: endDate, postId: postId, imageData: imageData, metadata: metadata, storagePostRef: storagePostRef, onSuccess: onSuccess, onError: onError)
     }
-        
+    
     static func loadUserPosts(userId: String, onSuccess: @escaping(_
-      posts: [PostUidModel]) -> Void) {
+                                                                   posts: [PostUidModel]) -> Void) {
         PostService.postUserId(userId: userId).collection("events").getDocuments {
             (snapShot, error) in
             
@@ -73,7 +73,7 @@ class PostService {
     }
     
     static func loadAllPosts(onSuccess: @escaping(_
-      posts: [PostModel]) -> Void) {
+                                                  posts: [PostModel]) -> Void) {
         PostService.allPosts.order(by: "dateN", descending: true).getDocuments {
             (snapShot, error) in
             
@@ -100,7 +100,7 @@ class PostService {
     }
     
     static func loadAllEventElements(postId: String, onSuccess: @escaping(_
-      posts: [EventContentModel]) -> Void) {
+                                                                          posts: [EventContentModel]) -> Void) {
         PostService.allPosts.document(postId).collection("elements").order(by: "stamp").getDocuments {
             (snapShot, error) in
             
@@ -127,7 +127,7 @@ class PostService {
     }
     
     static func loadPictureEventElements(postId: String, onSuccess: @escaping(_
-      posts: [EventContentModel]) -> Void) {
+                                                                              posts: [EventContentModel]) -> Void) {
         PostService.allPosts.document(postId).collection("elements").order(by: "stamp", descending: true).getDocuments {
             (snapShot, error) in
             
@@ -154,7 +154,7 @@ class PostService {
     }
     
     static func loadUser(userId: String, onSuccess: @escaping(_
-      users: [UidUserModel]) -> Void) {
+                                                              users: [UidUserModel]) -> Void) {
         PostService.userId(userId: userId).collection("contact").getDocuments {
             (snapShot, error) in
             
@@ -181,7 +181,7 @@ class PostService {
     }
     
     static func loadEventUser(userId: String, onSuccess: @escaping(_
-      users: [UidUserModel]) -> Void) {
+                                                                   users: [UidUserModel]) -> Void) {
         PostService.userId(userId: userId).collection("contact").getDocuments {
             (snapShot, error) in
             
@@ -209,7 +209,7 @@ class PostService {
     
     
     static func loadRequestUser(userId: String, onSuccess: @escaping(_
-      users: [UidCheckUserModel]) -> Void) {
+                                                                     users: [UidCheckUserModel]) -> Void) {
         PostService.userId(userId: userId).collection("requestsForContact").getDocuments {
             (snapShot, error) in
             
@@ -236,7 +236,7 @@ class PostService {
     }
     
     static func loadRequestEvent(userId: String, onSuccess: @escaping(_
-      users: [InviteUidModel]) -> Void) {
+                                                                      users: [InviteUidModel]) -> Void) {
         PostService.userId(userId: userId).collection("eventRequest").getDocuments {
             (snapShot, error) in
             
@@ -263,7 +263,7 @@ class PostService {
     }
     
     static func loadAllUser(userId: String, onSuccess: @escaping(_
-      users: [UserModel]) -> Void) {
+                                                                 users: [UserModel]) -> Void) {
         PostService.users.getDocuments {
             (snapShot, error) in
             
@@ -290,7 +290,7 @@ class PostService {
     }
     
     static func loadAllEventUserUid(postId: String, onSuccess: @escaping(_
-      users: [UidUserModel]) -> Void) {
+                                                                         users: [UidUserModel]) -> Void) {
         PostService.allPosts.document(postId).collection("participants").getDocuments {
             (snapShot, error) in
             

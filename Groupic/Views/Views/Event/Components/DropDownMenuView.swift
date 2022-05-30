@@ -36,13 +36,6 @@ struct DropDownMenu: View {
                 Text("Ereignis verlassen")
             }
             
-            /*
-            Button {
-            } label: {
-                Text("Ereignis verlassen")
-            }
-            */
-            
         } label: {
             Image(systemName: "line.horizontal.3")
                 .foregroundColor(.black)

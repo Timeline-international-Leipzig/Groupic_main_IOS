@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PostCardBottomView: View {
+struct PostCardottomView: View {
     @ObservedObject var postCardService = PostCardService()
     
     @State private var animate = false

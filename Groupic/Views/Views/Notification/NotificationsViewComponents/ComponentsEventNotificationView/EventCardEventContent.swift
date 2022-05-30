@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 import SDWebImageSwiftUI
 
-struct EventCardEventContent: View {
+struct EventCardEventCntent: View {
     @StateObject var profileService = ProfileService()
     @EnvironmentObject var session: SessionStore
     

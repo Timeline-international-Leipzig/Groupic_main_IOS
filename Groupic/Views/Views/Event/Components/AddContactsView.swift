@@ -51,7 +51,7 @@ struct AddContactsView: View {
                                     
                                     if user.uid == users.uid {
                                             VStack {
-                                                AddShow(user: user, post: post)
+                                                EventContactsView(user: user, post: post)
                                             }
                                         }
                                     }
