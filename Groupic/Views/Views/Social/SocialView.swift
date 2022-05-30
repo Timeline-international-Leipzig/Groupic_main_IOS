@@ -49,6 +49,10 @@ struct SocialView: View {
                 }
                 
                 ScrollView {
+                    PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
+                        // do your stuff when pulled
+                    }
+                    
                     VStack(alignment: .leading) {
                         SearchBar(value: $value)
                             .onChange(of: value, perform: {
