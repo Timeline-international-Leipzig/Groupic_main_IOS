@@ -233,25 +233,33 @@ struct SocialPostCardView: View {
                         
                         ZStack {
                             HStack {
-                                Spacer()
+                                if Calendar.current.component(.day, from: postModel.startDate) == Calendar.current.component(.day, from: postModel.endDate) {
+                                    Spacer()
+                                    
+                                    Text(postModel.startDate, style: .date)
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                        .frame(alignment: .topLeading)
+                                }
                                 
-                                Text(postModel.startDate, style: .date)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .frame(alignment: .topLeading)
-                                    .offset(y: -10)
-                                
-                                Text(" - ")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .frame(alignment: .topLeading)
-                                    .offset(y: -10)
-                                
-                                Text(postModel.endDate, style: .date)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .frame(alignment: .topLeading)
-                                    .offset(y: -10)
+                                else {
+                                    Spacer()
+                                    
+                                    Text(postModel.startDate, style: .date)
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                        .frame(alignment: .topLeading)
+                                    
+                                    Text(" - ")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                        .frame(alignment: .topLeading)
+                                    
+                                    Text(postModel.endDate, style: .date)
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                        .frame(alignment: .topLeading)
+                                }
                             }
                             
                             HStack {
@@ -355,25 +363,33 @@ struct SocialPostCardView: View {
                         
                         ZStack {
                             HStack {
-                                Spacer()
+                                if Calendar.current.component(.day, from: postModel.startDate) == Calendar.current.component(.day, from: postModel.endDate) {
+                                    Spacer()
+                                    
+                                    Text(postModel.startDate, style: .date)
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                        .frame(alignment: .topLeading)
+                                }
                                 
-                                Text(postModel.startDate, style: .date)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .frame(alignment: .topLeading)
-                                    .offset(y: -10)
-                                
-                                Text(" - ")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .frame(alignment: .topLeading)
-                                    .offset(y: -10)
-                                
-                                Text(postModel.endDate, style: .date)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .frame(alignment: .topLeading)
-                                    .offset(y: -10)
+                                else {
+                                    Spacer()
+                                    
+                                    Text(postModel.startDate, style: .date)
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                        .frame(alignment: .topLeading)
+                                    
+                                    Text(" - ")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                        .frame(alignment: .topLeading)
+                                    
+                                    Text(postModel.endDate, style: .date)
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                        .frame(alignment: .topLeading)
+                                }
                             }
                             
                             HStack {
@@ -630,25 +646,33 @@ struct SocialPostCardView: View {
                             
                             ZStack {
                                 HStack {
-                                    Spacer()
+                                    if Calendar.current.component(.day, from: postModel.startDate) == Calendar.current.component(.day, from: postModel.endDate) {
+                                        Spacer()
+                                        
+                                        Text(postModel.startDate, style: .date)
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
+                                            .frame(alignment: .topLeading)
+                                    }
                                     
-                                    Text(postModel.startDate, style: .date)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .frame(alignment: .topLeading)
-                                        .offset(y: -10)
-                                    
-                                    Text(" - ")
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .frame(alignment: .topLeading)
-                                        .offset(y: -10)
-                                    
-                                    Text(postModel.endDate, style: .date)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .frame(alignment: .topLeading)
-                                        .offset(y: -10)
+                                    else {
+                                        Spacer()
+                                        
+                                        Text(postModel.startDate, style: .date)
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
+                                            .frame(alignment: .topLeading)
+                                        
+                                        Text(" - ")
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
+                                            .frame(alignment: .topLeading)
+                                        
+                                        Text(postModel.endDate, style: .date)
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
+                                            .frame(alignment: .topLeading)
+                                    }
                                 }
                                 
                                 HStack {
