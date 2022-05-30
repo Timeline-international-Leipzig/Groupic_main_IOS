@@ -49,7 +49,7 @@ struct EventCard: View {
             self.profileService.allPosts(userId: Auth.auth().currentUser!.uid)
         }
         
-        NavigationLink(destination: EventCardNotificationView(postModel: post, userModel: $user, next: $next), isActive: self.$next, label: {
+        NavigationLink(destination: EventViewNotifications(postModel: post, userModel: $user, next: $next), isActive: self.$next, label: {
             EmptyView()
         })
     }

@@ -9,11 +9,11 @@ import SwiftUI
 import SDWebImageSwiftUI
 import Firebase
 
-struct EventViewNoContactView: View {
+struct EventViewNotifications: View {
     @StateObject var profileService = ProfileService()
     @EnvironmentObject var session: SessionStore
     
-    @State var postModel: PostModel
+    @State var postModel: PostModel?
     @Binding var userModel: UserModel
     @Binding var next: Bool
     
@@ -43,7 +43,7 @@ struct EventViewNoContactView: View {
                         }
                         
                     VStack {
-                        if postModel.mediaUrl == "" {
+                        if postModel!.mediaUrl == "" {
                             Image("grey")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -51,7 +51,7 @@ struct EventViewNoContactView: View {
                                 .cornerRadius(0)
                         }
                         else {
-                            WebImage(url: URL(string: postModel.mediaUrl))
+                            WebImage(url: URL(string: postModel!.mediaUrl))
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: getRectView().width, height: 180, alignment: .center)
@@ -65,7 +65,7 @@ struct EventViewNoContactView: View {
                             
                             Spacer()
                             
-                            Text(postModel.caption)
+                            Text(postModel!.caption)
                                 .font(.system(size: 26, weight: .bold, design: .default))
                             
                             Spacer()
@@ -73,7 +73,7 @@ struct EventViewNoContactView: View {
                         }.padding(.horizontal)
                         
                         HStack {
-                            Text(postModel.startDate, style: .date)
+                            Text(postModel!.startDate, style: .date)
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                                 .frame(alignment: .topLeading)
@@ -83,7 +83,7 @@ struct EventViewNoContactView: View {
                                 .foregroundColor(.gray)
                                 .frame(alignment: .topLeading)
                             
-                            Text(postModel.endDate, style: .date)
+                            Text(postModel!.endDate, style: .date)
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                                 .frame(alignment: .topLeading)
@@ -98,7 +98,7 @@ struct EventViewNoContactView: View {
                             .padding(10)
                         
                         ZStack {
-                            EventUserPicsView(post: $postModel, showparticipants: $showparticipants)
+                            NotificationEventUserPicsView(post: $postModel, showparticipants: $showparticipants)
                         }
                         
                         .padding(.top)
@@ -106,7 +106,7 @@ struct EventViewNoContactView: View {
                         Divider()
                             .padding(.top)
                         
-                        EventContentView(postModel: $postModel, userModel: $userModel)
+                        NotificationEventContentView(postModel: $postModel, userModel: $userModel)
                     }
                 }.offset(y: -17)
             }
@@ -114,9 +114,9 @@ struct EventViewNoContactView: View {
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-        
+            
             if self.showparticipants {
-                ParticipantsView(back: $showparticipants, post: $postModel)
+                NotificationParticipantsView(back: $showparticipants, post: $postModel)
             }
         }
     }
