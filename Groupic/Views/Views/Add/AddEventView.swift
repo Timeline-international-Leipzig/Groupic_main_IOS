@@ -32,6 +32,11 @@ struct AddEventView: View {
     @State var visible = false
     @State var revisible = false
     @State var alert = false
+    @State var errorCheckBool = false
+    
+    var limit = 15
+    
+    var allowedBetaZero = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
     
     @Binding var shouldShowModel: Bool
     
@@ -51,6 +56,9 @@ struct AddEventView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .font(Font.system(size: 40, weight: .bold, design: .default))
                             .padding(.horizontal)
+                            .onChange(of: caption) {_ in
+                                caption = String(caption.prefix(limit).unicodeScalars.filter(allowedBetaZero.contains))
+                            }
                         
                         VStack(spacing: 10) {
                             HStack {
