@@ -27,7 +27,6 @@ struct SocialFriendsEventsView: View {
                 }
             }
         }
-        .background(Color.white)
         .navigationTitle("")
         .navigationBarHidden(true)
         .onAppear {

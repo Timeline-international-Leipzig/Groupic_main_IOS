@@ -23,40 +23,64 @@ struct SocialView: View {
     
     var body: some View {
         ZStack {
-            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
             
             VStack {
-                ZStack {
-                    HStack(spacing: 15) {
-                        Spacer()
-                        
-                        Text("Social")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                            .frame(alignment: .center)
-                        
-                        Spacer()
-                    }
-                    .padding()
-                    .background(Color("AccentColor"))
+            
+                HStack {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }.background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                    ).colorInvert()
+                
+                Spacer()
+            }.zIndex(1)
+                
+            VStack {
+                HStack(spacing: 15) {
+                    Spacer()
                     
-                    HStack() {
-                        Spacer()
+                    Button(action: {},
+                           label: {
+                        Image(systemName: "envelope.fill")
+                            .foregroundColor(.white)
+                            .font(.system(size: 20))
                         
+                    }).padding(.horizontal, 20)
+                    
+                    Text("Community")
+                        .font(.title3)
+                        .foregroundColor(.white)
+                        .frame(alignment: .center)
+                    
+                    Button(action: {},
+                           label: {
+                        Image(systemName: "line.horizontal.3")
+                            .foregroundColor(.white)
+                            .font(.system(size: 20))
                         
-                    }
-                    .padding()
+                    }).padding(.horizontal, 20)
+                    
+                    Spacer()
+                }
+                .padding(.top, 50)
+             
+                Spacer()
+            }.zIndex(1)
+
+            
+            VStack {
+                
+                VStack(alignment: .leading) {
+                    SearchBar(value: $value)
+                        .onChange(of: value, perform: {
+                            new in
+                            
+                            searchUsers()
+                        })
                 }
                 
                 ScrollView {
-                    VStack(alignment: .leading) {
-                        SearchBar(value: $value)
-                            .onChange(of: value, perform: {
-                                new in
-                                
-                                searchUsers()
-                            })
-                    }
                     
                     ZStack {
                         VStack {
@@ -131,15 +155,14 @@ struct SocialView: View {
                                 })
                             }
                         }
-                        .background(Color.white)
                     }
                 }
-                .background(Color.white)
                 .navigationBarTitle("")
                 .navigationBarBackButtonHidden(true)
                 .navigationBarHidden(true)
             }
-        }
+            .padding(.top, 80)
+        }.background(Color("mainColor"))
     }
     
     func searchUsers() {

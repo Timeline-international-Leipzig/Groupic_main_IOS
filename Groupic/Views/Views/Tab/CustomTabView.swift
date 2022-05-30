@@ -42,40 +42,55 @@ struct CustomTabView: View {
                 default:
                     ProfileView()
                 }
-            }
-            
-            Divider()
-                .padding(.bottom, 8)
-            
-            HStack {
-                ForEach(0..<3) { num in
-                    Button(action: {
-                        if num == 1 {
-                            shouldShowModel.toggle()
-                            return
+                
+                VStack {
+                    
+                    Spacer()
+                    
+                    HStack {
+                        ForEach(0..<3) { num in
+                            Button(action: {
+                                if num == 1 {
+                                    shouldShowModel.toggle()
+                                    return
+                                }
+                                
+                                selectedIndex = num
+                                
+                            }, label: {
+                                Spacer()
+                                
+                                if num == 1 {
+                                    Image("plusButton")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                        .clipped()
+                                } else {
+                                    Image(systemName: tabBarImageNames[num])
+                                        .font(.system(size: 24, weight: .bold))
+                                        .foregroundColor(selectedIndex == num ? Color(.white) : .init(white: 0.8))
+                                }
+                                
+                                Spacer()
+                            })
                         }
-                        
-                        selectedIndex = num
-                        
-                    }, label: {
-                        Spacer()
-                        
-                        if num == 1 {
-                            Image("plusButton")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                                .clipped()
-                        } else {
-                            Image(systemName: tabBarImageNames[num])
-                                .font(.system(size: 24, weight: .bold))
-                                .foregroundColor(selectedIndex == num ? Color(.black) : .init(white: 0.8))
-                        }
-                        
-                        Spacer()
-                    })
+                    }.padding(.bottom, 20)
+                        .padding(.top, 10)
+                }.zIndex(1)
+                
+                VStack {
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Rectangle().frame(width: getRectView().width, height: 100)
+                    }.background(Color(.black))
+                        .mask(
+                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                        ).colorInvert()
                 }
             }
-        }
+        }.ignoresSafeArea()
     }
 }
 
