@@ -25,7 +25,7 @@ struct SocialView: View {
         ZStack {
             
             VStack {
-            
+                
                 HStack {
                     Rectangle().frame(width: getRectView().width, height: 100)
                 }.background(Color(.black))
@@ -35,7 +35,7 @@ struct SocialView: View {
                 
                 Spacer()
             }.zIndex(1)
-                
+            
             VStack {
                 HStack(spacing: 15) {
                     Spacer()
@@ -64,10 +64,10 @@ struct SocialView: View {
                     Spacer()
                 }
                 .padding(.top, 50)
-             
+                
                 Spacer()
             }.zIndex(1)
-
+            
             
             VStack {
                 
@@ -83,15 +83,6 @@ struct SocialView: View {
                 ScrollView {
                     PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
                         // do your stuff when pulled
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        SearchBar(value: $value)
-                            .onChange(of: value, perform: {
-                                new in
-                                
-                                searchUsers()
-                            })
                     }
                     
                     ZStack {
@@ -156,8 +147,6 @@ struct SocialView: View {
                                         })
                                     }
                                     
-                                    
-                                    Divider().background(Color("AccentColor"))
                                 }
                                 
                                 Spacer()
