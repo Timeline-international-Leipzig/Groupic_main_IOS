@@ -33,6 +33,7 @@ struct AddEventView: View {
     @State var revisible = false
     @State var alert = false
     @State var errorCheckBool = false
+    @State var upload = false
     
     var limit = 15
     
@@ -135,6 +136,7 @@ struct AddEventView: View {
                             .foregroundColor(.red)
                             .padding()
                             
+                            if upload == false {
                             Button (
                                 action: {
                                     self.uploadPost()
@@ -145,6 +147,19 @@ struct AddEventView: View {
                             )
                             .foregroundColor(.green)
                             .padding()
+                            }
+                            else {
+                                Button (
+                                    action: {
+                                        
+                                    },
+                                    label: {Text("Bestätigen")
+                                            .foregroundColor(Color.gray)
+                                    }
+                                )
+                                .foregroundColor(.green)
+                                .padding()
+                            }
                         }
                         .padding(.top, 30)
                     }
@@ -201,11 +216,12 @@ struct AddEventView: View {
         }
         //firebase
         
-        self.shouldShowModel.toggle()
-        
+        self.upload = true
+  
         Auth.auth().currentUser?.reload()
         PostService.uploadPost(caption: caption, username: user.userName, startDate: startDate, endDate: endDate, index: selection, imageData: imageData, onSuccess: {
 
+            self.shouldShowModel.toggle()
             return
         }) {
             (errorMessage) in
