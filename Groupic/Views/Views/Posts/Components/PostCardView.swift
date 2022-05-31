@@ -7,8 +7,11 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Firebase
 
 struct PostCardView: View {
+    @StateObject var profileService = ProfileService()
+    
     @State var postModel: PostModel
     @State var userModel: UserModel
     @State var next = false
