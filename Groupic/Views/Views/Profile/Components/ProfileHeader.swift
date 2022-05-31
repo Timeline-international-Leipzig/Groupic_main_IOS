@@ -21,7 +21,8 @@ struct ProfileHeader: View {
         })
         
         ZStack {
-            VStack {
+            
+            VStack(spacing: 0) {
                 if user!.backgroundImageUrl == "" {
                     Image("grey")
                         .resizable()
@@ -36,47 +37,53 @@ struct ProfileHeader: View {
                         .frame(width: getRectView().width, height: 180, alignment: .center)
                         .cornerRadius(0)
                 }
-                
-                
-                HStack {
-                    Text(user!.userName).bold()
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        self.nextProfile.toggle()
-                    }, label: {
-                        Text("Bearbeiten")
-                            .background(Color.gray)
-                            .foregroundColor(.black)
-                    })
-                    .padding()
-                }
-                .padding()
-            }
+            }.ignoresSafeArea()
             
-            ZStack {
-                VStack {
-                    if user!.profileImageUrl == "" {
-                        Image("profileImage")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 125, height: 125, alignment: .center)
-                            .clipShape(Circle())
-                            .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
-                    }
-                    else {
-                        WebImage(url: URL(string: user!.profileImageUrl))
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 125, height: 125, alignment: .center)
-                            .clipShape(Circle())
-                            .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
-                    }
+            VStack {
+                if user!.profileImageUrl == "" {
+                    Image("profileImage")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100, alignment: .center)
+                        .clipShape(Circle())
                 }
+                else {
+                    WebImage(url: URL(string: user!.profileImageUrl))
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100, alignment: .center)
+                        .clipShape(Circle())
+                }
+            }.padding(.top, 125)
+            
+            HStack {
+                
+                Text(user!.userName)
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding(.leading, 10)
+                
+                Spacer()
+                
+                Button(action: {
+                    self.nextProfile.toggle()
+                }, label: {
+                    Text("Bearbeiten")
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundColor(Color(.white))
+                        .font(.headline)
+                        .padding(5)
+                        .background(
+                            Color("buttonColor")
+                                .cornerRadius(5)
+                        )
+                })
             }
-            .offset(y: 60)
+            .padding(.horizontal)
+            .padding(.top, 200)
         }
+        .background(Color("mainColor"))
+        .ignoresSafeArea()
         .navigationBarTitle("")
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)

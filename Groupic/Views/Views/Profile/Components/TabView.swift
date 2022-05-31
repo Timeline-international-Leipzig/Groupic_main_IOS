@@ -26,68 +26,77 @@ struct TabView: View {
         })
         
         ZStack {
-            HStack(spacing: 15) {
+            
+            VStack {
+                
+                HStack {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }.background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                    ).colorInvert()
+                
                 Spacer()
+            }
+            
+            VStack{
+            HStack() {
+                
+                Spacer()
+                
+                Button(action: {
+                    self.nextNotifications.toggle()
+                }, label: {
+                    if new == true || eventNew == true {
+                        Image(systemName: "envelope.badge.fill")
+                            .foregroundColor(.white)
+                    }
+                    else {
+                        Image(systemName: "envelope")
+                            .foregroundColor(.white)
+                    }
+                })
+                .padding(.horizontal)
+                .onAppear{
+                    checkIfChecked { result in
+                        if (result == true) {
+                            self.new = true
+                        }
+                        else {
+                            self.new = false
+                        }
+                        
+                        checkIfCheckedEvent { result in
+                            if (result == true) {
+                                self.eventNew = true
+                            }
+                            else {
+                                self.eventNew = false
+                            }
+                        }
+                    }
+                }
                 
                 Text(user!.name)
                     .font(.title3)
                     .foregroundColor(.white)
                     .frame(alignment: .center)
                 
-                Spacer()
-            }
-            .padding()
-            .background(Color("AccentColor"))
-            
-            HStack() {
-                Spacer()
-                
                 Button(action: {
                     self.next.toggle()
                 }, label: {
                     Image(systemName: "line.horizontal.3")
                         .foregroundColor(.white)
-                })
-            }
-            .padding()
-            
-            HStack() {
-                Button(action: {
-                    self.nextNotifications.toggle()
-                }, label: {
-                    if new == true || eventNew == true {
-                        Image(systemName: "paperplane.circle.fill")
-                            .foregroundColor(.white)
-                    }
-                    else {
-                        Image(systemName: "paperplane.circle")
-                            .foregroundColor(.white)
-                    }
-                })
+                }).padding(.horizontal)
                 
                 Spacer()
             }
-            .padding()
-            .onAppear{
-                checkIfChecked { result in
-                    if (result == true) {
-                        self.new = true
-                    }
-                    else {
-                        self.new = false
-                    }
-                    
-                    checkIfCheckedEvent { result in
-                        if (result == true) {
-                            self.eventNew = true
-                        }
-                        else {
-                            self.eventNew = false
-                        }
-                    }
-                }
-            }
+                
+                Spacer()
+            }.padding(.top, 50)
+            .zIndex(1)
         }
+        .ignoresSafeArea()
     }
     
     func checkIfChecked(completion: @escaping ((Bool) -> () )) {

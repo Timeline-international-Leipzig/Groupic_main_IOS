@@ -34,7 +34,7 @@ struct SocialView: View {
                     ).colorInvert()
                 
                 Spacer()
-            }.zIndex(1)
+            }
             
             VStack {
                 HStack(spacing: 15) {

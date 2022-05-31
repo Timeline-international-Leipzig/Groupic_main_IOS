@@ -29,6 +29,8 @@ struct CustomTabView: View {
                     .fullScreenCover(isPresented: $shouldShowModel, content: {
                         
                         AddEventView(user: self.session.session!, shouldShowModel: $shouldShowModel)
+                            .background(Color("mainColor"))
+                            .ignoresSafeArea()
                         
                     })
                 
@@ -90,7 +92,8 @@ struct CustomTabView: View {
                         ).colorInvert()
                 }
             }
-        }.ignoresSafeArea()
+        }
+        .ignoresSafeArea()
     }
 }
 

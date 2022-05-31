@@ -14,36 +14,72 @@ struct MidTabBarView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack(alignment: .center, spacing: 20) {
+            HStack {
                 ForEach(0..<4) {
                     num in
                     
                     Button(action: {
-                        withAnimation(.easeInOut) {
-                            
+                        withAnimation {
                             selectedIndex = num
                         }
                     }, label: {
                         if num == selectedIndex {
-                            ZStack {
-                                Text(tabBarImageName[num])
-                                    .foregroundColor(Color("AccentColor"))
-                                
-                                Rectangle()
-                                    .fill(Color("AccentColor"))
-                                    .frame(width: 68, height: 1, alignment: .center)
-                                    .offset(y: 15)
-                            }
+                            
+                            Spacer()
+                            
+                            Text(tabBarImageName[num])
+                                .foregroundColor(Color(.white))
+                                .scaledToFill()
+                                .minimumScaleFactor(0.5)
+                                .lineLimit(1)
+                            
+                            Spacer()
+                            
                         }
                         
                         else {
+                            
+                            Spacer()
+                            
                             Text(tabBarImageName[num])
-                                .foregroundColor(.black)
+                                .foregroundColor(.white)
+                                .scaledToFill()
+                                .minimumScaleFactor(0.5)
+                                .lineLimit(1)
+                            
+                            Spacer()
+                            
                         }
                     }
                     )
                 }
-            }
+            }.background(
+                ZStack {
+                    HStack {
+                        Rectangle()
+                            .fill(Color(.white))
+                            .frame(width: getRectView().width, height: 3)
+                    }.padding(.top, 40)
+                    
+                    HStack {
+                        if selectedIndex == 3 { Spacer() }
+                        if selectedIndex == 1 { Spacer() }
+                        if selectedIndex == 2 {
+                            Spacer()
+                            Spacer()
+                        }
+                        Rectangle()
+                            .fill(Color("themeColor2"))
+                            .frame(width: UIScreen.main.bounds.width * 0.25, height: 3, alignment: .leading)
+                        if selectedIndex == 0 { Spacer() }
+                        if selectedIndex == 1 {
+                            Spacer()
+                            Spacer()
+                        }
+                        if selectedIndex == 2 { Spacer() }
+                    }.padding(.top, 40)
+                }
+            )
             
             ZStack{
                 switch selectedIndex {
@@ -68,6 +104,5 @@ struct MidTabBarView: View {
                 }
             }
         }
-        .padding(.top, 20)
     }
 }

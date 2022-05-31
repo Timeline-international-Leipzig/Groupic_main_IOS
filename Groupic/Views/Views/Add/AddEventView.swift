@@ -47,25 +47,34 @@ struct AddEventView: View {
                 ZStack {
                     VStack {
                         Text("Erstelle ein Ereignis")
-                            .foregroundColor(Color("AccentColor"))
+                            .foregroundColor(Color("themeColor2"))
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .frame(maxWidth: .infinity, alignment: .center)
-                            .padding(.top, 20)
+                            .padding(.top, 50)
                         
                         TextField("Titel", text: $caption)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.all, 5)
+                            .multilineTextAlignment(.center)
                             .font(Font.system(size: 40, weight: .bold, design: .default))
+                            .accentColor(.white)
+                            .background(Color("background"))
+                            .foregroundColor(Color.white)
+                            .cornerRadius(10)
                             .padding(.horizontal)
-                            .autocapitalization(.none)
                             .onChange(of: caption) {_ in
                                 caption = String(caption.prefix(limit).unicodeScalars.filter(allowedBetaZero.contains))
                             }
                         
+                        Divider()
+                            .background(Color.white)
+                            .padding(.horizontal, 18)
+                            .offset(y: -12)
+                        
                         VStack(spacing: 10) {
                             HStack {
                                 Image(systemName: "arrow.forward.square")
-                                    .foregroundColor(Color("darkBlue"))
+                                    .foregroundColor(Color(.white))
                                     .font(.system(size: 20))
                                 
                                 DatePicker("Startdatum", selection: $startDate, displayedComponents: .date)
@@ -73,18 +82,19 @@ struct AddEventView: View {
                             
                             HStack {
                                 Image(systemName: "arrow.backward.square")
-                                    .foregroundColor(Color("darkBlue"))
+                                    .foregroundColor(Color(.white))
                                     .font(.system(size: 20))
                                 
                                 DatePicker("Enddatum", selection: $endDate, displayedComponents: .date)
                             }.padding(.horizontal, 20)
                         }
                         .padding(.top, 10)
+                        .padding(.horizontal, 50)
                         
                         Text("Wähle ein Titelbild aus:")
-                            .fontWeight(.bold)
-                            .foregroundColor(Color("AccentColor"))
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.system(size: 22, weight: .bold))
+                            .foregroundColor(Color(.white))
+                            .hCenter()
                             .padding()
                             .padding(.top, 10)
                         
@@ -92,14 +102,14 @@ struct AddEventView: View {
                         VStack {
                             if eventImage != nil {
                                 eventImage!.resizable()
-                                    .clipShape(Circle())
-                                    .frame(width: 100, height: 100, alignment: .center)
+                                    .frame(width: 250, height: 170, alignment: .center)
                                     .onTapGesture {
                                         self.showingActionsSheet = true
                                     }
                             } else {
                                 Image(systemName: "photo.circle").resizable()
                                     .frame(width: 100, height: 100, alignment: .center)
+                                    .foregroundColor(.gray)
                                     .onTapGesture {
                                         self.showingActionsSheet = true
                                     }
@@ -110,15 +120,20 @@ struct AddEventView: View {
                         
                         VStack {
                             Text("Wer darf das Ereignis anschauen?")
-                                .foregroundColor(Color("AccentColor"))
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(Color(.white))
                             
-                            Divider()
+                            Rectangle()
+                                .frame(height: 1)
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 20)
                             
                             VStack(alignment: .leading) {
                                 RadioGroupPicker(
                                     selectedIndex: $selection,
                                     titles: ["Jeder", "Teilnehmer", "Teilnehmer und deren Kontakte"])
                                 .spacing(20)
+                                .accentColor(.white)
                             }
                             .padding(.horizontal, 60)
                         }
@@ -129,32 +144,38 @@ struct AddEventView: View {
                         HStack {
                             Button (
                                 action: {shouldShowModel.toggle()},
-                                label: {Text("Abbrechen")
-                                        .foregroundColor(.red)
+                                label: {
+                                    Image(systemName: "multiply")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 25, weight: .bold))
                                 }
                             )
                             .foregroundColor(.red)
                             .padding()
                             
                             if upload == false {
-                            Button (
-                                action: {
-                                    self.uploadPost()
-                                },
-                                label: {Text("Bestätigen")
-                                        .foregroundColor(Color("AccentColor"))
-                                }
-                            )
-                            .foregroundColor(.green)
-                            .padding()
+                                Button (
+                                    action: {
+                                        self.uploadPost()
+                                    },
+                                    label: {
+                                        Image(systemName: "checkmark")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 25, weight: .bold))
+                                    }
+                                )
+                                .foregroundColor(.green)
+                                .padding()
                             }
                             else {
                                 Button (
                                     action: {
                                         
                                     },
-                                    label: {Text("Bestätigen")
-                                            .foregroundColor(Color.gray)
+                                    label: {
+                                        Image(systemName: "checkmark")
+                                            .foregroundColor(Color("themeColor2"))
+                                            .font(.system(size: 25, weight: .bold))
                                     }
                                 )
                                 .foregroundColor(.green)
@@ -185,6 +206,7 @@ struct AddEventView: View {
                     ])
                 }
             }
+            .background(Color("mainColor"))
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
@@ -217,10 +239,10 @@ struct AddEventView: View {
         //firebase
         
         self.upload = true
-  
+        
         Auth.auth().currentUser?.reload()
         PostService.uploadPost(caption: caption, username: user.userName, startDate: startDate, endDate: endDate, index: selection, imageData: imageData, onSuccess: {
-
+            
             self.shouldShowModel.toggle()
             return
         }) {

@@ -13,26 +13,20 @@ struct ProfileView: View {
     
     var body: some View {
         ZStack {
-            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
+            
+            TabView(user: self.session.session).zIndex(1)
             
             VStack {
-                TabView(user: self.session.session)
                 
-                ScrollView(.vertical, showsIndicators: false) {
-                    PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
-                        // do your stuff when pulled
-                    }
-                    
-                    VStack {
-                        ProfileHeader(user: self.session.session!)
-                        
-                        MidTabBarView()
-                    }
-                    .offset(y: -10)
-                }
-                .background(Color.white)
-                .coordinateSpace(name: "pullToRefresh")
+                ProfileHeader(user: self.session.session!)
+                
+                MidTabBarView().padding(.top, 40)
+                
             }
+            
         }
+        .background(Color("mainColor"))
+        .ignoresSafeArea()
+        .coordinateSpace(name: "pullToRefresh")
     }
 }
