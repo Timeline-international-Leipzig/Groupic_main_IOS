@@ -23,7 +23,7 @@ struct SocialUserPostView: View {
             //PostCardView(postModel: post)
             //PostCardBottomView(postModel: post)
         }
-        .background(Color.white)
+        .background(Color("mainColor"))
         .navigationTitle("")
         .navigationBarHidden(true)
         .onAppear {

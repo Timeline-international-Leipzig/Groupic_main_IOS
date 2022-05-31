@@ -12,32 +12,42 @@ struct SearchBar: View {
     @State var isSearching = false
     
     var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .font(.system(size: 20))
-
-            TextField("", text: $value)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-                .autocapitalization(.none)
-                .onTapGesture {
-                    isSearching = true
-                }
-                .overlay(
-                    HStack {
-                        Spacer()
-                        
-                        Button(action: {
-                            value = ""
-                        }, label: {
-                            Image(systemName: "xmark.circle.fill")
-                        })
+        
+        VStack {
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 20))
+                
+                TextField("", text: $value)
+                    .padding(.all, 5)
+                    .accentColor(.white)
+                    .background(Color("mainColor"))
+                    .foregroundColor(Color.white)
+                    .cornerRadius(10)
+                    .padding()
+                    .onTapGesture {
+                        isSearching = true
                     }
-                    .padding(.horizontal, 32)
-                    .foregroundColor(.gray)
-                )
+                    .overlay(
+                        HStack {
+                            Spacer()
+                            
+                            Button(action: {
+                                value = ""
+                            }, label: {
+                                Image(systemName: "xmark.circle.fill")
+                            })
+                        }
+                            .foregroundColor(.white)
+                    )
+            }
+            .padding(.horizontal)
+            
+            Divider()
+                .background(Color.white)
+                .padding(.horizontal, 18)
+                .offset(y: -12)
         }
-        .padding(.horizontal)
     }
 }
 
