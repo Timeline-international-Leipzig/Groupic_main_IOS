@@ -12,7 +12,6 @@ struct PostModel: Encodable, Decodable, Equatable {
     var publishTime: Double
     var title: String
     var index: Int
-    var geoLocation: String
     var creatorId: String
     var id: String
     var username: String

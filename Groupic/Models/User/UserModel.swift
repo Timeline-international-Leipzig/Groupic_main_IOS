@@ -12,6 +12,7 @@ struct UserModel: Encodable, Decodable {
     var email: String
     var profileImageId: String
     var titleImageId: String
+    var username: String
     var fullName: String
     var keyWords: [String]
     var availableStorage = 2097152
