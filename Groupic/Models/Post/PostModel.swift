@@ -21,5 +21,4 @@ struct PostModel: Encodable, Decodable, Equatable {
     var adminIds: [String] = []
     var invited: [String] = []
     var participantIds: [String] = []
-    
 }
