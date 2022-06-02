@@ -21,10 +21,10 @@ struct EventCard: View {
     
     var body: some View {
         VStack {
-            ForEach(profileService.posts, id: \.postId) {
+            ForEach(profileService.posts, id: \.id) {
                 (post) in
                 
-                if post.postId == event.postId {
+                if post.id == event.postId {
                     Button(action: {
                         self.post = post
                         self.next.toggle()
@@ -35,7 +35,7 @@ struct EventCard: View {
                                     .font(.subheadline)
                                     .bold()
                                 
-                                Text(post.caption)
+                                Text(post.title)
                                     .font(.subheadline)
                                     .bold()
                             }

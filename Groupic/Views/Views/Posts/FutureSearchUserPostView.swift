@@ -26,18 +26,18 @@ struct FutureSearchUserPostView: View {
                 }
                 
                 VStack {
-                    ForEach(self.profileService.posts, id: \.postId) {
+                    ForEach(self.profileService.posts, id: \.id) {
                         (post) in
                         
                         ForEach(profileService.postsUid, id: \.postId) {
                             (postUid) in
                             
-                            if (postUid.postId == post.postId)  && post.startDate > date {
+                            if (postUid.postId == post.id)  && post.startDate > date {
                                 VStack {
                                     UserPostCardView(postModel: post, userModel: user, exist: $exists)
                                 }
                                 .onAppear {
-                                    checkIfUserExists(userId: Auth.auth().currentUser!.uid, postId: post.postId) { result in
+                                    checkIfUserExists(userId: Auth.auth().currentUser!.uid, postId: post.id) { result in
                                         if (result == true) {
                                             self.exists = true
                                         }

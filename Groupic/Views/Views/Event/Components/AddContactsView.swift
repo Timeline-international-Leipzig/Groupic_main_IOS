@@ -65,7 +65,7 @@ struct AddContactsView: View {
                     .onAppear {
                         self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
                         self.profileService.loadUser(userId: Auth.auth().currentUser!.uid)
-                        self.profileService.loadAllEventUsers(postId: post.postId)
+                        self.profileService.loadAllEventUsers(postId: post.id)
                     }
                     
                     Button(action: {

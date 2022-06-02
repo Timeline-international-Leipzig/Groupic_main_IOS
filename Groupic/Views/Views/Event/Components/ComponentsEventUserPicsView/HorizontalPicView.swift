@@ -18,7 +18,7 @@ struct HorizontalPicView: View {
             })
 
             VStack {
-                if userModel!.profileImageUrl == "" {
+                if userModel!.profileImageId == "" {
                     Button(action: {
                         self.next.toggle()
                     }, label: {
@@ -33,7 +33,7 @@ struct HorizontalPicView: View {
                     Button(action: {
                         self.next.toggle()
                     }, label: {
-                        WebImage(url: URL(string: userModel!.profileImageUrl))
+                        WebImage(url: URL(string: userModel!.profileImageId))
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 25, height: 25)

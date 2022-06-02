@@ -35,7 +35,7 @@ struct UserContactsView: View {
                                     next.toggle()
                                 }, label: {
                                     HStack {
-                                        if user.profileImageUrl == "" {
+                                        if user.profileImageId == "" {
                                             Image("profileImage")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
@@ -43,14 +43,14 @@ struct UserContactsView: View {
                                                 .clipShape(Circle())
                                         }
                                         else {
-                                            WebImage(url: URL(string: user.profileImageUrl))
+                                            WebImage(url: URL(string: user.profileImageId))
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 50, height: 50, alignment: .center)
                                                 .clipShape(Circle())
                                         }
                                         
-                                        Text(user.userName)
+                                        Text(user.username)
                                             .foregroundColor(.white)
                                             .font(.system(size: 18, weight: .bold))
                                             .padding(.horizontal)

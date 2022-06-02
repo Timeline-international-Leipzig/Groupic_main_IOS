@@ -42,7 +42,7 @@ struct SocialPostCardView: View {
                             }
                             
                             if userModel.uid != Auth.auth().currentUser!.uid {
-                                Text(userModel.userName + ": ")
+                                Text(userModel.username + ": ")
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
                                     .frame(alignment: .topLeading)
@@ -56,7 +56,7 @@ struct SocialPostCardView: View {
                                     .offset(y: -5)
                             }
                             
-                            Text((Date(timeIntervalSince1970: postModel.dateN))
+                            Text((Date(timeIntervalSince1970: postModel.publishTime))
                                 .timeAgo())
                             .font(.subheadline)
                             .foregroundColor(.gray)
@@ -77,7 +77,7 @@ struct SocialPostCardView: View {
                             self.next.toggle()
                         },
                         label: {
-                            WebImage(url: URL(string: postModel.mediaUrl)!)
+                            WebImage(url: URL(string: postModel.coverPic)!)
                                 .resizable()
                                 .frame(width: getRectView().width, height: 170, alignment: .center)
                                 .clipped()
@@ -135,7 +135,7 @@ struct SocialPostCardView: View {
                             HStack {
                                 Spacer()
                                 
-                                Text(postModel.caption)
+                                Text(postModel.title)
                                     .font(.title3)
                                     .frame(width: 320, height: 40, alignment: .topLeading)
                                 
@@ -148,7 +148,7 @@ struct SocialPostCardView: View {
                 .offset(y: -10)
             }
             .onAppear {
-                self.profileService.loadAllEventElements(postId: postModel.postId)
+                self.profileService.loadAllEventElements(postId: postModel.id)
             }
         }
         
@@ -171,7 +171,7 @@ struct SocialPostCardView: View {
                             }
                             
                             if userModel.uid != Auth.auth().currentUser!.uid {
-                                Text(userModel.userName + ": ")
+                                Text(userModel.username + ": ")
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
                                     .frame(alignment: .topLeading)
@@ -185,7 +185,7 @@ struct SocialPostCardView: View {
                                     .offset(y: -5)
                             }
                             
-                            Text((Date(timeIntervalSince1970: postModel.dateN))
+                            Text((Date(timeIntervalSince1970: postModel.publishTime))
                                 .timeAgo())
                             .font(.subheadline)
                             .foregroundColor(.gray)
@@ -207,7 +207,7 @@ struct SocialPostCardView: View {
                         },
                         label: {
                             
-                            WebImage(url: URL(string: postModel.mediaUrl)!)
+                            WebImage(url: URL(string: postModel.coverPic)!)
                                 .resizable()
                                 .frame(width: getRectView().width, height: 170, alignment: .center)
                                 .clipped()
@@ -265,7 +265,7 @@ struct SocialPostCardView: View {
                             HStack {
                                 Spacer()
                                 
-                                Text(postModel.caption)
+                                Text(postModel.title)
                                     .font(.title3)
                                     .frame(width: 320, height: 40, alignment: .topLeading)
                                 
@@ -278,7 +278,7 @@ struct SocialPostCardView: View {
                 .offset(y: -10)
             }
             .onAppear {
-                self.profileService.loadAllEventElements(postId: postModel.postId)
+                self.profileService.loadAllEventElements(postId: postModel.id)
             }
         }
         
@@ -301,7 +301,7 @@ struct SocialPostCardView: View {
                             }
                             
                             if userModel.uid != Auth.auth().currentUser!.uid {
-                                Text(userModel.userName + ": ")
+                                Text(userModel.username + ": ")
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
                                     .frame(alignment: .topLeading)
@@ -315,7 +315,7 @@ struct SocialPostCardView: View {
                                     .offset(y: -5)
                             }
                             
-                            Text((Date(timeIntervalSince1970: postModel.dateN))
+                            Text((Date(timeIntervalSince1970: postModel.publishTime))
                                 .timeAgo())
                             .font(.subheadline)
                             .foregroundColor(.gray)
@@ -337,7 +337,7 @@ struct SocialPostCardView: View {
                         },
                         label: {
                             
-                            WebImage(url: URL(string: postModel.mediaUrl)!)
+                            WebImage(url: URL(string: postModel.coverPic)!)
                                 .resizable()
                                 .frame(width: getRectView().width, height: 170, alignment: .center)
                                 .clipped()
@@ -395,7 +395,7 @@ struct SocialPostCardView: View {
                             HStack {
                                 Spacer()
                                 
-                                Text(postModel.caption)
+                                Text(postModel.title)
                                     .font(.title3)
                                     .frame(width: 320, height: 40, alignment: .topLeading)
                                 
@@ -408,7 +408,7 @@ struct SocialPostCardView: View {
                 .offset(y: -10)
             }
             .onAppear {
-                self.profileService.loadAllEventElements(postId: postModel.postId)
+                self.profileService.loadAllEventElements(postId: postModel.id)
             }
         }
         
@@ -432,7 +432,7 @@ struct SocialPostCardView: View {
                 }
             }
             .onAppear {
-                self.profileService.loadAllEventUsers(postId: postModel.postId)
+                self.profileService.loadAllEventUsers(postId: postModel.id)
                 self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
             }
             
@@ -455,7 +455,7 @@ struct SocialPostCardView: View {
                                 }
                                 
                                 if userModel.uid != Auth.auth().currentUser!.uid {
-                                    Text(userModel.userName + ": ")
+                                    Text(userModel.username + ": ")
                                         .font(.subheadline)
                                         .foregroundColor(.gray)
                                         .frame(alignment: .topLeading)
@@ -469,7 +469,7 @@ struct SocialPostCardView: View {
                                         .offset(y: -5)
                                 }
                                 
-                                Text((Date(timeIntervalSince1970: postModel.dateN))
+                                Text((Date(timeIntervalSince1970: postModel.publishTime))
                                     .timeAgo())
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
@@ -491,7 +491,7 @@ struct SocialPostCardView: View {
                                 self.next.toggle()
                             },
                             label: {
-                                WebImage(url: URL(string: postModel.mediaUrl)!)
+                                WebImage(url: URL(string: postModel.coverPic)!)
                                     .resizable()
                                     .frame(width: getRectView().width, height: 170, alignment: .center)
                                     .clipped()
@@ -549,7 +549,7 @@ struct SocialPostCardView: View {
                                 HStack {
                                     Spacer()
                                     
-                                    Text(postModel.caption)
+                                    Text(postModel.title)
                                         .font(.title3)
                                         .frame(width: 320, height: 40, alignment: .topLeading)
                                     
@@ -562,7 +562,7 @@ struct SocialPostCardView: View {
                     .offset(y: -10)
                 }
                 .onAppear {
-                    self.profileService.loadAllEventElements(postId: postModel.postId)
+                    self.profileService.loadAllEventElements(postId: postModel.id)
                 }
             }
             
@@ -585,7 +585,7 @@ struct SocialPostCardView: View {
                                 }
                                 
                                 if userModel.uid != Auth.auth().currentUser!.uid {
-                                    Text(userModel.userName + ": ")
+                                    Text(userModel.username + ": ")
                                         .font(.subheadline)
                                         .foregroundColor(.gray)
                                         .frame(alignment: .topLeading)
@@ -599,7 +599,7 @@ struct SocialPostCardView: View {
                                         .offset(y: -5)
                                 }
                                 
-                                Text((Date(timeIntervalSince1970: postModel.dateN))
+                                Text((Date(timeIntervalSince1970: postModel.publishTime))
                                     .timeAgo())
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
@@ -621,7 +621,7 @@ struct SocialPostCardView: View {
                             },
                             label: {
                                 
-                                WebImage(url: URL(string: postModel.mediaUrl)!)
+                                WebImage(url: URL(string: postModel.coverPic)!)
                                     .resizable()
                                     .frame(width: getRectView().width, height: 170, alignment: .center)
                                     .clipped()
@@ -678,7 +678,7 @@ struct SocialPostCardView: View {
                                 HStack {
                                     Spacer()
                                     
-                                    Text(postModel.caption)
+                                    Text(postModel.title)
                                         .font(.title3)
                                         .frame(width: 320, height: 40, alignment: .topLeading)
                                     
@@ -691,7 +691,7 @@ struct SocialPostCardView: View {
                     .offset(y: -10)
                 }
                 .onAppear {
-                    self.profileService.loadAllEventElements(postId: postModel.postId)
+                    self.profileService.loadAllEventElements(postId: postModel.id)
                 }
             }
             else {}
@@ -720,7 +720,7 @@ struct SocialPostCardView: View {
     }
     
     func check() {
-        self.profileService.loadAllEventUsers(postId: postModel.postId)
+        self.profileService.loadAllEventUsers(postId: postModel.id)
         
         for userId in profileService.usersUid  {
             checkIfUserExistsContacts(userId: Auth.auth().currentUser!.uid, participantId: userId.uid) { result in

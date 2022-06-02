@@ -20,13 +20,13 @@ struct UserPostView: View {
                 }
                 
                 VStack {
-                    ForEach(self.profileService.posts, id: \.postId) {
+                    ForEach(self.profileService.posts, id: \.id) {
                         (post) in
                         
                         ForEach(profileService.postsUid, id: \.postId) {
                             (postUid) in
                             
-                            if postUid.postId == post.postId {
+                            if postUid.postId == post.id {
                                 PostCardView(postModel: post, userModel: self.session.session!)
                             }
                         }

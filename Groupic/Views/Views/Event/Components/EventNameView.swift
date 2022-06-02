@@ -83,7 +83,7 @@ struct EventNameView: View {
             }
         }
         
-        StorageService.editPostTextTitle(userId: userModel.uid, postId: postModel.postId, caption: eventName, onSuccess: {})
+        StorageService.editPostTextTitle(userId: userModel.uid, postId: postModel.id, caption: eventName, onSuccess: {})
     }
     
     func errorCheck() -> String? {

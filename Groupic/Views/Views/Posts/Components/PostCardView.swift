@@ -34,7 +34,7 @@ struct PostCardView: View {
                             Color.gray.frame(width: CGFloat(2) / UIScreen.main.scale)
                         }
                         
-                        Text((Date(timeIntervalSince1970: postModel.dateN))
+                        Text((Date(timeIntervalSince1970: postModel.publishTime))
                             .timeAgo())
                         .font(.subheadline)
                         .foregroundColor(.gray)
@@ -59,7 +59,7 @@ struct PostCardView: View {
                     },
                     label: {
                         
-                        WebImage(url: URL(string: postModel.mediaUrl)!)
+                        WebImage(url: URL(string: postModel.coverPic)!)
                             .resizable()
                             .frame(width: getRectView().width, height: 170, alignment: .center)
                             .clipped()
@@ -105,7 +105,7 @@ struct PostCardView: View {
                         HStack {
                             Spacer()
                             
-                            Text(postModel.caption)
+                            Text(postModel.title)
                                 .font(.title3)
                                 .frame(width: 320, height: 40, alignment: .topLeading)
                             

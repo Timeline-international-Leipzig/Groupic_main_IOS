@@ -56,14 +56,14 @@ struct ImagePickerMultiple: UIViewControllerRepresentable {
                         if let image = object as? UIImage {
                             let imageData = image.jpegData(compressionQuality: 0.5)
                             
-                            let eventId = PostService.allPosts.document(parent.postModel.postId).collection("events").document().documentID
-                            let storagePostRef = StorageService.storagePostEventId(postId: parent.postModel.postId, eventId: eventId)
+                            let eventId = PostService.allPosts.document(parent.postModel.id).collection("events").document().documentID
+                            let storagePostRef = StorageService.storagePostEventId(postId: parent.postModel.id, eventId: eventId)
                             let metadata = StorageMetadata()
                             metadata.contentType = "image/jpg"
                             
                             // You NEED to make sure you somehow change the name of each picture that you upload which is why I am using the variable "count".
                             // If you do not change the filename for each picture you upload, it will try to upload the file to the same file and it will give you an error.
-                            StorageService.saveEventPhoto(userId: parent.userModel.uid, username: parent.userModel.userName, userPicture: parent.userModel.profileImageUrl, stamp: parent.date, postId: parent.postModel.postId, eventId: eventId, imageData: imageData!, metadata: metadata, storagePostRef: storagePostRef, onSuccess: {}, onError: {errorMessage in })
+                            StorageService.saveEventPhoto(userId: parent.userModel.uid, username: parent.userModel.username, userPicture: parent.userModel.profileImageId, stamp: parent.date, postId: parent.postModel.id, eventId: eventId, imageData: imageData!, metadata: metadata, storagePostRef: storagePostRef, onSuccess: {}, onError: {errorMessage in })
                             
                             print("Uploaded to firebase")
                         } else {

@@ -9,16 +9,18 @@ import Foundation
 
 struct PostModel: Encodable, Decodable, Equatable {    
     var highlighted: Bool
-    var dateN: Double
-    var caption: String
+    var publishTime: Double
+    var title: String
     var index: Int
-    var likes: [String: Bool]
     var geoLocation: String
-    var ownerId: String
-    var postId: String
+    var creatorId: String
+    var id: String
     var username: String
-    var mediaUrl: String
+    var coverPic: String
     var startDate = Date()
     var endDate = Date()
-    var likeCount: Int
+    var adminIds: [String] = []
+    var invited: [String] = []
+    var participantIds: [String] = []
+    
 }

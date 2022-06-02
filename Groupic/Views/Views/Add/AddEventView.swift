@@ -37,7 +37,7 @@ struct AddEventView: View {
     
     var limit = 15
     
-    var allowedBetaZero = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    var allowedBetaZero = CharacterSet(charactersIn: "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ")
     
     @Binding var shouldShowModel: Bool
     
@@ -241,7 +241,7 @@ struct AddEventView: View {
         self.upload = true
         
         Auth.auth().currentUser?.reload()
-        PostService.uploadPost(caption: caption, username: user.userName, startDate: startDate, endDate: endDate, index: selection, imageData: imageData, onSuccess: {
+        PostService.uploadPost(caption: caption, username: user.username, startDate: startDate, endDate: endDate, index: selection, imageData: imageData, onSuccess: {
             
             self.shouldShowModel.toggle()
             return

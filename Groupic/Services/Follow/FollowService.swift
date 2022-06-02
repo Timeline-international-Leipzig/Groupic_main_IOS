@@ -46,7 +46,7 @@ class FollowService: ObservableObject {
                                                                                                                                                                      followersCount: Int) -> Void) {
         
         let user = UidUserModel.init(uid: userId)
-        let AuthUser = UidCheckUserModel.init(uid: Auth.auth().currentUser!.uid, globalCheck: false, localCheck: false)
+        let AuthUser = UidCheckUserModel.init(uid: Auth.auth().currentUser!.uid)
         
         guard let dict = try? user.asDictionary() else {
             return

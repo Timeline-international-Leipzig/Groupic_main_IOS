@@ -41,7 +41,7 @@ struct UserPostCardView: View {
                                 Color.gray.frame(width: CGFloat(2) / UIScreen.main.scale)
                             }
                             
-                            Text((Date(timeIntervalSince1970: postModel.dateN))
+                            Text((Date(timeIntervalSince1970: postModel.publishTime))
                                 .timeAgo())
                             .font(.subheadline)
                             .foregroundColor(.gray)
@@ -63,7 +63,7 @@ struct UserPostCardView: View {
                         },
                         label: {
                             
-                            WebImage(url: URL(string: postModel.mediaUrl)!)
+                            WebImage(url: URL(string: postModel.coverPic)!)
                                 .resizable()
                                 .frame(width: getRectView().width, height: 170, alignment: .center)
                                 .clipped()
@@ -108,7 +108,7 @@ struct UserPostCardView: View {
                             HStack {
                                 Spacer()
                                 
-                                Text(postModel.caption)
+                                Text(postModel.title)
                                     .font(.title3)
                                     .frame(width: 320, height: 40, alignment: .topLeading)
                                 
@@ -140,7 +140,7 @@ struct UserPostCardView: View {
                                 Color.gray.frame(width: CGFloat(2) / UIScreen.main.scale)
                             }
                             
-                            Text((Date(timeIntervalSince1970: postModel.dateN))
+                            Text((Date(timeIntervalSince1970: postModel.publishTime))
                                 .timeAgo())
                             .font(.subheadline)
                             .foregroundColor(.gray)
@@ -162,7 +162,7 @@ struct UserPostCardView: View {
                         },
                         label: {
                             
-                            WebImage(url: URL(string: postModel.mediaUrl)!)
+                            WebImage(url: URL(string: postModel.coverPic)!)
                                 .resizable()
                                 .frame(width: getRectView().width, height: 170, alignment: .center)
                                 .clipped()
@@ -207,7 +207,7 @@ struct UserPostCardView: View {
                             HStack {
                                 Spacer()
                                 
-                                Text(postModel.caption)
+                                Text(postModel.title)
                                     .font(.title3)
                                     .frame(width: 320, height: 40, alignment: .topLeading)
                                 
@@ -239,7 +239,7 @@ struct UserPostCardView: View {
                                 Color.gray.frame(width: CGFloat(2) / UIScreen.main.scale)
                             }
                             
-                            Text((Date(timeIntervalSince1970: postModel.dateN))
+                            Text((Date(timeIntervalSince1970: postModel.publishTime))
                                 .timeAgo())
                             .font(.subheadline)
                             .foregroundColor(.gray)
@@ -261,7 +261,7 @@ struct UserPostCardView: View {
                         },
                         label: {
                             
-                            WebImage(url: URL(string: postModel.mediaUrl)!)
+                            WebImage(url: URL(string: postModel.coverPic)!)
                                 .resizable()
                                 .frame(width: getRectView().width, height: 170, alignment: .center)
                                 .clipped()
@@ -306,7 +306,7 @@ struct UserPostCardView: View {
                             HStack {
                                 Spacer()
                                 
-                                Text(postModel.caption)
+                                Text(postModel.title)
                                     .font(.title3)
                                     .frame(width: 320, height: 40, alignment: .topLeading)
                                 
@@ -340,7 +340,7 @@ struct UserPostCardView: View {
                 }
             }
             .onAppear {
-                self.profileService.loadAllEventUsers(postId: postModel.postId)
+                self.profileService.loadAllEventUsers(postId: postModel.id)
                 self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
             }
             
@@ -362,7 +362,7 @@ struct UserPostCardView: View {
                                     Color.gray.frame(width: CGFloat(2) / UIScreen.main.scale)
                                 }
                                 
-                                Text((Date(timeIntervalSince1970: postModel.dateN))
+                                Text((Date(timeIntervalSince1970: postModel.publishTime))
                                     .timeAgo())
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
@@ -384,7 +384,7 @@ struct UserPostCardView: View {
                                 self.next.toggle()
                             },
                             label: {
-                                WebImage(url: URL(string: postModel.mediaUrl)!)
+                                WebImage(url: URL(string: postModel.coverPic)!)
                                     .resizable()
                                     .frame(width: getRectView().width, height: 170, alignment: .center)
                                     .clipped()
@@ -429,7 +429,7 @@ struct UserPostCardView: View {
                                 HStack {
                                     Spacer()
                                     
-                                    Text(postModel.caption)
+                                    Text(postModel.title)
                                         .font(.title3)
                                         .frame(width: 320, height: 40, alignment: .topLeading)
                                     
@@ -461,7 +461,7 @@ struct UserPostCardView: View {
                                     Color.gray.frame(width: CGFloat(2) / UIScreen.main.scale)
                                 }
                                 
-                                Text((Date(timeIntervalSince1970: postModel.dateN))
+                                Text((Date(timeIntervalSince1970: postModel.publishTime))
                                     .timeAgo())
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
@@ -483,7 +483,7 @@ struct UserPostCardView: View {
                             },
                             label: {
                                 
-                                WebImage(url: URL(string: postModel.mediaUrl)!)
+                                WebImage(url: URL(string: postModel.coverPic)!)
                                     .resizable()
                                     .frame(width: getRectView().width, height: 170, alignment: .center)
                                     .clipped()
@@ -528,7 +528,7 @@ struct UserPostCardView: View {
                                 HStack {
                                     Spacer()
                                     
-                                    Text(postModel.caption)
+                                    Text(postModel.title)
                                         .font(.title3)
                                         .frame(width: 320, height: 40, alignment: .topLeading)
                                     
@@ -568,7 +568,7 @@ struct UserPostCardView: View {
     }
     
     func check() {
-        self.profileService.loadAllEventUsers(postId: postModel.postId)
+        self.profileService.loadAllEventUsers(postId: postModel.id)
         
         for userId in profileService.usersUid  {
             checkIfUserExistsContacts(userId: Auth.auth().currentUser!.uid, participantId: userId.uid) { result in

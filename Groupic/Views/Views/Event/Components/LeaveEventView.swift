@@ -38,11 +38,11 @@ struct LeaveEventView: View {
                     Button(action: {
                         checkIfCheckedEvent { result in
                             if (result == true) {
-                                followService.deInvite(userId: Auth.auth().currentUser!.uid, postId: postModel.postId)
+                                followService.deInvite(userId: Auth.auth().currentUser!.uid, postId: postModel.id)
                                 self.backCompleteDelete.toggle()
                             }
                             else {
-                                followService.delete(userId: userModel.uid, postId: postModel.postId)
+                                followService.delete(userId: userModel.uid, postId: postModel.id)
                                 self.backCompleteDelete.toggle()
                             }
                         }
@@ -80,7 +80,7 @@ struct LeaveEventView: View {
     }
     
     func checkIfCheckedEvent(completion: @escaping ((Bool) -> () )) {
-        ProfileService.followersPostEventCheck(postId: postModel.postId).getDocuments() {
+        ProfileService.followersPostEventCheck(postId: postModel.id).getDocuments() {
             (QuerySnapshot, Error) in
             if let error = Error {
                 print("Unable to query" + error.localizedDescription)

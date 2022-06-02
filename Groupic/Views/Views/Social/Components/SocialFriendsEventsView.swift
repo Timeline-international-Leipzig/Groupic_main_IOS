@@ -15,13 +15,13 @@ struct SocialFriendsEventsView: View {
     
     var body: some View {
         VStack {
-            ForEach(self.profileService.posts, id: \.postId) {
+            ForEach(self.profileService.posts, id: \.id) {
                 (post) in
                 
                 ForEach(profileService.users, id: \.uid) {
                     (user) in
                     
-                    if post.ownerId == user.uid {
+                    if post.creatorId == user.uid {
                         SocialUserPostView(user: user, posts: post)
                     }
                 }

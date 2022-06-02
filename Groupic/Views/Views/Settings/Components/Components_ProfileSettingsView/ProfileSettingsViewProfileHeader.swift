@@ -22,13 +22,13 @@ struct ProfileSettingsViewProfileHeader: View {
                     .frame(width: getRectView().width, height: 180, alignment: .center)
             }
             else {
-                if user!.backgroundImageUrl == "" {
+                if user!.titleImageId == "" {
                     Image("grey")
                         .resizable()
                         .frame(width: getRectView().width, height: 180, alignment: .center)
                 }
                 else {
-                    WebImage(url: URL(string: user!.backgroundImageUrl))
+                    WebImage(url: URL(string: user!.titleImageId))
                         .resizable()
                         .frame(width: getRectView().width, height: 180, alignment: .center)
                 }
@@ -43,7 +43,7 @@ struct ProfileSettingsViewProfileHeader: View {
                         .clipShape(Circle())
                 }
                 else {
-                    if user!.profileImageUrl == "" {
+                    if user!.profileImageId == "" {
                         Image("profileImage")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -51,7 +51,7 @@ struct ProfileSettingsViewProfileHeader: View {
                             .clipShape(Circle())
                     }
                     else {
-                        WebImage(url: URL(string: user!.profileImageUrl))
+                        WebImage(url: URL(string: user!.profileImageId))
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 125, height: 125, alignment: .center)

@@ -77,7 +77,7 @@ struct EventView: View {
                             
                             Spacer()
                             
-                            Text(postModel.caption)
+                            Text(postModel.title)
                                 .font(.system(size: 26, weight: .bold, design: .default))
                             
                             Spacer()
@@ -256,11 +256,11 @@ struct EventView: View {
     }
     
     func editProfileImage() {
-        let storagePostId = StorageService.storagePostId(postId: postModel.postId)
+        let storagePostId = StorageService.storagePostId(postId: postModel.id)
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpg"
         
-        StorageService.editPost(postId: postModel.postId, userId: userModel.uid, imageData: imageData, metaData: metaData, storagePostRef: storagePostId, onSuccess: {}, onError: {errorMessage in })
+        StorageService.editPost(postId: postModel.id, userId: userModel.uid, imageData: imageData, metaData: metaData, storagePostRef: storagePostId, onSuccess: {}, onError: {errorMessage in })
     }
 }
 

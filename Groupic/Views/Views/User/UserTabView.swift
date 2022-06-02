@@ -17,7 +17,7 @@ struct UserTabView: View {
             HStack(spacing: 15) {
                 Spacer()
                 
-                Text(user.userName)
+                Text(user.username)
                     .font(.title3)
                     .foregroundColor(.white)
                     .frame(alignment: .center)

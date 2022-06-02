@@ -36,7 +36,7 @@ struct EventUserPicsView: View {
             .navigationTitle("")
             .navigationBarHidden(true)
             .onAppear {
-                self.profileService.loadAllEventUsers(postId: post.postId)
+                self.profileService.loadAllEventUsers(postId: post.id)
                 self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
             }
             .background(Color.gray)

@@ -24,7 +24,7 @@ struct EventInviteButton: View {
 
     func follow() {
         if !self.followCheck {
-            followService.inviteIntoEvent(userId: user.uid, postId: post.postId)
+            followService.inviteIntoEvent(userId: user.uid, postId: post.id)
             
             self.followCheck = true
         } else {
@@ -58,7 +58,7 @@ struct EventInviteButton: View {
         Button(action: {
             self.follow()
         }, label: {
-            Text((self.followState(userId: user.uid, postId: post.postId)) ? "Anfrage gesendet": "Anfrage senden")
+            Text((self.followState(userId: user.uid, postId: post.id)) ? "Anfrage gesendet": "Anfrage senden")
                 .background(Color.gray)
                 .foregroundColor(.black)
         })

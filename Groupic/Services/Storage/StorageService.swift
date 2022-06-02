@@ -60,7 +60,7 @@ class StorageService {
                     
                     
                     let firestoreUserId = AuthService.getUserId(userId: userId)
-                    let user = UserModel.init(uid: userId, email: email, profileImageUrl: metaImageUrl, backgroundImageUrl: "", name: name, userName: username, searchName: username.splitString())
+                    let user = UserModel.init(uid: userId, email: email, profileImageId: metaImageUrl, titleImageId: "", fullName: name, username: username, keyWords: username.splitString())
                  
                     guard let dict = try? user.asDictionary() else {
                         return
@@ -81,7 +81,7 @@ class StorageService {
     static func saveProfile(userId: String, name: String, username: String, email: String, onSuccess: @escaping(_ user: UserModel) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
                     
             let firestoreUserId = AuthService.getUserId(userId: userId)
-            let user = UserModel.init(uid: userId, email: email, profileImageUrl: "", backgroundImageUrl: "", name: name, userName: username, searchName: username.splitString())
+            let user = UserModel.init(uid: userId, email: email, profileImageId: "", titleImageId: "", fullName: name, username: username, keyWords: username.splitString())
         
             
             
@@ -241,7 +241,7 @@ static func editProfileTextUsername(userId: String, username: String, onSuccess:
                     let firestorePostRefUid = PostService.postUserId(userId: userId).collection("events").document(postId)
                     let firestorePostRefUserUid =  PostService.allPosts.document(postId).collection("participants").document(userId)
                     
-                    let post = PostModel.init(highlighted: false, dateN: Date().timeIntervalSince1970, caption: caption,index: index, likes: [:], geoLocation: "", ownerId: userId, postId: postId, username: username, mediaUrl: metaImageUrl, startDate: startDate, endDate: endDate, likeCount: 0)
+                    let post = PostModel.init(highlighted: false, publishTime: Date().timeIntervalSince1970, title: caption,index: index, geoLocation: "", creatorId: userId, id: postId, username: username, coverPic: metaImageUrl, startDate: startDate, endDate: endDate)
                     
                     let postUid = PostUidModel.init(postId: postId)
                     
