@@ -25,7 +25,7 @@ struct NotificationShowAdminsView: View {
     
     var body: some View {
         VStack {
-            if user.uid == post!.ownerId || show == true {
+            if user.uid == post!.creatorId || show == true {
                 NavigationLink(destination: UserProfileView(user: $userSelected, next: $next), isActive: self.$next, label: {
                     EmptyView()
                 })
@@ -36,7 +36,7 @@ struct NotificationShowAdminsView: View {
                     next.toggle()
                 }, label: {
                     HStack {
-                        if user.profileImageUrl == "" {
+                        if user.profileImageId == "" {
                             Image("profileImage")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -46,7 +46,7 @@ struct NotificationShowAdminsView: View {
                         }
                         
                         else {
-                            WebImage(url: URL(string: user.profileImageUrl))
+                            WebImage(url: URL(string: user.profileImageId))
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 60, height: 60, alignment: .center)
@@ -54,15 +54,15 @@ struct NotificationShowAdminsView: View {
                                 .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                         }
                         
-                        Text(user.userName)
+                        Text(user.username)
                             .font(.subheadline)
                             .bold()
                         
                         Spacer()
                         
-                        if (user.uid != post!.ownerId && admin == true) || (Auth.auth().currentUser!.uid == post!.ownerId && user.uid != post!.ownerId) {
+                        if (user.uid != post!.creatorId && admin == true) || (Auth.auth().currentUser!.uid == post!.creatorId && user.uid != post!.creatorId) {
                             Button(action: {
-                                followService.deMakeAdminEvent(userId: user.uid, postId: post!.postId)
+                                followService.deMakeAdminEvent(userId: user.uid, postId: post!.id)
                             }, label: {
                                 Text("Entfernen")
                                     .font(.subheadline)
@@ -77,7 +77,7 @@ struct NotificationShowAdminsView: View {
             else {}
         }
         .onAppear {
-            checkAdminExists(postId: post!.postId, uid: user.uid) { result in
+            checkAdminExists(postId: post!.id, uid: user.uid) { result in
                 if (result == true) {
                     self.show = true
                 }
@@ -86,7 +86,7 @@ struct NotificationShowAdminsView: View {
                 }
             }
             
-            checkAdminExists(postId: post!.postId, uid: Auth.auth().currentUser!.uid) { result in
+            checkAdminExists(postId: post!.id, uid: Auth.auth().currentUser!.uid) { result in
                 if (result == true) {
                     self.admin = true
                 }

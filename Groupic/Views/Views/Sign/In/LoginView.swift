@@ -17,58 +17,29 @@ struct LoginView: View {
     
     @State private var email = ""
     @State private var password = ""
-
+    
     @State var error = "Es ist etwas schief gelaufen beim Einlogge, versuch es nochmal!"
-        
+    
     var body: some View {
         ZStack {
-            GeometryReader {_ in
-                NavigationLink(destination: RegistrationView(back: $next), isActive: self.$next, label: {
-                    EmptyView()
-                })
-                
-                NavigationLink(destination: ForgotPasswrdView(forgotPassword: $forgotPassword), isActive: self.$forgotPassword, label: {
-                    EmptyView()
-                })
-                
-                VStack {
-                
-                    ZStack {
-                        
-                        Text("Anmeldung")
-                            .padding(.top, 10)
-                            .font(.system(size: 26, weight: .bold))
-                            .foregroundColor(.white)
-                            .hCenter()
-                            .zIndex(1)
-                        
-                        HStack {
-                            Rectangle().frame(width: getRectView().width, height: 100)
-                        }.background(Color(.black))
-                            .mask(
-                                LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
-                            )
-                    }
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Rectangle().frame(width: getRectView().width, height: 100)
-                    }.background(Color(.black))
-                        .mask(
-                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
-                        )
-                    
-                }.zIndex(1)
-                
+            NavigationLink(destination: RegistrationView(back: $next), isActive: self.$next, label: {
+                EmptyView()
+            })
+            
+            NavigationLink(destination: ForgotPasswrdView(forgotPassword: $forgotPassword), isActive: self.$forgotPassword, label: {
+                EmptyView()
+            })
+            
+            
+            ScrollView {
                 VStack {
                     /*Image("glogo-nb")
-                        .resizable()
-                        .scaledToFill()
-                        .padding(.horizontal, 25)
-                        .padding(.top, 25)
-                        .frame(width: 80, height: 80)*/
-                
+                     .resizable()
+                     .scaledToFill()
+                     .padding(.horizontal, 25)
+                     .padding(.top, 25)
+                     .frame(width: 80, height: 80)*/
+                    
                     TextEditField(selectedIndex: 3, header: "E-Mail", image: "mail", textField: "", value: $email)
                     
                     SecureTextEditField(selectedIndex: 2, password: "", header: "Passwort", image: "lock", textField: "", visible: visible, value: $password)
@@ -103,6 +74,39 @@ struct LoginView: View {
                     .edgesIgnoringSafeArea(.all)
             )
             
+            VStack {
+                
+                
+                ZStack {
+                    
+                    Text("Anmeldung")
+                        .padding(.top, 10)
+                        .font(.system(size: 26, weight: .bold))
+                        .foregroundColor(.white)
+                        .hCenter()
+                        .zIndex(1)
+                    
+                    HStack {
+                        Rectangle().frame(width: getRectView().width, height: 100)
+                    }.background(Color(.black))
+                        .mask(
+                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                        )
+                }
+                
+                Spacer()
+                
+                HStack {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }
+                .background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                    )
+                
+                
+            }
+            
             if self.alert {
                 ErrorView(alert: self.$alert, error: self.$error)
             }
@@ -118,8 +122,3 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}

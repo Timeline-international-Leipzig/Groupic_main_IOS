@@ -85,9 +85,9 @@ struct EventQuoteView: View {
             }
         }
         
-        let eventId = PostService.allPosts.document(postModel.postId).collection("events").document().documentID
+        let eventId = PostService.allPosts.document(postModel.id).collection("events").document().documentID
         
-        StorageService.saveEventQuote(userId: userModel.uid, text: quote, username: userModel.userName, userPicture: userModel.profileImageUrl, stamp: date, postId: postModel.postId, eventId: eventId, onSuccess: {}, onError: {errorMessage in })
+        StorageService.saveEventQuote(userId: userModel.uid, text: quote, username: userModel.username, userPicture: userModel.profileImageId, stamp: date, postId: postModel.id, eventId: eventId, onSuccess: {}, onError: {errorMessage in })
     }
     
     func errorCheck() -> String? {

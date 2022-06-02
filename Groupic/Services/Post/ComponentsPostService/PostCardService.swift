@@ -13,10 +13,11 @@ class PostCardService: ObservableObject {
     @Published var post: PostModel!
     @Published var isLiked = false
     
+    /*
     func hasLikedPost() {
         isLiked = (post.likes["\(Auth.auth().currentUser!.uid)"] == true) ? true: false
     }
-    
+     
     func like() {
         post.likeCount += 1
         isLiked = true
@@ -34,4 +35,5 @@ class PostCardService: ObservableObject {
         
         PostService.allPosts.document(post.postId).updateData(["likeCount": post.likeCount, "\(Auth.auth().currentUser!.uid)": false])
     }
+    */
 }

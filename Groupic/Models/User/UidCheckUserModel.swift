@@ -9,7 +9,5 @@ import Foundation
 
 struct UidCheckUserModel: Encodable, Decodable {
     var uid: String
-    var globalCheck: Bool
-    var localCheck: Bool
 }
 

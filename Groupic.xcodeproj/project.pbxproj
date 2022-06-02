@@ -74,7 +74,6 @@
 		87B205FD281DBDB70072B7CF /* TextEditFieldBlack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B205FC281DBDB70072B7CF /* TextEditFieldBlack.swift */; };
 		87B205FF281F08A20072B7CF /* ChangeEventModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B205FE281F08A20072B7CF /* ChangeEventModeView.swift */; };
 		87B20601281F279F0072B7CF /* LeaveEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B20600281F279F0072B7CF /* LeaveEventView.swift */; };
-		87B20605282019E80072B7CF /* PostPicturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B20604282019E80072B7CF /* PostPicturesViewModel.swift */; };
 		87B2060728205B810072B7CF /* EventUserPicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B2060628205B810072B7CF /* EventUserPicsView.swift */; };
 		87B2060A282060020072B7CF /* HorizontalPicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B20609282060020072B7CF /* HorizontalPicView.swift */; };
 		87B2060C282142450072B7CF /* ImagePickerMultiple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B2060B282142450072B7CF /* ImagePickerMultiple.swift */; };
@@ -219,7 +218,6 @@
 		87B205FC281DBDB70072B7CF /* TextEditFieldBlack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditFieldBlack.swift; sourceTree = "<group>"; };
 		87B205FE281F08A20072B7CF /* ChangeEventModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEventModeView.swift; sourceTree = "<group>"; };
 		87B20600281F279F0072B7CF /* LeaveEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveEventView.swift; sourceTree = "<group>"; };
-		87B20604282019E80072B7CF /* PostPicturesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPicturesViewModel.swift; sourceTree = "<group>"; };
 		87B2060628205B810072B7CF /* EventUserPicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventUserPicsView.swift; sourceTree = "<group>"; };
 		87B20609282060020072B7CF /* HorizontalPicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalPicView.swift; sourceTree = "<group>"; };
 		87B2060B282142450072B7CF /* ImagePickerMultiple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerMultiple.swift; sourceTree = "<group>"; };
@@ -527,7 +525,6 @@
 			children = (
 				875A74AA277E1F0E00F6B59D /* PostModel.swift */,
 				87C2ADD628035F4D0031D5D9 /* PostUidModel.swift */,
-				87B20604282019E80072B7CF /* PostPicturesViewModel.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -1241,7 +1238,6 @@
 				87F905DD280B612400993128 /* ForgotPasswordView.swift in Sources */,
 				87FFFCE927F22F0500E64F1D /* FutureUserPostView.swift in Sources */,
 				876AF08E27E3AC5E00FEF21A /* FollowButton.swift in Sources */,
-				87B20605282019E80072B7CF /* PostPicturesViewModel.swift in Sources */,
 				87FFFCEC27F2E5AB00E64F1D /* ProfileSettingsView.swift in Sources */,
 				87B205F228196CD20072B7CF /* ErrorSendEmailView.swift in Sources */,
 				8755694C279F4D48002605FA /* MidTabBarView.swift in Sources */,

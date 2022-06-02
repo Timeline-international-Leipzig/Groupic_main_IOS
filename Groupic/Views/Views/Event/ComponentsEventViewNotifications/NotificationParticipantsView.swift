@@ -105,7 +105,7 @@ struct NotificationParticipantsView: View {
                 .navigationBarHidden(true)
                 .onAppear {
                     self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
-                    self.profileService.loadAllEventUsers(postId: post!.postId)
+                    self.profileService.loadAllEventUsers(postId: post!.id)
                 }
                 
                 Spacer()

@@ -82,17 +82,17 @@ struct ChangeEventModeView: View {
                     
                     Button(action: {
                         if mode == "Alle" {
-                            StorageService.editPostMode(userId: userModel.uid, postId: postModel.postId, index: 0, onSuccess: {})
+                            StorageService.editPostMode(userId: userModel.uid, postId: postModel.id, index: 0, onSuccess: {})
                             self.back.toggle()
                         }
                         
                         if mode == "Teilnehmer" {
-                            StorageService.editPostMode(userId: userModel.uid, postId: postModel.postId, index: 1, onSuccess: {})
+                            StorageService.editPostMode(userId: userModel.uid, postId: postModel.id, index: 1, onSuccess: {})
                             self.back.toggle()
                         }
                         
                         if mode == "Teilnehmer und Kontakte" {
-                            StorageService.editPostMode(userId: userModel.uid, postId: postModel.postId, index: 2, onSuccess: {})
+                            StorageService.editPostMode(userId: userModel.uid, postId: postModel.id, index: 2, onSuccess: {})
                             self.back.toggle()
                         }
                     }, label: {

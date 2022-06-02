@@ -43,7 +43,7 @@ struct EventViewNotifications: View {
                     }
                     
                     VStack {
-                        if postModel!.mediaUrl == "" {
+                        if postModel!.coverPic == "" {
                             Image("grey")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -51,7 +51,7 @@ struct EventViewNotifications: View {
                                 .cornerRadius(0)
                         }
                         else {
-                            WebImage(url: URL(string: postModel!.mediaUrl))
+                            WebImage(url: URL(string: postModel!.coverPic))
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: getRectView().width, height: 180, alignment: .center)
@@ -65,7 +65,7 @@ struct EventViewNotifications: View {
                             
                             Spacer()
                             
-                            Text(postModel!.caption)
+                            Text(postModel!.title)
                                 .font(.system(size: 26, weight: .bold, design: .default))
                             
                             Spacer()

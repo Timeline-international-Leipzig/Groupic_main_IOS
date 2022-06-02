@@ -23,7 +23,7 @@ struct UserProfileHeader: View {
     var body: some View {
         ZStack {
             VStack {
-                if user!.backgroundImageUrl == "" {
+                if user!.titleImageId == "" {
                     Image("grey")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -31,7 +31,7 @@ struct UserProfileHeader: View {
                         .cornerRadius(0)
                 }
                 else {
-                    WebImage(url: URL(string: user!.backgroundImageUrl))
+                    WebImage(url: URL(string: user!.titleImageId))
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: getRectView().width, height: 180, alignment: .center)
@@ -40,7 +40,7 @@ struct UserProfileHeader: View {
                 
                 
                 HStack {
-                    Text(user!.userName).bold()
+                    Text(user!.username).bold()
                     
                     Spacer()
                     
@@ -87,7 +87,7 @@ struct UserProfileHeader: View {
             
             ZStack {
                 VStack {
-                    if user!.profileImageUrl == "" {
+                    if user!.profileImageId == "" {
                         Image("profileImage")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -96,7 +96,7 @@ struct UserProfileHeader: View {
                             .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                     }
                     else {
-                        WebImage(url: URL(string: user!.profileImageUrl))
+                        WebImage(url: URL(string: user!.profileImageId))
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 125, height: 125, alignment: .center)

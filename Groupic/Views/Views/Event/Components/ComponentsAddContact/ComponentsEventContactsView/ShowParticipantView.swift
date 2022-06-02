@@ -25,7 +25,7 @@ struct ShowParticipantView: View {
     
     var body: some View {
         VStack {
-            if user.uid != post.ownerId && show == false {
+            if user.uid != post.creatorId && show == false {
                 NavigationLink(destination: UserProfileView(user: $userSelected, next: $next), isActive: self.$next, label: {
                     EmptyView()
                 })
@@ -37,7 +37,7 @@ struct ShowParticipantView: View {
                         next.toggle()
                     }, label: {
                         HStack {
-                            if user.profileImageUrl == "" {
+                            if user.profileImageId == "" {
                                 Image("profileImage")
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -47,7 +47,7 @@ struct ShowParticipantView: View {
                             }
                             
                             else {
-                                WebImage(url: URL(string: user.profileImageUrl))
+                                WebImage(url: URL(string: user.profileImageId))
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 60, height: 60, alignment: .center)
@@ -55,14 +55,14 @@ struct ShowParticipantView: View {
                                     .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                             }
                             
-                            Text(user.userName)
+                            Text(user.username)
                                 .font(.subheadline)
                                 .bold()
                             
-                            if Auth.auth().currentUser!.uid == post.ownerId || admin == true {
+                            if Auth.auth().currentUser!.uid == post.creatorId || admin == true {
                                 VStack {
                                 Button(action: {
-                                    followService.makeAdminEvent(userId: user.uid, postId: post.postId)
+                                    followService.makeAdminEvent(userId: user.uid, postId: post.id)
                                 }, label: {
                                     Text("Zum Admin machen")
                                         .font(.subheadline)
@@ -70,7 +70,7 @@ struct ShowParticipantView: View {
                                 })
                                     
                                     Button(action: {
-                                        followService.deInvite(userId: user.uid, postId: post.postId)
+                                        followService.deInvite(userId: user.uid, postId: post.id)
                                     }, label: {
                                         Text("Entfernen")
                                             .font(.subheadline)
@@ -90,7 +90,7 @@ struct ShowParticipantView: View {
             else {}
         }
         .onAppear {
-            checkAdminExists(postId: post.postId, uid: user.uid) { result in
+            checkAdminExists(postId: post.id, uid: user.uid) { result in
                 if (result == true) {
                     self.show = true
                 }
@@ -99,7 +99,7 @@ struct ShowParticipantView: View {
                 }
             }
             
-            checkAdminExists(postId: post.postId, uid: Auth.auth().currentUser!.uid) { result in
+            checkAdminExists(postId: post.id, uid: Auth.auth().currentUser!.uid) { result in
                 if (result == true) {
                     self.admin = true
                 }

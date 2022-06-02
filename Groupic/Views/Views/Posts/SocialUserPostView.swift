@@ -27,7 +27,7 @@ struct SocialUserPostView: View {
         .navigationTitle("")
         .navigationBarHidden(true)
         .onAppear {
-            checkIfUserExists(userId: Auth.auth().currentUser!.uid, postId: posts.postId) { result in
+            checkIfUserExists(userId: Auth.auth().currentUser!.uid, postId: posts.id) { result in
                 if (result == true) {
                     self.exists = true
                 }

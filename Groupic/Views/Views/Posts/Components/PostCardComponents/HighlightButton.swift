@@ -25,11 +25,11 @@ struct HighlightButton: View {
         if !post.highlighted {
             self.highlightCheck = true
             
-            PostService.highlightPost(userId: self.session.session!.uid, postId: post.postId, highlight: highlightCheck) {}
+            PostService.highlightPost(userId: self.session.session!.uid, postId: post.id, highlight: highlightCheck) {}
         } else {
             self.highlightCheck = false
             
-            PostService.highlightPost(userId: self.session.session!.uid, postId: post.postId, highlight: highlightCheck) {}
+            PostService.highlightPost(userId: self.session.session!.uid, postId: post.id, highlight: highlightCheck) {}
         }
     }
     

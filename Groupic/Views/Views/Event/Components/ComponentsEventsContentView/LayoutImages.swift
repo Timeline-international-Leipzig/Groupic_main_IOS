@@ -20,7 +20,7 @@ struct LayoutImages: View {
                 if eventElements[0].type == "TEXT" {
                     HStack {
                         VStack {
-                            if user.profileImageUrl == "" {
+                            if user.profileImageId == "" {
                                 Image("profileImage")
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -29,7 +29,7 @@ struct LayoutImages: View {
                                     .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                             }
                             else {
-                                WebImage(url: URL(string: user.profileImageUrl))
+                                WebImage(url: URL(string: user.profileImageId))
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 25, height: 25, alignment: .center)
@@ -38,7 +38,7 @@ struct LayoutImages: View {
                             }
                         }
                         
-                        Text(user.userName + ":")
+                        Text(user.username + ":")
                         
                         Text(eventElements[0].text)
                     }

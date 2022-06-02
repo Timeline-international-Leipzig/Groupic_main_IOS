@@ -40,10 +40,10 @@ struct EventsContentView: View {
         .navigationTitle("")
         .navigationBarHidden(true)
         .onAppear {
-            self.profileService.loadAllEventElements(postId: postModel.postId)
-            self.profileService.loadCompositionElements(postId: postModel.postId)
+            self.profileService.loadAllEventElements(postId: postModel.id)
+            self.profileService.loadCompositionElements(postId: postModel.id)
             self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
-            self.profileService.loadAllEventUsers(postId: postModel.postId)
+            self.profileService.loadAllEventUsers(postId: postModel.id)
         }
     }
 }

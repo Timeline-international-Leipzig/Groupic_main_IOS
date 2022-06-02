@@ -23,7 +23,7 @@ struct ProfileHeader: View {
         ZStack {
             
             VStack(spacing: 0) {
-                if user!.backgroundImageUrl == "" {
+                if user!.titleImageId == "" {
                     Image("grey")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -31,7 +31,7 @@ struct ProfileHeader: View {
                         .cornerRadius(0)
                 }
                 else {
-                    WebImage(url: URL(string: user!.backgroundImageUrl))
+                    WebImage(url: URL(string: user!.titleImageId))
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: getRectView().width, height: 180, alignment: .center)
@@ -40,7 +40,7 @@ struct ProfileHeader: View {
             }.ignoresSafeArea()
             
             VStack {
-                if user!.profileImageUrl == "" {
+                if user!.profileImageId == "" {
                     Image("profileImage")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -48,7 +48,7 @@ struct ProfileHeader: View {
                         .clipShape(Circle())
                 }
                 else {
-                    WebImage(url: URL(string: user!.profileImageUrl))
+                    WebImage(url: URL(string: user!.profileImageId))
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 100, height: 100, alignment: .center)
@@ -58,7 +58,7 @@ struct ProfileHeader: View {
             
             HStack {
                 
-                Text(user!.userName)
+                Text(user!.username)
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(.white)
                     .padding(.leading, 10)

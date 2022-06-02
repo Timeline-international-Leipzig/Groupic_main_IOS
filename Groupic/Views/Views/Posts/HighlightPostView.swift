@@ -20,13 +20,13 @@ struct HighlightPostView: View {
                 }
                 
                 VStack {
-                    ForEach(self.profileService.posts, id: \.postId) {
+                    ForEach(self.profileService.posts, id: \.id) {
                         (post) in
                         
                         ForEach(profileService.postsUid, id: \.postId) {
                             (postUid) in
                             
-                            if (postUid.postId == post.postId) && post.highlighted == true {
+                            if (postUid.postId == post.id) && post.highlighted == true {
                                 PostCardView(postModel: post, userModel: self.session.session!)
                             }
                         }

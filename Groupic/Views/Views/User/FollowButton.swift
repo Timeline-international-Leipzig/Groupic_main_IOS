@@ -27,7 +27,7 @@ struct FollowButton: View {
 
     func follow() {
         if !self.followCheck {
-            followService.follow(userId: user.uid, profileImageUrl: user.profileImageUrl, currentUserUid: Auth.auth().currentUser!.uid, followingCount: {
+            followService.follow(userId: user.uid, profileImageUrl: user.profileImageId, currentUserUid: Auth.auth().currentUser!.uid, followingCount: {
                 (followingCount) in
                 self.followingCount = followingCount
             }) {

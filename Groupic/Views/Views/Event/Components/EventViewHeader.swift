@@ -23,7 +23,7 @@ struct EventViewHeader: View {
                         .cornerRadius(0)
                 }
                 else {
-                    if post!.mediaUrl == "" {
+                    if post!.coverPic == "" {
                         Image("grey")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -31,7 +31,7 @@ struct EventViewHeader: View {
                             .cornerRadius(0)
                     }
                     else {
-                        WebImage(url: URL(string: post!.mediaUrl))
+                        WebImage(url: URL(string: post!.coverPic))
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: getRectView().width, height: 180, alignment: .center)

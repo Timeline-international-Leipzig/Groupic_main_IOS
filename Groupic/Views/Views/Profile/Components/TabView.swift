@@ -77,7 +77,7 @@ struct TabView: View {
                     }
                 }
                 
-                Text(user!.name)
+                Text(user!.fullName)
                     .font(.title3)
                     .foregroundColor(.white)
                     .frame(alignment: .center)

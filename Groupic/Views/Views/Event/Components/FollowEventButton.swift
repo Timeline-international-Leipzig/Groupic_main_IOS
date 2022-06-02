@@ -23,11 +23,11 @@ struct FollowEventButton: View {
     
     func follow() {
         if !self.followCheck {
-            followService.followEvent(postId: post.postId, currentUserUid: Auth.auth().currentUser!.uid)
+            followService.followEvent(postId: post.id, currentUserUid: Auth.auth().currentUser!.uid)
             
             self.followCheck = true
         } else {
-            followService.unfollowEvent(postId: post.postId)
+            followService.unfollowEvent(postId: post.id)
             
             self.followCheck = false
         }
@@ -52,7 +52,7 @@ struct FollowEventButton: View {
         Button(action: {
             self.follow()
         }, label: {
-            Text((self.followEventState(postId: post.postId)) ? "Verlassen": "Beitreten")
+            Text((self.followEventState(postId: post.id)) ? "Verlassen": "Beitreten")
                 .background(Color.gray)
                 .foregroundColor(.black)
         })

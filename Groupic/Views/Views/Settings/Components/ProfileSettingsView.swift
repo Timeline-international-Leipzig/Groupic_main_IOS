@@ -53,8 +53,8 @@ struct ProfileSettingsView: View {
     
     init(session: UserModel?, back: Binding<Bool>) {
         _email = State(initialValue: session?.email ?? "")
-        _username = State(initialValue: session?.userName ?? "")
-        _name = State(initialValue: session?.name ?? "")
+        _username = State(initialValue: session?.username ?? "")
+        _name = State(initialValue: session?.fullName ?? "")
         
         _back = back
     }
