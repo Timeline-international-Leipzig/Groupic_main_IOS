@@ -37,7 +37,7 @@ struct AddEventView: View {
     
     var limit = 15
     
-    var allowedBetaZero = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    var allowedBetaZero = CharacterSet(charactersIn: "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ")
     
     @Binding var shouldShowModel: Bool
     
