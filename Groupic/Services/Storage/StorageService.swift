@@ -129,7 +129,7 @@ static func editProfile(userId: String, name: String, username: String, email: S
                     let firestoreUserId = AuthService.getUserId(userId: userId)
                     
                     firestoreUserId.updateData([
-                        "profileImageUrl": metaImageUrl,
+                        "profileImageId": metaImageUrl,
                     ])
                 }
             }
@@ -165,7 +165,7 @@ static func editBackProfile(userId: String, name: String, username: String, emai
                     let firestoreUserId = AuthService.getUserId(userId: userId)
                     
                     firestoreUserId.updateData([
-                        "backgroundImageUrl": metaImageUrl,
+                        "titleImageId": metaImageUrl,
                     ])
                 }
             }
@@ -176,9 +176,9 @@ static func editProfileText(userId: String, name: String, username: String, emai
     let firestoreUserId = AuthService.getUserId(userId: userId)
     
     firestoreUserId.updateData([
-        "userName": username,
-        "name": name,
-        "searchName": username.splitString(),
+        "username": username,
+        "fullName": name,
+        "keyWords": username.splitString(),
         "email": email
     ])
     
@@ -210,7 +210,7 @@ static func editProfileTextName(userId: String, name: String, onSuccess: @escapi
     let firestoreUserId = AuthService.getUserId(userId: userId)
     
     firestoreUserId.updateData([
-        "name": name,
+        "fullName": name,
     ])
 }
     
@@ -218,8 +218,8 @@ static func editProfileTextUsername(userId: String, username: String, onSuccess:
     let firestoreUserId = AuthService.getUserId(userId: userId)
     
     firestoreUserId.updateData([
-        "userName": username,
-        "searchName": username.splitString(),
+        "username": username,
+        "keyWords": username.splitString(),
     ])
 }
     
@@ -307,7 +307,7 @@ static func editProfileTextUsername(userId: String, username: String, onSuccess:
         let firestorePostRef = PostService.allPosts.document(postId)
         
         firestorePostRef.updateData([
-            "caption": caption,
+            "title": caption,
         ])
     }
     

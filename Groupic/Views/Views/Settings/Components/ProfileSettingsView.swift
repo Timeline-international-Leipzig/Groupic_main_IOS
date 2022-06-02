@@ -108,7 +108,7 @@ struct ProfileSettingsView: View {
                             HStack(spacing: 83) {
                                 Text("Name:")
                                 
-                                ProfilesettingsTextEditField(selectedIndex: 1, header: "", image: "", textField: "name", value: $name, change: $changeTextName)
+                                ProfilesettingsTextEditField(selectedIndex: 1, header: "", image: "", textField: "fullName", value: $name, change: $changeTextName)
                             }
                             
                             HStack(spacing: 80) {
@@ -325,7 +325,7 @@ struct ProfileSettingsView: View {
     
     /// Functions:
     func checkIfUsernameOfAccountExists(completion: @escaping ((Bool) -> () )) {
-        self.userCollection.whereField("userName", isEqualTo: self.username).getDocuments() {
+        self.userCollection.whereField("username", isEqualTo: self.username).getDocuments() {
             (QuerySnapshot, Error) in
             if let error = Error {
                 print("Unable to query" + error.localizedDescription)

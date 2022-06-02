@@ -88,7 +88,7 @@ struct RegisterButtonNoPictures: View {
     
     /// Functions
     func checkIfUsernameOfAccountExists(completion: @escaping ((Bool) -> () )) {
-        self.userCollection.whereField("userName", isEqualTo: self.username).getDocuments() {
+        self.userCollection.whereField("username", isEqualTo: self.username).getDocuments() {
             (QuerySnapshot, Error) in
             if let error = Error {
                 print("Unable to query" + error.localizedDescription)
