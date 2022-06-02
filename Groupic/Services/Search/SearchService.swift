@@ -12,7 +12,7 @@ class SearchService {
     static func searchUser(input: String, onSuccess: @escaping (_
                                                                 user: [UserModel]) -> Void) {
         
-        AuthService.storeRoot.collection("users").whereField("searchName", arrayContains: input.lowercased().removeWhiteSpace())
+        AuthService.storeRoot.collection("users").whereField("keyWords", arrayContains: input.lowercased().removeWhiteSpace())
             .getDocuments {
                 (querySnapshot, err) in
                 

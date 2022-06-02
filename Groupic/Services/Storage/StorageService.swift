@@ -60,7 +60,7 @@ class StorageService {
                     
                     
                     let firestoreUserId = AuthService.getUserId(userId: userId)
-                    let user = UserModel.init(uid: userId, email: email, profileImageId: metaImageUrl, titleImageId: "", fullName: name, username: username, keyWords: username.splitString())
+                    let user = UserModel.init(uid: userId, email: email, profileImageId: metaImageUrl, titleImageId: "", username: username, fullName: name, keyWords: username.splitString())
                  
                     guard let dict = try? user.asDictionary() else {
                         return
@@ -81,7 +81,7 @@ class StorageService {
     static func saveProfile(userId: String, name: String, username: String, email: String, onSuccess: @escaping(_ user: UserModel) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
                     
             let firestoreUserId = AuthService.getUserId(userId: userId)
-            let user = UserModel.init(uid: userId, email: email, profileImageId: "", titleImageId: "", fullName: name, username: username, keyWords: username.splitString())
+        let user = UserModel.init(uid: userId, email: email, profileImageId: "", titleImageId: "", username: username, fullName: name, keyWords: username.splitString())
         
             
             
@@ -129,7 +129,7 @@ static func editProfile(userId: String, name: String, username: String, email: S
                     let firestoreUserId = AuthService.getUserId(userId: userId)
                     
                     firestoreUserId.updateData([
-                        "profileImageUrl": metaImageUrl,
+                        "profileImageId": metaImageUrl,
                     ])
                 }
             }
@@ -165,7 +165,7 @@ static func editBackProfile(userId: String, name: String, username: String, emai
                     let firestoreUserId = AuthService.getUserId(userId: userId)
                     
                     firestoreUserId.updateData([
-                        "backgroundImageUrl": metaImageUrl,
+                        "titleImageId": metaImageUrl,
                     ])
                 }
             }
@@ -176,9 +176,9 @@ static func editProfileText(userId: String, name: String, username: String, emai
     let firestoreUserId = AuthService.getUserId(userId: userId)
     
     firestoreUserId.updateData([
-        "userName": username,
-        "name": name,
-        "searchName": username.splitString(),
+        "username": username,
+        "fullName": name,
+        "keyWords": username.splitString(),
         "email": email
     ])
     
@@ -210,7 +210,7 @@ static func editProfileTextName(userId: String, name: String, onSuccess: @escapi
     let firestoreUserId = AuthService.getUserId(userId: userId)
     
     firestoreUserId.updateData([
-        "name": name,
+        "fullName": name,
     ])
 }
     
@@ -218,8 +218,8 @@ static func editProfileTextUsername(userId: String, username: String, onSuccess:
     let firestoreUserId = AuthService.getUserId(userId: userId)
     
     firestoreUserId.updateData([
-        "userName": username,
-        "searchName": username.splitString(),
+        "username": username,
+        "keyWords": username.splitString(),
     ])
 }
     
@@ -241,7 +241,7 @@ static func editProfileTextUsername(userId: String, username: String, onSuccess:
                     let firestorePostRefUid = PostService.postUserId(userId: userId).collection("events").document(postId)
                     let firestorePostRefUserUid =  PostService.allPosts.document(postId).collection("participants").document(userId)
                     
-                    let post = PostModel.init(highlighted: false, publishTime: Date().timeIntervalSince1970, title: caption,index: index, geoLocation: "", creatorId: userId, id: postId, username: username, coverPic: metaImageUrl, startDate: startDate, endDate: endDate)
+                    let post = PostModel.init(highlighted: false, publishTime: Date().timeIntervalSince1970, title: caption,index: index, creatorId: userId, id: postId, username: username, coverPic: metaImageUrl, startDate: startDate, endDate: endDate)
                     
                     let postUid = PostUidModel.init(postId: postId)
                     
@@ -292,11 +292,11 @@ static func editProfileTextUsername(userId: String, username: String, onSuccess:
                         let firestorePostRefUser = PostService.posts.document(userId).collection("posts").document(postId)
                         
                         firestorePostRef.updateData([
-                            "mediaUrl": metaImageUrl,
+                            "coverPic": metaImageUrl,
                         ])
                         
                         firestorePostRefUser.updateData([
-                            "mediaUrl": metaImageUrl,
+                            "coverPic": metaImageUrl,
                         ])
                     }
                 }
@@ -307,7 +307,7 @@ static func editProfileTextUsername(userId: String, username: String, onSuccess:
         let firestorePostRef = PostService.allPosts.document(postId)
         
         firestorePostRef.updateData([
-            "caption": caption,
+            "title": caption,
         ])
     }
     

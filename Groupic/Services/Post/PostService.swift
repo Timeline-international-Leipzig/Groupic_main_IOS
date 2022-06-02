@@ -74,7 +74,7 @@ class PostService {
     
     static func loadAllPosts(onSuccess: @escaping(_
                                                   posts: [PostModel]) -> Void) {
-        PostService.allPosts.order(by: "dateN", descending: true).getDocuments {
+        PostService.allPosts.order(by: "publishTime", descending: true).getDocuments {
             (snapShot, error) in
             
             guard let snap = snapShot else {
