@@ -57,7 +57,7 @@ struct PersonInfoView: View {
                                 }.background(Color(.black))
                                     .mask(
                                         LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
-                                    )
+                                    ).colorInvert()
                             }
                             
                             Spacer()
@@ -67,7 +67,7 @@ struct PersonInfoView: View {
                             }.background(Color(.black))
                                 .mask(
                                     LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
-                                )
+                                ).colorInvert()
                             
                         }.zIndex(1)
                         

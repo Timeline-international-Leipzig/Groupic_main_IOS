@@ -19,24 +19,18 @@ struct ProfileSettingsViewProfileHeader: View {
             if backProfileImage != nil {
                 backProfileImage!
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
                     .frame(width: getRectView().width, height: 180, alignment: .center)
-                    .cornerRadius(0)
             }
             else {
                 if user!.backgroundImageUrl == "" {
                     Image("grey")
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
                         .frame(width: getRectView().width, height: 180, alignment: .center)
-                        .cornerRadius(0)
                 }
                 else {
                     WebImage(url: URL(string: user!.backgroundImageUrl))
                         .resizable()
-                        .aspectRatio(contentMode: .fill)
                         .frame(width: getRectView().width, height: 180, alignment: .center)
-                        .cornerRadius(0)
                 }
             }
             
@@ -47,7 +41,6 @@ struct ProfileSettingsViewProfileHeader: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 125, height: 125, alignment: .center)
                         .clipShape(Circle())
-                        .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                 }
                 else {
                     if user!.profileImageUrl == "" {
@@ -56,7 +49,6 @@ struct ProfileSettingsViewProfileHeader: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 125, height: 125, alignment: .center)
                             .clipShape(Circle())
-                            .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                     }
                     else {
                         WebImage(url: URL(string: user!.profileImageUrl))
@@ -64,11 +56,10 @@ struct ProfileSettingsViewProfileHeader: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: 125, height: 125, alignment: .center)
                             .clipShape(Circle())
-                            .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                     }
                 }
             }
-            .padding(.bottom, -160)
+            .padding(.top, 150)
         }
     }
 }

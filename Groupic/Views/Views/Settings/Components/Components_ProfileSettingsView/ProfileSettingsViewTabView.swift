@@ -12,32 +12,48 @@ struct ProfileSettingsViewTabView: View {
     
     var body: some View {
         ZStack {
-            HStack(spacing: 15) {
-                Spacer()
-                
-                Text("Profil bearbeiten")
-                    .font(.title3)
-                    .foregroundColor(.white)
-                    .frame(alignment: .center)
-                
-                Spacer()
-            }
-            .padding()
-            .background(Color("AccentColor"))
             
-            HStack {
-                Button(action: {
-                    self.back.toggle()
-                },
-                label: {
-                    Image(systemName: "chevron.left")
+            VStack {
+                
+                ZStack {
+                HStack {
+                    Spacer()
+                    
+                    Text("Profil bearbeiten")
+                        .font(.title3)
                         .foregroundColor(.white)
-                        .font(.system(size: 20))
-                })
+                    
+                    Spacer()
+                }.padding(.top, 50)
+                
+                HStack {
+                    Button(action: {
+                        self.back.toggle()
+                    },
+                           label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.white)
+                    }).padding(.top, 50)
+                        .padding(.leading, 20)
+                    
+                    Spacer()
+                }
+                }
+                
+                Spacer()
+            }.zIndex(1)
+            
+            VStack {
+                
+                HStack {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }.background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                    ).colorInvert()
                 
                 Spacer()
             }
-            .padding()
         }
     }
 }

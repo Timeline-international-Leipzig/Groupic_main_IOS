@@ -35,7 +35,7 @@ struct ProfilesettingsTextEditField: View {
         VStack {
             Text(header)
                 .fontWeight(.bold)
-                .foregroundColor(Color("AccentColor"))
+                .foregroundColor(Color(.white))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             VStack {
@@ -90,10 +90,8 @@ struct ProfilesettingsTextEditField: View {
                 }
                 
                 Divider()
-                    .background(Color("AccentColor"))
-                    .padding(.top, 7.5)
+                    .background(Color(.white))
             }
-            .padding(.top, 7.5)
             
             switch selectedIndex {
                 case 0:

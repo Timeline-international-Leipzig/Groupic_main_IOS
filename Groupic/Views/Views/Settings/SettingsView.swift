@@ -17,7 +17,7 @@ struct SettingsView: View {
     @State var nextSupport = false
     
     @State var nextProfile = false
-
+    
     var body: some View {
         NavigationLink(destination: ProfileSettingsView(session: self.session.session, back: $nextProfile), isActive: self.$nextProfile, label: {
             EmptyView()
@@ -32,30 +32,38 @@ struct SettingsView: View {
         })
         
         /*
-        NavigationLink(destination: SupportView(back: $nextSupport), isActive: self.$nextSupport, label: {
-            EmptyView()
-        })
-        */
+         NavigationLink(destination: SupportView(back: $nextSupport), isActive: self.$nextSupport, label: {
+         EmptyView()
+         })
+         */
         
         ZStack {
-            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
             
             VStack(alignment: .center, spacing: 0) {
+                
                 ZStack {
-                    HStack(spacing: 15) {
+                    
+                    HStack {
+                        Rectangle().frame(width: getRectView().width, height: 100)
+                    }.background(Color(.black))
+                        .mask(
+                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                        ).colorInvert()
+                    
+                    HStack {
+                        
                         Spacer()
                         
                         Text("Einstellungen")
                             .font(.title3)
                             .foregroundColor(.white)
-                            .frame(alignment: .center)
                         
                         Spacer()
                     }
-                    .padding()
-                    .background(Color("AccentColor"))
+                    .zIndex(1)
+                    .padding(.top, 30)
                     
-                    HStack() {
+                    HStack {
                         Button(action: {
                             self.next.toggle()
                         }, label: {
@@ -65,7 +73,9 @@ struct SettingsView: View {
                         
                         Spacer()
                     }
-                    .padding()
+                    .zIndex(1)
+                    .padding(.top, 30)
+                    .padding(.leading, 20)
                 }
                 
                 Form {
@@ -90,63 +100,63 @@ struct SettingsView: View {
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 14, weight: .semibold, design: .rounded))
                             }
-                            .accentColor(Color(.systemGray2))
+                            .accentColor(Color(.gray))
                         }
                         
                         /*
-                        HStack {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                    .fill(Color.blue)
-                                
-                                Image(systemName: "person.fill")
-                                    .foregroundColor(.white)
-                            }
-                            .frame(width: 36, height: 36, alignment: .center)
-                            
-                            Text("Anwendungseinstellungen").padding(.horizontal)
-                            
-                            Spacer()
-                            
-                            Button(action: {
-                                
-                            }) {
-                                Image(systemName: "chevron.right")
-                                    .font(.system(size: 14, weight: .semibold, design: .rounded))
-                            }
-                            .accentColor(Color(.systemGray2))
-                        }
-                        */
+                         HStack {
+                         ZStack {
+                         RoundedRectangle(cornerRadius: 8, style: .continuous)
+                         .fill(Color.blue)
                          
+                         Image(systemName: "person.fill")
+                         .foregroundColor(.white)
+                         }
+                         .frame(width: 36, height: 36, alignment: .center)
+                         
+                         Text("Anwendungseinstellungen").padding(.horizontal)
+                         
+                         Spacer()
+                         
+                         Button(action: {
+                         
+                         }) {
+                         Image(systemName: "chevron.right")
+                         .font(.system(size: 14, weight: .semibold, design: .rounded))
+                         }
+                         .accentColor(Color(.systemGray2))
+                         }
+                         */
+                        
                         /*
-                        HStack {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                    .fill(Color.yellow)
-                                
-                                Image(systemName: "envelope.fill")
-                                    .foregroundColor(.white)
-                            }
-                            .frame(width: 36, height: 36, alignment: .center)
-                            
-                            Text("Kontakt").padding(.horizontal)
-                            
-                            Spacer()
-                            
-                            Button(action: {
-                                self.nextSupport.toggle()
-                            }) {
-                                Image(systemName: "chevron.right")
-                                    .font(.system(size: 14, weight: .semibold, design: .rounded))
-                            }
-                            .accentColor(Color(.systemGray2))
-                        }
-                        */
+                         HStack {
+                         ZStack {
+                         RoundedRectangle(cornerRadius: 8, style: .continuous)
+                         .fill(Color.yellow)
+                         
+                         Image(systemName: "envelope.fill")
+                         .foregroundColor(.white)
+                         }
+                         .frame(width: 36, height: 36, alignment: .center)
+                         
+                         Text("Kontakt").padding(.horizontal)
+                         
+                         Spacer()
+                         
+                         Button(action: {
+                         self.nextSupport.toggle()
+                         }) {
+                         Image(systemName: "chevron.right")
+                         .font(.system(size: 14, weight: .semibold, design: .rounded))
+                         }
+                         .accentColor(Color(.systemGray2))
+                         }
+                         */
                         
                         HStack {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                    .fill(Color.red)
+                                    .fill(Color.gray)
                                 
                                 Image(systemName: "arrow.right.square")
                                     .foregroundColor(.white)
@@ -164,17 +174,17 @@ struct SettingsView: View {
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 14, weight: .semibold, design: .rounded))
                             }
-                            .accentColor(Color(.systemGray2))
+                            .accentColor(Color(.gray))
                         }
                     }
-                }
+                }.onAppear {UITableView.appearance().backgroundColor = .clear}
                 
                 Form {
                     Section(header: Text("Rechtliche Dokumente")) {
                         HStack {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                    .fill(Color.orange)
+                                    .fill(Color.gray)
                                 
                                 Image(systemName: "lock.fill")
                                     .foregroundColor(.white)
@@ -187,16 +197,16 @@ struct SettingsView: View {
                             
                             Button(action: {
                                 self.nextDatenschutz.toggle()
-                            }) { 
+                            }) {
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 14, weight: .semibold, design: .rounded))
                             }
-                            .accentColor(Color(.systemGray2))
+                            .accentColor(Color(.gray))
                         }
                         HStack {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                    .fill(Color.green)
+                                    .fill(Color.gray)
                                 
                                 Image(systemName: "doc.text.fill")
                                     .foregroundColor(.white)
@@ -213,13 +223,24 @@ struct SettingsView: View {
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 14, weight: .semibold, design: .rounded))
                             }
-                            .accentColor(Color(.systemGray2))
+                            .accentColor(Color(.gray))
                         }
                     }
+                }.offset(y: -100)
+                
+                VStack {
+                    Spacer()
+                    
+                    HStack {
+                        Rectangle().frame(width: getRectView().width, height: 100)
+                    }.background(Color(.black))
+                        .mask(
+                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                        ).colorInvert()
                 }
-                .offset(y:-100)
             }
-            .background(Color(.systemGray6))
+            .background(Color("mainColor"))
+            .ignoresSafeArea()
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)

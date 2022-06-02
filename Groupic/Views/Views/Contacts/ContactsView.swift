@@ -25,7 +25,7 @@ struct ContactsView: View {
                 VStack {
                     Text("Noch keine Kontakte")
                 }
-            
+                
                 VStack {
                     ForEach(profileService.users, id: \.uid) {
                         (user) in
@@ -44,22 +44,21 @@ struct ContactsView: View {
                                             Image("profileImage")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
-                                                .frame(width: 60, height: 60, alignment: .center)
+                                                .frame(width: 50, height: 50, alignment: .center)
                                                 .clipShape(Circle())
-                                                .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                                         }
                                         else {
                                             WebImage(url: URL(string: user.profileImageUrl))
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
-                                                .frame(width: 60, height: 60, alignment: .center)
+                                                .frame(width: 50, height: 50, alignment: .center)
                                                 .clipShape(Circle())
-                                                .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                                         }
                                         
                                         Text(user.userName)
-                                            .font(.subheadline)
-                                            .bold()
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 18, weight: .bold))
+                                            .padding(.horizontal)
                                         
                                         Spacer()
                                         
@@ -68,6 +67,13 @@ struct ContactsView: View {
                                                 followService.deleteContact(userId: user.uid)
                                             }, label: {
                                                 Text("Entfernen")
+                                                    .foregroundColor(Color("buttonText"))
+                                                    .font(.system(size: 14, weight: .bold))
+                                                    .padding(5)
+                                                    .background(
+                                                        Color("buttonColor")
+                                                            .cornerRadius(5)
+                                                    )
                                             })
                                         }
                                     }
@@ -81,7 +87,7 @@ struct ContactsView: View {
                         EmptyView()
                     })
                 }
-                .background(Color(.systemGray6))
+                .background(Color("mainColor"))
             }
         }
         .navigationTitle("")

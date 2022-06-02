@@ -13,7 +13,7 @@ struct ReautheticationPasswordView: View {
     
     @Binding var back: Bool
     
-    @State var error = "Gebe dein altes und neues Passwort ein"
+    @State var error = "Gebe dein altes und neues Passwort ein."
     @State var errorVar = ""
     @State var password = ""
     @State var newpassword = ""
@@ -36,7 +36,8 @@ struct ReautheticationPasswordView: View {
                 
                 VStack {
                     Text(self.error)
-                        .foregroundColor(self.color)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
                         .padding(.top)
                         .padding(.horizontal, 25)
                     
@@ -113,8 +114,8 @@ struct ReautheticationPasswordView: View {
                     .padding(.top, 25)
                 }
                 .padding(.all, 25)
-                .frame(width: UIScreen.main.bounds.width - 90)
-                .background(Color.white.opacity(0.85))
+                .frame(width: UIScreen.main.bounds.width - 50)
+                .background(Color.black.opacity(0.95))
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                 .frame(height: UIScreen.main.bounds.height - 50)
                 

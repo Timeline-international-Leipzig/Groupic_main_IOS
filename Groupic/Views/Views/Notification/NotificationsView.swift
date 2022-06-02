@@ -21,7 +21,6 @@ struct NotificationsView: View {
     
     var body: some View {
         ZStack {
-            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
             
             VStack(alignment: .center, spacing: 0) {
                 ZStack {
@@ -35,8 +34,7 @@ struct NotificationsView: View {
                         
                         Spacer()
                     }
-                    .padding()
-                    .background(Color("AccentColor"))
+                    .padding(.top, 50)
                     
                     HStack() {
                         Button(action: {
@@ -48,7 +46,28 @@ struct NotificationsView: View {
                         
                         Spacer()
                     }
-                    .padding()
+                    .padding(.top, 50)
+                    .padding(.leading, 20)
+                    
+                    VStack {
+                        
+                        HStack {
+                            Rectangle().frame(width: getRectView().width, height: 100)
+                        }.background(Color(.black))
+                            .mask(
+                                LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                            ).colorInvert()
+                        
+                        
+                        Spacer()
+                        
+                        HStack {
+                            Rectangle().frame(width: getRectView().width, height: 100)
+                        }.background(Color(.black))
+                            .mask(
+                                LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                            ).colorInvert()
+                    }
                 }
                 
                 ScrollView {

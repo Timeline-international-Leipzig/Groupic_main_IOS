@@ -13,7 +13,7 @@ struct AGBView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             
-            ZStack {
+            /*ZStack {
                 HStack(spacing: 15) {
                     Spacer()
                     
@@ -40,7 +40,7 @@ struct AGBView: View {
                     })
                 }
                 .padding()
-            }.zIndex(1)
+            }.zIndex(1)*/
             
             WebView(url: URL(string: "https://groupic.de/agb"))
         }

@@ -60,44 +60,64 @@ struct ProfileSettingsView: View {
     }
     
     var body: some View {
+        
         ZStack {
-            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
             
-            VStack(alignment: .center, spacing: 0) {
-                VStack {
-                    ProfileSettingsViewTabView(back: $back)
-                }
+            ProfileSettingsViewTabView(back: $back)
+            
+            ScrollView {
                 
-                ScrollView {
+                VStack(alignment: .center, spacing: 0) {
+                    
                     ProfileSettingsViewProfileHeader(profileImage: $profileImage, backProfileImage: $backProfileImage, user: self.session.session!)
                     
-                    HStack {
-                        VStack(spacing: 10) {
-                            Button(action: {
-                                self.showingActionsSheet.toggle()
-                            },
-                                   label: {
-                                Text("Profilbild ändern")
-                                    .foregroundColor(Color("AccentColor"))
-                            })
-                            .cornerRadius(20)
-                            .padding(.horizontal)
-                            
-                            Button(action: {
-                                self.showingImagePickerBackProfile.toggle()
-                            },
-                                   label: {
-                                Text("Titelbild ändern")
-                                    .foregroundColor(Color("AccentColor"))
-                            })
-                            .cornerRadius(20)
-                            .padding(.horizontal)
-                        }
-                    }
-                    .padding(40)
+                    VStack(spacing: 20) {
+                        
+                        Button(action: {
+                            self.showingActionsSheet.toggle()
+                        },
+                               label: {
+                            Label("Profilbild ändern", systemImage: "person")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(Color("buttonText"))
+                                .padding(5)
+                                .background(
+                                    Color("buttonColor")
+                                        .cornerRadius(5)
+                                )
+                        })
+                        
+                        Button(action: {
+                            self.showingImagePickerBackProfile.toggle()
+                        },
+                               label: {
+                            Label("Titelbild ändern", systemImage: "photo")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(Color("buttonText"))
+                                .padding(5)
+                                .background(
+                                    Color("buttonColor")
+                                        .cornerRadius(5)
+                                )
+                        })
+                        
+                        Button(action: {
+                            self.alertPasswordReauthentication.toggle()
+                        }, label: {
+                            Label("Passwort ändern", systemImage: "lock")
+                                .foregroundColor(Color("buttonText"))
+                                .font(.system(size: 16, weight: .medium))
+                                .padding(5)
+                                .background(
+                                    Color("buttonColor")
+                                        .cornerRadius(5)
+                                )
+                        })
+                    }.padding(.top, 30)
+                    
                     
                     HStack {
-                        VStack (alignment: .leading, spacing: 10) {
+                        VStack (alignment: .leading, spacing: -20) {
                             
                             HStack(spacing: 20) {
                                 Text("Benutzername:")
@@ -116,21 +136,6 @@ struct ProfileSettingsView: View {
                                 
                                 ProfilesettingsTextEditField(selectedIndex: 0, header: "", image: "", textField: "email", value: $email, change: $changeTextEmail)
                             }
-                            
-                            HStack {
-                                Button(action: {
-                                    self.alertPasswordReauthentication.toggle()
-                                }, label: {
-                                    Text("Ändere dein Passwort")
-                                        .background(Color.gray)
-                                        .foregroundColor(.black)
-                                })
-                                .padding()
-                                
-                                Spacer()
-                            }
-                            .padding()
-                            
                             
                             if Auth.auth().currentUser?.isEmailVerified == false {
                                 HStack {
@@ -250,7 +255,7 @@ struct ProfileSettingsView: View {
                                 .frame(width: UIScreen.main.bounds.width - 50)
                         })
                         .background(
-                            Color("AccentColor"))
+                            Color("buttonColor"))
                         .cornerRadius(10)
                         .padding(.bottom, 25)
                         .padding(.horizontal, 10)
@@ -270,9 +275,18 @@ struct ProfileSettingsView: View {
                         .padding(.horizontal, 10)
                     }
                 }
-            }
-            .background(Color.white)
+            }.padding(.top, 60)
             
+            VStack {
+                Spacer()
+                
+                HStack {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }.background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                    ).colorInvert()
+            }
             
             if self.alert {
                 ErrorView(alert: self.$alert, error: self.$error)
@@ -286,6 +300,8 @@ struct ProfileSettingsView: View {
                 ReautheticationPasswordView(back: self.$alertPasswordReauthentication)
             }
         }
+        .background(Color("mainColor"))
+        .ignoresSafeArea()
         .navigationBarTitle("")
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
