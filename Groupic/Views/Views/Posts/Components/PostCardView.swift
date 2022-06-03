@@ -21,38 +21,38 @@ struct PostCardView: View {
             EmptyView()
         })
         
-        VStack {
-            HStack {
-                VStack {
-                    HStack {
-                        //Kreis
-                        VStack {
-                            Image(systemName: "circle")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 10))
-                            
-                            Color.gray.frame(width: CGFloat(2) / UIScreen.main.scale)
-                        }
+        VStack(spacing: 0) {
+            ZStack {
+                HStack {
+                    //Kreis
+                    VStack {
+                        Image(systemName: "circle")
+                            .foregroundColor(.white)
+                            .font(.system(size: 10))
                         
-                        Text((Date(timeIntervalSince1970: postModel.publishTime))
-                            .timeAgo())
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                        .frame(alignment: .topLeading)
-                        .offset(y: -5)
+                        Color.white.frame(width: CGFloat(2) / UIScreen.main.scale, height: 20)
                     }
-                    .padding(.horizontal)
                     
-                    //Linie
+                    Text((Date(timeIntervalSince1970: postModel.publishTime))
+                        .timeAgo())
+                    .font(.subheadline)
+                    .foregroundColor(.white)
+                    .frame(alignment: .topLeading)
                     
+                    
+                    Spacer()
+                }.padding(.leading, 5)
+                //Linie
+                
+                HStack {
+                    
+                    Spacer()
+                    
+                    HighlightButton(post: postModel, highlightCheck: $postModel.highlighted)
                 }
-                
-                Spacer()
-                
-                HighlightButton(post: postModel, highlightCheck: $postModel.highlighted)
             }
             
-            VStack {
+            VStack(spacing: 0) {
                 Button(
                     action: {
                         self.next.toggle()
@@ -61,25 +61,22 @@ struct PostCardView: View {
                         
                         WebImage(url: URL(string: postModel.coverPic)!)
                             .resizable()
-                            .frame(width: getRectView().width, height: 170, alignment: .center)
+                            .frame(width: getRectView().width, height: 200, alignment: .center)
                             .clipped()
                     }
                 )
                 
                 HStack {
-                    Color.gray.frame(width:CGFloat(2) / UIScreen.main.scale)
-                        .offset(y: -8)
-                    
                     
                     ZStack {
                         HStack {
                             if Calendar.current.component(.day, from: postModel.startDate) == Calendar.current.component(.day, from: postModel.endDate) {
+                                
                                 Spacer()
                                 
                                 Text(postModel.startDate, style: .date)
                                     .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .frame(alignment: .topLeading)
+                                    .foregroundColor(.white)
                             }
                             
                             else {
@@ -87,36 +84,35 @@ struct PostCardView: View {
                                 
                                 Text(postModel.startDate, style: .date)
                                     .font(.subheadline)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.white)
                                     .frame(alignment: .topLeading)
                                 
-                                Text(" - ")
+                                Text("-")
                                     .font(.subheadline)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.white)
                                     .frame(alignment: .topLeading)
                                 
                                 Text(postModel.endDate, style: .date)
                                     .font(.subheadline)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.white)
                                     .frame(alignment: .topLeading)
                             }
                         }
                         
                         HStack {
-                            Spacer()
+                            
+                            Color.white.frame(width:CGFloat(2) / UIScreen.main.scale, height: 40)
                             
                             Text(postModel.title)
+                                .foregroundColor(.white)
                                 .font(.title3)
-                                .frame(width: 320, height: 40, alignment: .topLeading)
                             
                             Spacer()
-                        }
+                        }.padding(.leading, 10)
                     }
                 }
-                .padding(.horizontal)
             }
-            .offset(y: -10)
-        }
+        }.background(Color("mainColor"))
     }
 }
 

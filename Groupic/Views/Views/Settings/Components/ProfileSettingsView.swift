@@ -63,7 +63,7 @@ struct ProfileSettingsView: View {
         
         ZStack {
             
-            ProfileSettingsViewTabView(back: $back)
+            ProfileSettingsViewTabView(back: $back).zIndex(1)
             
             ScrollView {
                 
@@ -257,7 +257,7 @@ struct ProfileSettingsView: View {
                         .background(
                             Color("buttonColor"))
                         .cornerRadius(10)
-                        .padding(.bottom, 25)
+                        .padding(.bottom, 200)
                         .padding(.horizontal, 10)
                     }
                     else {
@@ -271,7 +271,7 @@ struct ProfileSettingsView: View {
                         .disabled(true)
                         .background(Color.gray)
                         .cornerRadius(10)
-                        .padding(.bottom, 25)
+                        .padding(.bottom, 200)
                         .padding(.horizontal, 10)
                     }
                 }

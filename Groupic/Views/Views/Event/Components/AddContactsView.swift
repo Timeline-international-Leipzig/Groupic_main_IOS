@@ -31,7 +31,7 @@ struct AddContactsView: View {
                 
                 VStack {
                     Text(self.error)
-                        .foregroundColor(Color.black)
+                        .foregroundColor(Color.white)
                         .padding(.top)
                         .padding(.horizontal, 25)
                         .frame(alignment: .center)
@@ -39,7 +39,7 @@ struct AddContactsView: View {
                     ScrollView {
                         ZStack {
                             VStack {
-                                Text("Noch keine Kontakte")
+                                Text("Noch keine Kontakte").foregroundColor(.white)
                             }
                         
                         VStack {
@@ -56,8 +56,7 @@ struct AddContactsView: View {
                                         }
                                     }
                                 }
-                            }
-                            .background(Color(.systemGray6))
+                        }
                         }
                     }
                     .navigationTitle("")
@@ -76,14 +75,13 @@ struct AddContactsView: View {
                             .padding(.vertical)
                             .frame(width: UIScreen.main.bounds.width - 120)
                     })
-                    .background(Color("AccentColor"))
                     .cornerRadius(10)
                 }
-                .padding(.all, 25)
-                .frame(width: UIScreen.main.bounds.width - 90)
-                .background(Color.white.opacity(0.85))
+                .frame(width: UIScreen.main.bounds.width - 50)
+                .frame(height: UIScreen.main.bounds.height - 200)
+                .background(Color.black.opacity(0.95))
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
-                .frame(height: UIScreen.main.bounds.height - 50)
+                .padding(.top, 100)
                 
                 Spacer()
             }

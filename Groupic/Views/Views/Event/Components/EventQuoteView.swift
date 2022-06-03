@@ -30,6 +30,7 @@ struct EventQuoteView: View {
     var body: some View {
         GeometryReader{_ in
             HStack {
+                
                 Spacer()
                 
                 VStack {

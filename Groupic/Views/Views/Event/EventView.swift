@@ -46,76 +46,106 @@ struct EventView: View {
     
     var body: some View {
         ZStack {
-            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
             
             VStack {
-                HStack() {
-                    Button(action: {
-                        self.next.toggle()
-                    }, label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.white)
-                    })
+                
+                ZStack {
                     
-                    Spacer()
+                    HStack {
+                        Rectangle().frame(width: getRectView().width, height: 100)
+                    }.background(Color(.black))
+                        .mask(
+                            LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                        ).colorInvert()
+                    
+                    HStack {
+                        
+                        Spacer()
+                        
+                        Text(postModel.title)
+                            .font(.system(size: 26, weight: .bold, design: .default))
+                        
+                        Spacer()
+                    }.padding(.top, 30)
+                    
+                    HStack {
+                        Button(action: {
+                            self.next.toggle()
+                        }, label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.white)
+                        })
+                        
+                        Spacer()
+                    }
+                    .padding(.top, 30)
+                    .padding(.leading, 20)
+                    
                 }
-                .padding()
-                .background(Color("AccentColor"))
+                
+                Spacer()
+                
+                HStack {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }.background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                    ).colorInvert()
+                
+            }.zIndex(1)
+            
+            VStack(spacing:0) {
                 
                 ScrollView(.vertical, showsIndicators: false) {
-                    PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
-                        // do your stuff when pulled
-                    }
+                    
+                    EventViewHeader(eventImage: $eventImage, post: postModel)
+                    
+                    /*PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
+                     // do your stuff when pulled
+                     }*/
                     
                     VStack {
-                        EventViewHeader(eventImage: $eventImage, post: postModel)
                         
-                        HStack {
-                            Image(systemName: "line.horizontal.3")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20))
+                        ZStack {
                             
-                            Spacer()
-                            
-                            Text(postModel.title)
-                                .font(.system(size: 26, weight: .bold, design: .default))
-                            
-                            Spacer()
-                            
-                            DropDownMenu(showingActionsSheet: $showingActionsSheet, showingActionsSheetEventNameChange: $alertEventName, changeEventMode: $changeEventMode, deleteEvent: $deleteEvent)
-                        }.padding(.horizontal)
-                        
-                        HStack {
-                            if  Calendar.current.component(.day, from: postModel.startDate) == Calendar.current.component(.day, from: postModel.endDate) {
-                                Spacer()
-                                
-                                Text(postModel.startDate, style: .date)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .frame(alignment: .topLeading)
+                            HStack {
                                 
                                 Spacer()
+                                
+                                DropDownMenu(showingActionsSheet: $showingActionsSheet, showingActionsSheetEventNameChange: $alertEventName, changeEventMode: $changeEventMode, deleteEvent: $deleteEvent).padding(.trailing, 20)
                             }
                             
-                            else {
-                                Text(postModel.startDate, style: .date)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .frame(alignment: .topLeading)
+                            HStack {
+                                if  Calendar.current.component(.day, from: postModel.startDate) == Calendar.current.component(.day, from: postModel.endDate) {
+                                    
+                                    Spacer()
+                                    
+                                    Text(postModel.startDate, style: .date)
+                                        .font(.subheadline)
+                                        .foregroundColor(.white)
+                                        .frame(alignment: .topLeading)
+                                    
+                                    Spacer()
+                                }
                                 
-                                Text(" - ")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .frame(alignment: .topLeading)
-                                
-                                Text(postModel.endDate, style: .date)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .frame(alignment: .topLeading)
+                                else {
+                                    Text(postModel.startDate, style: .date)
+                                        .font(.subheadline)
+                                        .foregroundColor(.white)
+                                        .frame(alignment: .topLeading)
+                                    
+                                    Text("-")
+                                        .font(.subheadline)
+                                        .foregroundColor(.white)
+                                        .frame(alignment: .topLeading)
+                                    
+                                    Text(postModel.endDate, style: .date)
+                                        .font(.subheadline)
+                                        .foregroundColor(.white)
+                                        .frame(alignment: .topLeading)
+                                }
                             }
                         }
-                        .foregroundColor(.secondary)
-                        .padding(-10)
                         
                         /*
                          FollowEventButton(post: postModel, followCheck: $profileService.followCheck)
@@ -123,7 +153,7 @@ struct EventView: View {
                          */
                         
                         Text("Mit:")
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.white)
                             .padding(10)
                         
                         ZStack {
@@ -136,11 +166,11 @@ struct EventView: View {
                                     alertAdd.toggle()
                                 }, label: {
                                     Image(systemName: "person.crop.circle.badge.plus")
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.white)
                                         .font(.system(size: 20))
                                 })
                             }
-                            .padding(.horizontal)
+                            .padding(.trailing, 20)
                         }
                         
                         HStack {
@@ -150,7 +180,7 @@ struct EventView: View {
                                 self.picker.toggle()
                             }, label: {
                                 Image(systemName: "photo.fill.on.rectangle.fill")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
                                     .font(.system(size: 20))
                             })
                             
@@ -168,7 +198,7 @@ struct EventView: View {
                                 self.textQuote.toggle()
                             }, label: {
                                 Image(systemName: "text.bubble")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
                                     .font(.system(size: 20))
                             })
                             
@@ -178,9 +208,10 @@ struct EventView: View {
                         
                         EventsContentView(postModel: $postModel, userModel: $userModel)
                     }
-                }.offset(y: -17)
+                }
             }
-            .background(Color.white)
+            .background(Color("mainColor"))
+            .ignoresSafeArea()
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
@@ -209,6 +240,7 @@ struct EventView: View {
                 EventQuoteView(back: $textQuote, userModel: $userModel, postModel: $postModel, quote: $quote)
             }
         }
+        .ignoresSafeArea()
         .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
             ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)
         }

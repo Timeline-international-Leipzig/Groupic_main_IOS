@@ -38,9 +38,8 @@ struct HighlightButton: View {
             self.highlight()
         }, label: {
             Text((post.highlighted) ? Image(systemName: "star.fill"): Image(systemName: "star"))
-                .background(Color.gray)
-                .foregroundColor(.black)
-        })
+                .foregroundColor(.white)
+        }).padding(.trailing, 5)
     }
 }
 

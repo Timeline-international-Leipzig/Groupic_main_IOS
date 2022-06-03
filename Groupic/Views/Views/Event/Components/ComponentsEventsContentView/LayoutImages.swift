@@ -18,6 +18,7 @@ struct LayoutImages: View {
         HStack(spacing: 4) {
             if eventElements.count == 1 {
                 if eventElements[0].type == "TEXT" {
+                    
                     HStack {
                         VStack {
                             if user.profileImageId == "" {
@@ -26,7 +27,6 @@ struct LayoutImages: View {
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 25, height: 25, alignment: .center)
                                     .clipShape(Circle())
-                                    .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                             }
                             else {
                                 WebImage(url: URL(string: user.profileImageId))
@@ -34,11 +34,10 @@ struct LayoutImages: View {
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 25, height: 25, alignment: .center)
                                     .clipShape(Circle())
-                                    .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                             }
                         }
                         
-                        Text(user.username + ":")
+                        Text(user.username + ":").foregroundColor(.white)
                         
                         Text(eventElements[0].text)
                     }

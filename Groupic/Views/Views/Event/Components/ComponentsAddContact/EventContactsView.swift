@@ -37,21 +37,20 @@ struct EventContactsView: View {
                             Image("profileImage")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 60, height: 60, alignment: .center)
+                                .frame(width: 50, height: 50, alignment: .center)
                                 .clipShape(Circle())
-                                .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                         }
                         else {
                             WebImage(url: URL(string: user.profileImageId))
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 60, height: 60, alignment: .center)
+                                .frame(width: 50, height: 50, alignment: .center)
                                 .clipShape(Circle())
-                                .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                         }
                        
                         
                         Text(user.username)
+                            .foregroundColor(.white)
                             .font(.subheadline)
                             .bold()
                                                       
@@ -62,6 +61,9 @@ struct EventContactsView: View {
                         }
                     }
                     .padding()
+                    .background(Color("mainColor"))
+                    .cornerRadius(5)
+                    
                 })
             }
             else {}

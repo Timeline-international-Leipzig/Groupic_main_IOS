@@ -21,7 +21,7 @@ struct EventInviteButton: View {
         self.user = user
         self.post = post
     }
-
+    
     func follow() {
         if !self.followCheck {
             followService.inviteIntoEvent(userId: user.uid, postId: post.id)
@@ -32,7 +32,7 @@ struct EventInviteButton: View {
                 (followingCount) in
             }) {
                 (followersCount) in
-
+                
             }
             
             self.followCheck = false
@@ -45,7 +45,7 @@ struct EventInviteButton: View {
             
             if let doc = document, doc.exists {
                 self.followCheck = true
-                }
+            }
             else {
                 self.followCheck = false
             }
@@ -59,8 +59,14 @@ struct EventInviteButton: View {
             self.follow()
         }, label: {
             Text((self.followState(userId: user.uid, postId: post.id)) ? "Anfrage gesendet": "Anfrage senden")
-                .background(Color.gray)
-                .foregroundColor(.black)
+                .foregroundColor(Color("buttonText"))
+                .font(.system(size: 14, weight: .bold))
+            //.font(.headline)
+                .padding(5)
+                .background(
+                    Color("buttonColor")
+                        .cornerRadius(5)
+                )
         })
     }
 }

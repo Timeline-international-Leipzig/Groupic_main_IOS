@@ -108,23 +108,21 @@ struct SocialView: View {
                                                     Image("profileImage")
                                                         .resizable()
                                                         .aspectRatio(contentMode: .fill)
-                                                        .frame(width: 60, height: 60, alignment: .center)
+                                                        .frame(width: 50, height: 50, alignment: .center)
                                                         .clipShape(Circle())
-                                                        .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                                                         .padding()
                                                 }
                                                 else {
                                                     WebImage(url: URL(string: user.profileImageId))
                                                         .resizable()
                                                         .aspectRatio(contentMode: .fill)
-                                                        .frame(width: 60, height: 60, alignment: .center)
+                                                        .frame(width: 50, height: 50, alignment: .center)
                                                         .clipShape(Circle())
-                                                        .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
-                                                        .background(Color.white)
                                                         .padding()
                                                 }
                                                 
                                                 Text(user.username)
+                                                    .foregroundColor(.white)
                                                     .font(.subheadline)
                                                     .bold()
                                                 
@@ -145,7 +143,7 @@ struct SocialView: View {
                                             }
                                             .padding()
                                         })
-                                    }
+                                    }.background(Color("mainColor"))
                                     
                                 }
                                 

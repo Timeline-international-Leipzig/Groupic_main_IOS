@@ -85,19 +85,19 @@ struct MidTabBarView: View {
                 switch selectedIndex {
                 case 0:
                     HighlightPostView()
-                        .padding(.top)
+                        .padding(.top, 30)
                     
                 case 1:
                     UserPostView()
-                        .padding(.top)
+                        .padding(.top, 30)
                     
                 case 2:
                     FutureUserPostView()
-                        .padding(.top)
+                        .padding(.top, 30)
                     
                 case 3:
                     ContactsView()
-                        .padding(.top)
+                        .padding(.top, 30)
                     
                 default:
                     Text("Remaining tabs")

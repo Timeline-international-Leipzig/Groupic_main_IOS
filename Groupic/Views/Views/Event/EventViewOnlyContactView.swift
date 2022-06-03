@@ -21,7 +21,6 @@ struct EventViewOnlyContactView: View {
     
     var body: some View {
         ZStack {
-            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
             
             VStack {
                 HStack() {

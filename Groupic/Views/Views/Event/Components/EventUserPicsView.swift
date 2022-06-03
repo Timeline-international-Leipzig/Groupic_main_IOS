@@ -39,7 +39,6 @@ struct EventUserPicsView: View {
                 self.profileService.loadAllEventUsers(postId: post.id)
                 self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
             }
-            .background(Color.gray)
         })
     }
 }

@@ -19,10 +19,10 @@ struct EventsContentView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             ZStack {
-                VStack {
+                /*VStack {
                     Text("Noch kein Content")
                         .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
-                }
+                }*/
                 
                 VStack {
                     ForEach(profileService.compositionElements, id: \.self) {
@@ -32,9 +32,9 @@ struct EventsContentView: View {
                             .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
                     }
                 }
-                .background(Color(.white))
             }
         }
+        .background(Color("mainColor"))
         .rotationEffect(Angle(degrees: 180)).scaleEffect(x: -1.0, y: 1.0, anchor: .center)
         .padding(.top)
         .navigationTitle("")

@@ -24,30 +24,40 @@ struct NotificationsView: View {
             
             VStack(alignment: .center, spacing: 0) {
                 ZStack {
-                    HStack(spacing: 15) {
-                        Spacer()
-                        
-                        Text("Nachrichten")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                            .frame(alignment: .center)
-                        
-                        Spacer()
-                    }
-                    .padding(.top, 50)
                     
-                    HStack() {
-                        Button(action: {
-                            self.back.toggle()
-                        }, label: {
-                            Image(systemName: "chevron.left")
-                                .foregroundColor(.white)
-                        })
+                    VStack {
+                        
+                        ZStack {
+                            
+                            HStack {
+                                
+                                Spacer()
+                                
+                                Text("Nachrichten")
+                                    .font(.title3)
+                                    .foregroundColor(.white)
+                                    .frame(alignment: .center)
+                                
+                                Spacer()
+                                
+                            }.padding(.top, 50)
+                            
+                            HStack {
+                                Button(action: {
+                                    self.back.toggle()
+                                }, label: {
+                                    Image(systemName: "chevron.left")
+                                        .foregroundColor(.white)
+                                })
+                                
+                                Spacer()
+                            }
+                            .padding(.top, 50)
+                            .padding(.leading, 20)
+                        }
                         
                         Spacer()
-                    }
-                    .padding(.top, 50)
-                    .padding(.leading, 20)
+                    }.zIndex(1)
                     
                     VStack {
                         
@@ -68,37 +78,37 @@ struct NotificationsView: View {
                                 LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
                             ).colorInvert()
                     }
-                }
-                
-                ScrollView {
-                    ZStack {
-                        VStack {
-                            Text("Keine neuen Nachrichten")
-                                .padding(.top)
-                            
-                            Spacer()
-                        }
-                        
-                        VStack {
-                            ForEach(profileService.users, id: \.uid) {
-                                (user) in
+                    
+                    ScrollView {
+                        ZStack {
+                            VStack {
+                                Text("Keine neuen Nachrichten")
+                                    .padding(.top, 150)
                                 
-                                UserNotificationView(user: user)
+                                Spacer()
                             }
                             
-                            ForEach(profileService.users, id: \.uid) {
-                                (user) in
+                            VStack {
+                                ForEach(profileService.users, id: \.uid) {
+                                    (user) in
+                                    
+                                    UserNotificationView(user: user)
+                                }
                                 
-                                EventNotificationView(user: user)
+                                ForEach(profileService.users, id: \.uid) {
+                                    (user) in
+                                    
+                                    EventNotificationView(user: user)
+                                }
+                                
+                                Spacer()
                             }
-                            
-                            Spacer()
                         }
-                        .background(Color(.systemGray6))
                     }
                 }
             }
-            .background(Color(.systemGray6))
+            .background(Color("mainColor"))
+            .ignoresSafeArea()
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)

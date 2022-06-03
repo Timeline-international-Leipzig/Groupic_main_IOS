@@ -21,9 +21,9 @@ struct UserHighlightPostView: View {
             ZStack {
                 VStack {
                     Text("Es gibt aktuell noch keine Highlights")
-                }
+                }.padding(.top, 50)
                 
-                VStack {
+                VStack(spacing: 1) {
                     ForEach(self.profileService.posts, id: \.id) {
                         (post) in
                         
@@ -47,8 +47,7 @@ struct UserHighlightPostView: View {
                             }
                         }
                     }
-                }
-                .background(Color(.white))
+                }.padding(.bottom, 100)
             }
         }
         .navigationTitle("")
