@@ -37,11 +37,12 @@ struct LayoutImages: View {
                             }
                         }
                         
-                        Text(user.username + ":").foregroundColor(.white)
+                        Text(user.username + ":")
                         
-                        Text(eventElements[0].text)
-                    }
-                    .frame(width: (UIScreen.main.bounds.width) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
+                        Text("\"" + eventElements[0].text + "\"")
+                    }.padding()
+                    
+                    Spacer()
                 }
                 
                 if eventElements[0].type == "IMAGE" {
@@ -74,7 +75,10 @@ struct LayoutImages: View {
             if eventElements.count == 2 && eventElements[0].type == "IMAGE" && eventElements[1].type == "TEXT" {
                 VStack {
                     HStack {
-                        Text(eventElements[1].text)
+                        
+                        Text(user.username + ":")
+                        
+                        Text("\"" + eventElements[1].text + "\"")
                     }
                     .frame(width: (UIScreen.main.bounds.width) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
                     
@@ -93,7 +97,10 @@ struct LayoutImages: View {
             if eventElements.count == 3 && eventElements[0].type == "IMAGE" && eventElements[1].type == "IMAGE" && eventElements[2].type == "TEXT" {
                 VStack {
                     HStack {
-                        Text(eventElements[2].text)
+                        
+                        Text(user.username + ":")
+                                                
+                        Text("\"" + eventElements[2].text + "\"")
                     }
                     .frame(width: (UIScreen.main.bounds.width) - 1, height: (UIScreen.main.bounds.width / 3) - 1)
                     

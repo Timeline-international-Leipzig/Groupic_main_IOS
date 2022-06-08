@@ -49,10 +49,15 @@ struct UserProfileHeader: View {
                             self.nextProfile.toggle()
                         }, label: {
                             Text("Bearbeiten")
-                                .background(Color.gray)
-                                .foregroundColor(.black)
+                                .font(.system(size: 12, weight: .bold))
+                                .foregroundColor(Color(.white))
+                                .font(.headline)
+                                .padding(5)
+                                .background(
+                                    Color("buttonColor")
+                                        .cornerRadius(5)
+                                )
                         })
-                        .padding()
                     }
                     
                     else {
@@ -62,10 +67,18 @@ struct UserProfileHeader: View {
                                     followService.deleteContact(userId: user!.uid)
                                 }, label: {
                                     Text("Entfernen")
+                                        .font(.system(size: 12, weight: .bold))
+                                        .foregroundColor(Color(.white))
+                                        .font(.headline)
+                                        .padding(5)
+                                        .background(
+                                            Color("buttonColor")
+                                                .cornerRadius(5)
+                                        )
                                 })
                             }
                             else {
-                           FollowButton(user: user!, followCheck: $profileService.followCheck, followingCount:    $profileService.following, followersCount: $profileService.follower)
+                                FollowButton(user: user!, followCheck: $profileService.followCheck, followingCount:    $profileService.following, followersCount: $profileService.follower)
                             }
                         }
                         .onAppear {
@@ -85,27 +98,23 @@ struct UserProfileHeader: View {
                 .padding()
             }
             
-            ZStack {
-                VStack {
-                    if user!.profileImageId == "" {
-                        Image("profileImage")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 125, height: 125, alignment: .center)
-                            .clipShape(Circle())
-                            .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
-                    }
-                    else {
-                        WebImage(url: URL(string: user!.profileImageId))
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 125, height: 125, alignment: .center)
-                            .clipShape(Circle())
-                            .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
-                    }
+            VStack {
+                if user!.profileImageId == "" {
+                    Image("profileImage")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100, alignment: .center)
+                        .clipShape(Circle())
                 }
-            }
-            .offset(y: 60)
+                else {
+                    WebImage(url: URL(string: user!.profileImageId))
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100, alignment: .center)
+                        .clipShape(Circle())
+                        
+                }
+            }.offset(y: 60)
         }
         .navigationBarTitle("")
         .navigationBarBackButtonHidden(true)

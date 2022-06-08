@@ -19,7 +19,7 @@ struct AddContactsView: View {
     @Binding var back: Bool
     @Binding var post: PostModel
     
-    @State var error = "Hinzufügen deiner Kontakte"
+    @State var error = "Teilnehmer hinzufügen"
 
     @State var alert = false
     
@@ -32,9 +32,9 @@ struct AddContactsView: View {
                 VStack {
                     Text(self.error)
                         .foregroundColor(Color.white)
+                        .font(.system(size: 18, weight: .bold))
                         .padding(.top)
                         .padding(.horizontal, 25)
-                        .frame(alignment: .center)
                     
                     ScrollView {
                         ZStack {
@@ -71,11 +71,14 @@ struct AddContactsView: View {
                         self.back.toggle()
                     }, label: {
                         Text("Schließen")
-                            .foregroundColor(.white)
-                            .padding(.vertical)
-                            .frame(width: UIScreen.main.bounds.width - 120)
-                    })
-                    .cornerRadius(10)
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(Color("buttonText"))
+                            .padding(5)
+                            .background(
+                                Color("buttonColor")
+                                    .cornerRadius(5)
+                            )
+                    }).padding()
                 }
                 .frame(width: UIScreen.main.bounds.width - 50)
                 .frame(height: UIScreen.main.bounds.height - 200)

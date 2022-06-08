@@ -12,6 +12,11 @@ import Firebase
 struct GroupicApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
+    init(){
+        // override apple's buggy alerts tintColor
+        UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = UIColor(named: "AccentColor")
+      }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

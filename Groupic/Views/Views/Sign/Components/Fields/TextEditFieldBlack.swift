@@ -34,17 +34,18 @@ struct TextEditFieldBlack: View {
         VStack {
             Text(header)
                 .fontWeight(.bold)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .center)
             
             VStack {
                 HStack {
                     Image(systemName: image)
                         .padding(.horizontal, 10)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                     
                     TextField(textField, text: $value)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
+                        .accentColor(.white)
                         .autocapitalization(.none)
                         .padding(.horizontal, 10)
                         .font(.system(size: 15, weight: .bold))
@@ -92,8 +93,7 @@ struct TextEditFieldBlack: View {
                 }
                 
                 Divider()
-                    .background(Color(.black))
-                    .padding(.top, 7.5)
+                    .background(Color(.white))
             }
             .padding(.top, 7.5)
             

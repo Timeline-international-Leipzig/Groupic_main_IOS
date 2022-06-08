@@ -40,7 +40,7 @@ struct AddEventView: View {
     var allowedBetaZero = CharacterSet(charactersIn: "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ")
     
     @Binding var shouldShowModel: Bool
-    
+        
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
@@ -193,15 +193,16 @@ struct AddEventView: View {
                     ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)
                 }
                 .actionSheet(isPresented: $showingActionsSheet) {
-                    ActionSheet(title: Text(""), buttons: [
-                        .default(Text("Wähle ein Bild")){
+                    ActionSheet(title: Text("Bild"), buttons: [
+                        .default(Text("Auswählen")) {
                             self.sourceType = .photoLibrary
                             self.showingImagePicker = true
                         },
-                        .default(Text("Mach ein Bild")){
+                        .default(Text("Aufnehmen")){
                             self.sourceType = .camera
                             self.showingImagePicker = true
-                        },
+                        }
+                        ,
                         .cancel()
                     ])
                 }

@@ -20,12 +20,9 @@ struct UserTabView: View {
                 Text(user.username)
                     .font(.title3)
                     .foregroundColor(.white)
-                    .frame(alignment: .center)
                 
                 Spacer()
-            }
-            .padding()
-            .background(Color("AccentColor"))
+            }.padding(.top, 50)
             
             HStack() {
                 Button(action: {
@@ -37,7 +34,8 @@ struct UserTabView: View {
                 
                 Spacer()
             }
-            .padding()
+            .padding(.top, 50)
+            .padding(.leading, 20)
         }
     }
 }

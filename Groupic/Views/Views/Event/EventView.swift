@@ -245,12 +245,12 @@ struct EventView: View {
             ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)
         }
         .actionSheet(isPresented: $showingActionsSheet) {
-            ActionSheet(title: Text(""), buttons: [
-                .default(Text("Wähle ein Bild")) {
+            ActionSheet(title: Text("Bild"), buttons: [
+                .default(Text("Auswählen")) {
                     self.sourceType = .photoLibrary
                     self.showingImagePicker = true
                 },
-                .default(Text("Mach ein Bild")) {
+                .default(Text("Aufnehmen")) {
                     self.sourceType = .camera
                     self.showingImagePicker = true
                 },

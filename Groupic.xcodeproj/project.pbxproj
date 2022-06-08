@@ -611,11 +611,7 @@
 			isa = PBXGroup;
 			children = (
 				87700E1527E52DB100841E5B /* UserProfileView.swift */,
-				87FFFCE027EE667B00E64F1D /* Components */,
-				876AF08D27E3AC5E00FEF21A /* FollowButton.swift */,
-				87700E1C27E668BF00841E5B /* UserMidTabBar.swift */,
-				87700E1E27E67FC000841E5B /* UserTabView.swift */,
-				87700E1827E5324000841E5B /* UserProfileHeader.swift */,
+				8FC6EB1A284FA61F00B44447 /* Components */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -824,13 +820,6 @@
 			path = Event;
 			sourceTree = "<group>";
 		};
-		87FFFCE027EE667B00E64F1D /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		87FFFCE127EE669700E64F1D /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
@@ -858,6 +847,17 @@
 				87F905EC2814BA9000993128 /* ProfileSettingsTextEditField.swift */,
 			);
 			path = Components_ProfileSettingsView;
+			sourceTree = "<group>";
+		};
+		8FC6EB1A284FA61F00B44447 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				87700E1827E5324000841E5B /* UserProfileHeader.swift */,
+				87700E1E27E67FC000841E5B /* UserTabView.swift */,
+				87700E1C27E668BF00841E5B /* UserMidTabBar.swift */,
+				876AF08D27E3AC5E00FEF21A /* FollowButton.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		DC3AA6A52701F6A4002B2649 /* Models */ = {

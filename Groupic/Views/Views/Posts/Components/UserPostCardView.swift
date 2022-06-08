@@ -28,25 +28,24 @@ struct UserPostCardView: View {
                 EmptyView()
             })
             
-            VStack {
+            VStack(spacing: 0) {
                 HStack {
                     VStack {
                         HStack {
                             //Kreis
                             VStack {
                                 Image(systemName: "circle")
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.white)
                                     .font(.system(size: 10))
                                 
-                                Color.gray.frame(width: CGFloat(2) / UIScreen.main.scale)
+                                Color.white.frame(width: CGFloat(2) / UIScreen.main.scale, height: 20)
                             }
                             
                             Text((Date(timeIntervalSince1970: postModel.publishTime))
                                 .timeAgo())
                             .font(.subheadline)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.white)
                             .frame(alignment: .topLeading)
-                            .offset(y: -5)
                         }
                         .padding(.horizontal)
                         
@@ -65,24 +64,22 @@ struct UserPostCardView: View {
                             
                             WebImage(url: URL(string: postModel.coverPic)!)
                                 .resizable()
-                                .frame(width: getRectView().width, height: 170, alignment: .center)
+                                .frame(width: getRectView().width, height: 200, alignment: .center)
                                 .clipped()
                         }
                     )
                     
                     HStack {
-                        Color.gray.frame(width:CGFloat(2) / UIScreen.main.scale)
-                            .offset(y: -8)
                         
                         ZStack {
                             HStack {
                                 if Calendar.current.component(.day, from: postModel.startDate) == Calendar.current.component(.day, from: postModel.endDate) {
+                                    
                                     Spacer()
                                     
                                     Text(postModel.startDate, style: .date)
                                         .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .frame(alignment: .topLeading)
+                                        .foregroundColor(.white)
                                 }
                                 
                                 else {
@@ -90,27 +87,24 @@ struct UserPostCardView: View {
                                     
                                     Text(postModel.startDate, style: .date)
                                         .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .frame(alignment: .topLeading)
+                                        .foregroundColor(.white)
                                     
-                                    Text(" - ")
+                                    Text("-")
                                         .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .frame(alignment: .topLeading)
+                                        .foregroundColor(.white)
                                     
                                     Text(postModel.endDate, style: .date)
                                         .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .frame(alignment: .topLeading)
+                                        .foregroundColor(.white)
                                 }
                             }
                             
                             HStack {
-                                Spacer()
-                                
+                                Color.white.frame(width:CGFloat(2) / UIScreen.main.scale)
+
                                 Text(postModel.title)
+                                    .foregroundColor(.white)
                                     .font(.title3)
-                                    .frame(width: 320, height: 40, alignment: .topLeading)
                                 
                                 Spacer()
                             }
@@ -127,27 +121,25 @@ struct UserPostCardView: View {
                 EmptyView()
             })
             
-            VStack {
+            VStack(spacing: 0) {
                 HStack {
                     VStack {
                         HStack {
                             //Kreis
                             VStack {
                                 Image(systemName: "circle")
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.white)
                                     .font(.system(size: 10))
                                 
-                                Color.gray.frame(width: CGFloat(2) / UIScreen.main.scale)
+                                Color.white.frame(width: CGFloat(2) / UIScreen.main.scale, height: 20)
                             }
                             
                             Text((Date(timeIntervalSince1970: postModel.publishTime))
                                 .timeAgo())
                             .font(.subheadline)
-                            .foregroundColor(.gray)
-                            .frame(alignment: .topLeading)
-                            .offset(y: -5)
+                            .foregroundColor(.white)
                         }
-                        .padding(.horizontal)
+                        .padding(.leading, 10)
                         
                         //Linie
                     }
@@ -155,7 +147,7 @@ struct UserPostCardView: View {
                     Spacer()
                 }
                 
-                VStack {
+                VStack(spacing: 0) {
                     Button(
                         action: {
                             self.next.toggle()
@@ -164,14 +156,12 @@ struct UserPostCardView: View {
                             
                             WebImage(url: URL(string: postModel.coverPic)!)
                                 .resizable()
-                                .frame(width: getRectView().width, height: 170, alignment: .center)
+                                .frame(width: getRectView().width, height: 200, alignment: .center)
                                 .clipped()
                         }
                     )
                     
                     HStack {
-                        Color.gray.frame(width:CGFloat(2) / UIScreen.main.scale)
-                            .offset(y: -8)
                         
                         ZStack {
                             HStack {
@@ -180,8 +170,7 @@ struct UserPostCardView: View {
                                     
                                     Text(postModel.startDate, style: .date)
                                         .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .frame(alignment: .topLeading)
+                                        .foregroundColor(.white)
                                 }
                                 
                                 else {
@@ -189,35 +178,32 @@ struct UserPostCardView: View {
                                     
                                     Text(postModel.startDate, style: .date)
                                         .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .frame(alignment: .topLeading)
+                                        .foregroundColor(.white)
                                     
-                                    Text(" - ")
+                                    Text("-")
                                         .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .frame(alignment: .topLeading)
+                                        .foregroundColor(.white)
                                     
                                     Text(postModel.endDate, style: .date)
                                         .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .frame(alignment: .topLeading)
+                                        .foregroundColor(.white)
                                 }
                             }
                             
                             HStack {
-                                Spacer()
-                                
+                                Color.white.frame(width:CGFloat(2) / UIScreen.main.scale, height: 40)
+
                                 Text(postModel.title)
+                                    .foregroundColor(.white)
                                     .font(.title3)
-                                    .frame(width: 320, height: 40, alignment: .topLeading)
                                 
                                 Spacer()
                             }
                         }
                     }
-                    .padding(.horizontal)
+                    .padding(.leading, 15)
+                    .padding(.trailing, 10)
                 }
-                .offset(y: -10)
             }
         }
         

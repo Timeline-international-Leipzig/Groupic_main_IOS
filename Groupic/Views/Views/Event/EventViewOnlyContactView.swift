@@ -23,18 +23,58 @@ struct EventViewOnlyContactView: View {
         ZStack {
             
             VStack {
-                HStack() {
-                    Button(action: {
-                        self.next.toggle()
-                    }, label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.white)
-                    })
+                
+                HStack {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }.background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                    ).colorInvert()
+                
+                Spacer()
+            }.zIndex(1)
+            
+            VStack {
+                Spacer()
+                
+                HStack {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }.background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                    ).colorInvert()
+            }.zIndex(1)
+            
+            VStack {
+                ZStack {
+                    HStack {
+                        Button(action: {
+                            self.next.toggle()
+                        }, label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.white)
+                        })
+                        
+                        Spacer()
+                    }
+                    .padding(.top, 50)
+                    .padding(.leading, 20)
                     
-                    Spacer()
+                    HStack {
+                        
+                        Spacer()
+                        
+                        Text(postModel.title)
+                            .font(.system(size: 26, weight: .bold, design: .default))
+                        
+                        Spacer()
+                    }.padding(.top, 50)
                 }
-                .padding()
-                .background(Color("AccentColor"))
+                
+                Spacer()
+            }.zIndex(1)
+            
+            VStack {
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
@@ -58,26 +98,13 @@ struct EventViewOnlyContactView: View {
                         }
                         
                         HStack {
-                            Image(systemName: "line.horizontal.3")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20))
-                            
-                            Spacer()
-                            
-                            Text(postModel.title)
-                                .font(.system(size: 26, weight: .bold, design: .default))
-                            
-                            Spacer()
-                            
-                        }.padding(.horizontal)
-                        
-                        HStack {
                             if Calendar.current.component(.day, from: postModel.startDate) == Calendar.current.component(.day, from: postModel.endDate) {
+                                
                                 Spacer()
                                 
                                 Text(postModel.startDate, style: .date)
                                     .font(.subheadline)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.white)
                                     .frame(alignment: .topLeading)
                                 
                                 Spacer()
@@ -86,41 +113,33 @@ struct EventViewOnlyContactView: View {
                             else {
                                 Text(postModel.startDate, style: .date)
                                     .font(.subheadline)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.white)
                                     .frame(alignment: .topLeading)
                                 
-                                Text(" - ")
+                                Text("-")
                                     .font(.subheadline)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.white)
                                     .frame(alignment: .topLeading)
                                 
                                 Text(postModel.endDate, style: .date)
                                     .font(.subheadline)
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.white)
                                     .frame(alignment: .topLeading)
                             }
                         }
-                        .foregroundColor(.secondary)
-                        .padding(-10)
                         
                         Text("Mit:")
-                            .foregroundColor(.secondary)
-                            .padding(10)
+                            .foregroundColor(.white)
+                            .padding(.top, 5)
                         
                         ZStack {
                             EventUserPicsView(post: $postModel, showparticipants: $showparticipants)
-                        }
-                        
-                        .padding(.top)
-                        
-                        Divider()
-                            .padding(.top)
+                        }.padding(.top)
                         
                         EventsContentView(postModel: $postModel, userModel: $userModel)
                     }
                 }.offset(y: -17)
             }
-            .background(Color.white)
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
@@ -129,5 +148,7 @@ struct EventViewOnlyContactView: View {
                 ParticipantsView(back: $showparticipants, post: $postModel)
             }
         }
+        .background(Color("mainColor"))
+        .ignoresSafeArea()
     }
 }

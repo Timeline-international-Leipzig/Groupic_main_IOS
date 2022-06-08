@@ -16,25 +16,57 @@ struct UserProfileView: View {
     
     var body: some View {
         ZStack {
-            Color("AccentColor").ignoresSafeArea(.all, edges: .top)
             
             VStack {
-                UserTabView(user: user!, next: $next)
+                
+                HStack {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }.background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
+                    ).colorInvert()
+                
+                Spacer()
+            }.zIndex(1)
+            
+            VStack {
+                Spacer()
+                
+                HStack {
+                    Rectangle().frame(width: getRectView().width, height: 100)
+                }.background(Color(.black))
+                    .mask(
+                        LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                    ).colorInvert()
+            }.zIndex(1)
+            
+            VStack {
+            
+            UserTabView(user: user!, next: $next)
+                
+                Spacer()
+            }.zIndex(1)
+            
+            VStack {
+                
+                ZStack {
+                
+                    UserProfileHeader(user: user)
+                }
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {}
                     
                     VStack {
-                        UserProfileHeader(user: user)
                         
                         UserMidTabBarView(user: user!)
                     }
                     .offset(y: -10)
                 }
-                .background(Color.white)
                 .coordinateSpace(name: "pullToRefresh")
             }
-        }
+        }.background(Color("mainColor"))
+            .ignoresSafeArea()
     }
 }
 

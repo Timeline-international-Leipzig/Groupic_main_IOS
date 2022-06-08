@@ -14,7 +14,7 @@ struct SocialFriendsEventsView: View {
     @State var next = false
     
     var body: some View {
-        VStack {
+        VStack(spacing: 1) {
             ForEach(self.profileService.posts, id: \.id) {
                 (post) in
                 

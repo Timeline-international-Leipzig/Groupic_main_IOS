@@ -23,7 +23,6 @@ struct ProfileView: View {
                 MidTabBarView().padding(.top, 40)
                 
             }
-            
         }
         .background(Color("mainColor"))
         .ignoresSafeArea()

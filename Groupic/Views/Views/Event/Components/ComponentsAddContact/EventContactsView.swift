@@ -62,7 +62,8 @@ struct EventContactsView: View {
                     }
                     .padding()
                     .background(Color("mainColor"))
-                    .cornerRadius(5)
+                    .cornerRadius(10)
+                    .padding(5)
                     
                 })
             }

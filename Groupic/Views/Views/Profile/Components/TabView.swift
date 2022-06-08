@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 
 struct TabView: View {
+    
     @State var next = false
     @State var nextNotifications = false
     @State var new = false

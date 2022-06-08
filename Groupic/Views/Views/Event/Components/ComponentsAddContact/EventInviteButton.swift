@@ -58,7 +58,7 @@ struct EventInviteButton: View {
         Button(action: {
             self.follow()
         }, label: {
-            Text((self.followState(userId: user.uid, postId: post.id)) ? "Anfrage gesendet": "Anfrage senden")
+            Text((self.followState(userId: user.uid, postId: post.id)) ? "Eingeladen": "Einladen")
                 .foregroundColor(Color("buttonText"))
                 .font(.system(size: 14, weight: .bold))
             //.font(.headline)

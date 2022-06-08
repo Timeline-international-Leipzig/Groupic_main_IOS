@@ -21,7 +21,22 @@ struct SocialView: View {
     
     @State var next = false
     
+    @State var nextNotifications = false
+    @State var new = false
+    @State var eventNew = false
+    
+    var user: UserModel?
+    
     var body: some View {
+        
+        /*NavigationLink(destination: SettingsView(next: $next), isActive: self.$next, label: {
+            EmptyView()
+        })*/
+        
+        NavigationLink(destination: NotificationsView(back: $nextNotifications), isActive: self.$nextNotifications, label: {
+            EmptyView()
+        })
+        
         ZStack {
             
             VStack {
@@ -37,33 +52,56 @@ struct SocialView: View {
             }
             
             VStack {
-                HStack(spacing: 15) {
+                HStack {
+                    
                     Spacer()
                     
                     Button(action: {},
                            label: {
-                        Image(systemName: "envelope.fill")
-                            .foregroundColor(.white)
-                            .font(.system(size: 20))
-                        
-                    }).padding(.horizontal, 20)
+                        if new == true || eventNew == true {
+                            Image(systemName: "envelope.badge.fill")
+                                .foregroundColor(.white)
+                        }
+                        else {
+                            Image(systemName: "envelope")
+                                .foregroundColor(.white)
+                        }
+                    })
+                    /*.onAppear{
+                        checkIfChecked { result in
+                            if (result == true) {
+                                self.new = true
+                            }
+                            else {
+                                self.new = false
+                            }
+                            
+                            checkIfCheckedEvent { result in
+                                if (result == true) {
+                                    self.eventNew = true
+                                }
+                                else {
+                                    self.eventNew = false
+                                }
+                            }
+                        }
+                    }*/
                     
                     Text("Community")
                         .font(.title3)
                         .foregroundColor(.white)
-                        .frame(alignment: .center)
+                        .padding(.horizontal, 20)
                     
                     Button(action: {},
                            label: {
                         Image(systemName: "line.horizontal.3")
                             .foregroundColor(.white)
-                            .font(.system(size: 20))
                         
-                    }).padding(.horizontal, 20)
+                    })
                     
                     Spacer()
-                }
-                .padding(.top, 50)
+                    
+                }.padding(.top, 50)
                 
                 Spacer()
             }.zIndex(1)
@@ -78,7 +116,7 @@ struct SocialView: View {
                             
                             searchUsers()
                         })
-                }
+                }.padding(.horizontal)
                 
                 ScrollView {
                     PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
@@ -92,7 +130,7 @@ struct SocialView: View {
                         
                         SocialFriendsEventsView()
                         
-                        VStack {
+                        VStack(spacing: 0) {
                             if !isLoading || self.value != "" {
                                 ForEach(users, id: \.uid) {
                                     user in
@@ -141,7 +179,7 @@ struct SocialView: View {
                                                  }
                                                  */
                                             }
-                                            .padding()
+                                            .padding(.horizontal)
                                         })
                                     }.background(Color("mainColor"))
                                     
@@ -153,7 +191,7 @@ struct SocialView: View {
                                     EmptyView()
                                 })
                             }
-                        }
+                        }.offset(y: -10)
                     }
                 }
                 .navigationBarTitle("")
@@ -174,4 +212,44 @@ struct SocialView: View {
             self.users = users
         }
     }
+    
+    /*func checkIfChecked(completion: @escaping ((Bool) -> () )) {
+        ProfileService.followersCheck(userId: user!.uid).whereField("globalCheck", isEqualTo: false).getDocuments() {
+            (QuerySnapshot, Error) in
+            if let error = Error {
+                print("Unable to query" + error.localizedDescription)
+                completion(false)
+            }
+            else {
+                if (QuerySnapshot!.count > 0) {
+                    print("new message")
+                    completion(true)
+                }
+                else {
+                    print("no new message")
+                    completion(false)
+                }
+            }
+        }
+    }*/
+    
+    /*func checkIfCheckedEvent(completion: @escaping ((Bool) -> () )) {
+        ProfileService.followersEventCheck(userId: user!.uid).getDocuments() {
+            (QuerySnapshot, Error) in
+            if let error = Error {
+                print("Unable to query" + error.localizedDescription)
+                completion(false)
+            }
+            else {
+                if (QuerySnapshot!.count > 0) {
+                    print("new message")
+                    completion(true)
+                }
+                else {
+                    print("no new message")
+                    completion(false)
+                }
+            }
+        }
+    }*/
 }
