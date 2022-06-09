@@ -102,7 +102,7 @@ struct NotificationsView: View {
                                 }
                                 
                                 Spacer()
-                            }
+                            }.padding(.top, 100)
                         }
                     }
                 }

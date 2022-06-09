@@ -30,17 +30,17 @@ struct EventCard: View {
                         self.next.toggle()
                     }, label: {
                         HStack {
-                            VStack {
-                                Text("Zum Event:")
-                                    .font(.subheadline)
+                                Text("Eventeinladung:")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20))
                                     .bold()
                                 
                                 Text(post.title)
-                                    .font(.subheadline)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20))
                                     .bold()
-                            }
-                        }
-                        .padding()
+                            
+                        }.padding(.bottom, 10)
                     })
                 }
             }

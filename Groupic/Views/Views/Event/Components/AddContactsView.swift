@@ -39,7 +39,9 @@ struct AddContactsView: View {
                     ScrollView {
                         ZStack {
                             VStack {
-                                Text("Noch keine Kontakte").foregroundColor(.white)
+                                Text("Noch keine Kontakte").foregroundColor(.white).padding(.top, 40)
+                                
+                                Spacer()
                             }
                         
                         VStack {

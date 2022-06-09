@@ -33,40 +33,45 @@ struct UserNotificationView: View {
                                 Image("profileImage")
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: 60, height: 60, alignment: .center)
+                                    .frame(width: 50, height: 50, alignment: .center)
                                     .clipShape(Circle())
-                                    .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                             }
                             else {
                                 WebImage(url: URL(string: user.profileImageId))
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: 60, height: 60, alignment: .center)
+                                    .frame(width: 50, height: 50, alignment: .center)
                                     .clipShape(Circle())
-                                    .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
                             }
                             
                             Text(user.username)
+                                .foregroundColor(.white)
                                 .font(.subheadline)
                                 .bold()
+                                .padding(.horizontal)
                             
                             Spacer()
                             
-                            VStack {
+                            HStack {
                                 Button(action: {
                                     followService.acceptFollow(userId: user.uid)
                                 }, label: {
-                                    Text("Annehmen")
-                                })
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 20))
+                                }).padding(.horizontal)
                                 
                                 Button(action: {
                                     followService.declineFollow(userId: user.uid)
                                 }, label: {
-                                    Text("Ablehnen")
-                                })
+                                    Image(systemName: "multiply")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 20))
+                                }).padding(.horizontal)
                             }
                         }
                         .padding()
+                        .background(Color("buttonColor"))
                     })
                 }
             }

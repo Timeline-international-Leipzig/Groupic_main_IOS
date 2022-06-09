@@ -29,47 +29,55 @@ struct EventNotificationView: View {
                         
                         self.next.toggle()
                     }, label: {
-                        HStack {
-                            if user.profileImageId == "" {
-                                Image("profileImage")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 60, height: 60, alignment: .center)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
-                            }
-                            else {
-                                WebImage(url: URL(string: user.profileImageId))
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 60, height: 60, alignment: .center)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().stroke(Color("AccentColor"), lineWidth: 0.5))
-                            }
-                            
-                            Text(user.username)
-                                .font(.subheadline)
-                                .bold()
+                        VStack(alignment: .leading) {
                             
                             EventCard(user: user, event: users)
                             
-                            Spacer()
-                            
-                            VStack {
-                                Button(action: {
-                                    followService.acceptInvite(userId: Auth.auth().currentUser!.uid, postId: users.postId)
-                                }, label: {
-                                    Text("Annehmen")
-                                })
+                            HStack {
+                                if user.profileImageId == "" {
+                                    Image("profileImage")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 50, height: 50, alignment: .center)
+                                        .clipShape(Circle())
+                                }
+                                else {
+                                    WebImage(url: URL(string: user.profileImageId))
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 50, height: 50, alignment: .center)
+                                        .clipShape(Circle())
+                                }
                                 
-                                Button(action: {
-                                    followService.delInviteIntoEvent(userId: Auth.auth().currentUser!.uid, postId: users.postId)
-                                }, label: {
-                                    Text("Ablehnen")
-                                })
+                                Text(user.username)
+                                    .foregroundColor(.white)
+                                    .font(.subheadline)
+                                    .bold()
+                                    .padding(.horizontal)
+                                
+                                Spacer()
+                                
+                                HStack {
+                                    Button(action: {
+                                        followService.acceptInvite(userId: Auth.auth().currentUser!.uid, postId: users.postId)
+                                    }, label: {
+                                        Image(systemName: "checkmark")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 20))
+                                    }).padding(.horizontal)
+                                    
+                                    Button(action: {
+                                        followService.delInviteIntoEvent(userId: Auth.auth().currentUser!.uid, postId: users.postId)
+                                    }, label: {
+                                        Image(systemName: "multiply")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 20))
+                                    }).padding(.horizontal)
+                                }
                             }
                         }
                         .padding()
+                        .background(Color("mainColor"))
                     })
                 }
             }
