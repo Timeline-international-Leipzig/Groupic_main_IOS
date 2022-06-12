@@ -10,17 +10,15 @@ import Firebase
 
 struct TabView: View {
     
-    @State var next = false
     @State var nextNotifications = false
-    @State var new = false
     @State var eventNew = false
+    @State var new = false
     
     var user: UserModel?
     
+    @Binding var x: CGFloat
+    
     var body: some View {
-        NavigationLink(destination: SettingsView(next: $next), isActive: self.$next, label: {
-            EmptyView()
-        })
         
         NavigationLink(destination: NotificationsView(back: $nextNotifications), isActive: self.$nextNotifications, label: {
             EmptyView()
@@ -41,61 +39,68 @@ struct TabView: View {
             }
             
             VStack{
-            HStack() {
-                
-                Spacer()
-                
-                Button(action: {
-                    self.nextNotifications.toggle()
-                }, label: {
-                    if new == true || eventNew == true {
-                        Image(systemName: "envelope.badge.fill")
-                            .foregroundColor(.white)
-                    }
-                    else {
-                        Image(systemName: "envelope")
-                            .foregroundColor(.white)
-                    }
-                })
-                .padding(.horizontal)
-                .onAppear{
-                    checkIfChecked { result in
-                        if (result == true) {
-                            self.new = true
+                HStack() {
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        self.nextNotifications.toggle()
+                    }, label: {
+                        if new == true || eventNew == true {
+                            Image(systemName: "envelope.badge.fill")
+                                .foregroundColor(.white)
                         }
                         else {
-                            self.new = false
+                            Image(systemName: "envelope")
+                                .foregroundColor(.white)
                         }
-                        
-                        checkIfCheckedEvent { result in
+                    })
+                    .padding(.horizontal)
+                    .onAppear{
+                        checkIfChecked { result in
                             if (result == true) {
-                                self.eventNew = true
+                                self.new = true
                             }
                             else {
-                                self.eventNew = false
+                                self.new = false
+                            }
+                            
+                            checkIfCheckedEvent { result in
+                                if (result == true) {
+                                    self.eventNew = true
+                                }
+                                else {
+                                    self.eventNew = false
+                                }
                             }
                         }
                     }
-                }
-                
-                Text(user!.fullName)
-                    .font(.title3)
-                    .foregroundColor(.white)
-                    .frame(alignment: .center)
-                
-                Button(action: {
-                    self.next.toggle()
-                }, label: {
-                    Image(systemName: "line.horizontal.3")
+                    
+                    Text(user!.fullName)
+                        .font(.title3)
                         .foregroundColor(.white)
-                }).padding(.horizontal)
+                        .frame(alignment: .center)
+                    
+                    Button(action: {
+                        
+                        withAnimation{
+                            
+                            x = 0
+                        }
+                        
+                    }, label: {
+                        Image(systemName: "line.horizontal.3")
+                            .foregroundColor(.white )
+                    }).padding(.horizontal)
+                    //.contentShape(Rectangle())
+                    //.background(Color("mainColor"))
+                    
+                    Spacer()
+                }
                 
                 Spacer()
             }
-                
-                Spacer()
-            }.padding(.top, 50)
-            .zIndex(1)
+            .padding(.top, 50)
         }
         .ignoresSafeArea()
     }
