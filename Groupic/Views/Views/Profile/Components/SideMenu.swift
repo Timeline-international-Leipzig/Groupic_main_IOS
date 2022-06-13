@@ -25,20 +25,13 @@ struct SideMenue: View {
             
             VStack(alignment: .leading) {
                 
-                Image("profileImage")
+                Image("Berg2")
                     .resizable()
                     .frame(width: UIScreen.main.bounds.width - 90, height: 150)
                 
                 HStack(alignment: .top, spacing: 12) {
                     
                     VStack(alignment: .leading, spacing: 12) {
-                        
-                        Text("Johannes")
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .padding(.vertical)
-                            .padding(.leading, 20)
                         
                         Button(action: {
                             self.next.toggle()
@@ -47,6 +40,7 @@ struct SideMenue: View {
                                 .font(.system(size: 18, weight: .medium))
                                 .foregroundColor(.white)
                         }).padding(.leading, 20)
+                            .padding(.top, 20)
                         
                         Divider()
                             .background(Color(.white))
