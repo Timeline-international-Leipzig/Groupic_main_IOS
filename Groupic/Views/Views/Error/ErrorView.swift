@@ -14,9 +14,13 @@ struct ErrorView: View {
     @Binding var alert: Bool
     @Binding var error: String
     @State var closetitle = "Schließen"
-    
+        
     var body: some View {
-        GeometryReader{_ in
+        
+        VStack {
+            
+            Spacer()
+        
             HStack {
                 Spacer()
                 
@@ -42,14 +46,13 @@ struct ErrorView: View {
                 }
                 .padding(.all, 25)
                 .frame(width: UIScreen.main.bounds.width - 90)
-                .background(Color.black.opacity(0.85))
+                .background(Color.black.opacity(0.95))
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                 .frame(height: UIScreen.main.bounds.height - 50)
                 
                 Spacer()
             }
-        }
-        .background(Color.black.opacity(0.10).edgesIgnoringSafeArea(.all))
+        }.background(Color.black.opacity(0.10).edgesIgnoringSafeArea(.all))
     }
 
     func performAfter(delay: TimeInterval, completion: @escaping () -> Void) {

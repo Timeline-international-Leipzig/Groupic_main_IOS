@@ -128,7 +128,7 @@ struct SocialView: View {
                             Text("Unsozial")
                         }
                         
-                        SocialFriendsEventsView()
+                        SocialFriendsEventsView().padding(.bottom, 100)
                         
                         VStack(spacing: 0) {
                             if !isLoading || self.value != "" {
