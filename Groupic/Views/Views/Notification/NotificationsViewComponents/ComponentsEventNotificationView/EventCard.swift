@@ -31,14 +31,12 @@ struct EventCard: View {
                     }, label: {
                         HStack {
                                 Text("Eventeinladung:")
+                                    .font(.custom("Inter-Regular", size: 20))
                                     .foregroundColor(.white)
-                                    .font(.system(size: 20))
-                                    .bold()
                                 
                                 Text(post.title)
+                                    .font(.custom("Inter-Regular", size: 20))
                                     .foregroundColor(.white)
-                                    .font(.system(size: 20))
-                                    .bold()
                             
                         }.padding(.bottom, 10)
                     })

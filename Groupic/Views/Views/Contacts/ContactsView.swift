@@ -23,7 +23,7 @@ struct ContactsView: View {
         ScrollView {
             ZStack {
                 VStack {
-                    Text("Noch keine Kontakte")
+                    Text("Noch keine Kontakte").font(.custom("Inter-Regular", size: 16))
                 }
                 
                 VStack(spacing: 0) {
@@ -56,8 +56,8 @@ struct ContactsView: View {
                                         }
                                         
                                         Text(user.username)
+                                            .font(.custom("Inter-ExtraBold", size: 18))
                                             .foregroundColor(.white)
-                                            .font(.system(size: 18, weight: .bold))
                                             .padding(.horizontal)
                                         
                                         Spacer()
@@ -67,8 +67,8 @@ struct ContactsView: View {
                                                 followService.deleteContact(userId: user.uid)
                                             }, label: {
                                                 Text("Entfernen")
+                                                    .font(.custom("Inter-Regular", size: 16))
                                                     .foregroundColor(Color("buttonText"))
-                                                    .font(.system(size: 14, weight: .bold))
                                                     .padding(5)
                                                     .background(
                                                         Color("buttonColor")

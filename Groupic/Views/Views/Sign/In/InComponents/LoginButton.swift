@@ -52,8 +52,8 @@ struct LoginButton: View {
                     }
                 }, label: {
                     Text("anmelden.")
+                        .font(.custom("Inter-ExtraBold", size: 20))
                         .foregroundColor(.white)
-                        .font(.system(size: 20, weight: .bold))
                         .padding(.vertical)
                         .frame(width: UIScreen.main.bounds.width - 50)
                 })
@@ -64,14 +64,14 @@ struct LoginButton: View {
                 
                 HStack {
                     Text("kein account vorhanden?")
-                        .fontWeight(.bold)
+                        .font(.custom("Inter-Regular", size: 16))
                         .foregroundColor(.white)
                     
                     Button(action: {
                         self.viewState.toggle()
                     }, label: {
                         Text("hier registrieren")
-                            .fontWeight(.bold)
+                            .font(.custom("Inter-ExtraBold", size: 18))
                             .foregroundColor(.white)
                     })
                 }

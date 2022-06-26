@@ -72,11 +72,6 @@ struct PersonInfoView: View {
                         }.zIndex(1)
                         
                         VStack {
-                            /*Text("Willkommen!")
-                                .foregroundColor(Color("AccentColor"))
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .padding(.top, 25)*/
                             
                             VStack {
                                 Group {

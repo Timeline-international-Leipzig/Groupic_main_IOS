@@ -78,7 +78,7 @@ struct ProfileSettingsView: View {
                         },
                                label: {
                             Label("Profilbild ändern", systemImage: "person")
-                                .font(.system(size: 16, weight: .medium))
+                                .font(.custom("Inter-Regular", size: 18))
                                 .foregroundColor(Color("buttonText"))
                                 .padding(5)
                                 .background(
@@ -92,7 +92,7 @@ struct ProfileSettingsView: View {
                         },
                                label: {
                             Label("Titelbild ändern", systemImage: "photo")
-                                .font(.system(size: 16, weight: .medium))
+                                .font(.custom("Inter-Regular", size: 18))
                                 .foregroundColor(Color("buttonText"))
                                 .padding(5)
                                 .background(
@@ -106,7 +106,7 @@ struct ProfileSettingsView: View {
                         }, label: {
                             Label("Passwort ändern", systemImage: "lock")
                                 .foregroundColor(Color("buttonText"))
-                                .font(.system(size: 16, weight: .medium))
+                                .font(.custom("Inter-Regular", size: 18))
                                 .padding(5)
                                 .background(
                                     Color("buttonColor")
@@ -120,19 +120,19 @@ struct ProfileSettingsView: View {
                         VStack (alignment: .leading, spacing: -20) {
                             
                             HStack(spacing: 20) {
-                                Text("Benutzername:")
+                                Text("Benutzername: ").font(.custom("Inter-Regular", size: 16))
                                 
                                 ProfilesettingsTextEditField(selectedIndex: 2, header: "", image: "", textField: "username", value: $username, change: $changeTextUsername)
                             }
                             
                             HStack(spacing: 83) {
-                                Text("Name:")
+                                Text("Name:").font(.custom("Inter-Regular", size: 16))
                                 
                                 ProfilesettingsTextEditField(selectedIndex: 1, header: "", image: "", textField: "fullName", value: $name, change: $changeTextName)
                             }
                             
                             HStack(spacing: 80) {
-                                Text("E-Mail:")
+                                Text("E-Mail:").font(.custom("Inter-Regular", size: 16))
                                 
                                 ProfilesettingsTextEditField(selectedIndex: 0, header: "", image: "", textField: "email", value: $email, change: $changeTextEmail)
                             }
@@ -146,6 +146,7 @@ struct ProfileSettingsView: View {
                                         }
                                     }, label: {
                                         Text("Bestätige deine E-Mail")
+                                            .font(.custom("Inter-ExtraBold", size: 18))
                                             .background(Color.gray)
                                             .foregroundColor(.black)
                                     })
@@ -250,12 +251,12 @@ struct ProfileSettingsView: View {
                             
                         }, label: {
                             Text("Bearbeiten")
-                                .foregroundColor(.white)
+                                .font(.custom("Inter-ExtraBold", size: 20))
+                                .foregroundColor(Color("themeColor"))
                                 .padding(.vertical)
                                 .frame(width: UIScreen.main.bounds.width - 50)
                         })
-                        .background(
-                            Color("buttonColor"))
+                        .background(Color("themeColor2"))
                         .cornerRadius(10)
                         .padding(.bottom, 200)
                         .padding(.horizontal, 10)
@@ -264,6 +265,7 @@ struct ProfileSettingsView: View {
                         Button(action: {
                         }, label: {
                             Text("Bearbeiten")
+                                .font(.custom("Inter-ExtraBold", size: 20))
                                 .foregroundColor(.white)
                                 .padding(.vertical)
                                 .frame(width: UIScreen.main.bounds.width - 50)
@@ -274,8 +276,8 @@ struct ProfileSettingsView: View {
                         .padding(.bottom, 200)
                         .padding(.horizontal, 10)
                     }
-                }
-            }.padding(.top, 60)
+                }.padding(.top, 60)
+            }
             
             VStack {
                 Spacer()

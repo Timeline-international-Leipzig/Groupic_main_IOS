@@ -55,7 +55,7 @@ struct PersonInfoViewNoPictures: View {
                                 
                                 Text("Registrierung")
                                     .padding(.top, 10)
-                                    .font(.system(size: 26, weight: .bold))
+                                    .font(.custom("Inter-Regular", size: 22))
                                     .foregroundColor(.white)
                                     .hCenter()
                                     .zIndex(1)
@@ -80,11 +80,6 @@ struct PersonInfoViewNoPictures: View {
                         }.zIndex(1)
                         
                         VStack {
-                            /*Text("Willkommen!")
-                                .foregroundColor(Color("AccentColor"))
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .padding(.top, 25)*/
                             
                             Group {
                                 TextEditField(selectedIndex: 1, header: "Name", image: "mail", textField: "", value: $name)
@@ -107,18 +102,20 @@ struct PersonInfoViewNoPictures: View {
                                             
                                             HStack {
                                         
-                                        Text("Ich bin mit der")
+                                        Text("Ich bin mit den")
+                                                    .font(.custom("Inter-Regular", size: 16))
                                             .foregroundColor(.white)
                                         
                                         Button(action: {
                                             self.nextAGB.toggle()
                                         }, label: {
                                             Text("AGB")
+                                                .font(.custom("Inter-ExtraBold", size: 18))
                                                 .foregroundColor(.white)
-                                                .font(.system(size: 15, weight: .bold))
                                         })
                                         
                                         Text(" einverstanden")
+                                                    .font(.custom("Inter-Regular", size: 16))
                                             .foregroundColor(.white)
                                         
                                             }
@@ -126,24 +123,25 @@ struct PersonInfoViewNoPictures: View {
                                             HStack {
                                         
                                         Text("Ich bin mit dem")
+                                                    .font(.custom("Inter-Regular", size: 16))
                                             .foregroundColor(.white)
                                         
                                         Button(action: {
                                             self.nextDatenschutz.toggle()
                                         }, label: {
                                             Text("Datenschutz")
+                                                .font(.custom("Inter-ExtraBold", size: 18))
                                                 .foregroundColor(.white)
-                                                .font(.system(size: 15, weight: .bold))
                                         })
                                             }.padding(.top, 20)
                                             
                                             Text("einverstanden.")
+                                                .font(.custom("Inter-Regular", size: 16))
                                                 .foregroundColor(.white)
                                             
                                         }.padding(.top, 20)
                                     }
                                 }
-                                   
                                 
                                 RegisterButtonNoPictures(name: $name, username: $username, email: $email, password: $password, error: $error, alert: $alert, next: $nextView, checked: $checked, checkedSecond: $checkedSecond, viewState: $viewState)
                             }

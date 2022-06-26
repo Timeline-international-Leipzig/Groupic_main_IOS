@@ -20,7 +20,7 @@ struct ProfileSettingsViewTabView: View {
                     Spacer()
                     
                     Text("Profil bearbeiten")
-                        .font(.title3)
+                        .font(.custom("Inter-Regular", size: 22))
                         .foregroundColor(.white)
                     
                     Spacer()

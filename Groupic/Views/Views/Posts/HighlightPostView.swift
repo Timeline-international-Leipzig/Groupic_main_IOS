@@ -16,7 +16,7 @@ struct HighlightPostView: View {
         ScrollView {
             ZStack {
                 VStack {
-                    Text("Es gibt aktuell noch keine Highlights")
+                    Text("Es gibt aktuell noch keine Highlights").font(.custom("Inter-Regular", size: 18))
                 }.padding(.top, 50)
                 
                 VStack(spacing: 1) {

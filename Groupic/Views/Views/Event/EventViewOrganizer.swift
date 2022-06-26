@@ -1,15 +1,14 @@
 //
-//  EventView.swift
+//  EventViewOrganizer.swift
 //  Groupic
 //
-//  Created by Anatolij Travkin on 04.01.22.
+//  Created by Johannes Busch on 24.06.22.
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
-import Firebase
 
-struct EventView: View {
+struct EventViewOrganizer: View {
+    
     @StateObject var profileService = ProfileService()
     @EnvironmentObject var session: SessionStore
     
@@ -45,6 +44,7 @@ struct EventView: View {
     @Binding var next: Bool
     
     var body: some View {
+        
         ZStack {
             
             VStack {
@@ -98,7 +98,7 @@ struct EventView: View {
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     
-                    EventViewHeader(eventImage: $eventImage, post: postModel)
+                    EventViewHeaderOrg(eventImage: $eventImage, post: postModel)
                     
                     /*PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
                      // do your stuff when pulled
@@ -147,74 +147,30 @@ struct EventView: View {
                             }
                         }
                         
-                        /*
-                         FollowEventButton(post: postModel, followCheck: $profileService.followCheck)
-                         .padding()
-                         */
+                        Button(action: {}, label: {
+                            Label("Kostenpflichtig beitreten", systemImage: "ticket")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(Color("buttonText"))
+                                .padding(5)
+                                .background(
+                                    Color("buttonColor")
+                                        .cornerRadius(5)
+                                )
+                        }).padding()
                         
-                        Text("Mit:")
-                            .foregroundColor(.white)
-                            .padding(10)
-                        
-                        ZStack {
-                            EventUserPicsView(post: $postModel, showparticipants: $showparticipants)
-                            
-                            HStack {
-                                Spacer()
-                                
-                                Button(action: {
-                                    alertAdd.toggle()
-                                }, label: {
-                                    Image(systemName: "person.crop.circle.badge.plus")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 20))
-                                })
-                            }
-                            .padding(.trailing, 20)
-                        }
-                        
-                        HStack {
-                            Spacer()
-                            
-                            Button(action: {
-                                self.picker.toggle()
-                            }, label: {
-                                Image(systemName: "photo.fill.on.rectangle.fill")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 20))
-                            })
-                            
-                            /*
-                             Button(action: {
-                             self.showingActionsSheetCamera.toggle()
-                             }, label: {
-                             Image(systemName: "camera.fill")
-                             .foregroundColor(.black)
-                             .font(.system(size: 20))
-                             })
-                             */
-                            
-                            Button(action: {
-                                self.textQuote.toggle()
-                            }, label: {
-                                Image(systemName: "text.bubble")
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 20))
-                            })
-                            
-                            Spacer()
-                        }
-                        .padding(.top)
-                        
-                        EventsContentView(postModel: $postModel, userModel: $userModel).padding(.bottom, 100)
+                        Button(action: {}, label: {
+                            Label("Ticket", systemImage: "ticket.fill")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(Color("buttonText"))
+                                .padding(5)
+                                .background(
+                                    Color("buttonColor")
+                                        .cornerRadius(5)
+                                )
+                        }).padding()
                     }
                 }
             }
-            .background(Color("mainColor"))
-            .ignoresSafeArea()
-            .navigationBarTitle("")
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
             
             if self.alertEventName {
                 EventNameView(back: $alertEventName, userModel: $userModel, postModel: $postModel, eventName: $eventName)
@@ -240,59 +196,7 @@ struct EventView: View {
                 EventQuoteView(back: $textQuote, userModel: $userModel, postModel: $postModel, quote: $quote)
             }
         }
+        .background(Color("mainColor"))
         .ignoresSafeArea()
-        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-            ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)
-        }
-        .actionSheet(isPresented: $showingActionsSheet) {
-            ActionSheet(title: Text("Bild"), buttons: [
-                .default(Text("Auswählen")) {
-                    self.sourceType = .photoLibrary
-                    self.showingImagePicker = true
-                },
-                .default(Text("Aufnehmen")) {
-                    self.sourceType = .camera
-                    self.showingImagePicker = true
-                },
-                .cancel()
-            ])
-        }
-        
-        /*
-         .sheet(isPresented: $showingImagePickerCamera, onDismiss: loadImage) {
-         ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)
-         }
-         .actionSheet(isPresented: $showingActionsSheetCamera) {
-         ActionSheet(title: Text(""), buttons: [
-         .default(Text("Mach ein Bild")){
-         self.sourceType = .camera
-         self.showingImagePicker = true
-         },
-         .cancel()
-         ])
-         }
-         */
-        
-        .sheet(isPresented: $picker) {
-            ImagePickerMultiple(postModel: $postModel, userModel: $userModel, images: self.$images, picker: $picker)
-        }
-    }
-    
-    /// Functions
-    func loadImage() {
-        guard let inputImage = pickedImage else { return }
-        eventImage = inputImage
-        changeProfileImage = true
-        
-        self.editProfileImage()
-    }
-    
-    func editProfileImage() {
-        let storagePostId = StorageService.storagePostId(postId: postModel.id)
-        let metaData = StorageMetadata()
-        metaData.contentType = "image/jpg"
-        
-        StorageService.editPost(postId: postModel.id, userId: userModel.uid, imageData: imageData, metaData: metaData, storagePostRef: storagePostId, onSuccess: {}, onError: {errorMessage in })
     }
 }
-

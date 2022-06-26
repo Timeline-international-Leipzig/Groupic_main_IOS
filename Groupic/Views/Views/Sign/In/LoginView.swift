@@ -50,7 +50,7 @@ struct LoginView: View {
                             self.forgotPassword.toggle()
                         }, label: {
                             Text("Passwort vergessen?")
-                                .fontWeight(.bold)
+                                .font(.custom("Inter-ExtraBold", size: 18))
                                 .foregroundColor(Color(.white))
                         })
                         
@@ -79,7 +79,7 @@ struct LoginView: View {
                     
                     Text("Anmeldung")
                         .padding(.top, 10)
-                        .font(.system(size: 26, weight: .bold))
+                        .font(.custom("Inter-Regular", size: 22))
                         .foregroundColor(.white)
                         .hCenter()
                         .zIndex(1)

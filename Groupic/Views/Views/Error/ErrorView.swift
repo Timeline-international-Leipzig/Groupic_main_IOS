@@ -26,6 +26,7 @@ struct ErrorView: View {
                 
                 VStack {
                     Text(self.error)
+                        .font(.custom("Inter-Regular", size: 16))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                         .padding(.top)
@@ -36,6 +37,7 @@ struct ErrorView: View {
                         
                     }, label: {
                         Text(self.closetitle)
+                            .font(.custom("Inter-ExtraBold", size: 20))
                             .foregroundColor(.white)
                             .padding(.vertical)
                             .frame(width: UIScreen.main.bounds.width - 120)

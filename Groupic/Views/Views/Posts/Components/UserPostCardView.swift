@@ -28,6 +28,7 @@ struct UserPostCardView: View {
                 EmptyView()
             })
             
+            //UserPostCard1
             VStack(spacing: 0) {
                 HStack {
                     VStack {
@@ -47,13 +48,11 @@ struct UserPostCardView: View {
                             .foregroundColor(.white)
                             .frame(alignment: .topLeading)
                         }
-                        .padding(.horizontal)
-                        
                         //Linie
                     }
                     
                     Spacer()
-                }
+                }.padding(.leading, 5)
                 
                 VStack {
                     Button(
@@ -121,6 +120,7 @@ struct UserPostCardView: View {
                 EmptyView()
             })
             
+            //UserPostCard2
             VStack(spacing: 0) {
                 HStack {
                     VStack {
@@ -212,6 +212,7 @@ struct UserPostCardView: View {
                 EmptyView()
             })
             
+            //UserPostCard3
             VStack {
                 HStack {
                     VStack {
@@ -335,6 +336,7 @@ struct UserPostCardView: View {
                     EmptyView()
                 })
                 
+                //UserPostCard4
                 VStack {
                     HStack {
                         VStack {
@@ -434,6 +436,7 @@ struct UserPostCardView: View {
                     EmptyView()
                 })
                 
+                //UserPostCard5
                 VStack {
                     HStack {
                         VStack {

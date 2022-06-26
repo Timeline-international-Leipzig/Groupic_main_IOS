@@ -34,7 +34,7 @@ struct NotificationsView: View {
                                 Spacer()
                                 
                                 Text("Nachrichten")
-                                    .font(.title3)
+                                    .font(.custom("Inter-Regular", size: 22))
                                     .foregroundColor(.white)
                                     .frame(alignment: .center)
                                 
@@ -57,32 +57,34 @@ struct NotificationsView: View {
                         }
                         
                         Spacer()
-                    }.zIndex(1)
+                    }.zIndex(3)
                     
                     VStack {
                         
                         HStack {
                             Rectangle().frame(width: getRectView().width, height: 100)
-                        }.background(Color(.black))
+                        }
+                        .background(Color(.black))
                             .mask(
                                 LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .top, endPoint: .bottom)
                             ).colorInvert()
-                        
                         
                         Spacer()
                         
                         HStack {
                             Rectangle().frame(width: getRectView().width, height: 100)
-                        }.background(Color(.black))
+                        }
+                        .background(Color(.black))
                             .mask(
                                 LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
                             ).colorInvert()
-                    }
+                    }.zIndex(2)
                     
                     ScrollView {
                         ZStack {
                             VStack {
                                 Text("Keine neuen Nachrichten")
+                                    .font(.custom("Inter-Regular", size: 18))
                                     .padding(.top, 150)
                                 
                                 Spacer()
@@ -104,7 +106,7 @@ struct NotificationsView: View {
                                 Spacer()
                             }.padding(.top, 100)
                         }
-                    }
+                    }.zIndex(1)
                 }
             }
             .background(Color("mainColor"))

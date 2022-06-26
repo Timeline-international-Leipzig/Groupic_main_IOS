@@ -33,6 +33,7 @@ struct RegisterButton: View {
                     self.signUp()
                 }, label: {
                     Text("Registrierung")
+                        .font(.custom("Inter-Regular", size: 22))
                         .foregroundColor(.white)
                         .padding(.vertical)
                         .frame(width: UIScreen.main.bounds.width - 50)

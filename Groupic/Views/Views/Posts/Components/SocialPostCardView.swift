@@ -31,7 +31,6 @@ struct SocialPostCardView: View {
             //SocialPostCard 1
             VStack(spacing: 0) {
                 HStack {
-                    
                     VStack(spacing: 0) {
                         HStack {
                             //Kreis
@@ -45,26 +44,25 @@ struct SocialPostCardView: View {
                             
                             if userModel.uid != Auth.auth().currentUser!.uid {
                                 Text(userModel.username + ": ")
-                                    .font(.subheadline)
+                                    .font(.custom("Inter-Regular", size: 12))
                                     .foregroundColor(.white)
                                     .frame(alignment: .topLeading)
                             }
                             else {
                                 Text("du: ")
-                                    .font(.subheadline)
+                                    .font(.custom("Inter-Regular", size: 12))
                                     .foregroundColor(.white)
                                     .frame(alignment: .topLeading)
                             }
                             
                             Text((Date(timeIntervalSince1970: postModel.publishTime))
                                 .timeAgo())
-                            .font(.subheadline)
+                            .font(.custom("Inter-Regular", size: 12))
                             .foregroundColor(.white)
                             .frame(alignment: .topLeading)
                             
                             Spacer()
                         }
-                        
                         //Linie
                     }
                     
@@ -89,7 +87,7 @@ struct SocialPostCardView: View {
                             if item.type == "IMAGE" {
                                 WebImage(url: URL(string: item.uriOrUid)!)
                                     .resizable()
-                                    .frame(width: getRectView().width / 4.3, height: getRectView().width / 4.3, alignment: .center)
+                                    .frame(width: getRectView().width / 4.3, height: getRectView().width / 4.3, alignment: .leading)
                                     .clipped()
                                     .padding(.top, 8)
                             }
@@ -99,9 +97,7 @@ struct SocialPostCardView: View {
                     }
                     
                     HStack {
-                        
                         ZStack {
-                            
                             HStack {
                                                                 
                                 if Calendar.current.component(.day, from: postModel.startDate) == Calendar.current.component(.day, from: postModel.endDate) {
@@ -109,7 +105,7 @@ struct SocialPostCardView: View {
                                     Spacer()
                                     
                                     Text(postModel.startDate, style: .date)
-                                        .font(.subheadline)
+                                        .font(.custom("Inter-Regular", size: 12))
                                         .foregroundColor(.white)
                                 }
                                 
@@ -117,24 +113,24 @@ struct SocialPostCardView: View {
                                     Spacer()
                                     
                                     Text(postModel.startDate, style: .date)
-                                        .font(.subheadline)
+                                        .font(.custom("Inter-Regular", size: 12))
                                         .foregroundColor(.white)
                                     
                                     Text("-")
-                                        .font(.subheadline)
+                                        .font(.custom("Inter-Regular", size: 12))
                                         .foregroundColor(.white)
                                     
                                     Text(postModel.endDate, style: .date)
-                                        .font(.subheadline)
+                                        .font(.custom("Inter-Regular", size: 12))
                                         .foregroundColor(.white)
                                 }
-                            }.padding(.trailing, 20)
+                            }.padding(.trailing, 10)
                             
                             HStack {
                                 Color.white.frame(width:CGFloat(2) / UIScreen.main.scale, height: 40)
 
                                 Text(postModel.title)
-                                    .font(.title3)
+                                    .font(.custom("Inter-Regular", size: 20))
                                     .foregroundColor(.white)
                                 
                                 Spacer()
@@ -213,7 +209,7 @@ struct SocialPostCardView: View {
                             if item.type == "IMAGE" {
                                 WebImage(url: URL(string: item.uriOrUid)!)
                                     .resizable()
-                                    .frame(width: getRectView().width / 4.3, height: getRectView().width / 4.3, alignment: .center)
+                                    .frame(width: getRectView().width / 4.3, height: getRectView().width / 4.3, alignment: .leading)
                                     .clipped()
                                     .padding(.top, 8)
                             }

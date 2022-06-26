@@ -37,7 +37,7 @@ struct RegistrationView: View {
                             
                             Text("Registrierung")
                                 .padding(.top, 10)
-                                .font(.system(size: 26, weight: .bold))
+                                .font(.custom("Inter-Regular", size: 22))
                                 .foregroundColor(.white)
                                 .hCenter()
                                 .zIndex(1)

@@ -18,7 +18,7 @@ struct EventNotificationView: View {
     @State var userSelected: UserModel?
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             ForEach(profileService.requestsEventUser, id: \.userId) {
                 (users) in
                 
@@ -50,9 +50,8 @@ struct EventNotificationView: View {
                                 }
                                 
                                 Text(user.username)
+                                    .font(.custom("Inter-ExtraBold", size: 18))
                                     .foregroundColor(.white)
-                                    .font(.subheadline)
-                                    .bold()
                                     .padding(.horizontal)
                                 
                                 Spacer()
@@ -77,8 +76,8 @@ struct EventNotificationView: View {
                             }
                         }
                         .padding()
-                        .background(Color("mainColor"))
-                    })
+                        .background(Color("buttonColor"))
+                    }).padding(3)
                 }
             }
         }

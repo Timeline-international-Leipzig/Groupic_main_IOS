@@ -31,7 +31,7 @@ struct VerificationView: View {
                                 
                                 Text("Verifizierung")
                                     .padding(.top, 10)
-                                    .font(.system(size: 26, weight: .bold))
+                                    .font(.custom("Inter-Regular", size: 22))
                                     .foregroundColor(.white)
                                     .hCenter()
                                     .zIndex(1)
@@ -58,12 +58,13 @@ struct VerificationView: View {
                         VStack {
                             Text("Fast geschafft!")
                                 .foregroundColor(.white)
-                                .font(.title)
+                                .font(.custom("Inter-Regular", size: 18))
                                 .fontWeight(.bold)
                                 .padding(.top, 25)
                             
                
                             Text("Verifiziere bitte deine E-Mail!")
+                                .font(.custom("Inter-Regular", size: 18))
                                 .foregroundColor(.white)
                                 .padding()
                                 .padding(.horizontal, 25)
@@ -82,6 +83,7 @@ struct VerificationView: View {
                                     
                                 }, label: {
                                     Text("Die E-Mail wurde verifiziert!")
+                                        .font(.custom("Inter-ExtraBold", size: 16))
                                         .foregroundColor(.white)
                                         .padding(.vertical)
                                         .frame(width: UIScreen.main.bounds.width - 50)
@@ -99,7 +101,7 @@ struct VerificationView: View {
                                     }
                                 }, label: {
                                     Text("E-Mail erneut senden")
-                                        .fontWeight(.bold)
+                                        .font(.custom("Inter-ExtraBold", size: 16))
                                         .foregroundColor(.white)
                                 })
                             }

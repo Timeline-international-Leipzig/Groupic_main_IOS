@@ -34,22 +34,23 @@ struct TextEditField: View {
     var body: some View {
         VStack {
             Text(header)
-                .fontWeight(.bold)
+                .font(.custom("Inter-Regular", size: 18))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .center)
             
             VStack {
                 HStack {
                     Image(systemName: image)
+                        .font(.custom("Inter-Regular", size: 18))
                         .padding(.horizontal, 10)
                         .foregroundColor(.white)
 
                     TextField(textField, text: $value)
+                        .font(.custom("Inter-Regular", size: 16))
                         .foregroundColor(.white)
                         .accentColor(.white)
                         .autocapitalization(.none)
                         .padding(.horizontal, 10)
-                        .font(.system(size: 15, weight: .bold))
                         .onChange(of: value) {_ in
                             if selectedIndex == 0 {
                                 value = String(value.prefix(limit).unicodeScalars.filter(allowed.contains))
@@ -104,6 +105,7 @@ struct TextEditField: View {
                 Text(
                     self.errorCheckBool ? "Die Form deiner E-Mail ist nicht valide!" : ""
                 )
+                .font(.custom("Inter-Regular", size: 14))
                 .foregroundColor(.red)
                 .fontWeight(.light)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -112,6 +114,7 @@ struct TextEditField: View {
                     Text(
                         self.errorCheckBool ? "Der Name darf nicht länger als 20 Zeichen sein!" : ""
                     )
+                    .font(.custom("Inter-Regular", size: 14))
                     .foregroundColor(.red)
                     .fontWeight(.light)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -120,12 +123,13 @@ struct TextEditField: View {
                     Text(
                         self.errorCheckBool ? "Der Nutzername muss zwischen 4 und 10 Zeichen sein!" : ""
                     )
+                    .font(.custom("Inter-Regular", size: 14))
                     .foregroundColor(.red)
                     .fontWeight(.light)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
                 case 3:
-                    Text("")
+                    Text("").font(.custom("Inter-Regular", size: 14))
                     
                 
                 default:

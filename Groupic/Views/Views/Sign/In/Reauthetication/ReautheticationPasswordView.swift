@@ -36,6 +36,7 @@ struct ReautheticationPasswordView: View {
                 
                 VStack {
                     Text(self.error)
+                        .font(.custom("Inter-Regular", size: 18))
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
                         .padding(.top)
@@ -49,6 +50,7 @@ struct ReautheticationPasswordView: View {
                     
                     if alert == true {
                         Text(errorVar)
+                            .font(.custom("Inter-Regular", size: 14))
                             .foregroundColor(Color.red)
                             .padding(.top)
                             .padding(.horizontal, 25)
@@ -86,12 +88,14 @@ struct ReautheticationPasswordView: View {
                     }, label: {
                         if alert == false {
                         Text("Password ändern")
+                                .font(.custom("Inter-ExtraBold", size: 18))
                             .foregroundColor(.white)
                             .padding(.vertical)
                             .frame(width: UIScreen.main.bounds.width - 120)
                         }
                         else {
                             Text("Alles klar")
+                                .font(.custom("Inter-ExtraBold", size: 18))
                                 .foregroundColor(.white)
                                 .padding(.vertical)
                                 .frame(width: UIScreen.main.bounds.width - 120)
@@ -105,6 +109,7 @@ struct ReautheticationPasswordView: View {
                         self.back.toggle()
                     }, label: {
                         Text("Schließen")
+                            .font(.custom("Inter-ExtraBold", size: 20))
                             .foregroundColor(.white)
                             .padding(.vertical)
                             .frame(width: UIScreen.main.bounds.width - 120)

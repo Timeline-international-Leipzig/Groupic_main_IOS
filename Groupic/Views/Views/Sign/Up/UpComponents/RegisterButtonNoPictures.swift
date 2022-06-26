@@ -59,6 +59,7 @@ struct RegisterButtonNoPictures: View {
                 }
             }, label: {
                 Text("Registrierung")
+                    .font(.custom("Inter-Regular", size: 22))
                     .foregroundColor(.white)
                     .padding(.vertical)
                     .frame(width: UIScreen.main.bounds.width - 50)
@@ -70,14 +71,14 @@ struct RegisterButtonNoPictures: View {
         
             HStack {
                 Text("account schon vorhanden?")
-                    .fontWeight(.bold)
+                    .font(.custom("Inter-Regular", size: 16))
                     .foregroundColor(.white)
                 
                 Button(action: {
                     self.viewState.toggle()
                 }, label: {
                     Text("anmelden.")
-                        .fontWeight(.bold)
+                        .font(.custom("Inter-ExtraBold", size: 18))
                         .foregroundColor(.white)
                 })
             }

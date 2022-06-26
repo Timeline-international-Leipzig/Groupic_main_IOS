@@ -45,9 +45,8 @@ struct UserNotificationView: View {
                             }
                             
                             Text(user.username)
+                                .font(.custom("Inter-ExtraBold", size: 18))
                                 .foregroundColor(.white)
-                                .font(.subheadline)
-                                .bold()
                                 .padding(.horizontal)
                             
                             Spacer()
@@ -72,7 +71,7 @@ struct UserNotificationView: View {
                         }
                         .padding()
                         .background(Color("buttonColor"))
-                    })
+                    }).padding(3)
                 }
             }
         }

@@ -26,13 +26,14 @@ struct SecureTextEditField: View {
     var body: some View {
         VStack {
             Text(header)
-                .fontWeight(.bold)
+                .font(.custom("Inter-Regular", size: 18))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity, alignment: .center)
             
             VStack {
                 HStack {
                     Image(systemName: image)
+                        .font(.custom("Inter-Regular", size: 18))
                         .foregroundColor(.white)
                         .padding(.horizontal, 10)
                 
@@ -40,11 +41,11 @@ struct SecureTextEditField: View {
                         VStack {
                             if self.visible {
                                 TextField(textField, text: $value)
+                                    .font(.custom("Inter-Regular", size: 16))
                                     .foregroundColor(.white)
                                     .accentColor(.white)
                                     .autocapitalization(.none)
                                     .padding(.horizontal, 10)
-                                    .font(.system(size: 15, weight: .bold))
                                     .onChange(of: value) { _ in
                                         value = String(value.prefix(limit).unicodeScalars.filter(allowed.contains))
                                         
@@ -72,11 +73,11 @@ struct SecureTextEditField: View {
                             }
                             else {
                                 SecureField(textField, text: $value)
+                                    .font(.custom("Inter-Regular", size: 16))
                                     .foregroundColor(.white)
                                     .accentColor(.white)
                                     .autocapitalization(.none)
                                     .padding(.horizontal, 10)
-                                    .font(.system(size: 15, weight: .bold))
                                     .onChange(of: value) { _ in
                                         value = String(value.prefix(limit).unicodeScalars.filter(allowed.contains))
                                         
@@ -109,6 +110,7 @@ struct SecureTextEditField: View {
                         }, label: {
                             Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
                                 .foregroundColor(.white)
+                                .font(.custom("Inter-Regular", size: 18))
                         })
                         .padding(.horizontal, 10)
                     }
@@ -134,11 +136,11 @@ struct SecureTextEditField: View {
                         self.errorCheckBool ? "Das Passwort muss mindestens 8 Zeichen und mind. einen Großbuchstaben / Kleinbuchstaben / Sonderzeichen besitzen!" : ""
                     )
                     .foregroundColor(.red)
-                    .fontWeight(.light)
+                    .font(.custom("Inter-Regular", size: 14))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
                 case 2:
-                    Text("")
+                    Text("").font(.custom("Inter-Regular", size: 14))
                 
                 default:
                     Text("default")

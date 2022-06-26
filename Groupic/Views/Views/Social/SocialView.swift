@@ -49,7 +49,7 @@ struct SocialView: View {
                     ).colorInvert()
                 
                 Spacer()
-            }
+            }.zIndex(1)
             
             VStack {
                 HStack {
@@ -88,7 +88,7 @@ struct SocialView: View {
                     }*/
                     
                     Text("Community")
-                        .font(.title3)
+                        .font(.custom("Inter-Regular", size: 20))
                         .foregroundColor(.white)
                         .padding(.horizontal, 20)
                     
@@ -106,26 +106,28 @@ struct SocialView: View {
                 Spacer()
             }.zIndex(1)
             
-            
             VStack {
-                
-                VStack(alignment: .leading) {
-                    SearchBar(value: $value)
-                        .onChange(of: value, perform: {
-                            new in
-                            
-                            searchUsers()
-                        })
-                }.padding(.horizontal)
-                
+
                 ScrollView {
+                    
                     PullToRefreshAnimationView(coordinateSpaceName: "pullToRefresh") {
                         // do your stuff when pulled
                     }
                     
+                    VStack(alignment: .leading) {
+                        SearchBar(value: $value)
+                            .onChange(of: value, perform: {
+                                new in
+                                
+                                searchUsers()
+                            })
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 80)
+                    
                     ZStack {
                         VStack {
-                            Text("Unsozial")
+                            Text("Unsozial").font(.custom("Inter-Regular", size: 16))
                         }
                         
                         SocialFriendsEventsView().padding(.bottom, 100)
@@ -181,8 +183,7 @@ struct SocialView: View {
                                             }
                                             .padding(.horizontal)
                                         })
-                                    }.background(Color("mainColor"))
-                                    
+                                    }
                                 }
                                 
                                 Spacer()
@@ -191,15 +192,17 @@ struct SocialView: View {
                                     EmptyView()
                                 })
                             }
-                        }.offset(y: -10)
+                        }
+                        .offset(y: -10)
+                        .background(Color("mainColor"))
                     }
                 }
                 .navigationBarTitle("")
                 .navigationBarBackButtonHidden(true)
                 .navigationBarHidden(true)
             }
-            .padding(.top, 80)
-        }.background(Color("mainColor"))
+            .background(Color("mainColor"))
+        }
     }
     
     func searchUsers() {

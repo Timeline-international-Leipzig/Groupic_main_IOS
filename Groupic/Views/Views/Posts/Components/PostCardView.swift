@@ -35,7 +35,7 @@ struct PostCardView: View {
                     
                     Text((Date(timeIntervalSince1970: postModel.publishTime))
                         .timeAgo())
-                    .font(.subheadline)
+                    .font(.custom("Inter-Regular", size: 12))
                     .foregroundColor(.white)
                     .frame(alignment: .topLeading)
                     
@@ -75,7 +75,7 @@ struct PostCardView: View {
                                 Spacer()
                                 
                                 Text(postModel.startDate, style: .date)
-                                    .font(.subheadline)
+                                    .font(.custom("Inter-Regular", size: 12))
                                     .foregroundColor(.white)
                             }
                             
@@ -83,29 +83,29 @@ struct PostCardView: View {
                                 Spacer()
                                 
                                 Text(postModel.startDate, style: .date)
-                                    .font(.subheadline)
+                                    .font(.custom("Inter-Regular", size: 12))
                                     .foregroundColor(.white)
                                     .frame(alignment: .topLeading)
                                 
                                 Text("-")
-                                    .font(.subheadline)
+                                    .font(.custom("Inter-Regular", size: 12))
                                     .foregroundColor(.white)
                                     .frame(alignment: .topLeading)
                                 
                                 Text(postModel.endDate, style: .date)
-                                    .font(.subheadline)
+                                    .font(.custom("Inter-Regular", size: 12))
                                     .foregroundColor(.white)
                                     .frame(alignment: .topLeading)
                             }
-                        }
+                        }.padding(.trailing, 10)
                         
                         HStack {
                             
                             Color.white.frame(width:CGFloat(2) / UIScreen.main.scale, height: 40)
                             
                             Text(postModel.title)
+                                .font(.custom("Inter-Regular", size: 20))
                                 .foregroundColor(.white)
-                                .font(.title3)
                             
                             Spacer()
                         }.padding(.leading, 10)

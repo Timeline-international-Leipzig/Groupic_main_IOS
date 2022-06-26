@@ -34,8 +34,8 @@ struct ForgotPasswrdView: View {
                             ZStack {
                                 
                                 Text("Passwort")
+                                    .font(.custom("Inter-Regular", size: 20))
                                     .padding(.top, 10)
-                                    .font(.system(size: 26, weight: .bold))
                                     .foregroundColor(.white)
                                     .hCenter()
                                     .zIndex(1)
@@ -54,15 +54,15 @@ struct ForgotPasswrdView: View {
                                 Rectangle().frame(width: getRectView().width, height: 100)
                             }.background(Color(.black))
                                 .mask(
-                                    LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top).colorInvert()
-                                )
+                                    LinearGradient(gradient: Gradient(colors: [Color.black, Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
+                                ).colorInvert()
                             
                         }.zIndex(1)
                         
                         VStack {
                             Text("Ändere dein Passwort")
                                 .foregroundColor(.white)
-                                .font(.title)
+                                .font(.custom("Inter-ExtraBold", size: 20))
                                 .fontWeight(.bold)
                                 .padding(.top, 25)
                             
@@ -88,6 +88,7 @@ struct ForgotPasswrdView: View {
                                     }
                                 }, label: {
                                     Text("E-Mail versenden")
+                                        .font(.custom("Inter-Regular", size: 18))
                                         .foregroundColor(.white)
                                         .padding(.vertical)
                                         .frame(width: UIScreen.main.bounds.width - 50)
@@ -103,7 +104,7 @@ struct ForgotPasswrdView: View {
                                     self.forgotPassword.toggle()
                                 }, label: {
                                     Text("Zurück")
-                                        .fontWeight(.bold)
+                                        .font(.custom("Inter-ExtraBold", size: 16))
                                         .foregroundColor(.white)
                                 })
                                 

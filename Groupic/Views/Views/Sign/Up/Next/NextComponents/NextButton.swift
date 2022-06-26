@@ -26,7 +26,7 @@ struct NextButton: View {
                 checkIfEmailOfAccountExists { result in
                     if (result == true) {
                         self.userHasAccount = true
-                        self.error = "Diese E-Mail existiert bereits! \n Wähle bitte eine neue E-Mail"
+                        self.error = "Diese E-Mail existiert bereits! \n \n Wähle bitte eine neue E-Mail"
                         self.alert.toggle()
                     }
                     else {
@@ -35,9 +35,9 @@ struct NextButton: View {
                     }
                 }
             }, label: {
-                Text("Weiter")
+                Text("weiter")
                     .foregroundColor(.white)
-                    .font(.system(size: 20, weight: .bold))
+                    .font(.custom("Inter-ExtraBold", size: 20))
                     .padding(.vertical)
                     .frame(width: UIScreen.main.bounds.width - 50)
             })
@@ -48,14 +48,14 @@ struct NextButton: View {
             
             HStack {
                 Text("account bereits vorhanden?")
-                    .fontWeight(.bold)
+                    .font(.custom("Inter-Regular", size: 16))
                     .foregroundColor(.white)
                 
                 Button(action: {
                     self.viewState.toggle()
                 }, label: {
                     Text("hier anmelden")
-                        .fontWeight(.bold)
+                        .font(.custom("Inter-ExtraBold", size: 18))
                         .foregroundColor(.white)
                 })
             }

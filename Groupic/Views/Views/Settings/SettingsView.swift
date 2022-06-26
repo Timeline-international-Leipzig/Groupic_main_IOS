@@ -55,7 +55,7 @@ struct SettingsView: View {
                         Spacer()
                         
                         Text("Einstellungen")
-                            .font(.title3)
+                            .font(.custom("Inter-Regular", size: 22))
                             .foregroundColor(.white)
                         
                         Spacer()
@@ -79,7 +79,7 @@ struct SettingsView: View {
                 }
                 
                 Form {
-                    Section(header: Text("Deine Einstellungen")) {
+                    Section(header: Text("Deine Einstellungen").font(.custom("Inter-Regular", size: 14))) {
                         HStack {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8, style: .continuous)
@@ -90,7 +90,9 @@ struct SettingsView: View {
                             }
                             .frame(width: 36, height: 36, alignment: .center)
                             
-                            Text("Profil bearbeiten").padding(.horizontal)
+                            Text("Profil bearbeiten")
+                                .font(.custom("Inter-Regular", size: 16))
+                                .padding(.horizontal)
                             
                             Spacer()
                             
@@ -102,57 +104,7 @@ struct SettingsView: View {
                             }
                             .accentColor(Color(.gray))
                         }
-                        
-                        /*
-                         HStack {
-                         ZStack {
-                         RoundedRectangle(cornerRadius: 8, style: .continuous)
-                         .fill(Color.blue)
-                         
-                         Image(systemName: "person.fill")
-                         .foregroundColor(.white)
-                         }
-                         .frame(width: 36, height: 36, alignment: .center)
-                         
-                         Text("Anwendungseinstellungen").padding(.horizontal)
-                         
-                         Spacer()
-                         
-                         Button(action: {
-                         
-                         }) {
-                         Image(systemName: "chevron.right")
-                         .font(.system(size: 14, weight: .semibold, design: .rounded))
-                         }
-                         .accentColor(Color(.systemGray2))
-                         }
-                         */
-                        
-                        /*
-                         HStack {
-                         ZStack {
-                         RoundedRectangle(cornerRadius: 8, style: .continuous)
-                         .fill(Color.yellow)
-                         
-                         Image(systemName: "envelope.fill")
-                         .foregroundColor(.white)
-                         }
-                         .frame(width: 36, height: 36, alignment: .center)
-                         
-                         Text("Kontakt").padding(.horizontal)
-                         
-                         Spacer()
-                         
-                         Button(action: {
-                         self.nextSupport.toggle()
-                         }) {
-                         Image(systemName: "chevron.right")
-                         .font(.system(size: 14, weight: .semibold, design: .rounded))
-                         }
-                         .accentColor(Color(.systemGray2))
-                         }
-                         */
-                        
+                                                
                         HStack {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8, style: .continuous)
@@ -163,7 +115,9 @@ struct SettingsView: View {
                             }
                             .frame(width: 36, height: 36, alignment: .center)
                             
-                            Text("Abmelden").padding(.horizontal)
+                            Text("Abmelden")
+                                .font(.custom("Inter-Regular", size: 16))
+                                .padding(.horizontal)
                             
                             Spacer()
                             
@@ -180,7 +134,7 @@ struct SettingsView: View {
                 }.onAppear {UITableView.appearance().backgroundColor = .clear}
                 
                 Form {
-                    Section(header: Text("Rechtliche Dokumente")) {
+                    Section(header: Text("Rechtliche Dokumente").font(.custom("Inter-Regular", size: 14))) {
                         HStack {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 8, style: .continuous)
@@ -191,7 +145,9 @@ struct SettingsView: View {
                             }
                             .frame(width: 36, height: 36, alignment: .center)
                             
-                            Text("Datenschutz").padding(.horizontal)
+                            Text("Datenschutz")
+                                .font(.custom("Inter-Regular", size: 16))
+                                .padding(.horizontal)
                             
                             Spacer()
                             
@@ -213,7 +169,9 @@ struct SettingsView: View {
                             }
                             .frame(width: 36, height: 36, alignment: .center)
                             
-                            Text("AGB").padding(.horizontal)
+                            Text("AGB")
+                                .font(.custom("Inter-Regular", size: 16))
+                                .padding(.horizontal)
                             
                             Spacer()
                             

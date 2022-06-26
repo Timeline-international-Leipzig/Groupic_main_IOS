@@ -28,7 +28,7 @@ struct VerificationReauthetificationView: View {
                         VStack {
                             Text("Deine Identität bestätigen")
                                 .foregroundColor(Color("AccentColor"))
-                                .font(.title)
+                                .font(.custom("Inter-Regular", size: 20))
                                 .fontWeight(.bold)
                                 .padding(.top, 25)
                             

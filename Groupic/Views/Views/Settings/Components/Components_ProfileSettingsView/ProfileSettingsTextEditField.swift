@@ -34,16 +34,17 @@ struct ProfilesettingsTextEditField: View {
     var body: some View {
         VStack {
             Text(header)
-                .fontWeight(.bold)
+                .font(.custom("Inter-Regular", size: 18))
                 .foregroundColor(Color(.white))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             VStack {
                 HStack {
                     TextField(textField, text: $value)
+                        .accentColor(.white)
                         .autocapitalization(.none)
                         .padding(.horizontal, 10)
-                        .font(.system(size: 15, weight: .bold))
+                        .font(.custom("Inter-Regular", size: 16))
                         .onChange(of: value) {_ in
                             if selectedIndex == 0 {
                                 value = String(value.prefix(limit).unicodeScalars.filter(allowed.contains))

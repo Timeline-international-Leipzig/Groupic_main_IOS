@@ -101,13 +101,15 @@ struct AddEventView: View {
                         
                         VStack {
                             if eventImage != nil {
-                                eventImage!.resizable()
+                                eventImage!
+                                    .resizable()
                                     .frame(width: 250, height: 170, alignment: .center)
                                     .onTapGesture {
                                         self.showingActionsSheet = true
                                     }
                             } else {
-                                Image(systemName: "photo.circle").resizable()
+                                Image(systemName: "photo.circle")
+                                    .resizable()
                                     .frame(width: 100, height: 100, alignment: .center)
                                     .foregroundColor(.gray)
                                     .onTapGesture {

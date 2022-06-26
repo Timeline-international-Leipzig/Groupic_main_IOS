@@ -34,6 +34,7 @@ struct ErrorSendEmailView: View {
                 
                 VStack {
                     Text(self.error)
+                        .font(.custom("Inter-Regular", size: 16))
                         .foregroundColor(self.color)
                         .padding(.top)
                         .padding(.horizontal, 25)
@@ -46,7 +47,7 @@ struct ErrorSendEmailView: View {
                             }
                         }, label: {
                             Text("E-Mail erneut senden")
-                                .fontWeight(.bold)
+                                .font(.custom("Inter-ExtraBold", size: 18))
                                 .foregroundColor(Color("AccentColor"))
                         })
                     }
@@ -57,6 +58,7 @@ struct ErrorSendEmailView: View {
                         self.back.toggle()
                     }, label: {
                         Text("Schließen")
+                            .font(.custom("Inter-ExtraBold", size: 20))
                             .foregroundColor(.white)
                             .padding(.vertical)
                             .frame(width: UIScreen.main.bounds.width - 120)

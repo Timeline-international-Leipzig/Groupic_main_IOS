@@ -22,7 +22,7 @@ struct FutureSearchUserPostView: View {
         ScrollView {
             ZStack {
                 VStack {
-                    Text("Es gibt aktuell noch keine zukünftigen Ereignisse")
+                    Text("Es gibt aktuell noch keine zukünftigen Ereignisse").font(.custom("Inter-Regular", size: 18))
                 }.padding(.top, 50)
                 
                 VStack(spacing: 1) {

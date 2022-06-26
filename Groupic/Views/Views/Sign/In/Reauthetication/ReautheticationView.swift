@@ -42,6 +42,7 @@ struct ReautheticationView: View {
                     
                     if alert == true {
                         Text("Das Passwort ist falsch")
+                            .font(.custom("Inter-Regular", size: 16))
                             .foregroundColor(Color.red)
                             .padding(.top)
                             .padding(.horizontal, 25)
@@ -51,27 +52,27 @@ struct ReautheticationView: View {
                         
                         if alert == false {
                             let credential: AuthCredential = EmailAuthProvider.credential(withEmail: (Auth.auth().currentUser?.email)!, password: password)
-                        
-                        guard let userId = Auth.auth().currentUser?.uid
-                        else {
-                            return
-                        }
-                        
-                        Auth.auth().currentUser?.reauthenticate(with: credential) {(authData, error) in
-                            if error != nil {
-                                self.alert = true
+                            
+                            guard let userId = Auth.auth().currentUser?.uid
+                            else {
                                 return
-                            } else {
-                                StorageService.editProfileTextEmail(userId: userId, email: email, onSuccess: {
-                                })
-                                
+                            }
+                            
+                            Auth.auth().currentUser?.reauthenticate(with: credential) {(authData, error) in
+                                if error != nil {
+                                    self.alert = true
+                                    return
+                                } else {
+                                    StorageService.editProfileTextEmail(userId: userId, email: email, onSuccess: {
+                                    })
+                                    
                                     Auth.auth().currentUser?.reload(completion: { (err) in
                                         Auth.auth().currentUser?.sendEmailVerification { error in
                                         }
                                     })
-                                
-                                self.nextView.toggle()
-                                
+                                    
+                                    self.nextView.toggle()
+                                    
                                 }
                             }
                         }
@@ -80,13 +81,15 @@ struct ReautheticationView: View {
                         }
                     }, label: {
                         if alert == false {
-                        Text("E-Mail ändern")
-                            .foregroundColor(.white)
-                            .padding(.vertical)
-                            .frame(width: UIScreen.main.bounds.width - 120)
+                            Text("E-Mail ändern")
+                                .font(.custom("Inter-Regular", size: 14))
+                                .foregroundColor(.white)
+                                .padding(.vertical)
+                                .frame(width: UIScreen.main.bounds.width - 120)
                         }
                         else {
                             Text("Alles klar")
+                                .font(.custom("Inter-Regular", size: 14))
                                 .foregroundColor(.white)
                                 .padding(.vertical)
                                 .frame(width: UIScreen.main.bounds.width - 120)
@@ -100,6 +103,7 @@ struct ReautheticationView: View {
                         self.back.toggle()
                     }, label: {
                         Text("Schließen")
+                            .font(.custom("Inter-ExtraBold", size: 20))
                             .foregroundColor(.white)
                             .padding(.vertical)
                             .frame(width: UIScreen.main.bounds.width - 120)
@@ -122,7 +126,7 @@ struct ReautheticationView: View {
 }
 
 
-    
+
 
 
 

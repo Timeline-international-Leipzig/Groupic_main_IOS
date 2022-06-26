@@ -18,7 +18,7 @@ struct UserContactsView: View {
         ScrollView {
             ZStack {
                 VStack {
-                    Text("Noch keine Kontakte")
+                    Text("Noch keine Kontakte").font(.custom("Inter-Regular", size: 16))
                 }
                 
                 VStack(spacing: 0) {
@@ -51,8 +51,8 @@ struct UserContactsView: View {
                                         }
                                         
                                         Text(user.username)
+                                            .font(.custom("Inter-ExtraBold", size: 18))
                                             .foregroundColor(.white)
-                                            .font(.system(size: 18, weight: .bold))
                                             .padding(.horizontal)
                                         
                                         Spacer()
