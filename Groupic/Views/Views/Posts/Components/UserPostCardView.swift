@@ -44,11 +44,10 @@ struct UserPostCardView: View {
                             
                             Text((Date(timeIntervalSince1970: postModel.publishTime))
                                 .timeAgo())
-                            .font(.subheadline)
+                            .font(.custom("Inter-Regular", size: 14))
                             .foregroundColor(.white)
                             .frame(alignment: .topLeading)
                         }
-                        //Linie
                     }
                     
                     Spacer()
