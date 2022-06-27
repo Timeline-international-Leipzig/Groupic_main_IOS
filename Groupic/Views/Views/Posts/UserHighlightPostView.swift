@@ -20,8 +20,9 @@ struct UserHighlightPostView: View {
         ScrollView {
             ZStack {
                 VStack {
-                    Text("Es gibt aktuell noch keine Highlights").font(.custom("Inter-Regular", size: 18))
-                }.padding(.top, 50)
+                    Text("Noch keine Highlights")
+                        .font(.custom("Inter-Regular", size: 16))
+                }.padding(.top, 30)
                 
                 VStack(spacing: 1) {
                     ForEach(self.profileService.posts, id: \.id) {

@@ -31,7 +31,7 @@ struct UserPostCardView: View {
             //UserPostCard1
             VStack(spacing: 0) {
                 HStack {
-                    VStack {
+                    VStack(spacing: 0) {
                         HStack {
                             //Kreis
                             VStack {
@@ -76,7 +76,7 @@ struct UserPostCardView: View {
                                     Spacer()
                                     
                                     Text(postModel.startDate, style: .date)
-                                        .font(.subheadline)
+                                        .font(.custom("Inter-Regular", size: 14))
                                         .foregroundColor(.white)
                                 }
                                 
@@ -84,33 +84,31 @@ struct UserPostCardView: View {
                                     Spacer()
                                     
                                     Text(postModel.startDate, style: .date)
-                                        .font(.subheadline)
+                                        .font(.custom("Inter-Regular", size: 14))
                                         .foregroundColor(.white)
                                     
                                     Text("-")
-                                        .font(.subheadline)
+                                        .font(.custom("Inter-Regular", size: 14))
                                         .foregroundColor(.white)
                                     
                                     Text(postModel.endDate, style: .date)
-                                        .font(.subheadline)
+                                        .font(.custom("Inter-Regular", size: 14))
                                         .foregroundColor(.white)
                                 }
-                            }
+                            }.padding(.trailing, 10)
                             
                             HStack {
                                 Color.white.frame(width:CGFloat(2) / UIScreen.main.scale)
 
                                 Text(postModel.title)
+                                    .font(.custom("Inter-Regular", size: 20))
                                     .foregroundColor(.white)
-                                    .font(.title3)
                                 
                                 Spacer()
-                            }
+                            }.padding(.leading, 10)
                         }
                     }
-                    .padding(.horizontal)
                 }
-                .offset(y: -10)
             }
         }
         
@@ -122,7 +120,7 @@ struct UserPostCardView: View {
             //UserPostCard2
             VStack(spacing: 0) {
                 HStack {
-                    VStack {
+                    VStack(spacing: 0) {
                         HStack {
                             //Kreis
                             VStack {
@@ -135,16 +133,13 @@ struct UserPostCardView: View {
                             
                             Text((Date(timeIntervalSince1970: postModel.publishTime))
                                 .timeAgo())
-                            .font(.subheadline)
+                            .font(.custom("Inter-Regular", size: 14))
                             .foregroundColor(.white)
                         }
-                        .padding(.leading, 10)
-                        
-                        //Linie
                     }
                     
                     Spacer()
-                }
+                } .padding(.leading, 5)
                 
                 VStack(spacing: 0) {
                     Button(
@@ -168,7 +163,7 @@ struct UserPostCardView: View {
                                     Spacer()
                                     
                                     Text(postModel.startDate, style: .date)
-                                        .font(.subheadline)
+                                        .font(.custom("Inter-Regular", size: 14))
                                         .foregroundColor(.white)
                                 }
                                 
@@ -176,32 +171,30 @@ struct UserPostCardView: View {
                                     Spacer()
                                     
                                     Text(postModel.startDate, style: .date)
-                                        .font(.subheadline)
+                                        .font(.custom("Inter-Regular", size: 14))
                                         .foregroundColor(.white)
                                     
                                     Text("-")
-                                        .font(.subheadline)
+                                        .font(.custom("Inter-Regular", size: 14))
                                         .foregroundColor(.white)
                                     
                                     Text(postModel.endDate, style: .date)
-                                        .font(.subheadline)
+                                        .font(.custom("Inter-Regular", size: 14))
                                         .foregroundColor(.white)
                                 }
-                            }
+                            }.padding(.trailing, 10)
                             
                             HStack {
                                 Color.white.frame(width:CGFloat(2) / UIScreen.main.scale, height: 40)
 
                                 Text(postModel.title)
+                                    .font(.custom("Inter-Regular", size: 20))
                                     .foregroundColor(.white)
-                                    .font(.title3)
                                 
                                 Spacer()
-                            }
+                            }.padding(.leading, 10)
                         }
                     }
-                    .padding(.leading, 15)
-                    .padding(.trailing, 10)
                 }
             }
         }
@@ -212,33 +205,30 @@ struct UserPostCardView: View {
             })
             
             //UserPostCard3
-            VStack {
+            VStack(spacing: 0) {
                 HStack {
-                    VStack {
+                    VStack(spacing: 0) {
                         HStack {
                             //Kreis
                             VStack {
                                 Image(systemName: "circle")
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.white)
                                     .font(.system(size: 10))
                                 
-                                Color.gray.frame(width: CGFloat(2) / UIScreen.main.scale)
+                                Color.white.frame(width: CGFloat(2) / UIScreen.main.scale, height: 20)
                             }
                             
                             Text((Date(timeIntervalSince1970: postModel.publishTime))
                                 .timeAgo())
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
+                            .font(.custom("Inter-Regular", size: 14))
+                            .foregroundColor(.white)
                             .frame(alignment: .topLeading)
                             .offset(y: -5)
                         }
-                        .padding(.horizontal)
-                        
-                        //Linie
                     }
                     
                     Spacer()
-                }
+                }.padding(.leading, 5)
                 
                 VStack {
                     Button(
@@ -255,17 +245,14 @@ struct UserPostCardView: View {
                     )
                     
                     HStack {
-                        Color.gray.frame(width:CGFloat(2) / UIScreen.main.scale)
-                            .offset(y: -8)
-                        
                         ZStack {
                             HStack {
                                 if Calendar.current.component(.day, from: postModel.startDate) == Calendar.current.component(.day, from: postModel.endDate) {
                                     Spacer()
                                     
                                     Text(postModel.startDate, style: .date)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
+                                        .font(.custom("Inter-Regular", size: 14))
+                                        .foregroundColor(.white)
                                         .frame(alignment: .topLeading)
                                 }
                                 
@@ -273,36 +260,35 @@ struct UserPostCardView: View {
                                     Spacer()
                                     
                                     Text(postModel.startDate, style: .date)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
+                                        .font(.custom("Inter-Regular", size: 14))
+                                        .foregroundColor(.white)
                                         .frame(alignment: .topLeading)
                                     
                                     Text(" - ")
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
+                                        .font(.custom("Inter-Regular", size: 14))
+                                        .foregroundColor(.white)
                                         .frame(alignment: .topLeading)
                                     
                                     Text(postModel.endDate, style: .date)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
+                                        .font(.custom("Inter-Regular", size: 14))
+                                        .foregroundColor(.white)
                                         .frame(alignment: .topLeading)
                                 }
-                            }
+                            }.padding(.trailing, 10)
                             
                             HStack {
-                                Spacer()
-                                
+                                Color.white.frame(width:CGFloat(2) / UIScreen.main.scale, height: 40)
+
                                 Text(postModel.title)
-                                    .font(.title3)
+                                    .foregroundColor(.white)
+                                    .font(.custom("Inter-Regular", size: 20))
                                     .frame(width: 320, height: 40, alignment: .topLeading)
                                 
                                 Spacer()
-                            }
+                            }.padding(.leading, 10)
                         }
                     }
-                    .padding(.horizontal)
                 }
-                .offset(y: -10)
             }
         }
         
@@ -336,34 +322,29 @@ struct UserPostCardView: View {
                 })
                 
                 //UserPostCard4
-                VStack {
+                VStack(spacing: 0) {
                     HStack {
-                        VStack {
+                        VStack(spacing: 0) {
                             HStack {
                                 //Kreis
                                 VStack {
                                     Image(systemName: "circle")
-                                        .foregroundColor(.gray)
+                                        .foregroundColor(.white)
                                         .font(.system(size: 10))
                                     
-                                    Color.gray.frame(width: CGFloat(2) / UIScreen.main.scale)
+                                    Color.white.frame(width: CGFloat(2) / UIScreen.main.scale, height: 20)
                                 }
                                 
                                 Text((Date(timeIntervalSince1970: postModel.publishTime))
                                     .timeAgo())
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+                                .font(.custom("Inter-Regular", size: 14))
+                                .foregroundColor(.white)
                                 .frame(alignment: .topLeading)
-                                .offset(y: -5)
                             }
-                            .padding(.horizontal)
-                            
-                            //Linie
                         }
                         
                         Spacer()
-                        
-                    }
+                    }.padding(.leading, 5)
                     
                     VStack {
                         Button(
@@ -379,17 +360,14 @@ struct UserPostCardView: View {
                         )
                         
                         HStack {
-                            Color.gray.frame(width:CGFloat(2) / UIScreen.main.scale)
-                                .offset(y: -8)
-                            
                             ZStack {
                                 HStack {
                                     if Calendar.current.component(.day, from: postModel.startDate) == Calendar.current.component(.day, from: postModel.endDate) {
                                         Spacer()
                                         
                                         Text(postModel.startDate, style: .date)
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
+                                            .font(.custom("Inter-Regular", size: 14))
+                                            .foregroundColor(.white)
                                             .frame(alignment: .topLeading)
                                     }
                                     
@@ -397,36 +375,35 @@ struct UserPostCardView: View {
                                         Spacer()
                                         
                                         Text(postModel.startDate, style: .date)
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
+                                            .font(.custom("Inter-Regular", size: 14))
+                                            .foregroundColor(.white)
                                             .frame(alignment: .topLeading)
                                         
                                         Text(" - ")
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
+                                            .font(.custom("Inter-Regular", size: 14))
+                                            .foregroundColor(.white)
                                             .frame(alignment: .topLeading)
                                         
                                         Text(postModel.endDate, style: .date)
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
+                                            .font(.custom("Inter-Regular", size: 14))
+                                            .foregroundColor(.white)
                                             .frame(alignment: .topLeading)
                                     }
-                                }
+                                }.padding(.trailing, 10)
                                 
                                 HStack {
-                                    Spacer()
-                                    
+                                    Color.white.frame(width:CGFloat(2) / UIScreen.main.scale, height: 40)
+
                                     Text(postModel.title)
-                                        .font(.title3)
+                                        .foregroundColor(.white)
+                                        .font(.custom("Inter-Regular", size: 20))
                                         .frame(width: 320, height: 40, alignment: .topLeading)
                                     
                                     Spacer()
-                                }
+                                }.padding(.leading, 10)
                             }
                         }
-                        .padding(.horizontal)
                     }
-                    .offset(y: -10)
                 }
             }
             
@@ -436,33 +413,29 @@ struct UserPostCardView: View {
                 })
                 
                 //UserPostCard5
-                VStack {
+                VStack(spacing: 0) {
                     HStack {
-                        VStack {
+                        VStack(spacing: 0) {
                             HStack {
                                 //Kreis
                                 VStack {
                                     Image(systemName: "circle")
-                                        .foregroundColor(.gray)
+                                        .foregroundColor(.white)
                                         .font(.system(size: 10))
                                     
-                                    Color.gray.frame(width: CGFloat(2) / UIScreen.main.scale)
+                                    Color.white.frame(width: CGFloat(2) / UIScreen.main.scale, height: 20)
                                 }
                                 
                                 Text((Date(timeIntervalSince1970: postModel.publishTime))
                                     .timeAgo())
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+                                .font(.custom("Inter-Regular", size: 14))
+                                .foregroundColor(.white)
                                 .frame(alignment: .topLeading)
-                                .offset(y: -5)
                             }
-                            .padding(.horizontal)
-                            
-                            //Linie
                         }
-                        
+                
                         Spacer()
-                    }
+                    }.padding(.leading, 5)
                     
                     VStack {
                         Button(
@@ -479,17 +452,14 @@ struct UserPostCardView: View {
                         )
                         
                         HStack {
-                            Color.gray.frame(width:CGFloat(2) / UIScreen.main.scale)
-                                .offset(y: -8)
-                            
                             ZStack {
                                 HStack {
                                     if Calendar.current.component(.day, from: postModel.startDate) == Calendar.current.component(.day, from: postModel.endDate) {
                                         Spacer()
                                         
                                         Text(postModel.startDate, style: .date)
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
+                                            .font(.custom("Inter-Regular", size: 14))
+                                            .foregroundColor(.white)
                                             .frame(alignment: .topLeading)
                                     }
                                     
@@ -497,36 +467,35 @@ struct UserPostCardView: View {
                                         Spacer()
                                         
                                         Text(postModel.startDate, style: .date)
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
+                                            .font(.custom("Inter-Regular", size: 14))
+                                            .foregroundColor(.white)
                                             .frame(alignment: .topLeading)
                                         
-                                        Text(" - ")
+                                        Text("-")
                                             .font(.subheadline)
-                                            .foregroundColor(.gray)
+                                            .foregroundColor(.white)
                                             .frame(alignment: .topLeading)
                                         
                                         Text(postModel.endDate, style: .date)
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
+                                            .font(.custom("Inter-Regular", size: 14))
+                                            .foregroundColor(.white)
                                             .frame(alignment: .topLeading)
                                     }
-                                }
+                                }.padding(.trailing, 10)
                                 
                                 HStack {
-                                    Spacer()
-                                    
+                                    Color.white.frame(width:CGFloat(2) / UIScreen.main.scale, height: 40)
+
                                     Text(postModel.title)
-                                        .font(.title3)
+                                        .foregroundColor(.white)
+                                        .font(.custom("Inter-Regular", size: 20))
                                         .frame(width: 320, height: 40, alignment: .topLeading)
                                     
                                     Spacer()
-                                }
+                                }.padding(.leading, 10)
                             }
                         }
-                        .padding(.horizontal)
                     }
-                    .offset(y: -10)
                 }
             }
             else {}

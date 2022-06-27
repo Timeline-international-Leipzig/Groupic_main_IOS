@@ -18,8 +18,9 @@ struct UserContactsView: View {
         ScrollView {
             ZStack {
                 VStack {
-                    Text("Noch keine Kontakte").font(.custom("Inter-Regular", size: 16))
-                }
+                    Text("Noch keine Kontakte")
+                        .font(.custom("Inter-Regular", size: 16))
+                }.padding(.top, 50)
                 
                 VStack(spacing: 0) {
                     ForEach(profileService.users, id: \.uid) {

@@ -18,8 +18,9 @@ struct FutureUserPostView: View {
         ScrollView {
             ZStack {
                 VStack {
-                    Text("Es gibt aktuell noch keine zukünftigen Ereignisse").font(.custom("Inter-Regular", size: 18))
-                }.padding(.top, 50)
+                    Text("Noch keine anstehenden Ereignisse")
+                        .font(.custom("Inter-Regular", size: 16))
+                }.padding(.top, 30)
                 
                 VStack(spacing: 1) {
                     ForEach(self.profileService.posts, id: \.id) {
