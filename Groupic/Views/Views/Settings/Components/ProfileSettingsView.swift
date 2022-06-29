@@ -32,11 +32,14 @@ struct ProfileSettingsView: View {
     
     @State private var profileImage: Image?
     @State private var backProfileImage: Image?
+    
+    @State private var profileImageUI: UIImage?
+    @State private var backProfileImageUI: UIImage?
+    
     @State private var pickedImage: Image?
     @State private var pickedBackImage: Image?
     
     @State private var showingActionsSheet = false
-    @State private var showingActionsBackSheet = false
     @State private var showingImagePicker = false
     @State private var showingImagePickerBackProfile = false
     @State private var changeProfileImage = false
@@ -45,6 +48,9 @@ struct ProfileSettingsView: View {
     @State var changeTextEmail = false
     @State var changeTextUsername = false
     @State var changeTextName = false
+    @State var backImage = false
+    @State var selectedProfile = false
+    @State var selectedBackProfile = false
     
     @State var alert = false
     @State var alertEmailReauthentication = false
@@ -62,6 +68,13 @@ struct ProfileSettingsView: View {
     var body: some View {
         
         ZStack {
+            NavigationLink(destination: EditView(profileImageUI: $profileImageUI, selectedProfile: $selectedProfile, changeProfileImage: $changeProfileImage, imageData: $imageData), isActive: self.$selectedProfile, label: {
+                EmptyView()
+            })
+            
+            NavigationLink(destination: EditViewBack(profileImageUI: $backProfileImageUI, selectedProfile: $selectedBackProfile, changeProfileImage: $changeBackProfileImage, imageData: $backImageData), isActive: self.$selectedBackProfile, label: {
+                EmptyView()
+            })
             
             ProfileSettingsViewTabView(back: $back).zIndex(1)
             
@@ -69,7 +82,7 @@ struct ProfileSettingsView: View {
                 
                 VStack(alignment: .center, spacing: 0) {
                     
-                    ProfileSettingsViewProfileHeader(profileImage: $profileImage, backProfileImage: $backProfileImage, user: self.session.session!)
+                    ProfileSettingsViewProfileHeader(profileImage: $profileImage, profileImageUI: $profileImageUI, backProfileImage: $backProfileImage, backProfileImageUI: $backProfileImageUI, user: self.session.session!)
                     
                     VStack(spacing: 20) {
                         
@@ -88,7 +101,8 @@ struct ProfileSettingsView: View {
                         })
                         
                         Button(action: {
-                            self.showingImagePickerBackProfile.toggle()
+                            self.backImage = true
+                            self.showingActionsSheet.toggle()
                         },
                                label: {
                             Label("Titelbild ändern", systemImage: "photo")
@@ -310,15 +324,18 @@ struct ProfileSettingsView: View {
         .sheet(isPresented: $showingImagePickerBackProfile, onDismiss: loadBackProfileImage) {
             backImagePicker(pickedImage: self.$pickedBackImage, showImagePicker: self.$showingImagePickerBackProfile, imageData: self.$backImageData)
         }
-        .actionSheet(isPresented: $showingActionsBackSheet) {
+        .actionSheet(isPresented: $showingActionsSheet) {
             ActionSheet(title: Text(""), buttons: [
-                .default(Text("Wähle ein Bild")){
-                    self.sourceType = .photoLibrary
-                    self.showingImagePickerBackProfile = true
-                },
-                .default(Text("Mach ein Bild")){
-                    self.sourceType = .camera
-                    self.showingImagePickerBackProfile = true
+                .default(Text("Wähle ein Bild")) {
+                    if backImage == true {
+                        self.sourceType = .photoLibrary
+                        self.showingImagePickerBackProfile = true
+                        self.backImage = false
+                    }
+                    else {
+                        self.sourceType = .photoLibrary
+                        self.showingImagePicker = true
+                    }
                 },
                 .cancel()
             ])
@@ -326,19 +343,18 @@ struct ProfileSettingsView: View {
         .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
             ImagePicker(pickedImage: self.$pickedImage, showImagePicker: self.$showingImagePicker, imageData: self.$imageData)
         }
-        .actionSheet(isPresented: $showingActionsSheet) {
-            ActionSheet(title: Text(""), buttons: [
-                .default(Text("Wähle ein Bild")){
-                    self.sourceType = .photoLibrary
-                    self.showingImagePicker = true
-                },
-                .default(Text("Mach ein Bild")){
-                    self.sourceType = .camera
-                    self.showingImagePicker = true
-                },
-                .cancel()
-            ])
+        
+        /*
+        EmptyView()
+        .fullScreenCover(isPresented: $selectedProfile,  onDismiss: loadImage) {
+            ImageCrop(cropImage: $profileImageUI, showImageCrop: $selectedProfile, imageData: $imageData)
         }
+        
+        EmptyView()
+        .fullScreenCover(isPresented: $selectedBackProfile,  onDismiss: loadImage) {
+            ImageCrop(cropImage: $backProfileImageUI, showImageCrop: $selectedProfile, imageData: $imageData)
+        }
+         */
     }
     
     /// Functions:
@@ -403,14 +419,26 @@ struct ProfileSettingsView: View {
     
     func loadImage() {
         guard let inputImage = pickedImage else { return }
+        profileImageUI = inputImage.asUIImage()
         profileImage = inputImage
+        
         changeProfileImage = true
+        
+        if changeProfileImage == true {
+            selectedProfile = true
+        }
     }
     
     func loadBackProfileImage() {
         guard let inputImage = pickedBackImage else { return }
         backProfileImage = inputImage
+        backProfileImageUI = inputImage.asUIImage()
+        
         changeBackProfileImage = true
+        
+        if backProfileImage != nil {
+            selectedBackProfile = true
+        }
     }
     
     func errorCheck() -> String? {

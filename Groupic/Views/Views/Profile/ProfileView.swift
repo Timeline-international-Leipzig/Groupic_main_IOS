@@ -35,7 +35,6 @@ struct ProfileView: View {
             }.zIndex(1)
             
             VStack {
-                
                 ProfileHeader(user: self.session.session!)
                 
                 MidTabBarView().padding(.top, 40)

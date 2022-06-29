@@ -1,0 +1,80 @@
+//
+//  ImageCrop.swift
+//  Groupic
+//
+//  Created by Anatolij Travkin on 28.06.22.
+//
+
+import Mantis
+import Foundation
+import SwiftUI
+
+struct ImageCrop: UIViewControllerRepresentable {
+     typealias Coordinator = ImageCropCoordinator
+    
+    @Binding var cropImage: UIImage?
+    @Binding var showImageCrop: Bool
+    @Binding var back: Bool
+    @Binding var imageData: Data
+    
+    func makeCoordinator() -> ImageCropCoordinator {
+        return ImageCropCoordinator(self)
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+    }
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImageCrop>) -> Mantis.CropViewController {
+        var config = Mantis.Config()
+        
+        if back == true {
+            config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 16.0 / 9.0)
+        }
+        else {
+            config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 1.0 / 1.0)
+        }
+
+        config.addCustomRatio(byVerticalWidth: 16, andVerticalHeight: 9)
+        
+        let cropper = Mantis.cropViewController(image: (cropImage)!, config: config)
+        cropper.delegate = context.coordinator
+        return cropper
+    }
+}
+
+class ImageCropCoordinator: NSObject, CropViewControllerDelegate {
+    var parent: ImageCrop
+    
+    init(_ parent: ImageCrop) {
+        self.parent = parent
+    }
+    
+    func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation, cropInfo: CropInfo) {
+        parent.cropImage = cropped
+        
+        if let mediaData =  parent.cropImage!.jpegData(compressionQuality: 0.5) {
+            parent.imageData = mediaData
+        }
+        
+        parent.showImageCrop.toggle()
+    }
+
+    func cropViewControllerDidFailToCrop(_ cropViewController: CropViewController, original: UIImage) {
+        
+    }
+
+    func cropViewControllerDidCancel(_ cropViewController: CropViewController, original: UIImage) {
+        parent.showImageCrop.toggle()
+    }
+
+    func cropViewControllerDidBeginResize(_ cropViewController: CropViewController) {
+        
+    }
+
+    func cropViewControllerDidEndResize(_ cropViewController: CropViewController, original: UIImage, cropInfo: CropInfo) {
+        
+    }
+
+}
+
+

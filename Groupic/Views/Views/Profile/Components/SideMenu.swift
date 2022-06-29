@@ -24,13 +24,7 @@ struct SideMenue: View {
             Spacer(minLength: 0)
             
             VStack(alignment: .leading) {
-                
-                Image("Berg2")
-                    .resizable()
-                    .frame(width: UIScreen.main.bounds.width - 90, height: 150)
-                
                 HStack(alignment: .top, spacing: 12) {
-                    
                     VStack(alignment: .leading, spacing: 12) {
                         
                         Button(action: {

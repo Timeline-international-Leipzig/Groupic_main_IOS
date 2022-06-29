@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserProfileView: View {
     @Binding var user: UserModel?
-
+    
     @StateObject var profileService = ProfileService()
     
     @Binding var next: Bool
@@ -41,8 +41,8 @@ struct UserProfileView: View {
             }.zIndex(1)
             
             VStack {
-            
-            UserTabView(user: user!, next: $next)
+                
+                UserTabView(user: user!, next: $next)
                 
                 Spacer()
             }.zIndex(1)
@@ -50,7 +50,7 @@ struct UserProfileView: View {
             VStack {
                 
                 ZStack {
-                
+                    
                     UserProfileHeader(user: user)
                 }
                 
@@ -65,6 +65,8 @@ struct UserProfileView: View {
                 }
                 .coordinateSpace(name: "pullToRefresh")
             }
+            
+            
         }.background(Color("mainColor"))
             .ignoresSafeArea()
     }

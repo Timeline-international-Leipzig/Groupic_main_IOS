@@ -10,14 +10,16 @@ import SDWebImageSwiftUI
 
 struct ProfileSettingsViewProfileHeader: View {
     @Binding var profileImage: Image?
+    @Binding var profileImageUI: UIImage?
     @Binding var backProfileImage: Image?
+    @Binding var backProfileImageUI: UIImage?
     
     var user: UserModel?
     
     var body: some View {
         ZStack {
-            if backProfileImage != nil {
-                backProfileImage!
+            if backProfileImageUI != nil || backProfileImage != nil {
+                Image(uiImage: backProfileImageUI!)
                     .resizable()
                     .frame(width: getRectView().width, height: 180, alignment: .center)
             }
@@ -35,8 +37,8 @@ struct ProfileSettingsViewProfileHeader: View {
             }
             
             VStack {
-                if profileImage != nil {
-                    profileImage!
+                if profileImage != nil || profileImageUI != nil {
+                    Image(uiImage: profileImageUI!)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 125, height: 125, alignment: .center)

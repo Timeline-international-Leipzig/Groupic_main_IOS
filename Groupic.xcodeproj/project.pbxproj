@@ -56,6 +56,9 @@
 		877C3CBC278EE08B00D59EEC /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877C3CBB278EE08B00D59EEC /* ProfileService.swift */; };
 		877C3CC5278EF74100D59EEC /* UserPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877C3CC4278EF74100D59EEC /* UserPostView.swift */; };
 		878655A6278383E700246351 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878655A5278383E700246351 /* PostService.swift */; };
+		878D33ED286B7CCC007F3B17 /* ImageCrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878D33EC286B7CCC007F3B17 /* ImageCrop.swift */; };
+		878D33F1286CA0A5007F3B17 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878D33F0286CA0A5007F3B17 /* EditView.swift */; };
+		878D33F3286CB58A007F3B17 /* EditViewBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878D33F2286CB589007F3B17 /* EditViewBack.swift */; };
 		878EC9C827614F2200639884 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9C727614F2200639884 /* AddEventView.swift */; };
 		878EC9CA27614F6300639884 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878EC9C927614F6300639884 /* NotificationsView.swift */; };
 		87929093274CF35400B534C9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87929092274CF35400B534C9 /* Extensions.swift */; };
@@ -213,6 +216,9 @@
 		877C3CBB278EE08B00D59EEC /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		877C3CC4278EF74100D59EEC /* UserPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostView.swift; sourceTree = "<group>"; };
 		878655A5278383E700246351 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		878D33EC286B7CCC007F3B17 /* ImageCrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCrop.swift; sourceTree = "<group>"; };
+		878D33F0286CA0A5007F3B17 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		878D33F2286CB589007F3B17 /* EditViewBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewBack.swift; sourceTree = "<group>"; };
 		878EC9C727614F2200639884 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		878EC9C927614F6300639884 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		87929092274CF35400B534C9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -562,6 +568,7 @@
 				87B2060B282142450072B7CF /* ImagePickerMultiple.swift */,
 				8726C8E0274BE9BB006AF1DB /* ImagePicker.swift */,
 				8760E57427FC7FF800A7D240 /* BackImagePicker.swift */,
+				878D33EC286B7CCC007F3B17 /* ImageCrop.swift */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -864,6 +871,8 @@
 			children = (
 				87F905E72811B6E100993128 /* SupportView.swift */,
 				87FFFCEB27F2E5AB00E64F1D /* ProfileSettingsView.swift */,
+				878D33F0286CA0A5007F3B17 /* EditView.swift */,
+				878D33F2286CB589007F3B17 /* EditViewBack.swift */,
 				87FFFCF027F628D700E64F1D /* Components_ProfileSettingsView */,
 			);
 			path = Components;
@@ -1346,9 +1355,11 @@
 				87F905ED2814BA9000993128 /* ProfileSettingsTextEditField.swift in Sources */,
 				8767DDF927846FC3008E4B55 /* EventView.swift in Sources */,
 				876AF08C27E3804F00FEF21A /* FollowService.swift in Sources */,
+				878D33ED286B7CCC007F3B17 /* ImageCrop.swift in Sources */,
 				87123DB3283E4C520071F563 /* ShowParticipantView.swift in Sources */,
 				87700E1B27E6680A00841E5B /* SearchUserPostView.swift in Sources */,
 				87700E2127E8D17C00841E5B /* UserPostCardView.swift in Sources */,
+				878D33F1286CA0A5007F3B17 /* EditView.swift in Sources */,
 				8792909A274D097600B534C9 /* StorageService.swift in Sources */,
 				DC3AA6A82701F6EB002B2649 /* LoginView.swift in Sources */,
 				87929096274D08C000B534C9 /* AuthService.swift in Sources */,
@@ -1364,6 +1375,7 @@
 				87B205F9281AE79C0072B7CF /* EventViewHeader.swift in Sources */,
 				876AF08327DF7C4800FEF21A /* SearchService.swift in Sources */,
 				87B2060728205B810072B7CF /* EventUserPicsView.swift in Sources */,
+				878D33F3286CB58A007F3B17 /* EditViewBack.swift in Sources */,
 				87B205FF281F08A20072B7CF /* ChangeEventModeView.swift in Sources */,
 				87123DBE28449DB50071F563 /* NotificationParticipantsView.swift in Sources */,
 				87B2061228235FA30072B7CF /* EventQuoteView.swift in Sources */,

@@ -88,6 +88,20 @@
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
+		<key>Mantis-MantisResources.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>27</integer>
+		</dict>
+		<key>Mantis.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>26</integer>
+		</dict>
 		<key>Pods-Groupic-GroupicUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>

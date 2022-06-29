@@ -203,6 +203,7 @@ struct SocialView: View {
             }
             .background(Color("mainColor"))
         }
+        
     }
     
     func searchUsers() {

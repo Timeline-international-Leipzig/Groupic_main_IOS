@@ -449,6 +449,7 @@ PODS:
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.7.0)
   - leveldb-library (1.22.1)
+  - Mantis (1.9.0)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
@@ -469,6 +470,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Messaging
   - Firebase/Storage
+  - Mantis (~> 1.9.0)
   - RadioGroup
   - SDWebImageSwiftUI
 
@@ -490,6 +492,7 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - leveldb-library
+    - Mantis
     - nanopb
     - PromisesObjC
     - RadioGroup
@@ -514,6 +517,7 @@ SPEC CHECKSUMS:
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  Mantis: 5dea32ad49addabb3247112f5b1282a6e0964bb0
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   RadioGroup: 8541fae4af7ee54125a9e237105982c1fbeedaa7
@@ -521,6 +525,6 @@ SPEC CHECKSUMS:
   SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
   SweeterSwift: 31fa8cfbdc094d3ae41bafbeaf4bceed467ba5c7
 
-PODFILE CHECKSUM: 12b7dd846e4d1702613912d5a13316db7ad97631
+PODFILE CHECKSUM: bd7c67e7fee3b128ecc20a0fdd314a0e95ff6c1d
 
 COCOAPODS: 1.11.2

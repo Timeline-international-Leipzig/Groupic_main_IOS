@@ -13,6 +13,7 @@ pod 'Firebase/Firestore'
 pod 'Firebase/Messaging'
 pod 'SDWebImageSwiftUI'
 pod 'RadioGroup'
+pod 'Mantis', '~> 1.9.0'
 
   target 'GroupicTests' do
     inherit! :search_paths
