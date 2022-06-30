@@ -18,7 +18,6 @@ struct LayoutImages: View {
         HStack(spacing: 4) {
             if eventElements.count == 1 {
                 if eventElements[0].type == "TEXT" {
-                    
                     HStack {
                         VStack {
                             if user.profileImageId == "" {

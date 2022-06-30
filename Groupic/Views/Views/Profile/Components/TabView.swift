@@ -10,6 +10,7 @@ import Firebase
 
 struct TabView: View {
     
+    
     @State var nextNotifications = false
     @State var eventNew = false
     @State var new = false
@@ -47,7 +48,7 @@ struct TabView: View {
                         self.nextNotifications.toggle()
                     }, label: {
                         if new == true || eventNew == true {
-                            Image(systemName: "envelope.badge.fill")
+                            Image(systemName: "envelope.badge")
                                 .foregroundColor(.white)
                         }
                         else {
@@ -106,7 +107,7 @@ struct TabView: View {
     }
     
     func checkIfChecked(completion: @escaping ((Bool) -> () )) {
-        ProfileService.followersCheck(userId: user!.uid).whereField("globalCheck", isEqualTo: false).getDocuments() {
+        ProfileService.followersCheck(userId: user!.uid).addSnapshotListener() {
             (QuerySnapshot, Error) in
             if let error = Error {
                 print("Unable to query" + error.localizedDescription)
@@ -126,7 +127,7 @@ struct TabView: View {
     }
     
     func checkIfCheckedEvent(completion: @escaping ((Bool) -> () )) {
-        ProfileService.followersEventCheck(userId: user!.uid).getDocuments() {
+        ProfileService.followersEventCheck(userId: user!.uid).addSnapshotListener() {
             (QuerySnapshot, Error) in
             if let error = Error {
                 print("Unable to query" + error.localizedDescription)

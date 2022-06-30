@@ -12,6 +12,9 @@ import Firebase
 struct SocialView: View {
     @StateObject var profileService = ProfileService()
     
+    @State var width = UIScreen.main.bounds.width - 90
+    @State var x = UIScreen.main.bounds.width + 90
+    
     @State var isLoading = false
     @State var followCheck = false
     
@@ -39,6 +42,8 @@ struct SocialView: View {
         
         ZStack {
             
+            
+            
             VStack {
                 
                 HStack {
@@ -54,12 +59,15 @@ struct SocialView: View {
             VStack {
                 HStack {
                     
+                    
                     Spacer()
                     
-                    Button(action: {},
+                    Button(action: {
+                        self.nextNotifications.toggle()
+                    },
                            label: {
                         if new == true || eventNew == true {
-                            Image(systemName: "envelope.badge.fill")
+                            Image(systemName: "envelope.badge")
                                 .foregroundColor(.white)
                         }
                         else {
@@ -67,7 +75,7 @@ struct SocialView: View {
                                 .foregroundColor(.white)
                         }
                     })
-                    /*.onAppear{
+                    .onAppear{
                         checkIfChecked { result in
                             if (result == true) {
                                 self.new = true
@@ -85,14 +93,19 @@ struct SocialView: View {
                                 }
                             }
                         }
-                    }*/
+                    }
                     
                     Text("Community")
                         .font(.custom("Inter-Regular", size: 20))
                         .foregroundColor(.white)
                         .padding(.horizontal, 20)
                     
-                    Button(action: {},
+                    Button(action: {
+                        withAnimation{
+                            
+                            x = 0
+                        }
+                    },
                            label: {
                         Image(systemName: "line.horizontal.3")
                             .foregroundColor(.white)
@@ -104,6 +117,21 @@ struct SocialView: View {
                 }.padding(.top, 50)
                 
                 Spacer()
+            }.zIndex(1)
+            
+            ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
+                                
+                SideMenue()
+                    .shadow(color: Color.black.opacity(x != 0 ? 0.1 : 0), radius: 5, x: 5, y: 0)
+                    .offset(x: x)
+                    .background(Color.black.opacity(x == 0 ? 0.5 : 0).ignoresSafeArea(.all, edges: .vertical).onTapGesture {
+                        
+                        withAnimation{
+                            
+                            x = width
+                        }
+                    })
+                   
             }.zIndex(1)
             
             VStack {
@@ -198,10 +226,10 @@ struct SocialView: View {
                     }
                 }
                 .navigationBarTitle("")
-                .navigationBarBackButtonHidden(true)
-                .navigationBarHidden(true)
+               
             }
             .background(Color("mainColor"))
+            
         }
         
     }
@@ -217,8 +245,8 @@ struct SocialView: View {
         }
     }
     
-    /*func checkIfChecked(completion: @escaping ((Bool) -> () )) {
-        ProfileService.followersCheck(userId: user!.uid).whereField("globalCheck", isEqualTo: false).getDocuments() {
+    func checkIfChecked(completion: @escaping ((Bool) -> () )) {
+        ProfileService.followersCheck(userId: Auth.auth().currentUser!.uid).addSnapshotListener() {
             (QuerySnapshot, Error) in
             if let error = Error {
                 print("Unable to query" + error.localizedDescription)
@@ -235,10 +263,10 @@ struct SocialView: View {
                 }
             }
         }
-    }*/
+    }
     
-    /*func checkIfCheckedEvent(completion: @escaping ((Bool) -> () )) {
-        ProfileService.followersEventCheck(userId: user!.uid).getDocuments() {
+    func checkIfCheckedEvent(completion: @escaping ((Bool) -> () )) {
+        ProfileService.followersEventCheck(userId: Auth.auth().currentUser!.uid).addSnapshotListener() {
             (QuerySnapshot, Error) in
             if let error = Error {
                 print("Unable to query" + error.localizedDescription)
@@ -255,5 +283,5 @@ struct SocialView: View {
                 }
             }
         }
-    }*/
+    }
 }

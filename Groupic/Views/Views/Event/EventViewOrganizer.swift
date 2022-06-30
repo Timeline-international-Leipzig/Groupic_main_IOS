@@ -19,6 +19,8 @@ struct EventViewOrganizer: View {
     @State private var pickedImage: Image?
     @State var images: [UIImage] = []
     
+    @State var isLoading = false
+    
     @State private var showingActionsSheet = false
     @State private var showingActionsSheetCamera = false
     @State private var showingImagePickerCamera = false
@@ -193,7 +195,7 @@ struct EventViewOrganizer: View {
             }
             
             if self.textQuote {
-                EventQuoteView(back: $textQuote, userModel: $userModel, postModel: $postModel, quote: $quote)
+                EventQuoteView(back: $textQuote, userModel: $userModel, postModel: $postModel, quote: $quote, isLoading: $isLoading)
             }
         }
         .background(Color("mainColor"))

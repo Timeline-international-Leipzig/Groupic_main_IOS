@@ -21,6 +21,9 @@ struct GroupicApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(SessionStore())
+                .environmentObject(NavigationLinkModel())
+                .environmentObject(NavigationLinkModel2())
+                .environmentObject(NavigationLinkModel3())
                 .preferredColorScheme(.dark)
         }
     }

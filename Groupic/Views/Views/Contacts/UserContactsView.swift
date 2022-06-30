@@ -71,8 +71,6 @@ struct UserContactsView: View {
                 .background(Color("mainColor"))
             }
         }
-        .navigationTitle("")
-        .navigationBarHidden(true)
         .onAppear {
             self.profileService.loadAllUser(userId: user.uid)
             self.profileService.loadUser(userId: user.uid)

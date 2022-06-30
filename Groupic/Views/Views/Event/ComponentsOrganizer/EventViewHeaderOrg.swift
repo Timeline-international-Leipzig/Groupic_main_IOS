@@ -40,7 +40,5 @@ struct EventViewHeaderOrg: View {
                 }
             }
             .navigationBarTitle("")
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
     }
 }

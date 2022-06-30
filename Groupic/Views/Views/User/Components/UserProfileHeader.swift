@@ -116,9 +116,6 @@ struct UserProfileHeader: View {
                 }
             }.offset(y: 60)
         }
-        .navigationBarTitle("")
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
     }
     
     func checkIfChecked(completion: @escaping ((Bool) -> () )) {

@@ -34,7 +34,6 @@ struct EventUserPicsView: View {
             }
             .frame(width: UIScreen.main.bounds.width)
             .navigationTitle("")
-            .navigationBarHidden(true)
             .onAppear {
                 self.profileService.loadAllEventUsers(postId: post.id)
                 self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)

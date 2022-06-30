@@ -9,14 +9,19 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var session: SessionStore
-    
-    @Binding var next: Bool
+    @EnvironmentObject var model: NavigationLinkModel2
+    @EnvironmentObject var model2: NavigationLinkModel
     
     @State var nextAGB = false
     @State var nextDatenschutz = false
     @State var nextSupport = false
     
     @State var nextProfile = false
+    
+    init() {
+        UINavigationBar.appearance().tintColor = .white
+        UIBarButtonItem.appearance().title = "HEllo"
+    }
     
     var body: some View {
         NavigationLink(destination: ProfileSettingsView(session: self.session.session, back: $nextProfile), isActive: self.$nextProfile, label: {
@@ -41,6 +46,7 @@ struct SettingsView: View {
             
             VStack(alignment: .center, spacing: 0) {
                 
+                /*
                 ZStack {
                     
                     HStack {
@@ -65,7 +71,7 @@ struct SettingsView: View {
                     
                     HStack {
                         Button(action: {
-                            self.next.toggle()
+                            self.model.pushed = false
                         }, label: {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(.white)
@@ -77,6 +83,7 @@ struct SettingsView: View {
                     .padding(.top, 30)
                     .padding(.leading, 20)
                 }
+                 */
                 
                 Form {
                     Section(header: Text("Deine Einstellungen").font(.custom("Inter-Regular", size: 14))) {
@@ -97,7 +104,7 @@ struct SettingsView: View {
                             Spacer()
                             
                             Button(action: {
-                                self.nextProfile.toggle()
+                                self.nextProfile = true
                             }) {
                                 Image(systemName: "chevron.right")
                                     .font(.system(size: 14, weight: .semibold, design: .rounded))
@@ -198,10 +205,9 @@ struct SettingsView: View {
                 }
             }
             .background(Color("mainColor"))
-            .ignoresSafeArea()
+            .navigationTitle("")
             .navigationBarTitle("")
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
         }
     }
 }
+

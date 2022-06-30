@@ -47,7 +47,7 @@ class PostService {
     
     static func loadUserPosts(userId: String, onSuccess: @escaping(_
                                                                    posts: [PostUidModel]) -> Void) {
-        PostService.postUserId(userId: userId).collection("events").getDocuments {
+        PostService.postUserId(userId: userId).collection("events").addSnapshotListener {
             (snapShot, error) in
             
             guard let snap = snapShot else {
@@ -74,7 +74,7 @@ class PostService {
     
     static func loadAllPosts(onSuccess: @escaping(_
                                                   posts: [PostModel]) -> Void) {
-        PostService.allPosts.order(by: "publishTime", descending: true).getDocuments {
+        PostService.allPosts.order(by: "publishTime", descending: true).addSnapshotListener {
             (snapShot, error) in
             
             guard let snap = snapShot else {
@@ -128,7 +128,7 @@ class PostService {
     
     static func loadPictureEventElements(postId: String, onSuccess: @escaping(_
                                                                               posts: [EventContentModel]) -> Void) {
-        PostService.allPosts.document(postId).collection("elements").order(by: "stamp", descending: true).getDocuments {
+        PostService.allPosts.document(postId).collection("elements").order(by: "stamp", descending: true).addSnapshotListener {
             (snapShot, error) in
             
             guard let snap = snapShot else {
@@ -155,7 +155,7 @@ class PostService {
     
     static func loadUser(userId: String, onSuccess: @escaping(_
                                                               users: [UidUserModel]) -> Void) {
-        PostService.userId(userId: userId).collection("contact").getDocuments {
+        PostService.userId(userId: userId).collection("contact").addSnapshotListener {
             (snapShot, error) in
             
             guard let snap = snapShot else {
@@ -182,7 +182,7 @@ class PostService {
     
     static func loadEventUser(userId: String, onSuccess: @escaping(_
                                                                    users: [UidUserModel]) -> Void) {
-        PostService.userId(userId: userId).collection("contact").getDocuments {
+        PostService.userId(userId: userId).collection("contact").addSnapshotListener {
             (snapShot, error) in
             
             guard let snap = snapShot else {
@@ -210,7 +210,7 @@ class PostService {
     
     static func loadRequestUser(userId: String, onSuccess: @escaping(_
                                                                      users: [UidCheckUserModel]) -> Void) {
-        PostService.userId(userId: userId).collection("requestsForContact").getDocuments {
+        PostService.userId(userId: userId).collection("requestsForContact").addSnapshotListener {
             (snapShot, error) in
             
             guard let snap = snapShot else {
@@ -237,7 +237,7 @@ class PostService {
     
     static func loadRequestEvent(userId: String, onSuccess: @escaping(_
                                                                       users: [InviteUidModel]) -> Void) {
-        PostService.userId(userId: userId).collection("eventRequest").getDocuments {
+        PostService.userId(userId: userId).collection("eventRequest").addSnapshotListener {
             (snapShot, error) in
             
             guard let snap = snapShot else {
@@ -264,7 +264,7 @@ class PostService {
     
     static func loadAllUser(userId: String, onSuccess: @escaping(_
                                                                  users: [UserModel]) -> Void) {
-        PostService.users.getDocuments {
+        PostService.users.addSnapshotListener {
             (snapShot, error) in
             
             guard let snap = snapShot else {
@@ -291,7 +291,7 @@ class PostService {
     
     static func loadAllEventUserUid(postId: String, onSuccess: @escaping(_
                                                                          users: [UidUserModel]) -> Void) {
-        PostService.allPosts.document(postId).collection("participants").getDocuments {
+        PostService.allPosts.document(postId).collection("participants").addSnapshotListener {
             (snapShot, error) in
             
             guard let snap = snapShot else {

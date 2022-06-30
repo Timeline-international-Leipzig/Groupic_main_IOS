@@ -102,7 +102,6 @@ struct ParticipantsView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 15, style: .circular))
                 .frame(height: UIScreen.main.bounds.height - 50)
                 .navigationTitle("")
-                .navigationBarHidden(true)
                 .onAppear {
                     self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
                     self.profileService.loadAllEventUsers(postId: post.id)

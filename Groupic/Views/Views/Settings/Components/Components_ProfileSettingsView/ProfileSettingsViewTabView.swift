@@ -8,43 +8,47 @@
 import SwiftUI
 
 struct ProfileSettingsViewTabView: View {
+    
     @Binding var back: Bool
+    @State var next = false
     
     var body: some View {
+        NavigationLink(destination: SettingsView(), isActive: $next, label: {
+            EmptyView()
+        })
+        
         ZStack {
-            
             VStack {
                 
                 ZStack {
-                HStack {
-                    Spacer()
-                    
-                    Text("Profil bearbeiten")
-                        .font(.custom("Inter-Regular", size: 22))
-                        .foregroundColor(.white)
-                    
-                    Spacer()
-                }.padding(.top, 50)
-                
-                HStack {
-                    Button(action: {
-                        self.back.toggle()
-                    },
-                           label: {
-                        Image(systemName: "chevron.left")
+                    HStack {
+                        Spacer()
+                        
+                        Text("Profil bearbeiten")
+                            .font(.custom("Inter-Regular", size: 22))
                             .foregroundColor(.white)
-                    }).padding(.top, 50)
-                        .padding(.leading, 20)
+                        
+                        Spacer()
+                    }.padding(.top, 50)
                     
-                    Spacer()
-                }
+                    HStack {
+                        Button(action: {
+                            self.next.toggle()
+                        },
+                               label: {
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(.white)
+                        }).padding(.top, 50)
+                            .padding(.leading, 20)
+                        
+                        Spacer()
+                    }
                 }
                 
                 Spacer()
             }.zIndex(1)
             
             VStack {
-                
                 HStack {
                     Rectangle().frame(width: getRectView().width, height: 100)
                 }.background(Color(.black))

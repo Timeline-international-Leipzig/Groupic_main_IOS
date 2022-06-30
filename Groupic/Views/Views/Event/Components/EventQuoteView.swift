@@ -9,6 +9,8 @@ import SwiftUI
 import Firebase
 
 struct EventQuoteView: View {
+    @StateObject var profileService = ProfileService()
+    
     @State var color = Color.black.opacity(0.7)
     
     @Binding var back: Bool
@@ -20,10 +22,13 @@ struct EventQuoteView: View {
     @State var visible = false
     @State var nextView = false
     @State var alert = false
+    @State var next = false
     
     @Binding var userModel: UserModel
     @Binding var postModel: PostModel
     @Binding var quote: String
+    
+    @Binding var isLoading: Bool
     
     @State private var date = Date()
     
@@ -43,6 +48,9 @@ struct EventQuoteView: View {
                     
                     Button(action: {
                         eventQuote()
+                        
+                        searchElments()
+                        
                         self.back.toggle()
                     }, label: {
                         Text("Zitat speichern")
@@ -78,6 +86,16 @@ struct EventQuoteView: View {
     }
     
     ///Functions
+    
+    func searchElments() {
+        isLoading = true
+        
+        self.profileService.loadAllEventElements(postId: postModel.id)
+        self.profileService.loadCompositionElements(postId: postModel.id)
+        
+        isLoading = false
+    }
+    
     func eventQuote() {
         if let error = errorCheck() {
             self.error = error

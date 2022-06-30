@@ -14,6 +14,7 @@ struct ContactsView: View {
     @ObservedObject var followService = FollowService()
     @EnvironmentObject var session: SessionStore
     
+    
     @State var userSelected: UserModel?
     @State var users: [UserModel] = []
     
@@ -91,8 +92,6 @@ struct ContactsView: View {
                 .background(Color("mainColor"))
             }
         }
-        .navigationTitle("")
-        .navigationBarHidden(true)
         .onAppear {
             self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
             self.profileService.loadUser(userId: Auth.auth().currentUser!.uid)

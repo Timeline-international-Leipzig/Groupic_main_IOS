@@ -12,6 +12,8 @@ struct ProfileView: View {
     
     @EnvironmentObject var session: SessionStore
     
+    
+    
     @State var width = UIScreen.main.bounds.width - 90
     @State var x = UIScreen.main.bounds.width + 90
     

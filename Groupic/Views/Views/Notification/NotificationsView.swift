@@ -41,19 +41,6 @@ struct NotificationsView: View {
                                 Spacer()
                                 
                             }.padding(.top, 50)
-                            
-                            HStack {
-                                Button(action: {
-                                    self.back.toggle()
-                                }, label: {
-                                    Image(systemName: "chevron.left")
-                                        .foregroundColor(.white)
-                                })
-                                
-                                Spacer()
-                            }
-                            .padding(.top, 50)
-                            .padding(.leading, 20)
                         }
                         
                         Spacer()
@@ -111,9 +98,6 @@ struct NotificationsView: View {
             }
             .background(Color("mainColor"))
             .ignoresSafeArea()
-            .navigationBarTitle("")
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
         }
         .onAppear {
             self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)

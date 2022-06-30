@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct SideMenue: View {
+    @EnvironmentObject var model: NavigationLinkModel2
     
     var edges = UIApplication.shared.windows.first?.safeAreaInsets
-    
     @State var next = false
+    @State var next2 = false
     
     var body: some View {
-        
-        NavigationLink(destination: SettingsView(next: $next), isActive: self.$next, label: {
+        NavigationLink(destination: SettingsView(), isActive: $model.pushed, label: {
             EmptyView()
         })
         
@@ -24,11 +24,13 @@ struct SideMenue: View {
             Spacer(minLength: 0)
             
             VStack(alignment: .leading) {
+                
                 HStack(alignment: .top, spacing: 12) {
+                    
                     VStack(alignment: .leading, spacing: 12) {
                         
                         Button(action: {
-                            self.next.toggle()
+                            self.model.pushed = true
                         }, label: {
                             Label("Einstellungen", systemImage: "gearshape.fill")
                                 .font(.system(size: 18, weight: .medium))
@@ -53,5 +55,6 @@ struct SideMenue: View {
             .background(Color("mainColor"))
             .ignoresSafeArea(.all, edges: .vertical)
         }
+        .ignoresSafeArea()
     }
 }

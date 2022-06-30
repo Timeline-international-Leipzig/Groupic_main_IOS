@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct UserTabView: View {
+    
+    
     var user: UserModel
     
     @Binding var next: Bool
@@ -23,19 +25,6 @@ struct UserTabView: View {
                 
                 Spacer()
             }.padding(.top, 50)
-            
-            HStack() {
-                Button(action: {
-                    self.next.toggle()
-                }, label: {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.white)
-                })
-                
-                Spacer()
-            }
-            .padding(.top, 50)
-            .padding(.leading, 20)
         }
     }
 }

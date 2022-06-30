@@ -31,25 +31,15 @@ struct EditViewBack: View {
                         .background(Color.gray)
                         .foregroundColor(.black)
                 })
-                Button(action: {
-                    loadImage()
-                    self.selectedProfile.toggle()
-                }, label: {
-                    Text("Fertig")
-                        .font(.custom("Inter-ExtraBold", size: 18))
-                        .background(Color.gray)
-                        .foregroundColor(.black)
-                })
+
                 
-                Button(action: {
-                    self.selectedProfile.toggle()
-                }, label: {
-                    Text("Abbrechen")
-                        .font(.custom("Inter-ExtraBold", size: 18))
-                        .background(Color.gray)
-                        .foregroundColor(.black)
-                })
-                
+            }
+            
+        }
+        .navigationBarTitle("")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+             Text("Fertig")
             }
         }
         .fullScreenCover(isPresented: $selectedProfileState,  onDismiss: loadImage) {

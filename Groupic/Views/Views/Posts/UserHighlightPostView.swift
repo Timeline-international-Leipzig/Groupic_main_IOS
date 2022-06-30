@@ -51,8 +51,6 @@ struct UserHighlightPostView: View {
                 }.padding(.bottom, 100)
             }
         }
-        .navigationTitle("")
-        .navigationBarHidden(true)
         .onAppear {
             self.profileService.allPosts(userId: user.uid)
             self.profileService.loadUserPosts(userId: user.uid)

@@ -37,8 +37,6 @@ struct FutureUserPostView: View {
                 }.padding(.bottom, 100)
             }
         }
-        .navigationTitle("")
-        .navigationBarHidden(true)
         .onAppear {
             self.profileService.allPosts(userId: Auth.auth().currentUser!.uid)
             self.profileService.loadUserPosts(userId: Auth.auth().currentUser!.uid)

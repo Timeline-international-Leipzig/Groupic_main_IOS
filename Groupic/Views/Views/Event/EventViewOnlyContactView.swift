@@ -19,6 +19,8 @@ struct EventViewOnlyContactView: View {
     
     @State var showparticipants = false
     
+    @State var isLoading = false
+    
     var body: some View {
         ZStack {
             
@@ -47,19 +49,6 @@ struct EventViewOnlyContactView: View {
             
             VStack {
                 ZStack {
-                    HStack {
-                        Button(action: {
-                            self.next.toggle()
-                        }, label: {
-                            Image(systemName: "chevron.left")
-                                .foregroundColor(.white)
-                        })
-                        
-                        Spacer()
-                    }
-                    .padding(.top, 50)
-                    .padding(.leading, 20)
-                    
                     HStack {
                         
                         Spacer()
@@ -136,13 +125,10 @@ struct EventViewOnlyContactView: View {
                             EventUserPicsView(post: $postModel, showparticipants: $showparticipants)
                         }.padding(.top)
                         
-                        EventsContentView(postModel: $postModel, userModel: $userModel)
+                        EventsContentView(isLoading: $isLoading, postModel: $postModel, userModel: $userModel)
                     }
                 }.offset(y: -17)
             }
-            .navigationBarTitle("")
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
             
             if self.showparticipants {
                 ParticipantsView(back: $showparticipants, post: $postModel)

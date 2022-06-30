@@ -10,13 +10,14 @@ import SDWebImageSwiftUI
 
 struct ProfileHeader: View {
     @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var model: NavigationLinkModel
     
     var user: UserModel?
     
     @State var nextProfile = false
     
     var body: some View {
-        NavigationLink(destination: ProfileSettingsView(session: user!, back: $nextProfile), isActive: self.$nextProfile, label: {
+        NavigationLink(destination: ProfileSettingsView(session: user!, back: $nextProfile), isActive: $model.pushed, label: {
             EmptyView()
         })
         
@@ -66,7 +67,7 @@ struct ProfileHeader: View {
                 Spacer()
                 
                 Button(action: {
-                    self.nextProfile.toggle()
+                    self.model.pushed = true
                 }, label: {
                     Text("Bearbeiten")
                         .font(.system(size: 12, weight: .bold))

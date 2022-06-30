@@ -62,7 +62,6 @@ struct AddContactsView: View {
                         }
                     }
                     .navigationTitle("")
-                    .navigationBarHidden(true)
                     .onAppear {
                         self.profileService.loadAllUser(userId: Auth.auth().currentUser!.uid)
                         self.profileService.loadUser(userId: Auth.auth().currentUser!.uid)

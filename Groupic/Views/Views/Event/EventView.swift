@@ -20,6 +20,8 @@ struct EventView: View {
     @State private var pickedImage: Image?
     @State var images: [UIImage] = []
     
+    @State var isLoading = false
+    
     @State private var showingActionsSheet = false
     @State private var showingActionsSheetCamera = false
     @State private var showingImagePickerCamera = false
@@ -67,20 +69,6 @@ struct EventView: View {
                         
                         Spacer()
                     }.padding(.top, 30)
-                    
-                    HStack {
-                        Button(action: {
-                            self.next.toggle()
-                        }, label: {
-                            Image(systemName: "chevron.left")
-                                .foregroundColor(.white)
-                        })
-                        
-                        Spacer()
-                    }
-                    .padding(.top, 30)
-                    .padding(.leading, 20)
-                    
                 }
                 
                 Spacer()
@@ -206,15 +194,12 @@ struct EventView: View {
                         }
                         .padding(.top)
                         
-                        EventsContentView(postModel: $postModel, userModel: $userModel).padding(.bottom, 100)
+                        EventsContentView(isLoading: $isLoading, postModel: $postModel, userModel: $userModel).padding(.bottom, 100)
                     }
                 }
             }
             .background(Color("mainColor"))
             .ignoresSafeArea()
-            .navigationBarTitle("")
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
             
             if self.alertEventName {
                 EventNameView(back: $alertEventName, userModel: $userModel, postModel: $postModel, eventName: $eventName)
@@ -237,7 +222,7 @@ struct EventView: View {
             }
             
             if self.textQuote {
-                EventQuoteView(back: $textQuote, userModel: $userModel, postModel: $postModel, quote: $quote)
+                EventQuoteView(back: $textQuote, userModel: $userModel, postModel: $postModel, quote: $quote, isLoading: $isLoading)
             }
         }
         .ignoresSafeArea()
@@ -248,10 +233,6 @@ struct EventView: View {
             ActionSheet(title: Text("Bild"), buttons: [
                 .default(Text("Auswählen")) {
                     self.sourceType = .photoLibrary
-                    self.showingImagePicker = true
-                },
-                .default(Text("Aufnehmen")) {
-                    self.sourceType = .camera
                     self.showingImagePicker = true
                 },
                 .cancel()
@@ -287,6 +268,10 @@ struct EventView: View {
         self.editProfileImage()
     }
     
+ 
+      
+
+  
     func editProfileImage() {
         let storagePostId = StorageService.storagePostId(postId: postModel.id)
         let metaData = StorageMetadata()

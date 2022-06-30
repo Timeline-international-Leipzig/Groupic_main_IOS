@@ -8,7 +8,6 @@
 import SwiftUI
 import Firebase
 
-
 struct ContentView: View {
     @EnvironmentObject var session: SessionStore
     

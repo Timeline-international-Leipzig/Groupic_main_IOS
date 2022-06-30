@@ -12,6 +12,7 @@ struct ProfileSettingsView: View {
     var userCollection = Firestore.firestore().collection("users")
     
     @EnvironmentObject var session: SessionStore
+    @EnvironmentObject var model: NavigationLinkModel3
     
     @Binding var back: Bool
     
@@ -76,8 +77,9 @@ struct ProfileSettingsView: View {
                 EmptyView()
             })
             
+            /*
             ProfileSettingsViewTabView(back: $back).zIndex(1)
-            
+            */
             ScrollView {
                 
                 VStack(alignment: .center, spacing: 0) {
@@ -318,9 +320,6 @@ struct ProfileSettingsView: View {
         }
         .background(Color("mainColor"))
         .ignoresSafeArea()
-        .navigationBarTitle("")
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
         .sheet(isPresented: $showingImagePickerBackProfile, onDismiss: loadBackProfileImage) {
             backImagePicker(pickedImage: self.$pickedBackImage, showImagePicker: self.$showingImagePickerBackProfile, imageData: self.$backImageData)
         }
@@ -425,7 +424,7 @@ struct ProfileSettingsView: View {
         changeProfileImage = true
         
         if changeProfileImage == true {
-            selectedProfile = true
+            self.selectedProfile = true
         }
     }
     
